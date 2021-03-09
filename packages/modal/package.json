@@ -1,7 +1,7 @@
 {
   "name": "@finn-no/fabric-react-modal",
   "license": "ISC",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "exports": "./dist/index.js",
   "module": "dist/index.js",
@@ -15,7 +15,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@finn-no/fabric-react-utils": "^0.2.0",
+    "@finn-no/fabric-react-utils": "^0.2.1",
     "@reach/dialog": "0.13.0"
   },
   "peerDependencies": {
