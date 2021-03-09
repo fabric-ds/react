@@ -13,6 +13,9 @@
     "prepublishOnly": "yarn build"
   },
   "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0"
   },
