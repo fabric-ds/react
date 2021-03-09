@@ -1,0 +1,45 @@
+---
+category: 'Navigation'
+---
+
+import { Breadcrumbs } from '../src';
+import packageData from '../package.json';
+
+# Breadcrumbs
+
+Breadcrumbs show the navigation structure for the current location.
+
+<PackageInfo packageData={packageData} componentNames={['Breadcrumbs']} />
+
+## Example
+
+```jsx example
+<Breadcrumbs>
+    <a href="#/url/1">Eiendom</a>
+    <a href="#/url/2">Bolig til salgs</a>
+    <a href="#/url/3" aria-current="page">
+        Oslo
+    </a>
+</Breadcrumbs>
+```
+
+## Content
+
+Breadcrumbs expect their component children to be the link "crumbs" that make up
+the navigation structure. The component will interject a separator between the
+crumbs.
+
+## Accessibility
+
+Breadcrumbs should have a label that identifies the structure as a breadcrumb
+trail to screen readers. By default, `aria-label` is set to <em>"Her er
+du"</em>.
+
+It is recommended that the crumb for the current page has the `aria-current="page"`
+attribute set. Usually this is the last crumb in the trail.
+
+## Props
+
+```props packages/breadcrumbs/src/Breadcrumbs.tsx
+
+```

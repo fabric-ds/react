@@ -1,0 +1,50 @@
+:root {
+    --reach-combobox: 1;
+}
+
+.popover {
+    background: var(
+        --troika-combobox-list-background-color,
+        env(--troika-combobox-list-background-color)
+    );
+    box-shadow: var(
+        --troika-combobox-list-box-shadow,
+        env(--troika-combobox-list-box-shadow)
+    );
+    border-radius: var(
+        --troika-combobox-list-border-radius,
+        env(--troika-combobox-list-border-radius)
+    );
+    padding: var(
+        --troika-combobox-list-padding,
+        env(--troika-combobox-list-padding)
+    );
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+/* When text match is enabled we bold the unmatching segments, while leaving the unmatched text segments alone */
+.matchTextSegments [data-suggested-value] {
+    font-weight: bold;
+}
+
+.option {
+    cursor: pointer;
+    padding: var(
+        --troika-combobox-list-item-padding,
+        env(--troika-combobox-list-item-padding)
+    );
+}
+
+.option:hover,
+.option[data-highlighted] {
+    background-color: var(
+        --troika-combobox-list-item-background-color-selected-hover,
+        env(--troika-combobox-list-item-background-color-selected-hover)
+    );
+}

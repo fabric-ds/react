@@ -1,0 +1,268 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`centered 1`] = `
+<div
+  class="tabs"
+  data-orientation="horizontal"
+  data-reach-tabs=""
+>
+  <ul
+    aria-orientation="horizontal"
+    class="tabs__control tabs__control--centered"
+    data-reach-tab-list=""
+    role="tablist"
+  >
+    <li
+      aria-controls="tabs--6--panel--0"
+      aria-selected="true"
+      class="tabs__control__tab"
+      data-orientation="horizontal"
+      data-reach-tab=""
+      data-selected=""
+      id="tabs--6--tab--0"
+      role="tab"
+      tabindex="0"
+    >
+      Tab 1
+    </li>
+    <li
+      aria-controls="tabs--6--panel--1"
+      aria-selected="false"
+      class="tabs__control__tab"
+      data-orientation="horizontal"
+      data-reach-tab=""
+      id="tabs--6--tab--1"
+      role="tab"
+      tabindex="-1"
+    >
+      Tab 2
+    </li>
+    <li
+      aria-controls="tabs--6--panel--2"
+      aria-selected="false"
+      class="tabs__control__tab"
+      data-orientation="horizontal"
+      data-reach-tab=""
+      id="tabs--6--tab--2"
+      role="tab"
+      tabindex="-1"
+    >
+      Tab 3
+    </li>
+  </ul>
+  <div
+    data-reach-tab-panels=""
+  >
+    <div
+      aria-labelledby="tabs--6--tab--0"
+      class="tabs__content"
+      data-reach-tab-panel=""
+      id="tabs--6--panel--0"
+      role="tabpanel"
+      tabindex="0"
+    >
+      Content 1
+    </div>
+    <div
+      aria-labelledby="tabs--6--tab--1"
+      class="tabs__content"
+      data-reach-tab-panel=""
+      hidden=""
+      id="tabs--6--panel--1"
+      role="tabpanel"
+      tabindex="-1"
+    >
+      Content 2
+    </div>
+    <div
+      aria-labelledby="tabs--6--tab--2"
+      class="tabs__content"
+      data-reach-tab-panel=""
+      hidden=""
+      id="tabs--6--panel--2"
+      role="tabpanel"
+      tabindex="-1"
+    >
+      Content 3
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render component with 3 tabs 1`] = `
+<div
+  class="tabs"
+  data-orientation="horizontal"
+  data-reach-tabs=""
+>
+  <ul
+    aria-orientation="horizontal"
+    class="tabs__control"
+    data-reach-tab-list=""
+    role="tablist"
+  >
+    <li
+      aria-controls="tabs--1--panel--0"
+      aria-selected="true"
+      class="tabs__control__tab"
+      data-orientation="horizontal"
+      data-reach-tab=""
+      data-selected=""
+      id="tabs--1--tab--0"
+      role="tab"
+      tabindex="0"
+    >
+      Tab 1
+    </li>
+    <li
+      aria-controls="tabs--1--panel--1"
+      aria-selected="false"
+      class="tabs__control__tab"
+      data-orientation="horizontal"
+      data-reach-tab=""
+      id="tabs--1--tab--1"
+      role="tab"
+      tabindex="-1"
+    >
+      Tab 2
+    </li>
+    <li
+      aria-controls="tabs--1--panel--2"
+      aria-selected="false"
+      class="tabs__control__tab"
+      data-orientation="horizontal"
+      data-reach-tab=""
+      id="tabs--1--tab--2"
+      role="tab"
+      tabindex="-1"
+    >
+      Tab 3
+    </li>
+  </ul>
+  <div
+    data-reach-tab-panels=""
+  >
+    <div
+      aria-labelledby="tabs--1--tab--0"
+      class="tabs__content"
+      data-reach-tab-panel=""
+      id="tabs--1--panel--0"
+      role="tabpanel"
+      tabindex="0"
+    >
+      Content 1
+    </div>
+    <div
+      aria-labelledby="tabs--1--tab--1"
+      class="tabs__content"
+      data-reach-tab-panel=""
+      hidden=""
+      id="tabs--1--panel--1"
+      role="tabpanel"
+      tabindex="-1"
+    >
+      Content 2
+    </div>
+    <div
+      aria-labelledby="tabs--1--tab--2"
+      class="tabs__content"
+      data-reach-tab-panel=""
+      hidden=""
+      id="tabs--1--panel--2"
+      role="tabpanel"
+      tabindex="-1"
+    >
+      Content 3
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should set tab 3 as active 1`] = `
+<div
+  class="tabs"
+  data-orientation="horizontal"
+  data-reach-tabs=""
+>
+  <ul
+    aria-orientation="horizontal"
+    class="tabs__control tabs__control--centered"
+    data-reach-tab-list=""
+    role="tablist"
+  >
+    <li
+      aria-controls="tabs--10--panel--0"
+      aria-selected="false"
+      class="tabs__control__tab"
+      data-orientation="horizontal"
+      data-reach-tab=""
+      id="tabs--10--tab--0"
+      role="tab"
+      tabindex="-1"
+    >
+      Tab 1
+    </li>
+    <li
+      aria-controls="tabs--10--panel--1"
+      aria-selected="false"
+      class="tabs__control__tab"
+      data-orientation="horizontal"
+      data-reach-tab=""
+      id="tabs--10--tab--1"
+      role="tab"
+      tabindex="-1"
+    >
+      Tab 2
+    </li>
+    <li
+      aria-controls="tabs--10--panel--2"
+      aria-selected="true"
+      class="tabs__control__tab"
+      data-orientation="horizontal"
+      data-reach-tab=""
+      data-selected=""
+      id="tabs--10--tab--2"
+      role="tab"
+      tabindex="0"
+    >
+      Tab 3
+    </li>
+  </ul>
+  <div
+    data-reach-tab-panels=""
+  >
+    <div
+      aria-labelledby="tabs--10--tab--0"
+      class="tabs__content"
+      data-reach-tab-panel=""
+      hidden=""
+      id="tabs--10--panel--0"
+      role="tabpanel"
+      tabindex="-1"
+    >
+      Content 1
+    </div>
+    <div
+      aria-labelledby="tabs--10--tab--1"
+      class="tabs__content"
+      data-reach-tab-panel=""
+      hidden=""
+      id="tabs--10--panel--1"
+      role="tabpanel"
+      tabindex="-1"
+    >
+      Content 2
+    </div>
+    <div
+      aria-labelledby="tabs--10--tab--2"
+      class="tabs__content"
+      data-reach-tab-panel=""
+      id="tabs--10--panel--2"
+      role="tabpanel"
+      tabindex="0"
+    >
+      Content 3
+    </div>
+  </div>
+</div>
+`;

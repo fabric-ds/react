@@ -1,0 +1,17 @@
+node_modules
+package-lock.json
+
+# doc site build
+site/
+
+dist/
+
+*.log
+*.swp
+
+# editors
+.idea/
+.vscode/
+
+# os
+.DS_Store

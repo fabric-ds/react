@@ -1,0 +1,9 @@
+{
+  "extends": ["react-app"],
+  "rules": {
+    // Disabling this rule as we sometimes create empty links for example purposes
+    "jsx-a11y/anchor-is-valid": 0,
+    // Disabling this rule as we mostly pass props forward (including children)
+    "jsx-a11y/heading-has-content": 0
+  }
+}

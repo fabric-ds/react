@@ -1,0 +1,93 @@
+import { Tabs, Tab } from '../src';
+import packageData from '../package.json';
+
+# Tabs
+
+<PackageInfo packageData={packageData} componentNames={['Tabs', 'Tab']} />
+
+## Example
+
+```jsx example
+<Tabs>
+    <Tab title="Tab 1">Content 1</Tab>
+    <Tab title="Tab 2">Content 2</Tab>
+    <Tab title="Tab 3">Content 3</Tab>
+    <Tab title="Tab 4">Content 4</Tab>
+</Tabs>
+```
+
+## Migrating from Troika
+
+-   `centered` has been deprecated. Use `variant="centered"` instead.
+-   `justified` has been deprecated. Use `variant="justified"` instead.
+
+## Content
+
+Tabs accept multiple Tab elements as children. Each Tab must have a title prop
+that will be used as the content for the tab item.
+
+**Note:** Tab cannot be used outside of Tabs.
+
+## Tab selection
+
+The active tab can be set using either `defaultIndex` (uncontrolled) or `index`
+(controlled).
+
+```jsx example
+function Example() {
+    const [index, setIndex] = React.useState(1);
+    return (
+        <div className="flex flex-col space-y-48">
+            <Tabs defaultIndex={1}>
+                <Tab title="Tab 1">Uncontrolled content 1</Tab>
+                <Tab title="Tab 2">Uncontrolled content 2</Tab>
+            </Tabs>
+
+            <Tabs index={index} onChange={setIndex}>
+                <Tab title="Tab 1">Controlled content 1</Tab>
+                <Tab title="Tab 2">Controlled content 2</Tab>
+            </Tabs>
+        </div>
+    );
+}
+```
+
+## Visual Options
+
+### Centered
+
+Centers the tab items.
+
+```jsx example
+<Tabs variant="centered">
+    <Tab title="Tab 1">Content 1</Tab>
+    <Tab title="Tab 2">Content 2</Tab>
+    <Tab title="Tab 3">Content 3</Tab>
+    <Tab title="Tab 4">Content 4</Tab>
+</Tabs>
+```
+
+### Justified
+
+Justifies the tab items.
+
+```jsx example
+<Tabs variant="justified">
+    <Tab title="Tab 1">Content 1</Tab>
+    <Tab title="Tab 2">Content 2</Tab>
+    <Tab title="Tab 3">Content 3</Tab>
+    <Tab title="Tab 4">Content 4</Tab>
+</Tabs>
+```
+
+## Tabs Props
+
+```props packages/tabs/src/Tabs.tsx Tabs
+
+```
+
+## Tab Props
+
+```props packages/tabs/src/Tabs.tsx Tab
+
+```

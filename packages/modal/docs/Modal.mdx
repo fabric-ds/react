@@ -1,0 +1,167 @@
+import { Modal, ModalContent, ModalFooter, ModalHeading } from '../src';
+import { Button } from '../../button/src';
+import { Checkbox } from '../../checkbox/src';
+import packageData from '../package.json';
+
+# Modal
+
+Modals are dialogs for contextual information, tasks, or workflows that appear
+over the user interface.
+
+<!-- Commented out until bottomsheet has been ported to fabric
+For touch screens you may use [BottomSheet](/BottomSheet) instead. -->
+
+<PackageInfo
+    packageData={packageData}
+    componentNames={['Modal', 'ModalContent', 'ModalFooter', 'ModalHeading']}
+/>
+
+## Example
+
+```jsx example
+function Example() {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const handleOpen = () => setIsOpen(true);
+    const handleClose = () => setIsOpen(false);
+
+    return (
+        <>
+            <Button onClick={handleOpen}>Open modal</Button>
+
+            <Modal isOpen={isOpen} onDismiss={handleClose}>
+                <ModalContent>
+                    <ModalHeading>Modal heading</ModalHeading>
+                    <p>Content information goes here.</p>
+                </ModalContent>
+                <ModalFooter>
+                    <Button onClick={handleClose}>Close</Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Confirm
+                    </Button>
+                </ModalFooter>
+            </Modal>
+        </>
+    );
+}
+```
+
+## Content
+
+Fabric guidelines state the following:
+
+-   Don't add a close button (`X`) in the top right corner.
+-   The cancel action should always be on the left, while the main action is to
+    the right.
+
+## Non dismissable modals
+
+The `onDismiss` prop is optional. It can be dropped to create a modal that won't
+respond to <kbd>esc</kbd> keypresses and/or clicking outside the modal.
+
+```jsx example
+function Example() {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [hasAgreed, setHasAgreed] = React.useState(false);
+
+    const handleOpen = () => setIsOpen(true);
+    const handleClose = () => setIsOpen(false);
+
+    return (
+        <>
+            <Button onClick={handleOpen}>Open modal</Button>
+
+            <Modal
+                isOpen={isOpen}
+                onDismiss={hasAgreed ? handleClose : undefined}
+            >
+                <ModalContent>
+                    <ModalHeading>Non dismissable</ModalHeading>
+                    <p>To go further, you need to agree to these bogus terms</p>
+                    <Checkbox
+                        checked={hasAgreed}
+                        onChange={(e) => setHasAgreed(e.target.checked)}
+                    >
+                        I agree
+                    </Checkbox>
+                </ModalContent>
+                <ModalFooter>
+                    <Button
+                        variant="primary"
+                        disabled={!hasAgreed}
+                        onClick={handleClose}
+                    >
+                        Save
+                    </Button>
+                </ModalFooter>
+            </Modal>
+        </>
+    );
+}
+```
+
+## Accessibility
+
+Modal needs either `aria-label` or `aria-labelledby` to be accessible to screen
+readers. Most likely you'll have some kind of primary heading for the modal. In
+that case, you can use `ModalHeading`. It automatically connects the heading to
+the dialog.
+
+### Customizing focus behavior
+
+By default the first interactive element in the modal will be focused when the
+modal opens. Use `initialFocusRef` to customize this behavior. For instance,
+this can be used to focus a call to action button.
+
+```jsx example
+function Example() {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const focusRef = React.useRef();
+
+    return (
+        <>
+            <Button onClick={() => setIsOpen(true)}>Open modal</Button>
+            <Modal isOpen={isOpen} initialFocusRef={focusRef}>
+                <ModalContent>
+                    <ModalHeading>Customized focus behavior</ModalHeading>
+                    <p>The call to action button has inital focus.</p>
+                </ModalContent>
+                <ModalFooter>
+                    <Button onClick={() => setIsOpen(false)}>Cancel</Button>
+                    <Button
+                        variant="primary"
+                        ref={focusRef}
+                        onClick={() => setIsOpen(false)}
+                    >
+                        Accept
+                    </Button>
+                </ModalFooter>
+            </Modal>
+        </>
+    );
+}
+```
+
+## Modal Props
+
+```props packages/modal/src/Modal.tsx
+
+```
+
+## ModalContent Props
+
+```props packages/modal/src/ModalContent.tsx
+
+```
+
+## ModalFooter Props
+
+```props packages/modal/src/ModalFooter.tsx
+
+```
+
+## ModalHeading Props
+
+```props packages/modal/src/ModalHeading.tsx
+
+```

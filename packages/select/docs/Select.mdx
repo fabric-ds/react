@@ -1,0 +1,115 @@
+import { Select } from '../src';
+import packageData from '../package.json';
+
+# Select
+
+A dropdown component for selecting a single value.
+
+<PackageInfo packageData={packageData} componentNames={['Select']} />
+
+## Example
+
+```jsx example
+<Select label="Berries">
+    <option value="s">Strawberries</option>
+    <option value="r">Raspberries</option>
+    <option value="c">Cloudberries</option>
+</Select>
+```
+
+## Migrating from Troika
+
+-   You should no longer include or import any Troika input CSS.
+-   `error` has been deprecated. Use `invalid` instead.
+
+## Value
+
+An initial, uncontrolled, value can be provided using the `defaultValue` prop.
+Alternatively, a controlled value can be provided using the `value` prop.
+
+```jsx example
+function Example() {
+    let [value, setValue] = React.useState('c');
+
+    return (
+        <div className="flex flex-col space-y-32">
+            <Select label="Berries (uncontrolled)">
+                <option value="s">Strawberries</option>
+                <option value="r">Raspberries</option>
+                <option value="c">Cloudberries</option>
+            </Select>
+
+            <Select
+                label="Berries (controlled)"
+                value={value}
+                onChange={(event) => setValue(event.target.value)}
+            >
+                <option value="s">Strawberries</option>
+                <option value="r">Raspberries</option>
+                <option value="c">Cloudberries</option>
+            </Select>
+        </div>
+    );
+}
+```
+
+## Labeling
+
+A visual label should be provided for the Select using the `label` prop.
+
+### Accessibility
+
+If a visible label isn't specified, an `aria-label` must be provided to the
+Select for accessibility. If the field is labeled by a separate element, an
+`aria-labelledby` prop must be provided using the id of the labeling element
+instead.
+
+## Help text
+
+Selects can provide additional context with `helpText` if the label and
+placeholder aren't enough.
+
+```jsx example
+<Select label="Berries" helpText="We'll make jam of your selection">
+    <option value="s">Strawberries</option>
+    <option value="r">Raspberries</option>
+    <option value="c">Cloudberries</option>
+</Select>
+```
+
+## Validation
+
+Selects can communicate to the user whether the current value is invalid.
+Implement your own validation logic in your app and set the `invalid` prop to
+display it as invalid.
+
+`invalid` is often paired with `helpText` to provide feedback to the user about
+the error.
+
+```jsx example
+<Select label="Berries" invalid helpText="The wrong selection gets you berried">
+    <option value="s">Strawberries</option>
+    <option value="r">Raspberries</option>
+    <option value="c">Cloudberries</option>
+</Select>
+```
+
+## Visual options
+
+### Disabled
+
+Keep in mind that using disabled in its current form is an anti-pattern. There will ALWAYS be users who don't understand why an element is disabled, or users who can't even see that it is disabled because of poor lighting conditions or other reasons. Please consider more informative alternatives before choosing to use disabled on an element.
+
+```jsx example
+<Select label="Berries" disabled defaultValue="s">
+    <option value="s">Strawberries</option>
+    <option value="r">Raspberries</option>
+    <option value="c">Cloudberries</option>
+</Select>
+```
+
+## Props
+
+```props packages/select/src/Select.tsx
+
+```
