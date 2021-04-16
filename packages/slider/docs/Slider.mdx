@@ -1,0 +1,126 @@
+---
+category: Forms
+---
+
+import { default as RegularSlider } from '../src/RegularSlider';
+import { default as RangeSlider } from '../src/RangeSlider';
+import sliderPackageData from '../package.json';
+
+# Slider
+
+A slider is an input where the user selects a value from within a given range.
+The precise value, however, is not necessarily considered important. It can have
+single or dual drag handles.
+
+<PackageInfo
+    packageData={sliderPackageData}
+    componentNames={['RegularSlider', 'RangeSlider']}
+/>
+
+## Example
+
+```jsx example
+function Example() {
+    const [singleValue, setSingleValue] = React.useState(50);
+    const [rangeValue, setRangeValue] = React.useState([25, 75]);
+
+    return (
+        <div className="space-y-32">
+            <RegularSlider
+                aria-label="Slider example"
+                onChange={setSingleValue}
+                value={singleValue}
+                step={10}
+            />
+
+            <RangeSlider
+                aria-label={['Range example: lower', 'Range example: upper']}
+                onChange={setRangeValue}
+                value={rangeValue}
+            />
+        </div>
+    );
+}
+```
+
+## Accessiblity
+
+To be accessible, an `aria-label` prop should be provided to the slider. If the
+slider is labeled by a separate element, use an `aria-labelledby` prop with the
+id of the labeling element instead.
+
+## Events
+
+The slider accepts an `onChange` prop which is triggered whenever the value is
+changed by the user. Note that this is only called when the value has settled.
+In other words, when the user has stopped dragging the slider's handle.
+
+If you need the value while the slider is being interacted it, before the value
+has settled, you can use the `onInput` prop. This is always triggered before an
+`onChange`.
+
+```jsx example
+function Example() {
+    const [value, setValue] = React.useState(50);
+    const [inputValue, setInputValue] = React.useState(value);
+
+    return (
+        <>
+            <p>
+                Drag the slider to see the difference between onChange and
+                onInput
+            </p>
+            <RegularSlider
+                aria-label="onInput example"
+                value={value}
+                onChange={setValue}
+                onInput={setInputValue}
+            />
+            <div>onChange: {value}</div>
+            <div>onInput: {inputValue}</div>
+        </>
+    );
+}
+```
+
+## Visual options
+
+### Disabled
+
+```jsx example
+<div className="space-y-32">
+    <RegularSlider aria-label="Disabled slider" disabled value={50} />
+    <RangeSlider
+        aria-label={['Disabled slider: lower', 'Disabled slider: upper']}
+        disabled
+        value={[25, 75]}
+    />
+</div>
+```
+
+## Additional props
+
+### Max
+
+The maximum value of the slider.
+
+### Min
+
+The minimum value of the slider.
+
+### Step
+
+The `step` prop is a number that specifies the granularity that the value must
+adhere to as it changes. Step sets minimum intervals of change.
+
+## RegularSlider Props
+
+```props packages/slider/src/RegularSlider.tsx
+
+```
+
+## RangeSlider Props
+
+```props packages/slider/src/RangeSlider.tsx
+
+```

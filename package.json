@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "prebuild": "rimraf packages/*/dist",
+    "clean": "rimraf packages/*/node_modules && rimraf packages/*/dist && rimraf node_modules",
     "build": "NODE_ENV=production lerna run build --stream",
     "docs:build": "vite build",
     "docs:dev": "vite",

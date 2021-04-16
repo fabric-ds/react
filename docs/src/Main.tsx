@@ -23,6 +23,7 @@ import TextArea from '../../packages/textarea/docs/TextArea.mdx';
 import Combobox from '../../packages/combobox/docs/Combobox.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
 import LinkButton from '../../packages/button/docs/LinkButton.mdx';
+import Slider from '../../packages/slider/docs/Slider.mdx';
 
 const components = {
     PackageInfo,
@@ -96,6 +97,10 @@ const App = () => {
 
                                 <Route path="/textarea">
                                     <TextArea />
+                                </Route>
+
+                                <Route path="/slider">
+                                    <Slider />
                                 </Route>
 
                                 <Route path="/combobox">
