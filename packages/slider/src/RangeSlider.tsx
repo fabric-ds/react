@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useLayoutEffect } from '@finn-no/fabric-react-utils';
-import { slider as classes } from '@finn-no/fabric-component-classes'
+import { slider as classes } from '@finn-no/fabric-component-classes';
 import { classNames } from '@chbphone55/classnames';
 import { animated, interpolate, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
@@ -250,20 +250,16 @@ const RangeSlider = ({
         <div
             {...bind()}
             data-body-scroll-lock-ignore
-            className={classNames(
-                classes.wrapper,
-                { disabled },
-                className,
-            )}
+            className={classNames(classes.wrapper, { disabled }, className)}
             style={{ cursor: isDragging ? 'grabbing' : 'pointer' }}
             ref={sliderRef}
         >
-            <div 
-            className={classNames({
-                'pointer-events-none': disabled,
-                [classes.track]: true,
-            })}
-             />
+            <div
+                className={classNames({
+                    'pointer-events-none': disabled,
+                    [classes.track]: true,
+                })}
+            />
             <animated.div
                 className={classNames({
                     [classes.activeTrackDisabled]: disabled,
@@ -307,11 +303,17 @@ const RangeSlider = ({
                     ),
                     // override troika's styling here
                     cursor: 'inherit',
-                    boxShadow:
-                        '0px 0px 4px 0px rgba(0, 0, 0, 0.1), 0px 3px 1px 0px rgba(0, 0, 0, 0.05), 0px 2px 2px 0px rgba(0, 0, 0, 0.05), 0px 3px 3px 0px rgba(0, 0, 0, 0.1)',
                 }}
                 tabIndex={disabled ? undefined : 0}
-            />
+            >
+                <div
+                    className={classNames({
+                        [classes.thumbCenter]: true,
+                        [classes.thumbCenterEnabled]: !disabled,
+                        [classes.thumbCenterDisabled]: disabled,
+                    })}
+                />
+            </animated.div>
             <animated.div
                 aria-disabled={disabled}
                 aria-label={props['aria-label']?.[Handle.Upper]}
@@ -337,11 +339,17 @@ const RangeSlider = ({
                     ),
                     // override troika's styling here
                     cursor: 'inherit',
-                    boxShadow:
-                        '0px 0px 4px 0px rgba(0, 0, 0, 0.1), 0px 3px 1px 0px rgba(0, 0, 0, 0.05), 0px 2px 2px 0px rgba(0, 0, 0, 0.05), 0px 3px 3px 0px rgba(0, 0, 0, 0.1)',
                 }}
                 tabIndex={disabled ? undefined : 0}
-            />
+            >
+                <div
+                    className={classNames({
+                        [classes.thumbCenter]: true,
+                        [classes.thumbCenterEnabled]: !disabled,
+                        [classes.thumbCenterDisabled]: disabled,
+                    })}
+                />
+            </animated.div>
         </div>
     );
 };
