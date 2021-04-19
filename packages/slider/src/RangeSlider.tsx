@@ -289,6 +289,7 @@ const RangeSlider = ({
                     [classes.thumbDisabled]: disabled,
                     [classes.thumbEnabled]: !disabled,
                     [classes.thumb]: true,
+                    'shadow-sm': true,
                 })}
                 onKeyDown={handleKeyDown}
                 role="slider"
@@ -325,7 +326,12 @@ const RangeSlider = ({
                     ratioToValue(ratio, min, max, step, scale),
                 )}
                 aria-valuetext={props['aria-valuetext']?.[Handle.Upper]}
-                className={classNames(classes.thumb)}
+                className={classNames({
+                    [classes.thumbDisabled]: disabled,
+                    [classes.thumbEnabled]: !disabled,
+                    [classes.thumb]: true,
+                    'shadow-sm': true,
+                })}
                 onKeyDown={(event) => handleKeyDown(event, Handle.Upper)}
                 role="slider"
                 ref={handleUpperRef}

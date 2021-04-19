@@ -226,6 +226,7 @@ const RegularSlider = ({
                     [classes.thumbDisabled]: disabled,
                     [classes.thumbEnabled]: !disabled,
                     [classes.thumb]: true,
+                    'shadow-sm': true,
                 })}
                 onKeyDown={handleKeyDown}
                 role="slider"
