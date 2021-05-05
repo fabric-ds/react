@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { classNames } from '@chbphone55/classnames';
 
 export type LinkButtonProps = {
     /** The content to display in the button. */
@@ -30,27 +29,3 @@ export type LinkButtonProps = {
     React.PropsWithoutRef<JSX.IntrinsicElements['button']>,
     'children' | 'onClick'
 >;
-
-function LinkButton(
-    { className, small, type = 'button', ...props }: LinkButtonProps,
-    forwardedRef: React.Ref<HTMLButtonElement>,
-) {
-    return (
-        <button
-            {...props}
-            className={classNames(
-                'button button--link',
-                { 'button--small': small },
-                className,
-            )}
-            ref={forwardedRef}
-            type={type}
-        />
-    );
-}
-
-/**
- * A button that looks like a link
- */
-const _LinkButton = React.forwardRef(LinkButton);
-export { _LinkButton as LinkButton };
