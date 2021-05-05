@@ -24,7 +24,7 @@ function Button(
             'button--in-progress': inProgress,
             'button--small': small,
         },
-        className
+        className,
     );
 
     return (
