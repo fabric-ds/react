@@ -1,0 +1,34 @@
+{
+  "name": "@finn-no/fabric-react-slider",
+  "license": "SEE LICENSE IN LICENSE",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "microbundle -i src/index.ts -o dist/index.js --jsx React.createElement --format modern --no-pkg-main",
+    "prepublishOnly": "yarn build"
+  },
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@chbphone55/classnames": "^2.0.0",
+    "@finn-no/fabric-component-classes": "^0.0.15",
+    "@finn-no/troika-css-slider": "^0.1.17",
+    "@finn-no/troika-react-utils": "^0.2.1",
+    "react-spring": "^8.0.27",
+    "react-use-gesture": "^8.0.1",
+    "tiny-warning": "^1.0.3"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0"
+  },
+  "devDependencies": {
+    "d3-scale": "^3.2.3"
+  }
+}

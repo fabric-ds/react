@@ -31,6 +31,7 @@ export default function Nav() {
                     <StyledLink to="/select">Select</StyledLink>
                     <StyledLink to="/textfield">TextField</StyledLink>
                     <StyledLink to="/textarea">TextArea</StyledLink>
+                    <StyledLink to="/slider">Slider</StyledLink>
                 </NavCategory>
 
                 <NavCategory title="Navigation">
