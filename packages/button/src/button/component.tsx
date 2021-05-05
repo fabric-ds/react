@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { ButtonProps } from './props';
+import type { ButtonProps } from './props';
 import { getButtonVariant } from './utils';
 
 function Button(

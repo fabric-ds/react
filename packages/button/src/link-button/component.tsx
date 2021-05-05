@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { LinkButtonProps } from './props';
+import type { LinkButtonProps } from './props';
 
 function LinkButton(
     { className, small, type = 'button', ...props }: LinkButtonProps,
