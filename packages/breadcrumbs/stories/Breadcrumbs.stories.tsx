@@ -12,12 +12,3 @@ export const Example = () => (
     </Breadcrumbs>
 );
 
-export const Deprecated = () => (
-    <Breadcrumbs
-        items={[
-            { title: 'Item 1', url: '#/url/1' },
-            { title: 'Item 2', url: '#/url/2' },
-            { title: 'Item 3', url: '#/url/3' },
-        ]}
-    />
-);
