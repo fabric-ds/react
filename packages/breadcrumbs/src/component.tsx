@@ -4,13 +4,12 @@ import { interleave } from './utils';
 import type { BreadcrumbsProps } from './props';
 
 const setup = (props) => {
-    const { children, ariaLabel, style, className, ...rest } = props;
+    const { children, ariaLabel, className, ...rest } = props;
     return {
         attrs: {
             ...rest,
             children: interleave(React.Children.toArray(children)),
             'aria-label': ariaLabel || 'Her er du',
-            style,
         },
         classes: classNames('flex space-x-8', className),
     };
