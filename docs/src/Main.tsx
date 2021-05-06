@@ -22,7 +22,6 @@ import Select from '../../packages/select/docs/Select.mdx';
 import TextArea from '../../packages/textarea/docs/TextArea.mdx';
 import Combobox from '../../packages/combobox/docs/Combobox.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
-import LinkButton from '../../packages/button/docs/LinkButton.mdx';
 import Slider from '../../packages/slider/docs/Slider.mdx';
 
 const components = {
@@ -109,10 +108,6 @@ const App = () => {
 
                                 <Route path="/button">
                                     <Button />
-                                </Route>
-
-                                <Route path="/linkbutton">
-                                    <LinkButton />
                                 </Route>
                             </Switch>
                         </main>

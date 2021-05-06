@@ -16,8 +16,7 @@ Buttons are used to perform actions, with different visuals for different needs.
 ## Migrating from Troika
 
 -   You should no longer include or import any Troika button CSS.
--   **BREAKING:** The variants are no longer different named exports. Use
-    `<Button variant="..." />` instead.
+-   **BREAKING:** The variants are no longer different named exports. Use component properties instead.
 
 ## Accessibility
 
@@ -32,38 +31,36 @@ The primary button is a call to action. As a general rule, there should only be
 one of them on the screen. This guides the user towards the happy path.
 
 ```jsx example
-<Button variant="primary">Save</Button>
+<Button primary>Save</Button>
 ```
 
-### Destructive
+### Negative
 
 Used for destructive actions, like deletion. Shouldn't be used on the same
 screen as a primary button.
 
 ```jsx example
-<Button variant="destructive">Delete</Button>
+<Button negative>Delete</Button>
 ```
 
-### Flat
+### Secondary
 
-Flat buttons are without an outline, and are often used for secondary or
-tertiary actions.
+Secondary buttons are without an outline, and are often used for secondary or
+tertiary actions. This is the default so you may simply omit the secondary property
 
 ```jsx example
 <div className="flex space-x-32">
-    <Button flat>Save</Button>
-    <Button flat variant="destructive">
-        Delete
-    </Button>
+    <Button secondary>Save</Button>
+    <Button>Save</Button>
 </div>
 ```
 
-### In progress
+### Loading/In progress
 
-Used for visual feedback that the action the user triggered is in progress.
+Used for visual feedback that the action the user triggered is loading.
 
 ```jsx example
-<Button inProgress>Save</Button>
+<Button loading>Save</Button>
 ```
 
 ### Small
@@ -74,14 +71,10 @@ Used for visual feedback that the action the user triggered is in progress.
 
 ### Disabled
 
-Keep in mind that using disabled in its current form is an anti-pattern. There will ALWAYS be users who don't understand why an element is disabled, or users who can't even see that it is disabled because of poor lighting conditions or other reasons. Please consider more informative alternatives before choosing to use disabled on an element.
-
-```jsx example
-<Button disabled>Disabled</Button>
-```
+Disabled is an anti-pattern and is not supported. There will ALWAYS be users who don't understand why an element is disabled, or users who can't even see that it is disabled because of poor lighting conditions or other reasons.
 
 ## Props
 
-```props packages/button/src/Button.tsx
+```props packages/button/src/component.tsx
 
 ```
