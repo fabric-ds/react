@@ -15,8 +15,16 @@ Buttons are used to perform actions, with different visuals for different needs.
 
 ## Migrating from Troika
 
--   You should no longer include or import any Troika button CSS.
--   **BREAKING:** The variants are no longer different named exports. Use component properties instead.
+- You should no longer include or import any Troika button CSS.
+- The variants are no longer different named exports. Use component properties instead.
+- There is now a single button component for all cases. As a quick guide:
+    - `<CallToAction>` should be migrated to `<Button primary>`.
+    - `<DestructiveButton>` should be migrated to `<Button negative>`.
+    - `<DestructiveFlatButton>` should be migrated to `<Button negative>`.
+    - `<FlatButton>` should be migrated to `<Button>`.
+    - `<LinkButton>` should be migrated to `<Button href="...">`.
+- The `inProgress` property should be changed to `loading`.
+- The `disabled` has been removed as it is an anti-pattern (see below).
 
 ## Accessibility
 
@@ -67,6 +75,26 @@ Used for visual feedback that the action the user triggered is loading.
 
 ```jsx example
 <Button small>Small</Button>
+```
+
+### Pill
+
+```jsx example
+<Button pill>Pill</Button>
+```
+
+### Link
+
+Buttons will be rendered as an anchor (a tag) if they use an `href` attribute.
+
+```jsx example
+<Button href="https://google.no">Link</Button>
+```
+
+But if you need a button to look like a link, use the `link` property.
+
+```jsx example
+<Button link>Link</Button>
 ```
 
 ### Disabled
