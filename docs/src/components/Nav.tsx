@@ -20,7 +20,6 @@ export default function Nav() {
 
                 <NavCategory title="Buttons">
                     <StyledLink to="/button">Button</StyledLink>
-                    <StyledLink to="/linkbutton">LinkButton</StyledLink>
                 </NavCategory>
 
                 <NavCategory title="Forms">
