@@ -1,1 +1,2 @@
-export * from './Breadcrumbs';
+export { Breadcrumbs } from './component';
+export type { BreadcrumbsProps } from './props';
