@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Select as TroikaSelect } from '../src';
+import { Select as FabricSelect } from '../src';
 
 const metadata = { title: 'Forms/Select' };
 export default metadata;
 
 const Select = (props) => (
-    <TroikaSelect
+    <FabricSelect
         label="Berries"
         onChange={action('change')}
         onFocus={action('focus')}
@@ -16,7 +16,7 @@ const Select = (props) => (
         <option>Strawberries</option>
         <option>Raspberries</option>
         <option>Cloudberries</option>
-    </TroikaSelect>
+    </FabricSelect>
 );
 
 export const standard = () => <Select />;
