@@ -13,7 +13,7 @@ export type SelectProps = {
     /** The default value (uncontrolled). */
     defaultValue?: string;
 
-    /**  Renders the field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
+    /**  Renders the field in an invalid state. Often paired together with `hint` to provide feedback about the error. */
     invalid?: boolean;
 
     /** The content to display as the help text. */
