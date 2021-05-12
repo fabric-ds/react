@@ -31,3 +31,33 @@ export const invalid = () => (
         <Select invalid hint="Wrong choice" />
     </div>
 );
+
+export const noLabel = () => (
+    <div className="flex flex-col space-y-32">
+        <FabricSelect
+            onChange={action('change')}
+            onFocus={action('focus')}
+            onBlur={action('blur')}
+            aria-label="You're selection is berry nice!"
+        >
+            <option>Strawberries</option>
+            <option>Raspberries</option>
+            <option>Cloudberries</option>
+        </FabricSelect>
+
+        <label id="select-label" htmlFor="fabric-aria-labelledby-example">
+            You're berry good at selecting!
+        </label>
+        <FabricSelect
+            id="fabric-aria-labelledby-example"
+            onChange={action('change')}
+            onFocus={action('focus')}
+            onBlur={action('blur')}
+            aria-labelledby="select-label"
+        >
+            <option>Strawberries</option>
+            <option>Raspberries</option>
+            <option>Cloudberries</option>
+        </FabricSelect>
+    </div>
+);
