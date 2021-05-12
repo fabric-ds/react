@@ -21,15 +21,13 @@ const Select = (props) => (
 
 export const standard = () => <Select />;
 
-export const disabled = () => <Select disabled />;
-
-export const helpText = () => (
-    <Select helpText="We assume this is your jam preference" />
+export const hint = () => (
+    <Select hint="We assume this is your jam preference" always />
 );
 
 export const invalid = () => (
     <div className="flex flex-col space-y-32">
         <Select invalid />
-        <Select invalid helpText="Wrong choice" />
+        <Select invalid hint="Wrong choice" />
     </div>
 );

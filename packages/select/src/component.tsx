@@ -6,16 +6,16 @@ import type { SelectProps } from './props';
 const setup = (props) => {
     const {
         className,
-        disabled,
         invalid,
         id,
-        helpText,
+        hint,
+        always,
         label,
         style,
         ...rest
     } = props;
 
-    const helpId = helpText ? `${id}__hint` : undefined;
+    const helpId = hint ? `${id}__hint` : undefined;
 
     return {
         attrs: {
@@ -32,18 +32,16 @@ const setup = (props) => {
                 'aria-errormessage': invalid && helpId ? helpId : undefined,
                 'aria-invalid': invalid,
                 id,
-                disabled,
             },
-            help: {
-                children: helpText,
+            help: always || invalid ? {
+                children: hint,
                 id: helpId,
-            },
+            } : null,
         },
         classes: classNames(
             'input mb-0',
             {
                 'input--is-invalid': invalid,
-                'input--is-disabled': disabled,
             },
             className,
         ),
@@ -61,7 +59,7 @@ function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
             <div className="input--select__wrap">
                 <select ref={ref} {...select} />
             </div>
-            {help.children && <div className="input__sub-text" {...help} />}
+            {help && <div className="input__sub-text" {...help} />}
         </div>
     );
 }

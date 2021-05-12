@@ -13,14 +13,14 @@ export type SelectProps = {
     /** The default value (uncontrolled). */
     defaultValue?: string;
 
-    /** Whether the select is disabled. */
-    disabled?: boolean;
-
     /**  Renders the field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
     invalid?: boolean;
 
     /** The content to display as the help text. */
-    helpText?: React.ReactNode;
+    hint?: React.ReactNode;
+
+    /** Whether to always show hint */
+    always?: boolean;
 
     /** The element's unique identifier. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id). */
     id?: string;
