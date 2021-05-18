@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Select as TroikaSelect } from '../src';
+import { Select as FabricSelect } from '../src';
 
 const metadata = { title: 'Forms/Select' };
 export default metadata;
 
 const Select = (props) => (
-    <TroikaSelect
+    <FabricSelect
         label="Berries"
         onChange={action('change')}
         onFocus={action('focus')}
@@ -16,20 +16,48 @@ const Select = (props) => (
         <option>Strawberries</option>
         <option>Raspberries</option>
         <option>Cloudberries</option>
-    </TroikaSelect>
+    </FabricSelect>
 );
 
 export const standard = () => <Select />;
 
-export const disabled = () => <Select disabled />;
-
-export const helpText = () => (
-    <Select helpText="We assume this is your jam preference" />
+export const hint = () => (
+    <Select hint="We assume this is your jam preference" always />
 );
 
 export const invalid = () => (
     <div className="flex flex-col space-y-32">
         <Select invalid />
-        <Select invalid helpText="Wrong choice" />
+        <Select invalid hint="Wrong choice" />
+    </div>
+);
+
+export const noLabel = () => (
+    <div className="flex flex-col space-y-32">
+        <FabricSelect
+            onChange={action('change')}
+            onFocus={action('focus')}
+            onBlur={action('blur')}
+            aria-label="You're selection is berry nice!"
+        >
+            <option>Strawberries</option>
+            <option>Raspberries</option>
+            <option>Cloudberries</option>
+        </FabricSelect>
+
+        <label id="select-label" htmlFor="fabric-aria-labelledby-example">
+            You're berry good at selecting!
+        </label>
+        <FabricSelect
+            id="fabric-aria-labelledby-example"
+            onChange={action('change')}
+            onFocus={action('focus')}
+            onBlur={action('blur')}
+            aria-labelledby="select-label"
+        >
+            <option>Strawberries</option>
+            <option>Raspberries</option>
+            <option>Cloudberries</option>
+        </FabricSelect>
     </div>
 );

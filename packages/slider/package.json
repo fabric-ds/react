@@ -19,8 +19,7 @@
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
     "@finn-no/fabric-component-classes": "^0.0.15",
-    "@finn-no/troika-css-slider": "^0.1.17",
-    "@finn-no/troika-react-utils": "^0.2.1",
+    "@finn-no/fabric-react-utils": "^0.2.2",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^8.0.1",
     "tiny-warning": "^1.0.3"

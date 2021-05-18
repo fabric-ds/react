@@ -1,1 +1,2 @@
-export * from './Select';
+export { Select } from './component';
+export type { SelectProps } from './props';
