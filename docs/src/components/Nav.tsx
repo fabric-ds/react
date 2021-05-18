@@ -41,6 +41,10 @@ export default function Nav() {
                 <NavCategory title="Overlays">
                     <StyledLink to="/modal">Modal</StyledLink>
                 </NavCategory>
+
+                <NavCategory title="Layout">
+                    <StyledLink to="/box">Box</StyledLink>
+                </NavCategory>
             </div>
         </nav>
     );

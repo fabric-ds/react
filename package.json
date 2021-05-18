@@ -44,10 +44,13 @@
     "remark-autolink-headings": "^6.0.1",
     "remark-rehype": "^8.0.0",
     "remark-slug": "^6.0.0",
+    "remark-parse": "^9.0.0",
+    "@mdx-js/mdx": "1.6.22",
+    "@mdx-js/react": "1.6.22",
     "rimraf": "^3.0.2",
     "typescript": "^4.1.3",
-    "vite": "^2.0.0-beta.61",
-    "vite-plugin-mdx": "^2.0.1"
+    "vite": "^2.3.3",
+    "vite-plugin-mdx": "^3.5.5"
   },
   "dependencies": {
     "prism-react-renderer": "^1.1.1",
