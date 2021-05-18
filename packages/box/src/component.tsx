@@ -1,6 +1,7 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { box } from '@finn-no/fabric-component-classes';
+import type { BoxProps } from './props';
 
 const setup = ({
     bleed,
@@ -10,7 +11,7 @@ const setup = ({
     bordered,
     className,
     ...attrs
-}) => ({
+}: any) => ({
     ...attrs,
     tabIndex: clickable ? 0 : undefined,
     role: clickable ? 'button' : undefined,
@@ -30,7 +31,7 @@ const setup = ({
     ),
 });
 
-export function Box(props) {
+export function Box(props: BoxProps) {
     const { children, as = 'div', ...rest } = props;
     const attrs = setup(rest);
     return React.createElement(as, attrs, children);
