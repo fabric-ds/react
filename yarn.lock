@@ -1324,6 +1324,11 @@
   resolved "https://npm.finntech.no/@finn-no/fabric-component-classes/-/fabric-component-classes-0.0.15.tgz#4f23b2b9554ea5b0252e620f44137ae4d17f6b6c"
   integrity sha1-TyOyuVVOpbAlLmIPRBN65NF/a2w=
 
+"@finn-no/fabric-component-classes@^0.0.16":
+  version "0.0.16"
+  resolved "https://npm.finntech.no/@finn-no/fabric-component-classes/-/fabric-component-classes-0.0.16.tgz#405964d01b994c666752e808fc82e5651e7a3b5d"
+  integrity sha1-QFlk0BuZTGZnUugI/ILlZR56O10=
+
 "@istanbuljs/schema@^0.1.2":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
