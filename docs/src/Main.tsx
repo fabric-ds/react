@@ -24,6 +24,7 @@ import Combobox from '../../packages/combobox/docs/Combobox.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
 import Slider from '../../packages/slider/docs/Slider.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
+import Expandable from '../../packages/expandable/docs/Expandable.mdx';
 
 const components = {
     PackageInfo,
@@ -113,6 +114,10 @@ const App = () => {
 
                                 <Route path="/box">
                                     <Box />
+                                </Route>
+
+                                <Route path="/expandable">
+                                    <Expandable />
                                 </Route>
                             </Switch>
                         </main>

@@ -1,0 +1,77 @@
+import { Expandable } from '../src';
+import packageData from '../package.json';
+
+# Expandable
+
+Expandable is a layout component used for creating expandable content areas on a
+page.
+
+<PackageInfo packageData={packageData} componentNames={['Expandable']} />
+
+## Visual Options
+
+### Default
+
+```jsx example
+<Expandable title="I am expandable">
+    <p>Expandable contents go here.</p>
+</Expandable>
+```
+
+### Expandable box
+
+```jsx example
+<Expandable title="I am expandable" box>
+    <p>Expandable contents go here.</p>
+</Expandable>
+```
+
+### Expandable info box
+
+```jsx example
+<Expandable title="I am expandable" info box>
+    <p>Expandable contents go here.</p>
+</Expandable>
+```
+
+### onChange event
+
+```jsx example
+<Expandable title="I am expandable" onChange={(state) => console.log(state)}>
+    <h1>onChange example</h1>
+    <p>Expandable contents go here.</p>
+</Expandable>
+```
+
+### The expanded prop
+
+You can set whether the component is open or collapsed using the `expanded`
+prop.
+
+```jsx example
+<Expandable title="I am initially..." expanded>
+    <p>...expanded</p>
+</Expandable>
+```
+
+### Controlling the component
+
+If you need to take control of expansion, use the `onChange` event in
+combination with the `expanded` prop
+
+```jsx example
+function Example() {
+    const [open, setOpen] = React.useState(true);
+    return (
+        <Expandable title="Expandable box" box info expanded={open} onChange={setOpen}>
+            <p>I am expanded</p>
+        </Expandable>
+    );
+}
+```
+
+## Props
+
+```props packages/expandable/src/component.tsx
+
+```
