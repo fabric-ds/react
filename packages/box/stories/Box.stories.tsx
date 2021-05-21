@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box } from '../src';
 
-const metadata = { title: 'Other/Box' };
+const metadata = { title: 'Layout/Box' };
 export default metadata;
 
 export const Default = () => (
