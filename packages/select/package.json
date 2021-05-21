@@ -1,7 +1,7 @@
 {
   "name": "@finn-no/fabric-react-select",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "exports": "./dist/index.js",
   "module": "dist/index.es.js",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@finn-no/fabric-react-utils": "^0.2.2",
+    "@finn-no/fabric-react-utils": "^0.2.3",
     "tiny-warning": "^1.0.3"
   },
   "peerDependencies": {
