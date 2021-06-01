@@ -10,10 +10,16 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
-        name: Deploy to GH Pages
+        name: Install Dependencies
         run: |
           npm install
+      -
+        name: Build Packages
+        run: |
           npm run build
+      -
+        name: Build Docs
+        run: |
           npm run docs:build
       -
         name: Deploy to GitHub Pages
