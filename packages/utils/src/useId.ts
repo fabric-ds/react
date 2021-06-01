@@ -8,7 +8,7 @@
  *      cumbersome and error-prone
  *   3. With a component model, we can generate IDs for them!
  *
- * Solution 1: Generate random IDs.
+ * Solution 1: Generate random IDs
  *
  * This works great as long as you don't server render your app. When React (in
  * the client) tries to reuse the markup from the server, the IDs won't match

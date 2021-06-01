@@ -21,7 +21,7 @@ export type ModalProps = {
      */
     initialFocusRef?: React.RefObject<any>;
 
-    /** Whether the modal is open or not. */
+    /** Whether the modal is open or not */
     isOpen: boolean;
 
     /**

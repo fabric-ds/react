@@ -108,7 +108,7 @@ const noop = () => {};
 
 /**
  * Radio buttons allow users to select a single option from a list of mutually exclusive options.
- * All possible options are exposed up front for users to compare.
+ * All possible options are exposed up front for users to compare
  *
  * Cannot be used outside of a RadioGroup
  */

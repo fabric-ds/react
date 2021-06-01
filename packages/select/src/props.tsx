@@ -7,7 +7,7 @@ export type SelectProps = {
     /** The `option` elements to populate the select with */
     children?: React.ReactNode;
 
-    /** Additional CSS class for the container. */
+    /** Additional CSS class for the container */
     className?: string;
 
     /** The default value (uncontrolled). */

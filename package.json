@@ -1,7 +1,7 @@
 {
   "name": "@finn-no/fabric-react",
   "version": "0.0.0",
-  "repository": "git@github.schibsted.io:finn/fabric-react.git",
+  "repository": "git@github.com:finn-no/fabric-react.git",
   "license": "ISC",
   "private": true,
   "workspaces": [

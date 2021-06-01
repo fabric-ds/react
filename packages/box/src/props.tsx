@@ -4,7 +4,7 @@ export type BoxProps = {
     children: React.ReactNode;
 
     /**
-     * Additional classes to include
+     * Additional classes to include.
      */
     className?: string;
 
