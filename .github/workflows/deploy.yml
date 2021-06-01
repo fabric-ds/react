@@ -12,15 +12,15 @@ jobs:
       -
         name: Install Dependencies
         run: |
-          npm install
+          yarn
       -
         name: Build Packages
         run: |
-          npm run build
+          yarn build
       -
         name: Build Docs
         run: |
-          npm run docs:build
+          yarn docs:build
       -
         name: Deploy to GitHub Pages
         if: success()
