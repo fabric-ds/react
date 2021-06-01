@@ -5,7 +5,7 @@ import autoLinkHeadings from 'remark-autolink-headings';
 
 export default function config({ mode }) {
     return {
-        base: '/finn/fabric-react/',
+        base: '/fabric-react/',
         plugins: [
             reactRefresh(),
             mdx({
