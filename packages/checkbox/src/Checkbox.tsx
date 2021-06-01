@@ -94,7 +94,7 @@ function Checkbox(
         // useEffect with an empty array to only warn once per component instance
         // eslint-disable-next-line react-hooks/rules-of-hooks
         React.useEffect(() => {
-            // Warn if we are using the deprecated label prop.
+            // Warn if we are using the deprecated label prop
             warning(
                 label == null,
                 `<Checkbox>: The 'label' prop is deprecated. The label should be the child of <Checkbox> instead.`,

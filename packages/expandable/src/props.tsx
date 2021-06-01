@@ -14,7 +14,7 @@ export type ExpandableProps = {
     style?: React.CSSProperties;
 
     /**
-     * Toggles bleed, makes a box full-width on mobile.
+     * Toggles bleed, makes a box full-width on mobile
      * @default false
      */
     bleed?: boolean;

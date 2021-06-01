@@ -16,7 +16,7 @@ import {
 } from './utils';
 
 export type RangeSliderProps = {
-    /** String value that labels the slider */
+    /** String value that labels the slider. */
     'aria-label'?: [string, string];
 
     /** Identifies the element that labels the slider. */

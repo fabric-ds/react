@@ -4,7 +4,7 @@ export type SelectProps = {
     /** Whether the element should receive focus on render. */
     autoFocus?: boolean;
 
-    /** The `option` elements to populate the select with */
+    /** The `option` elements to populate the select with. */
     children?: React.ReactNode;
 
     /** Additional CSS class for the container */

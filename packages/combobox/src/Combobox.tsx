@@ -24,7 +24,7 @@ export type ComboboxProps = {
         | React.ReactNode
         | ((props: ComboboxContextValue) => React.ReactNode);
     /**
-     * Whether the popover opens when focus is on the text field
+     * Whether the popover opens when focus is on the text field.
      *
      * @default false
      */

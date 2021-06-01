@@ -13,7 +13,7 @@ export type TextAreaProps = {
     /** Additional CSS class for the container */
     className?: string;
 
-    /** The default value (uncontrolled) */
+    /** The default value (uncontrolled). */
     defaultValue?: string;
 
     /** Whether the input is disabled. */

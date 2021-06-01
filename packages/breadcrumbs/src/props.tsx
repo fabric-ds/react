@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export type BreadcrumbsProps = {
     // prop table doc seems unable to pull out default value with the rename in the function definition
-    /** Defines a string value that labels the current element
+    /** Defines a string value that labels the current element.
      * @default Her er du
      */
     'aria-label'?: string;

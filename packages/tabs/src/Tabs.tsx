@@ -13,7 +13,7 @@ export type TabsProps = {
     /**
      * Whether the tab items are centered.
      *
-     * @deprecated use `variant="centered"` instead
+     * @deprecated use `variant="centered"` instead.
      */
     centered?: boolean;
 

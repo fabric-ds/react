@@ -25,7 +25,7 @@ export type ModalProps = {
     isOpen: boolean;
 
     /**
-     * Handler that is called when the user presses *esc* or clicks outside the modal.
+     * Handler that is called when the user presses *esc* or clicks outside the modal
      */
     onDismiss?: () => void;
 
