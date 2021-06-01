@@ -14,7 +14,6 @@ const setup = ({
 }: any) => ({
     ...attrs,
     tabIndex: clickable ? 0 : undefined,
-    role: clickable ? 'button' : undefined,
     className: classNames(
         box.box,
         {
@@ -34,5 +33,10 @@ const setup = ({
 export function Box(props: BoxProps) {
     const { children, as = 'div', ...rest } = props;
     const attrs = setup(rest);
-    return React.createElement(as, attrs, children);
+    return React.createElement(as, attrs, props.clickable ? (
+        <>
+            <div>{ children }</div>
+            <span role="button" aria-label="Les mer"></span>
+        </>
+    ) : children);
 }
