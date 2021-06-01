@@ -10,9 +10,9 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
-        name: Gen dummy page
+        name: Deploy to GH Pages
         run: |
-          npm run install
+          npm install
           npm run build
           npm run docs:build
       -
