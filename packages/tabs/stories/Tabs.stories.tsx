@@ -23,166 +23,133 @@ const svgicon = (
     </svg>
 );
 
-const longText = () =>
-    'some text are very long and some are not, angry, very much so some text are very long and some are not, angry, very much so some text are very long and some are not, angry, very much so some text are very long and some are not, angry, very much so';
+export const Default = () => {
+    return (
+        <Tabs onChange={(e) => console.log(e)}>
+            <Tab label="Tab 1" name="one" isActive />
+            <Tab label="Tab 2" name="two" />
+            <Tab label="Tab 3" name="three" />
+        </Tabs>
+    );
+};
 
-export const Plain = () => {
+export const DefaultWithPanel = () => {
+    const [tab, setTab] = React.useState('');
+    return (
+        <>
+            <Tabs onChange={setTab}>
+                <Tab label="Tab 1" name="one" isActive />
+                <Tab label="Tab 2" name="two" />
+                <Tab label="Tab 3" name="three" />
+            </Tabs>
+            <div className="mb-16">
+                {(!tab || tab === 'one') && <p>Tab one selected!</p>}
+                {tab === 'two' && <p>Tab two selected!</p>}
+                {tab === 'three' && <p>Tab three selected!</p>}
+            </div>
+        </>
+    );
+};
+
+export const Contained = () => {
+    return (
+        <Tabs contained>
+            <Tab label="Tab 1" name="one" />
+            <Tab label="Tab 2" name="two" isActive />
+            <Tab label="Tab 3" name="three" />
+        </Tabs>
+    );
+};
+
+export const ContainedWithPanel = () => {
+    const [tab, setTab] = React.useState('');
+    return (
+        <>
+            <Tabs onChange={setTab} contained>
+                <Tab label="Tab 1" name="one" />
+                <Tab label="Tab 2" name="two" isActive />
+                <Tab label="Tab 3" name="three" />
+            </Tabs>
+            <div className="bg-aqua-50 p-24 last-child:mb-0">
+                {(!tab || tab === 'one') && <p>Tab one selected!</p>}
+                {tab === 'two' && <p>Tab two selected!</p>}
+                {tab === 'three' && <p>Tab three selected!</p>}
+            </div>
+        </>
+    );
+};
+
+export const Icon = () => {
     return (
         <Tabs>
-            <Tab title="Tab 1">Content 1</Tab>
-            <Tab title="Tab 2">Content 2</Tab>
-            <Tab title="Tab 3">Content 3</Tab>
-        </Tabs>
-    );
-};
-
-export const LongTitles = () => {
-    return (
-        <Tabs>
-            <Tab title="Very Long Tab 1">Content 1</Tab>
-            <Tab title="Tab 2 with another long">Content 2</Tab>
-            <Tab title="Tab 3">Content 3</Tab>
-            <Tab title="Tab 3">Content 3</Tab>
-        </Tabs>
-    );
-};
-
-export const Rich = () => {
-    return (
-        <Tabs>
-            <Tab title="Tab 1">
-                <h1>Title 1</h1>
-                <p>Content 1</p>
-                <p>{longText()}</p>
+            <Tab label="Tab 1" name="one" isActive>
+                {svgicon}
             </Tab>
-            <Tab title="Tab 2">
-                <h1>Title 2</h1>
-                <p>Content 2</p>
-                <p>{longText()}</p>
+            <Tab label="Tab 2" name="two">
+                {svgicon}
             </Tab>
-            <Tab title="Tab 3">
-                <h1>Title 3</h1>
-                <p>Content 3</p>
+            <Tab label="Tab 3" name="three">
+                {svgicon}
             </Tab>
-            <Tab title="Tab 4">
-                <h1>Title 4</h1>
-                <p>Content 4</p>
-                <p>{longText()}</p>
-            </Tab>
-            <Tab title="Tab 5">
-                <h1>Title 5</h1>
-                <p>Content 5</p>
-            </Tab>
-            <Tab title="Tab 6">
-                <h1>Title 6</h1>
-                <p>Content 6</p>
-                <p>{longText()}</p>
+            <Tab label="Tab 4" name="four">
+                {svgicon}
             </Tab>
         </Tabs>
     );
 };
 
-export const Links = () => {
+export const IconWithPanel = () => {
+    const [tab, setTab] = React.useState('');
     return (
-        <Tabs>
-            <Tab title="Tab 1">Panel 1</Tab>
-            <Tab
-                title={
-                    <a href="/external" target="_blank">
-                        Tab 2 with link
-                    </a>
-                }
-            >
-                Panel 2
-            </Tab>
-        </Tabs>
+        <>
+            <Tabs onChange={setTab}>
+                <Tab label="Tab 1" name="one" isActive>
+                    {svgicon}
+                </Tab>
+                <Tab label="Tab 2" name="two">
+                    {svgicon}
+                </Tab>
+                <Tab label="Tab 3" name="three">
+                    {svgicon}
+                </Tab>
+                <Tab label="Tab 4" name="four">
+                    {svgicon}
+                </Tab>
+            </Tabs>
+            <div className="mb-16">
+                {(!tab || tab === 'one') && <p>Tab one selected!</p>}
+                {tab === 'two' && <p>Tab two selected!</p>}
+                {tab === 'three' && <p>Tab three selected!</p>}
+                {tab === 'four' && <p>Tab four selected!</p>}
+            </div>
+        </>
     );
 };
 
-export const LinkAsFirstTab = () => {
+export const ContainedIconWithPanel = () => {
+    const [tab, setTab] = React.useState('');
     return (
-        <Tabs>
-            <Tab
-                title={
-                    <a href="/external" target="_blank">
-                        Tab 1 with link
-                    </a>
-                }
-            >
-                Panel 1
-            </Tab>
-            <Tab title="Tab 2">
-                <h1>Title 2</h1>
-            </Tab>
-        </Tabs>
-    );
-};
-
-export const Centered = () => {
-    return (
-        <Tabs centered>
-            <Tab title="Tab 1">
-                <p>{longText()}</p>
-            </Tab>
-            <Tab title="Tab 2">
-                <p>{longText()}</p>
-            </Tab>
-            <Tab title="Tab 3">
-                <p>{longText()}</p>
-            </Tab>
-        </Tabs>
-    );
-};
-
-export const Justified = () => {
-    return (
-        <Tabs justified>
-            <Tab title="Tab 1">
-                <p>{longText()}</p>
-            </Tab>
-            <Tab title="Tab 2">
-                <p>{longText()}</p>
-            </Tab>
-            <Tab title="Tab 3">
-                <p>{longText()}</p>
-            </Tab>
-        </Tabs>
-    );
-};
-export const WithIcon = () => {
-    return (
-        <Tabs>
-            <Tab title={<span>{svgicon} Tab 1</span>}>
-                <h1>Title 1</h1>
-                <p>Content 1</p>
-            </Tab>
-            <Tab title={<span>{svgicon} Tab 1</span>}>
-                <h1>Title 2</h1>
-                <p>Content 2</p>
-            </Tab>
-            <Tab title={<span>{svgicon} Tab 1</span>}>
-                <h1>Title 3</h1>
-                <p>Content 3</p>
-            </Tab>
-        </Tabs>
-    );
-};
-
-export const WithIconAndCentered = () => {
-    return (
-        <Tabs centered>
-            <Tab title={<span>{svgicon} Tab 1</span>}>
-                <h1>Title 1</h1>
-                <p>Content 1</p>
-            </Tab>
-            <Tab title={<span>{svgicon} Tab 1</span>}>
-                <h1>Title 2</h1>
-                <p>Content 2</p>
-            </Tab>
-            <Tab title={<span>{svgicon} Tab 1</span>}>
-                <h1>Title 3</h1>
-                <p>Content 3</p>
-            </Tab>
-        </Tabs>
+        <>
+            <Tabs contained onChange={setTab}>
+                <Tab label="Tab 1" name="one" isActive>
+                    {svgicon}
+                </Tab>
+                <Tab label="Tab 2" name="two">
+                    {svgicon}
+                </Tab>
+                <Tab label="Tab 3" name="three">
+                    {svgicon}
+                </Tab>
+                <Tab label="Tab 4" name="four">
+                    {svgicon}
+                </Tab>
+            </Tabs>
+            <div className="bg-aqua-50 p-24 last-child:mb-0">
+                {(!tab || tab === 'one') && <p>Tab one selected!</p>}
+                {tab === 'two' && <p>Tab two selected!</p>}
+                {tab === 'three' && <p>Tab three selected!</p>}
+                {tab === 'four' && <p>Tab four selected!</p>}
+            </div>
+        </>
     );
 };

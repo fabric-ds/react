@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
+    "@finn-no/fabric-component-classes": "^0.0.18",
     "@reach/tabs": "^0.13.0"
   },
   "peerDependencies": {
