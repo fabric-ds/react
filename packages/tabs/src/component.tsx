@@ -40,10 +40,16 @@ const tabsSetup = ({ className, contained, children, onClick, ...rest }) => ({
 });
 
 export function Tab(props) {
-    const { children, label, setActive, name } = props;
+    const { children, label, setActive, name, onClick } = props;
     const { tab, icon, content, attrs } = tabSetup(props);
+
+    const handleClick = (e) => {
+        setActive(name);
+        onClick && onClick(e);
+    }
+
     return (
-        <button {...attrs} className={tab} onClick={() => setActive(name)}>
+        <button {...attrs} className={tab} onClick={handleClick}>
             {children && <span className={icon}>{children}</span>}
             <span className={content}>{label}</span>
         </button>
