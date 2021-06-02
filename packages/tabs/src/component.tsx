@@ -4,7 +4,7 @@ import { tabs as c, tab as ct } from '@finn-no/fabric-component-classes';
 
 const tabSetup = ({ className, isActive, setActive, contained, ...rest }) => ({
     tab: cl({
-        className: !!className,
+        [className]: !!className,
         [ct.tab]: true,
         [ct.tabActive]: isActive,
         [ct.tabContained]: contained,
@@ -28,7 +28,7 @@ const tabSetup = ({ className, isActive, setActive, contained, ...rest }) => ({
 
 const tabsSetup = ({ className, contained, children, onClick, ...rest }) => ({
     nav: cl({
-        className: !!className,
+        [className]: !!className,
         [contained ? c.wrapperContained : c.wrapperUnderlined]: true,
     }),
     div: cl({
@@ -69,7 +69,7 @@ export function Tabs(props) {
     return (
         <nav {...attrs} className={nav}>
             <div className={div}>
-                {Children.map(children, (child, i) => {
+                {Children.map(children, (child) => {
                     return cloneElement(child, {
                         contained,
                         setActive,
