@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, cloneElement, Children } from 'react';
+import React, {
+    useState,
+    useRef,
+    useEffect,
+    cloneElement,
+    Children,
+} from 'react';
 import { classNames as cl } from '@chbphone55/classnames';
 import { tabs as c, tab as ct } from '@finn-no/fabric-component-classes';
 
@@ -25,7 +31,11 @@ const tabSetup = ({ className, isActive, setActive, contained, ...rest }) => ({
     attrs: { ...rest },
 });
 
-const tabsSetup = ({ className, contained, children, onClick, ...rest }) => ({
+const tabsSetup = (
+    { className, contained, children, onClick, ...rest },
+    tabsRef,
+    wunderbarRef,
+) => ({
     nav: cl({
         [className]: !!className,
         [contained ? c.wrapperContained : c.wrapperUnderlined]: true,
@@ -36,6 +46,21 @@ const tabsSetup = ({ className, contained, children, onClick, ...rest }) => ({
     }),
     wunderbar: cl(c.wunderbar),
     attrs: { ...rest },
+    updateWunderbar: () => {
+        if (contained) return;
+        window.setImmediate(() => {
+            try {
+                const activeEl = tabsRef.current.querySelector('.active-tab');
+                const { left: parentLeft } =
+                    tabsRef.current.getBoundingClientRect();
+                const { left, width } = activeEl.getBoundingClientRect();
+                wunderbarRef.current.style.left = `${left - parentLeft}px`;
+                wunderbarRef.current.style.width = `${width}px`;
+            } catch (err) {
+                console.warn('Problem updating tabs', err);
+            }
+        });
+    },
 });
 
 export function Tab(props) {
@@ -56,28 +81,15 @@ export function Tab(props) {
 }
 
 export function Tabs(props) {
-    const { children, contained, onChange } = props;
-    const { nav, div, wunderbar, attrs } = tabsSetup(props);
-    const [active, setIsActive] = useState('');
-
     const tabsRef = useRef(null);
     const wunderbarRef = useRef(null);
-
-    const updateWunderbar = () => {
-        if (props.contained) return;
-        window.setImmediate(() => {
-            try {
-                const activeEl = tabsRef.current.querySelector('.active-tab');
-                const { left: parentLeft } =
-                    tabsRef.current.getBoundingClientRect();
-                const { left, width } = activeEl.getBoundingClientRect();
-                wunderbarRef.current.style.left = `${left - parentLeft}px`;
-                wunderbarRef.current.style.width = `${width}px`;
-            } catch (err) {
-                console.warn('Problem updating tabs', err);
-            }
-        });
-    };
+    const { children, contained, onChange } = props;
+    const { nav, div, wunderbar, attrs, updateWunderbar } = tabsSetup(
+        props,
+        tabsRef,
+        wunderbarRef,
+    );
+    const [active, setIsActive] = useState('');
 
     const setActive = (name) => {
         setIsActive(name);
