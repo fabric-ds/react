@@ -14,6 +14,11 @@ const setup = ({
 }: any) => ({
     ...attrs,
     tabIndex: clickable ? 0 : undefined,
+    onKeyDown: (event) => {
+        if (typeof attrs.onClick === 'function' && (event.keyCode === 13 || event.keyCode === 32)) {
+            attrs.onClick();
+        }
+    },
     className: classNames(
         box.box,
         {
