@@ -1,4 +1,4 @@
-import React, { useState, cloneElement, Children } from 'react';
+import React, { useState, useRef, useEffect, cloneElement, Children } from 'react';
 import { classNames as cl } from '@chbphone55/classnames';
 import { tabs as c, tab as ct } from '@finn-no/fabric-component-classes';
 
@@ -18,12 +18,11 @@ const tabSetup = ({ className, isActive, setActive, contained, ...rest }) => ({
     }),
     content: cl({
         [ct.contentUnderlined]: !contained,
-        [isActive
-            ? ct.contentUnderlinedActive
-            : ct.contentUnderlinedInactive]: !contained,
+        [isActive ? ct.contentUnderlinedActive : ct.contentUnderlinedInactive]:
+            !contained,
         [ct.contentContainedActive]: contained && isActive,
     }),
-    attrs: { ...rest }
+    attrs: { ...rest },
 });
 
 const tabsSetup = ({ className, contained, children, onClick, ...rest }) => ({
@@ -46,7 +45,7 @@ export function Tab(props) {
     const handleClick = (e) => {
         setActive(name);
         onClick && onClick(e);
-    }
+    };
 
     return (
         <button {...attrs} className={tab} onClick={handleClick}>
@@ -61,14 +60,36 @@ export function Tabs(props) {
     const { nav, div, wunderbar, attrs } = tabsSetup(props);
     const [active, setIsActive] = useState('');
 
+    const tabsRef = useRef(null);
+    const wunderbarRef = useRef(null);
+
+    const updateWunderbar = () => {
+        if (props.contained) return;
+        window.setImmediate(() => {
+            try {
+                const activeEl = tabsRef.current.querySelector('.active-tab');
+                const { left: parentLeft } =
+                    tabsRef.current.getBoundingClientRect();
+                const { left, width } = activeEl.getBoundingClientRect();
+                wunderbarRef.current.style.left = `${left - parentLeft}px`;
+                wunderbarRef.current.style.width = `${width}px`;
+            } catch (err) {
+                console.warn('Problem updating tabs', err);
+            }
+        });
+    };
+
     const setActive = (name) => {
         setIsActive(name);
+        updateWunderbar();
         onChange && onChange(name);
     };
 
+    useEffect(updateWunderbar);
+
     return (
         <nav {...attrs} className={nav}>
-            <div className={div}>
+            <div className={div} ref={tabsRef}>
                 {Children.map(children, (child) => {
                     return cloneElement(child, {
                         contained,
@@ -78,7 +99,9 @@ export function Tabs(props) {
                             (!active && child.props.isActive),
                     });
                 })}
-                {!contained && <span className={wunderbar} />}
+                {!contained && (
+                    <span className={wunderbar} ref={wunderbarRef} />
+                )}
             </div>
         </nav>
     );
