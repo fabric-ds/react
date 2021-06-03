@@ -45,4 +45,3 @@ export const As = () => (
         <h1>I'm wrapped in a section tag</h1>
     </Box>
 );
-

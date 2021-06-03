@@ -236,9 +236,8 @@ const RangeSlider = ({
             }
 
             set({
-                [memo.handle === Handle.Lower
-                    ? 'ratioLower'
-                    : 'ratioUpper']: ratio,
+                [memo.handle === Handle.Lower ? 'ratioLower' : 'ratioUpper']:
+                    ratio,
             });
 
             return memo;

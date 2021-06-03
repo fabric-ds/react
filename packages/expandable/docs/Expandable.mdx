@@ -63,7 +63,13 @@ combination with the `expanded` prop
 function Example() {
     const [open, setOpen] = React.useState(true);
     return (
-        <Expandable title="Expandable box" box info expanded={open} onChange={setOpen}>
+        <Expandable
+            title="Expandable box"
+            box
+            info
+            expanded={open}
+            onChange={setOpen}
+        >
             <p>I am expanded</p>
         </Expandable>
     );

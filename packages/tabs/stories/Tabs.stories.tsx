@@ -68,7 +68,11 @@ export const ContainedWithPanel = () => {
             <Tabs onChange={setTab} contained>
                 <Tab label="Tab 1" name="one" />
                 <Tab label="Tab 2" name="two" isActive />
-                <Tab label="Tab 3" name="three" onClick={(e) => console.log(e)} />
+                <Tab
+                    label="Tab 3"
+                    name="three"
+                    onClick={(e) => console.log(e)}
+                />
             </Tabs>
             <div className="bg-aqua-50 p-24 last-child:mb-0">
                 {(!tab || tab === 'one') && <p>Tab one selected!</p>}

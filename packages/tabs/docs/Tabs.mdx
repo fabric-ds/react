@@ -15,7 +15,8 @@ import pd from '../package.json';
 
 ## Examples
 
-The following example demonstrates how the tab and tabs components can be used to switch between panels.
+The following example demonstrates how the tab and tabs components can be used
+to switch between panels.
 
 ```jsx example
 function Example() {
@@ -38,7 +39,8 @@ function Example() {
 }
 ```
 
-This second example demonstrates how to create a "contained" style tab and panel setup
+This second example demonstrates how to create a "contained" style tab and panel
+setup
 
 ```jsx example
 function Example() {
@@ -85,10 +87,18 @@ function Example() {
     );
     return (
         <Tabs>
-            <Tab label="Tab 1" name="one" isActive>{svgicon}</Tab>
-            <Tab label="Tab 2" name="two">{svgicon}</Tab>
-            <Tab label="Tab 3" name="three">{svgicon}</Tab>
-            <Tab label="Tab 4" name="four">{svgicon}</Tab>
+            <Tab label="Tab 1" name="one" isActive>
+                {svgicon}
+            </Tab>
+            <Tab label="Tab 2" name="two">
+                {svgicon}
+            </Tab>
+            <Tab label="Tab 3" name="three">
+                {svgicon}
+            </Tab>
+            <Tab label="Tab 4" name="four">
+                {svgicon}
+            </Tab>
         </Tabs>
     );
 }

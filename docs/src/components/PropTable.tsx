@@ -132,14 +132,11 @@ const Type = ({ prop }: { prop: Prop }) => {
 };
 
 const TYPE_URLS = {
-    string:
-        'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String',
-    number:
-        'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number',
+    string: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String',
+    number: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number',
     boolean:
         'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean',
-    Date:
-        'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date',
+    Date: 'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date',
     CSSProperties: 'https://reactjs.org/docs/dom-elements.html#style',
     ReactNode: 'https://reactjs.org/docs/rendering-elements.html',
     'RefObject<any>': 'https://reactjs.org/docs/refs-and-the-dom.html',

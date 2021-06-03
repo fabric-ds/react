@@ -42,26 +42,8 @@ export const RegularDisabled = () => {
 
 export const RegularScaled = () => {
     const radiusScale = scaleQuantize().range([
-        250,
-        500,
-        750,
-        1000,
-        1500,
-        2000,
-        3000,
-        4000,
-        5000,
-        7000,
-        10000,
-        15000,
-        20000,
-        30000,
-        60000,
-        100000,
-        150000,
-        200000,
-        250000,
-        300000,
+        250, 500, 750, 1000, 1500, 2000, 3000, 4000, 5000, 7000, 10000, 15000,
+        20000, 30000, 60000, 100000, 150000, 200000, 250000, 300000,
     ]);
     const [value, setValue] = React.useState(250);
     const [output, setOutput] = React.useState(value);
@@ -86,8 +68,7 @@ export const RegularScaled = () => {
 
 export const Ranged = () => {
     const [value, setValue] = React.useState<[number, number]>([
-        1000000,
-        10000000,
+        1000000, 10000000,
     ]);
     const [output, setOutput] = React.useState(value);
     return (

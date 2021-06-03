@@ -7,9 +7,10 @@ import { useLayoutEffect } from './useIsomorphicLayoutEffect';
  *
  * @param ref - A React ref to an element
  */
-export default function useElementSizeObserver(
-    ref: React.RefObject<Element>,
-): { width: number; height: number } {
+export default function useElementSizeObserver(ref: React.RefObject<Element>): {
+    width: number;
+    height: number;
+} {
     let [size, setSize] = useState({ width: 0, height: 0 });
 
     const handleResize = useCallback((entries: ResizeObserverEntry[]) => {
