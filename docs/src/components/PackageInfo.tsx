@@ -4,7 +4,7 @@ import theme from 'prism-react-renderer/themes/github';
 import styles from './PackageInfo.module.css';
 
 const REPOSITORY_URL =
-    'https://github.schibsted.io/finn/fabric-react/tree/master/packages/';
+    'https://github.com/finn-no/fabric-react/tree/master/packages/';
 
 // Assume that the name of the package minus common prefix is the folder name
 const getRepoUrl = (packageData) => {

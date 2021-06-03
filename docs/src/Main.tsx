@@ -16,7 +16,7 @@ import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import RadioGroup from '../../packages/radio/docs/RadioGroup.mdx';
 import CheckboxGroup from '../../packages/checkbox/docs/CheckboxGroup.mdx';
 import Checkbox from '../../packages/checkbox/docs/Checkbox.mdx';
-import Tabs from '../../packages/tabs/docs/tabs.mdx';
+import Tabs from '../../packages/tabs/docs/Tabs.mdx';
 import TextField from '../../packages/textfield/docs/TextField.mdx';
 import Select from '../../packages/select/docs/Select.mdx';
 import TextArea from '../../packages/textarea/docs/TextArea.mdx';

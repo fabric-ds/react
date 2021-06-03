@@ -1,13 +1,9 @@
 import { Tab, Tabs } from '../src';
-import packageData from '../package.json';
+import pd from '../package.json';
+
+<PackageInfo packageData={pd} componentNames={['Tab', 'Tabs']} />
 
 # Tabs
-
-Tabs ...
-
-<PackageInfo packageData={packageData} componentNames={['Button']} />
-
-## Example
 
 ```jsx example
 <Tabs onChange={(e) => console.log(e)}>
@@ -17,16 +13,99 @@ Tabs ...
 </Tabs>
 ```
 
+## Examples
+
+The following example demonstrates how the tab and tabs components can be used to switch between panels.
+
+```jsx example
+function Example() {
+    const [tabName, setTabName] = React.useState('');
+
+    return (
+        <div>
+            <Tabs onChange={setTabName}>
+                <Tab label="Tab 1" name="one" isActive />
+                <Tab label="Tab 2" name="two" />
+                <Tab label="Tab 3" name="three" />
+            </Tabs>
+            <div className="mb-16">
+                {(!tabName || tabName === 'one') && <p>Tab one selected!</p>}
+                {tabName === 'two' && <p>Tab two selected!</p>}
+                {tabName === 'three' && <p>Tab three selected!</p>}
+            </div>
+        </div>
+    );
+}
+```
+
+This second example demonstrates how to create a "contained" style tab and panel setup
+
+```jsx example
+function Example() {
+    const [tabName, setTabName] = React.useState('');
+
+    return (
+        <div>
+            <Tabs onChange={setTabName} contained>
+                <Tab label="Tab 1" name="one" isActive />
+                <Tab label="Tab 2" name="two" />
+                <Tab label="Tab 3" name="three" />
+            </Tabs>
+            <div className="bg-aqua-50 p-24 last-child:mb-0">
+                {(!tabName || tabName === 'one') && <p>Tab one selected!</p>}
+                {tabName === 'two' && <p>Tab two selected!</p>}
+                {tabName === 'three' && <p>Tab three selected!</p>}
+            </div>
+        </div>
+    );
+}
+```
+
+Icons can be added to tabs as follows
+
+```jsx example
+function Example() {
+    const svgicon = (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 32 32"
+            style={{ verticalAlign: 'sub' }}
+        >
+            <g fill="none" fillRule="evenodd">
+                <path d="M0 0h32v32H0z" />
+                <path
+                    fill="currentColor"
+                    fillRule="nonzero"
+                    d="M17 15V4h-2v11H4v2h11v11h2V17h11v-2z"
+                />
+            </g>
+        </svg>
+    );
+    return (
+        <Tabs>
+            <Tab label="Tab 1" name="one" isActive>{svgicon}</Tab>
+            <Tab label="Tab 2" name="two">{svgicon}</Tab>
+            <Tab label="Tab 3" name="three">{svgicon}</Tab>
+            <Tab label="Tab 4" name="four">{svgicon}</Tab>
+        </Tabs>
+    );
+}
+```
+
 ## Accessibility
 
 ...
 
 ## Visual options
 
+There are two visual variations, default and contained (see below).
+
 ### contained
 
 ```jsx example
-<Tabs contained onChange={(e) => console.log(e)}>
+<Tabs onChange={(e) => console.log(e)} contained>
     <Tab label="Tab 1" name="one" isActive />
     <Tab label="Tab 2" name="two" />
     <Tab label="Tab 3" name="three" />
@@ -35,9 +114,13 @@ Tabs ...
 
 ## Props
 
+### Tabs
+
 ```props packages/tabs/src/component-tabs.tsx
 
 ```
+
+### Tab
 
 ```props packages/tabs/src/component-tab.tsx
 

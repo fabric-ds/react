@@ -26,7 +26,7 @@ const setup = (
     attrs: { ...rest },
     updateWunderbar: () => {
         if (contained) return;
-        window.setImmediate(() => {
+        window.requestAnimationFrame(() => {
             try {
                 const activeEl = tabsRef.current.querySelector('.active-tab');
                 const { left: parentLeft } =
