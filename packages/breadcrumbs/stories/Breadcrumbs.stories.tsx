@@ -11,4 +11,3 @@ export const Example = () => (
         <a href="#/url3">Item 3</a>
     </Breadcrumbs>
 );
-

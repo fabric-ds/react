@@ -4,16 +4,8 @@ import { classNames } from '@chbphone55/classnames';
 import type { SelectProps } from './props';
 
 const setup = (props) => {
-    const {
-        className,
-        invalid,
-        id,
-        hint,
-        always,
-        label,
-        style,
-        ...rest
-    } = props;
+    const { className, invalid, id, hint, always, label, style, ...rest } =
+        props;
 
     const helpId = hint ? `${id}__hint` : undefined;
 
@@ -33,10 +25,13 @@ const setup = (props) => {
                 'aria-invalid': invalid,
                 id,
             },
-            help: always || invalid ? {
-                children: hint,
-                id: helpId,
-            } : null,
+            help:
+                always || invalid
+                    ? {
+                          children: hint,
+                          id: helpId,
+                      }
+                    : null,
         },
         classes: classNames(
             'input mb-0',

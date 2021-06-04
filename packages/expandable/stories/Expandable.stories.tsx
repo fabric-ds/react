@@ -29,7 +29,12 @@ export const RedBox = () => (
 );
 
 export const GreenButton = () => (
-    <Expandable title="This is a title" box className="bg-green-50" buttonClass="hover:text-green-700">
+    <Expandable
+        title="This is a title"
+        box
+        className="bg-green-50"
+        buttonClass="hover:text-green-700"
+    >
         <h1>I am expandable</h1>
     </Expandable>
 );
@@ -37,7 +42,12 @@ export const GreenButton = () => (
 export const Controlled = () => {
     const [open, setOpen] = React.useState(false);
     return (
-        <Expandable title={open ? 'Open' : 'Closed'} box info onChange={setOpen}>
+        <Expandable
+            title={open ? 'Open' : 'Closed'}
+            box
+            info
+            onChange={setOpen}
+        >
             <h1>I am expandable</h1>
         </Expandable>
     );
@@ -46,7 +56,13 @@ export const Controlled = () => {
 export const NoChevron = () => {
     const [open, setOpen] = React.useState(false);
     return (
-        <Expandable title={open ? 'Open' : 'Closed'} box info chevron={false} onChange={setOpen}>
+        <Expandable
+            title={open ? 'Open' : 'Closed'}
+            box
+            info
+            chevron={false}
+            onChange={setOpen}
+        >
             <h1>I am expandable</h1>
         </Expandable>
     );
