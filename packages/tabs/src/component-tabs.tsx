@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { classNames as cn } from '@chbphone55/classnames';
 import { tabs as c } from '@finn-no/fabric-component-classes';
+import { debounce } from './utils';
 import type { TabsProps } from './props';
 
 const setup = (
@@ -58,7 +59,12 @@ export function Tabs(props: TabsProps) {
         onChange && onChange(name);
     };
 
-    useEffect(updateWunderbar);
+    useEffect(() => {
+        updateWunderbar();
+        const updateDebounced = debounce(updateWunderbar, 100);
+        window.addEventListener('resize', updateDebounced);
+        return () => window.removeEventListener('resize', updateDebounced);
+    })
 
     return (
         <nav {...attrs} className={nav}>
