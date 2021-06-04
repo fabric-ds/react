@@ -102,6 +102,25 @@ export const Icon = () => {
     );
 };
 
+export const IconOvertop = () => {
+    return (
+        <Tabs>
+            <Tab label="Tab 1" name="one" over isActive>
+                {svgicon}
+            </Tab>
+            <Tab label="Tab 2" name="two" over>
+                {svgicon}
+            </Tab>
+            <Tab label="Tab 3" name="three" over>
+                {svgicon}
+            </Tab>
+            <Tab label="Tab 4" name="four" over>
+                {svgicon}
+            </Tab>
+        </Tabs>
+    );
+};
+
 export const IconWithPanel = () => {
     const [tab, setTab] = React.useState('');
     return (

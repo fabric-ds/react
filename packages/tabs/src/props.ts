@@ -28,6 +28,12 @@ export type TabProps = {
     /** Additional CSS class for the tab. */
     className?: string;
 
+    /**
+     * Set the over prop to true if you need to move icons to above the tab label
+     * @default false
+     */
+    over?: boolean;
+
     /** Additional content to be included in the tab (eg. icons). Content is placed above the label. */
     children?: React.ReactNode;
 

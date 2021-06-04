@@ -64,7 +64,7 @@ export function Tabs(props: TabsProps) {
         const updateDebounced = debounce(updateWunderbar, 100);
         window.addEventListener('resize', updateDebounced);
         return () => window.removeEventListener('resize', updateDebounced);
-    })
+    });
 
     return (
         <nav {...attrs} className={nav}>

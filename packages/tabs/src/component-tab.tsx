@@ -33,7 +33,14 @@ const setup = ({
 });
 
 export function Tab(props: TabProps) {
-    const { children, label, setActive = () => {}, name, onClick } = props;
+    const {
+        children,
+        label,
+        setActive = () => {},
+        name,
+        onClick,
+        over,
+    } = props;
     const { tab, icon, content, attrs } = setup(props);
 
     const handleClick = (e) => {
@@ -43,8 +50,21 @@ export function Tab(props: TabProps) {
 
     return (
         <button {...attrs} className={tab} onClick={handleClick}>
-            {children && <span className={icon}>{children}</span>}
-            <span className={content}>{label}</span>
+            {!children && <span className={content}>{label}</span>}
+
+            {children && over && (
+                <>
+                    <span className={icon}>{children}</span>
+                    <span className={content}>{label}</span>
+                </>
+            )}
+
+            {children && !over && (
+                <div className="flex items-center justify-center gap-8">
+                    {children}
+                    {label}
+                </div>
+            )}
         </button>
     );
 }
