@@ -35,7 +35,11 @@ export const Neutral = () => (
 );
 
 export const Clickable = () => (
-    <Box info clickable>
+    <Box
+        info
+        clickable
+        onClick={() => alert(`You clicked me!`)}
+    >
         <h1>Hover over me, i'm clickable</h1>
     </Box>
 );
