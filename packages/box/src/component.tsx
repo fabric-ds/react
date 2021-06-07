@@ -14,11 +14,14 @@ const setup = ({
 }: any) => ({
     ...attrs,
     tabIndex: clickable ? 0 : undefined,
-    onKeyDown: (event) => {
+    onKeyDown: clickable ? (event) => {
+        // Manually mapping Enter and Space keydown events to the click event (if there is one).
+        // The browser doesn't do this automatically unless the element is a button or an a-element.
+        // The Box element can't be a button or link in case someone puts an interactive element inside the box, which would result in invalid HTML and severe a11y issues.
         if (typeof attrs.onClick === 'function' && (event.keyCode === 13 || event.keyCode === 32)) {
-            attrs.onClick();
+            attrs.onClick(event);
         }
-    },
+    } : undefined,
     className: classNames(
         box.box,
         {
