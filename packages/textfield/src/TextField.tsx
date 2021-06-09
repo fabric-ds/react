@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useId } from '@finn-no/fabric-react-utils';
 import { classNames } from '@chbphone55/classnames';
-import warning from 'tiny-warning';
 
 export type TextFieldProps = {
     /** Describes the type of autocomplete functionality the input should provide if any. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefautocomplete) .*/
@@ -104,25 +103,6 @@ function TextField(
     }: TextFieldProps,
     ref: React.Ref<HTMLInputElement>,
 ) {
-    if (process.env.NODE_ENV !== 'production') {
-        // useEffect with an empty array to only warn once per component instance
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        React.useEffect(() => {
-            // Warn if the component isn't accessible.
-            warning(
-                label || props['aria-label'] || props['aria-labelledby'],
-                `<TextField> requires a 'label', 'aria-label' or an 'aria-labelledby' to be accessible to screen readers.`,
-            );
-
-            // Warn if we are using the deprecated error prop
-            warning(
-                error == null,
-                `<TextField>: The 'error' prop is deprecated. Use 'invalid' instead.`,
-            );
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
-    }
-
     const id = useId(providedId);
 
     const helpId = helpText ? `${id}__hint` : undefined;

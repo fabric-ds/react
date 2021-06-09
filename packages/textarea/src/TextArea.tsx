@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useId } from '@finn-no/fabric-react-utils';
 import { useForkedRef } from '@reach/utils';
 import { classNames } from '@chbphone55/classnames';
-import warning from 'tiny-warning';
 
 import useTextAreaHeight from './useTextAreaHeight';
 
@@ -97,26 +96,6 @@ function TextArea(
     }: TextAreaProps,
     forwardRef: React.Ref<HTMLTextAreaElement>,
 ) {
-    if (process.env.NODE_ENV !== 'production') {
-        // useEffect with an empty array to only warn once per component instance
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        React.useEffect(() => {
-            // Warn if neither aria-label or aria-labelledby is provided.
-            // It is considered WCAG best practice for radio groups.
-            warning(
-                label || props['aria-label'] || props['aria-labelledby'],
-                `<TextArea> requires a 'label', 'aria-label' or an 'aria-labelledby' to be accessible to screen readers.`,
-            );
-
-            // Warn if we are using the deprecated error prop
-            warning(
-                error == null,
-                `<TextArea>: The 'error' prop is deprecated. Use 'invalid' instead.`,
-            );
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
-    }
-
     const ref = React.useRef<HTMLTextAreaElement | null>(null);
 
     useTextAreaHeight({

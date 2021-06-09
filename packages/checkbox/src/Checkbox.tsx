@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useId } from '@finn-no/fabric-react-utils';
 import { classNames } from '@chbphone55/classnames';
-import warning from 'tiny-warning';
 
 import { useCheckboxProvider } from './CheckboxContext';
 
@@ -90,24 +89,6 @@ function Checkbox(
     }: CheckboxProps,
     ref: React.Ref<HTMLInputElement>,
 ) {
-    if (process.env.NODE_ENV !== 'production') {
-        // useEffect with an empty array to only warn once per component instance
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        React.useEffect(() => {
-            // Warn if we are using the deprecated label prop
-            warning(
-                label == null,
-                `<Checkbox>: The 'label' prop is deprecated. The label should be the child of <Checkbox> instead.`,
-            );
-            // Warn if we are using the deprecated error prop
-            warning(
-                error == null,
-                `<Checkbox>: The 'error' prop is deprecated. Use 'invalid' instead.`,
-            );
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
-    }
-
     const {
         ariaDescribedby: groupAriaDescribedby,
         disabled: groupDisabled,
