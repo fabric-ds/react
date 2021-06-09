@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useId } from '@finn-no/fabric-react-utils';
 import { classNames } from '@chbphone55/classnames';
-import warning from 'tiny-warning';
 
 import { useRadioProvider } from './RadioContext';
 
@@ -41,19 +40,6 @@ const Radio = (
     }: RadioProps,
     ref: React.Ref<HTMLInputElement>,
 ) => {
-    if (process.env.NODE_ENV !== 'production') {
-        // useEffect with an empty array to only warn once per component instance
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        React.useEffect(() => {
-            // Warn if we are using the deprecated error prop
-            warning(
-                label == null,
-                `<Radio>: The 'label' prop is deprecated. The label should be the child of <Radio> instead.`,
-            );
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
-    }
-
     const {
         ariaDescribedby,
         defaultValue: groupDefaultValue,

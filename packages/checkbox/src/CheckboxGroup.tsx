@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useId } from '@finn-no/fabric-react-utils';
-import warning from 'tiny-warning';
 import { classNames } from '@chbphone55/classnames';
 
 import { CheckboxContext } from './CheckboxContext';
@@ -62,25 +61,6 @@ function CheckboxGroup(
     }: CheckboxGroupProps,
     ref: React.Ref<HTMLDivElement>,
 ) {
-    if (process.env.NODE_ENV !== 'production') {
-        // useEffect with an empty array to only warn once per component instance
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        React.useEffect(() => {
-            // Warn if the component isn't accessible.
-            warning(
-                label || props['aria-label'] || props['aria-labelledby'],
-                `<CheckboxGroup> requires a 'label', 'aria-label' or an 'aria-labelledby' to be accessible to screen readers.`,
-            );
-
-            // Warn if we are using the deprecated error prop
-            warning(
-                error == null,
-                `<CheckboxGroup>: The 'error' prop is deprecated. Use 'invalid' instead.`,
-            );
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
-    }
-
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         const newValue = event.target.checked
             ? (value ?? []).concat(event.target.value)

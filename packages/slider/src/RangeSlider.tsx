@@ -4,7 +4,6 @@ import { slider as classes } from '@finn-no/fabric-component-classes';
 import { classNames } from '@chbphone55/classnames';
 import { animated, interpolate, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
-import warning from 'tiny-warning';
 import useInnerWidth from './useInnerWidth';
 import {
     clamp,
@@ -72,19 +71,6 @@ const RangeSlider = ({
     step = 1,
     ...props
 }: RangeSliderProps) => {
-    if (process.env.NODE_ENV !== 'production') {
-        // useEffect with an empty array to only warn once per component instance
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        React.useEffect(() => {
-            // Warn if the component isn't accessible.
-            warning(
-                props['aria-label'] || props['aria-labelledby'],
-                `<RangeSlider> requires an 'aria-label' or an 'aria-labelledby' to be accessible to screen readers.`,
-            );
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
-    }
-
     const sliderRef = React.useRef<HTMLDivElement>(null);
     const handleLowerRef = React.useRef<HTMLDivElement>(null);
     const handleUpperRef = React.useRef<HTMLDivElement>(null);

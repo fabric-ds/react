@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useLayoutEffect } from '@finn-no/fabric-react-utils';
-import warning from 'tiny-warning';
 import { useSpring, animated } from 'react-spring';
 import { classNames } from '@chbphone55/classnames';
 import { slider as classes } from '@finn-no/fabric-component-classes';
@@ -67,19 +66,6 @@ const RegularSlider = ({
     value,
     ...props
 }: RegularSliderProps) => {
-    if (process.env.NODE_ENV !== 'production') {
-        // useEffect with an empty array to only warn once per component instance
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        React.useEffect(() => {
-            // Warn if the component isn't accessible.
-            warning(
-                props['aria-label'] || props['aria-labelledby'],
-                `<RegularSlider> requires an 'aria-label' or an 'aria-labelledby' to be accessible to screen readers.`,
-            );
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
-    }
-
     const sliderRef = React.useRef<HTMLDivElement>(null);
     const handleRef = React.useRef<HTMLDivElement>(null);
     const innerWidth = useInnerWidth(sliderRef, handleRef);
