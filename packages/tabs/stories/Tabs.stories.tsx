@@ -58,12 +58,16 @@ export const DefaultWithExternalLinks = () => {
                 <Tab
                     label="Tab 2 (www.finn.no)"
                     name="two"
-                    onClick={(e) => window.open('https://www.finn.no/', '_blank')}
+                    onClick={(e) =>
+                        window.open('https://www.finn.no/', '_blank')
+                    }
                 />
                 <Tab
                     label="Tab 3 (www.schibsted.com without panel)"
                     name="three"
-                    onClick={(e) => window.open('https://www.schibsted.com/', '_blank')}
+                    onClick={(e) =>
+                        window.open('https://www.schibsted.com/', '_blank')
+                    }
                 />
             </Tabs>
             <div className="mb-16">

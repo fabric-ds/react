@@ -29,7 +29,9 @@ const setup = (
         if (contained) return;
         window.requestAnimationFrame(() => {
             try {
-                const activeEl = tabsRef.current.querySelector('button[role="tab"][aria-selected="true"]');
+                const activeEl = tabsRef.current.querySelector(
+                    'button[role="tab"][aria-selected="true"]',
+                );
                 const { left: parentLeft } =
                     tabsRef.current.getBoundingClientRect();
                 const { left, width } = activeEl.getBoundingClientRect();
@@ -52,18 +54,22 @@ export function Tabs(props: TabsProps) {
         wunderbarRef,
     );
     const [active, setActive] = useState(
-        props.active || (
-            children.length > 0 ? (
-                children[
-                    Math.max(0, children.findIndex((child) => child.props.isActive))
-                ].props.name
-            ) : ''
-        )
+        props.active ||
+            (children.length > 0
+                ? children[
+                      Math.max(
+                          0,
+                          children.findIndex((child) => child.props.isActive),
+                      )
+                  ].props.name
+                : ''),
     );
 
     const updatePanels = () => {
         children.forEach((child) => {
-            const panel = document.getElementById(`fabric-tabpanel-${child.props.name}`);
+            const panel = document.getElementById(
+                `fabric-tabpanel-${child.props.name}`,
+            );
             panel && (panel.hidden = child.props.name !== active);
         });
     };
@@ -75,16 +81,26 @@ export function Tabs(props: TabsProps) {
     };
 
     const handleKeyDown = (event) => {
-        if (!event.getModifierState() && ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
-            const tabs = [...tabsRef.current.querySelectorAll('button[role="tab"]')];
-            const current = tabs.findIndex((tab) => (tab.name === active));
+        if (
+            !event.getModifierState() &&
+            ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
+        ) {
+            const tabs = [
+                ...tabsRef.current.querySelectorAll('button[role="tab"]'),
+            ];
+            const current = tabs.findIndex((tab) => tab.name === active);
             const next = (() => {
                 switch (event.key) {
-                    case 'Home': return 0;
-                    case 'End': return tabs.length - 1;
-                    case 'ArrowLeft': return Math.max(0, current - 1);
-                    case 'ArrowRight': return Math.min(tabs.length - 1, current + 1);
-                    default: return current;
+                    case 'Home':
+                        return 0;
+                    case 'End':
+                        return tabs.length - 1;
+                    case 'ArrowLeft':
+                        return Math.max(0, current - 1);
+                    case 'ArrowRight':
+                        return Math.min(tabs.length - 1, current + 1);
+                    default:
+                        return current;
                 }
             })();
             if (current !== next) {
