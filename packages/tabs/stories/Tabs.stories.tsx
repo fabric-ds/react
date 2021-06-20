@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Tab, Tabs } from '../src';
+import { Tab, TabPanel, Tabs } from '../src';
 
 const metadata = { title: 'Navigation/Tabs' };
 export default metadata;
@@ -34,18 +34,41 @@ export const Default = () => {
 };
 
 export const DefaultWithPanel = () => {
-    const [tab, setTab] = React.useState('');
     return (
         <>
-            <Tabs onChange={setTab}>
-                <Tab label="Tab 1" name="one" isActive />
+            <Tabs>
+                <Tab label="Tab 1" name="one" />
                 <Tab label="Tab 2" name="two" />
                 <Tab label="Tab 3" name="three" />
             </Tabs>
             <div className="mb-16">
-                {(!tab || tab === 'one') && <p>Tab one selected!</p>}
-                {tab === 'two' && <p>Tab two selected!</p>}
-                {tab === 'three' && <p>Tab three selected!</p>}
+                <TabPanel name="one">Tab one selected!</TabPanel>
+                <TabPanel name="two">Tab two selected!</TabPanel>
+                <TabPanel name="three">Tab three selected!</TabPanel>
+            </div>
+        </>
+    );
+};
+
+export const DefaultWithExternalLinks = () => {
+    return (
+        <>
+            <Tabs>
+                <Tab label="Tab 1" name="one" />
+                <Tab
+                    label="Tab 2 (www.finn.no)"
+                    name="two"
+                    onClick={(e) => window.open('https://www.finn.no/', '_blank')}
+                />
+                <Tab
+                    label="Tab 3 (www.schibsted.com without panel)"
+                    name="three"
+                    onClick={(e) => window.open('https://www.schibsted.com/', '_blank')}
+                />
+            </Tabs>
+            <div className="mb-16">
+                <TabPanel name="one">Tab one selected!</TabPanel>
+                <TabPanel name="two">Tab two selected!</TabPanel>
             </div>
         </>
     );
@@ -53,19 +76,18 @@ export const DefaultWithPanel = () => {
 
 export const Contained = () => {
     return (
-        <Tabs contained>
+        <Tabs contained active="two">
             <Tab label="Tab 1" name="one" />
-            <Tab label="Tab 2" name="two" isActive />
+            <Tab label="Tab 2" name="two" />
             <Tab label="Tab 3" name="three" />
         </Tabs>
     );
 };
 
 export const ContainedWithPanel = () => {
-    const [tab, setTab] = React.useState('');
     return (
         <>
-            <Tabs onChange={setTab} contained>
+            <Tabs contained>
                 <Tab label="Tab 1" name="one" />
                 <Tab label="Tab 2" name="two" isActive />
                 <Tab
@@ -75,9 +97,9 @@ export const ContainedWithPanel = () => {
                 />
             </Tabs>
             <div className="bg-aqua-50 p-24 last-child:mb-0">
-                {(!tab || tab === 'one') && <p>Tab one selected!</p>}
-                {tab === 'two' && <p>Tab two selected!</p>}
-                {tab === 'three' && <p>Tab three selected!</p>}
+                <TabPanel name="one">Tab one selected!</TabPanel>
+                <TabPanel name="two">Tab two selected!</TabPanel>
+                <TabPanel name="three">Tab three selected!</TabPanel>
             </div>
         </>
     );
@@ -122,10 +144,9 @@ export const IconOvertop = () => {
 };
 
 export const IconWithPanel = () => {
-    const [tab, setTab] = React.useState('');
     return (
         <>
-            <Tabs onChange={setTab}>
+            <Tabs>
                 <Tab label="Tab 1" name="one" isActive>
                     {svgicon}
                 </Tab>
@@ -140,20 +161,19 @@ export const IconWithPanel = () => {
                 </Tab>
             </Tabs>
             <div className="mb-16">
-                {(!tab || tab === 'one') && <p>Tab one selected!</p>}
-                {tab === 'two' && <p>Tab two selected!</p>}
-                {tab === 'three' && <p>Tab three selected!</p>}
-                {tab === 'four' && <p>Tab four selected!</p>}
+                <TabPanel name="one">Tab one selected!</TabPanel>
+                <TabPanel name="two">Tab two selected!</TabPanel>
+                <TabPanel name="three">Tab three selected!</TabPanel>
+                <TabPanel name="four">Tab four selected!</TabPanel>
             </div>
         </>
     );
 };
 
 export const ContainedIconWithPanel = () => {
-    const [tab, setTab] = React.useState('');
     return (
         <>
-            <Tabs contained onChange={setTab}>
+            <Tabs contained>
                 <Tab label="Tab 1" name="one" isActive>
                     {svgicon}
                 </Tab>
@@ -168,10 +188,10 @@ export const ContainedIconWithPanel = () => {
                 </Tab>
             </Tabs>
             <div className="bg-aqua-50 p-24 last-child:mb-0">
-                {(!tab || tab === 'one') && <p>Tab one selected!</p>}
-                {tab === 'two' && <p>Tab two selected!</p>}
-                {tab === 'three' && <p>Tab three selected!</p>}
-                {tab === 'four' && <p>Tab four selected!</p>}
+                <TabPanel name="one">Tab one selected!</TabPanel>
+                <TabPanel name="two">Tab two selected!</TabPanel>
+                <TabPanel name="three">Tab three selected!</TabPanel>
+                <TabPanel name="four">Tab four selected!</TabPanel>
             </div>
         </>
     );
