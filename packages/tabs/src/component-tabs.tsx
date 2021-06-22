@@ -53,24 +53,37 @@ export function Tabs(props: TabsProps) {
         tabsRef,
         wunderbarRef,
     );
-    const [active, setActive] = useState(
-        props.active ||
-            (children.length > 0
-                ? children[
-                      Math.max(
-                          0,
-                          children.findIndex((child) => child.props.isActive),
-                      )
-                  ].props.name
-                : ''),
-    );
+    const findActive = (): string => {
+        if (props.active) {
+            return String(props.active);
+        } else if (Children.count(children) > 0) {
+            const childrenArray = Children.toArray(children);
+            return String(
+                // @ts-ignore: semantic error
+                (
+                    childrenArray?.find(
+                        // @ts-ignore: semantic error
+                        (child) => child?.props?.isActive,
+                    ) || childrenArray[0]
+                )?.props?.name || '',
+            );
+        }
+        return '';
+    };
+    const [active, setActive] = useState(findActive());
 
     const updatePanels = () => {
-        children.forEach((child) => {
-            const panel = document.getElementById(
-                `fabric-tabpanel-${child.props.name}`,
-            );
-            panel && (panel.hidden = child.props.name !== active);
+        Children.forEach(children, (child) => {
+            if (typeof child === 'object') {
+                const panel = document.getElementById(
+                    // @ts-ignore: semantic error
+                    `fabric-tabpanel-${child?.props?.name}`,
+                );
+                if (panel) {
+                    // @ts-ignore: semantic error
+                    panel.hidden = child?.props?.name !== active;
+                }
+            }
         });
     };
 
@@ -85,28 +98,33 @@ export function Tabs(props: TabsProps) {
             !event.getModifierState() &&
             ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
         ) {
-            const tabs = [
-                ...tabsRef.current.querySelectorAll('button[role="tab"]'),
-            ];
-            const current = tabs.findIndex((tab) => tab.name === active);
-            const next = (() => {
-                switch (event.key) {
-                    case 'Home':
-                        return 0;
-                    case 'End':
-                        return tabs.length - 1;
-                    case 'ArrowLeft':
-                        return Math.max(0, current - 1);
-                    case 'ArrowRight':
-                        return Math.min(tabs.length - 1, current + 1);
-                    default:
-                        return current;
+            try {
+                const tabs = [
+                    // @ts-ignore: semantic error
+                    ...tabsRef.current.querySelectorAll('button[role="tab"]'),
+                ];
+                const current = tabs.findIndex((tab) => tab.name === active);
+                const next = (() => {
+                    switch (event.key) {
+                        case 'Home':
+                            return 0;
+                        case 'End':
+                            return tabs.length - 1;
+                        case 'ArrowLeft':
+                            return Math.max(0, current - 1);
+                        case 'ArrowRight':
+                            return Math.min(tabs.length - 1, current + 1);
+                        default:
+                            return current;
+                    }
+                })();
+                if (current !== next) {
+                    event.preventDefault();
+                    change(tabs[next].name);
+                    tabs[next].focus();
                 }
-            })();
-            if (current !== next) {
-                event.preventDefault();
-                change(tabs[next].name);
-                tabs[next].focus();
+            } catch (err) {
+                console.warn('Problem handling keydown', err);
             }
         }
     };
