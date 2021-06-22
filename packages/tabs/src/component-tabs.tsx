@@ -58,15 +58,13 @@ export function Tabs(props: TabsProps) {
             return String(props.active);
         } else if (Children.count(children) > 0) {
             const childrenArray = Children.toArray(children);
-            return String(
-                // @ts-ignore: semantic error
-                (
-                    childrenArray?.find(
-                        // @ts-ignore: semantic error
-                        (child) => child?.props?.isActive,
-                    ) || childrenArray[0]
-                )?.props?.name || '',
-            );
+            const activeChild =
+                childrenArray?.find(
+                    // @ts-ignore: semantic error
+                    (child) => child?.props?.isActive,
+                ) || childrenArray[0];
+            // @ts-ignore: semantic error
+            return String(activeChild?.props?.name || '');
         }
         return '';
     };
