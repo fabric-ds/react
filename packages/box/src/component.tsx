@@ -50,7 +50,6 @@ const setup = ({
 export function Box(props: BoxProps) {
     const { children, as = 'div', ...rest } = props;
     const attrs = setup(rest);
-    console.log('configured props', attrs);
     return React.createElement(
         as,
         attrs,
