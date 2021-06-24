@@ -6,7 +6,7 @@ import { switchToggle as c } from '@finn-no/fabric-component-classes';
 export function Switch({ id, disabled, value, onChange }: SwitchProps) {
     return (
         <div
-            // className="tap-highlight-transparent"
+            className="tap-highlight-transparent"
             onClick={() => !disabled && onChange(!value)}
         >
             <input
