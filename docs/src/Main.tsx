@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { MDXProvider } from '@mdx-js/react';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+    HashRouter as Router,
+    Switch as ReactSwitch,
+    Route,
+} from 'react-router-dom';
 
 import Nav from './components/Nav';
 import PackageInfo from './components/PackageInfo';
@@ -25,7 +29,7 @@ import Button from '../../packages/button/docs/Button.mdx';
 import Slider from '../../packages/slider/docs/Slider.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
 import Expandable from '../../packages/expandable/docs/Expandable.mdx';
-import FSwitch from '../../packages/switch/docs/Switch.mdx';
+import Switch from '../../packages/switch/docs/Switch.mdx';
 
 const components = {
     PackageInfo,
@@ -58,7 +62,7 @@ const App = () => {
                         }}
                     >
                         <main>
-                            <Switch>
+                            <ReactSwitch>
                                 <Route path="/" exact>
                                     <Home />
                                 </Route>
@@ -122,9 +126,9 @@ const App = () => {
                                 </Route>
 
                                 <Route path="/switch">
-                                    <FSwitch />
+                                    <Switch />
                                 </Route>
-                            </Switch>
+                            </ReactSwitch>
                         </main>
                         <footer className="mt-20 text-right">
                             <a
