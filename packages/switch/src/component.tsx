@@ -14,6 +14,7 @@ export function Switch({ id, disabled, value, onClick }: SwitchProps) {
                 id={id}
                 checked={value}
                 disabled={disabled}
+                onClick={() => !disabled && onClick(!value)}
                 readOnly
             />
             <label
