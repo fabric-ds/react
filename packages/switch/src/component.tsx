@@ -18,26 +18,22 @@ export function Switch({ id, disabled, value, onChange }: SwitchProps) {
             />
             <label
                 htmlFor={id}
-                className={classNames({
-                    [c.label]: true,
+                className={classNames(c.label, {
                     [c.labelDisabled]: disabled,
                 })}
             >
                 <div
-                    className={classNames({
-                        [c.switchTrack]: true,
+                    className={classNames(c.switchTrack, {
                         [c.switchTrackSelected]: value && !disabled,
                         [c.switchTrackUnselected]: !value && !disabled,
                         [c.switchTrackDisabled]: disabled,
                     })}
                 />
                 <div
-                    className={classNames({
-                        [c.switchThumb]: true,
+                    className={classNames(c.switchThumb, {
                         [c.switchThumbSelected]: value,
-                        [disabled
-                            ? c.switchThumbDisabled
-                            : c.switchThumbNotDisabled]: true,
+                        [c.switchThumbDisabled]: disabled,
+                        [c.switchThumbNotDisabled]: !disabled,
                     })}
                 />
             </label>
