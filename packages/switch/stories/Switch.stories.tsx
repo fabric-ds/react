@@ -7,24 +7,14 @@ export default metadata;
 export const Default = () => {
     const [value, setValue] = useState(false);
 
-    return (
-        <div>
-            <Switch onClick={(value) => setValue(value)} value={value} />
-        </div>
-    );
+    return <Switch onClick={(value) => setValue(value)} value={value} />;
 };
 
 export const Disabled = () => {
     const [value, setValue] = useState(true);
 
     return (
-        <div>
-            <Switch
-                onClick={(value) => setValue(value)}
-                value={value}
-                disabled
-            />
-        </div>
+        <Switch onClick={(value) => setValue(value)} value={value} disabled />
     );
 };
 
@@ -36,9 +26,5 @@ export const CustomOnClick = () => {
         alert('Your own custom click handler');
     };
 
-    return (
-        <div>
-            <Switch onClick={handleClick} value={value} />
-        </div>
-    );
+    return <Switch onClick={handleClick} value={value} />;
 };

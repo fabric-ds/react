@@ -24,6 +24,7 @@ export default function Nav() {
 
                 <NavCategory title="Forms">
                     <StyledLink to="/checkbox">Checkbox</StyledLink>
+                    <StyledLink to="/switch">Switch</StyledLink>
                     <StyledLink to="/checkboxgroup">CheckboxGroup</StyledLink>
                     <StyledLink to="/combobox">Combobox</StyledLink>
                     <StyledLink to="/radiogroup">RadioGroup</StyledLink>

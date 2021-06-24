@@ -25,6 +25,7 @@ import Button from '../../packages/button/docs/Button.mdx';
 import Slider from '../../packages/slider/docs/Slider.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
 import Expandable from '../../packages/expandable/docs/Expandable.mdx';
+import FSwitch from '../../packages/switch/docs/Switch.mdx';
 
 const components = {
     PackageInfo,
@@ -118,6 +119,10 @@ const App = () => {
 
                                 <Route path="/expandable">
                                     <Expandable />
+                                </Route>
+
+                                <Route path="/switch">
+                                    <FSwitch />
                                 </Route>
                             </Switch>
                         </main>
