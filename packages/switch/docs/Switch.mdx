@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Switch } from '../src';
 import packageData from '../package.json';
 
@@ -10,29 +11,35 @@ This component allows users to toggle between validity for a condition.
 ## Examples
 
 ```jsx example
-<Switch value={false} />
+function Example() {
+    const [value, setValue] = useState(false);
+
+    return <Switch value={value} onClick={() => setValue(!value)} />;
+}
 ```
+
+#### To prevent the user from toggling the switch add the disabled prop
 
 ```jsx example
-<Switch value={true} />
+<Switch value={true} onClick={() => setValue(!value)} disabled />
 ```
+
+#### Writing your own custom click handler
 
 ```jsx example
-<Switch disabled />
-```
+function Example() {
+    const [value, setValue] = useState(false);
 
-### Writing your own custom click handler
-
-```jsx
-const [value, setValue] = useState(false);
-
-<Switch
-    value={value}
-    onClick={() => {
-        setValue(!value);
-        alert('Your own custom action when toggled');
-    }}
-/>;
+    return (
+        <Switch
+            value={value}
+            onClick={() => {
+                setValue(!value);
+                alert('Your own custom action when toggled');
+            }}
+        />
+    );
+}
 ```
 
 ## Props
