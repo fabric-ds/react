@@ -1,6 +1,6 @@
 export interface SwitchProps {
     /**
-     * The unique identifier, usually used with a label so that you can toggle by clicking the label
+     * The unique identifier
      */
     id?: string;
 
@@ -10,12 +10,12 @@ export interface SwitchProps {
     disabled?: boolean;
 
     /**
-     * When the Switch is toggled
+     * Handler for when the Switch is clicked
      */
-    onChange: (value: boolean) => void;
+    onClick: (value: boolean) => void;
 
     /**
-     * The default value of the Switch
+     * The value of the Switch
      */
     value: boolean;
 }

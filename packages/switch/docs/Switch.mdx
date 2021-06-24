@@ -7,14 +7,36 @@ This component allows users to toggle between validity for a condition.
 
 <PackageInfo packageData={packageData} componentNames={['Switch']} />
 
-Default
+## Examples
 
 ```jsx example
-<Switch />
+<Switch value={false} />
 ```
 
-Disabled
+```jsx example
+<Switch value={true} />
+```
 
 ```jsx example
 <Switch disabled />
+```
+
+### Writing your own custom click handler
+
+```jsx
+const [value, setValue] = useState(false);
+
+<Switch
+    value={value}
+    onClick={() => {
+        setValue(!value);
+        alert('Your own custom action when toggled');
+    }}
+/>;
+```
+
+## Props
+
+```props packages/switch/src/component.tsx
+
 ```
