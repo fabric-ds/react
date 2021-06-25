@@ -11,41 +11,59 @@ import pd from '../package.json';
     <Tab label="Tab 2" name="two" />
     <Tab label="Tab 3" name="three" />
 </Tabs>
+<TabPanel name="one">Panel 1 content</TabPanel>
+<TabPanel name="two">Panel 2 content</TabPanel>
+<TabPanel name="three">Panel 3 content</TabPanel>
 ```
 
 ## Example
 
-The following example demonstrates how the tab and tabs components can be used
-to switch between panels.
+The following example demonstrates how the Tab, Tabs, and TabPanel components
+can be used to switch between panels.
 
 ```jsx example
 function Example() {
-    const [tabName, setTabName] = React.useState('');
-
     return (
         <div>
-            <Tabs onChange={setTabName}>
-                <Tab label="Tab 1" name="one" isActive />
+            <Tabs active="one">
+                <Tab label="Tab 1" name="one" />
                 <Tab label="Tab 2" name="two" />
                 <Tab label="Tab 3" name="three" />
             </Tabs>
             <div className="mb-16">
-                {(!tabName || tabName === 'one') && <p>Tab one selected!</p>}
-                {tabName === 'two' && <p>Tab two selected!</p>}
-                {tabName === 'three' && <p>Tab three selected!</p>}
+                <TabPanel name="one">Panel 1 content</TabPanel>
+                <TabPanel name="two">Panel 2 content</TabPanel>
+                <TabPanel name="three">Panel 3 content</TabPanel>
             </div>
         </div>
     );
 }
 ```
 
+## Technical details
+
+You can set the active tab in one of two ways:
+
+1. By passing the name of the active Tab to the Tabs component using the active
+   attribute.
+2. By setting isActive on the active Tab.
+
+The first Tab is active by default if you don't specify an active Tab.
+
+It is important that all children of Tabs are Tab components.
+
+Note that name attributes will be used to generate id attributes (prefixed with
+fabric-tab- and fabric-tabpanel-), and therefore they must be unique throughout
+the entire DOM. This is because aria-controls and aria-labelledby rely on id
+attributes, and they are required for the tabs to be ARIA compliant.
+
 ## Accessibility
 
-...
+Focus management and ARIA attributes are handled automatically.
 
 ## Visual options
 
-There are two visual variations, default and contained. In either case, a icon
+There are two visual variations, default and contained. In either case, an icon
 can be provided for each tab by passing it in as a child to the component. By
 default, provided icons will be placed to the left of the label. You may move
 the icons to above by using the `over` prop.
