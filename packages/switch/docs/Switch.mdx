@@ -14,14 +14,25 @@ This component allows users to toggle between validity for a condition.
 function Example() {
     const [value, setValue] = useState(false);
 
-    return <Switch value={value} onClick={() => setValue(!value)} />;
+    return (
+        <Switch
+            value={value}
+            onClick={() => setValue(!value)}
+            aria-label="Toggle switch"
+        />
+    );
 }
 ```
 
 #### To prevent the user from toggling the switch add the disabled prop
 
 ```jsx example
-<Switch value={true} onClick={() => setValue(!value)} disabled />
+<Switch
+    value={true}
+    onClick={() => setValue(!value)}
+    aria-label="Toggle switch"
+    disabled
+/>
 ```
 
 #### Writing your own custom click handler
@@ -37,10 +48,16 @@ function Example() {
                 setValue(!value);
                 alert('Your own custom action when toggled');
             }}
+            aria-label="Toggle switch"
         />
     );
 }
 ```
+
+## Accessibility
+
+The Switch needs either `aria-label` or `aria-labelledby` to be accessible to
+screen readers.
 
 ## Props
 

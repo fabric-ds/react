@@ -5,9 +5,9 @@ export interface SwitchProps {
     id?: string;
 
     /**
-     * Whether the Switch is disabled
+     * The value of the Switch
      */
-    disabled?: boolean;
+    value: boolean;
 
     /**
      * Handler for when the Switch is clicked
@@ -15,7 +15,17 @@ export interface SwitchProps {
     onClick: (value: boolean) => void;
 
     /**
-     * The value of the Switch
+     * Whether the Switch is disabled
      */
-    value: boolean;
+    disabled?: boolean;
+
+    /**
+     * Defines a string value that labels the current element. Must be set if `aria-labelledby` is not defined,
+     */
+    'aria-label'?: string;
+
+    /**
+     * Identifies the element (or elements) that labels the current element. Must be set if `aria-label` is not defined.
+     */
+    'aria-labelledby'?: string;
 }
