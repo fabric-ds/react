@@ -11,11 +11,7 @@ const setup = ({
     bordered,
     className,
     ...attrs
-}: Omit<BoxProps, 'children'>): {
-    tabIndex: number | undefined;
-    onKeyDown: ((event: KeyboardEvent) => void) | undefined;
-    className: string;
-} => ({
+}: any) => ({
     ...attrs,
     tabIndex: clickable ? 0 : undefined,
     onKeyDown: clickable
@@ -25,9 +21,10 @@ const setup = ({
               // The Box element can't be a button or link in case someone puts an interactive element inside the box, which would result in invalid HTML and severe a11y issues.
               if (
                   typeof attrs.onClick === 'function' &&
-                  (event.keyCode === 13 || event.keyCode === 32)
+                  (event.key === 'Enter' || event.key === ' ')
               ) {
                   attrs.onClick(event);
+                  return false;
               }
           }
         : undefined,
