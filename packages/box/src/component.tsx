@@ -11,7 +11,11 @@ const setup = ({
     bordered,
     className,
     ...attrs
-}: any) => ({
+}: Omit<BoxProps, 'children'>): {
+    tabIndex: number | undefined;
+    onKeyDown: ((event: KeyboardEvent) => void) | undefined;
+    className: string;
+} => ({
     ...attrs,
     tabIndex: clickable ? 0 : undefined,
     onKeyDown: clickable
