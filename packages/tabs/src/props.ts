@@ -66,4 +66,7 @@ export type TabPanelProps = {
 
     /** Tab name identifier. Must exactly match the name identifier of a Tab. */
     name: string;
+
+    /** Show/hide panel manually (in server-side rendering). */
+    hidden?: boolean;
 };
