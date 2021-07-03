@@ -96,7 +96,9 @@ export function Tabs(props: TabsProps) {
 
     const handleKeyDown = (event) => {
         if (
-            !event.getModifierState() &&
+            !event.altKey &&
+            !event.ctrlKey &&
+            !event.shiftKey &&
             ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
         ) {
             try {
