@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import './Nav.css';
 
 export default function Nav() {
     return (
-        <nav className="py-20 px-32 link link--dark bg-bluegray-100">
+        <nav className="py-20 px-16 link link--dark bg-bluegray-100 relative nav-width md:px-32 h-full md:fixed">
             <Link
                 to="/"
                 className="block link link--dark link--block u-t3 py-4 px-10 mb-32"
@@ -63,6 +64,6 @@ const StyledLink = (props) => (
     <NavLink
         {...props}
         activeClassName="bg-bluegray-300"
-        className="link link--dark link--block px-10 py-4 rounded-4 hover:bg-bluegray-300"
+        className="link link--dark link--block px-10 py-6 rounded-4 hover:bg-bluegray-300 md:py-4 "
     />
 );

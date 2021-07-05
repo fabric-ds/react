@@ -6,4 +6,5 @@
 
 .prism-code {
     font-size: 14px;
+    overflow-x: auto;
 }

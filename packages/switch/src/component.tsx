@@ -12,6 +12,9 @@ export function Switch({
     'aria-labelledby': ariaLabelledBy,
     ...attrs
 }: SwitchProps) {
+    const switchFocus =
+        'focus:outline-none focus:ring ring-offset-1 ring-blue-200 rounded-full';
+
     return (
         <div className="tap-highlight-transparent">
             <button
@@ -22,15 +25,9 @@ export function Switch({
                 aria-labelledby={ariaLabelledBy}
                 aria-checked={value}
                 onClick={() => !disabled && onClick(!value)}
-                className={classNames(
-                    [
-                        c.label,
-                        'focus:outline-none focus:ring ring-offset-1 ring-blue-200 rounded-full ',
-                    ],
-                    {
-                        [c.labelDisabled]: disabled,
-                    },
-                )}
+                className={classNames([c.label, switchFocus], {
+                    [c.labelDisabled]: disabled,
+                })}
                 {...attrs}
             >
                 <div
