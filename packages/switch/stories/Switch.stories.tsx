@@ -4,21 +4,19 @@ import { Switch } from '../src';
 const metadata = { title: 'Forms/Switch' };
 export default metadata;
 
-export const Default = () => {
+export const DefaultDisabled = () => {
     const [value, setValue] = useState(false);
 
     return <Switch onClick={(value) => setValue(value)} value={value} />;
 };
 
-export const Disabled = () => {
+export const DefaultEnabled = () => {
     const [value, setValue] = useState(true);
 
-    return (
-        <Switch onClick={(value) => setValue(value)} value={value} disabled />
-    );
+    return <Switch onClick={(value) => setValue(value)} value={value} />;
 };
 
-export const CustomOnClick = () => {
+export const CustomClickHandler = () => {
     const [value, setValue] = useState(false);
 
     const handleClick = (value) => {

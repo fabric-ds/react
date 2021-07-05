@@ -4,7 +4,7 @@ import './Nav.css';
 
 export default function Nav() {
     return (
-        <nav className="mb-20 py-20 px-16 link link--dark bg-bluegray-100 relative nav-width md:px-32 md:mb-0 h-full md:fixed">
+        <nav className="mb-20 py-20 px-16 link link--dark bg-bluegray-100 relative nav-width md:px-32 md:mb-0 h-full md:fixed overflow-y-auto">
             <Link
                 to="/"
                 className="block link link--dark link--block u-t3 py-4 px-10 mb-32"
