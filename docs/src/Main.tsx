@@ -51,7 +51,7 @@ const App = () => {
             <Router>
                 <div className="flex flex-col sm:h-full w-full md:h-screen md:flex-row">
                     <Nav />
-                    <div className="sm:p-0 sm:mt-20 flex-col justify-center w-full p-20 md:flex-row md:p-40 mx-auto">
+                    <div className="sm:p-0 flex-col justify-center w-full md:flex-row md:p-40 mx-auto">
                         <main className="page-container nav-offset">
                             <ReactSwitch>
                                 <Route path="/" exact>
