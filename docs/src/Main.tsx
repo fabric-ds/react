@@ -30,6 +30,7 @@ import Slider from '../../packages/slider/docs/Slider.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
 import Expandable from '../../packages/expandable/docs/Expandable.mdx';
 import Switch from '../../packages/switch/docs/Switch.mdx';
+import Toggle from '../../packages/toggle/docs/Toggle.mdx';
 
 const components = {
     PackageInfo,
@@ -118,6 +119,10 @@ const App = () => {
 
                                 <Route path="/switch">
                                     <Switch />
+                                </Route>
+
+                                <Route path="/toggle">
+                                    <Toggle />
                                 </Route>
                             </ReactSwitch>
                         </main>

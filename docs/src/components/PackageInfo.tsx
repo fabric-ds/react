@@ -41,9 +41,13 @@ export default function PackageInfo({
                     </tr>
                     <tr>
                         <Th>install</Th>
-                        <td>
+                        <td className="flex items-center align-center">
                             <code className="prism-code">
                                 npm install {packageData.name}
+                            </code>
+                            <span className="h5 mx-8 bold">OR</span>
+                            <code className="prism-code">
+                                yarn add {packageData.name}
                             </code>
                         </td>
                     </tr>
