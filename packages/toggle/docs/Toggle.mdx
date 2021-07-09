@@ -8,18 +8,18 @@ import packageData from '../package.json';
 The toggle component allows you to render checkboxes or radio buttons, all in
 one component. All you have to do is specify the Toggle `type` and let the
 component handle the rest. Toggle is built to handle both single and multiple
-options, depending on what you pass the `data` prop.
+options.
 
-You must keep track of state yourself. State must be handled differently
-depending on whether you pass an object or an array to the components `data`
-property. See examples below.
+**You must keep track of state yourself**. The state has to be handled
+differently depending on whether you want to use single or multiple options. See
+examples below.
 
-## Checkbox with single entry
+## Checkbox with single option
 
-When you pass an object to the `data` prop, the component's `onChange` callback
-will return a single boolean value indicating the current state of the checkbox.
-When only passing one object to `data`, you may omit the `value` of ToggleEntry
-(see bottom of this page)
+When you only want a single option, please use the `label` property over passing
+a single option to the `options` property. This results in the `onChange`
+callback function returning a single boolean value indicating the current state
+of the toggle.
 
 ```jsx example
 function Example() {
@@ -27,10 +27,11 @@ function Example() {
 
     return (
         <>
-            <p class="h4">{checked.toString()}</p>
+            <p className="h4">{checked.toString()}</p>
             <Toggle
                 type="checkbox"
-                data={{ label: 'Apple' }}
+                label="Apple"
+                checked={checked}
                 onChange={(checked) => setChecked(checked)}
             />
         </>
@@ -38,15 +39,27 @@ function Example() {
 }
 ```
 
-## Checkbox with multiple entries
+**Note** the `checked` property, which is only used to set the default value on
+component mount. **It does not** actively pass down the state of the checkbox.
+Feel free to omit this property if you are not setting the default value of the
+checkbox.
 
-Passing an array to the `data` prop will return the entry that has been selected
-on its `onChange` callback. When passing an array to `data` you must NOT omit
-the `value` of ToggleEntry.
+**Note** the `onChange` property returning a boolean value. This is because
+we're working with a single option. When using the `options` property, as seen
+in examples below, the option which has been selected is returned on the
+callback and we must handle this state ourselves.
+
+## Checkbox with multiple options
+
+Let's have a look at using the Toggle with multiple options. As mentioned above,
+using the `options` property will change the returning value of the `onChange`
+callback. It will now return the option which was selected.
 
 ```jsx example
 function Example() {
-    const [selected, setSelected] = React.useState([]);
+    const [selected, setSelected] = React.useState([
+        { label: 'Microsoft', value: 'microsoft' },
+    ]);
 
     const handleSelect = (entry) => {
         if (selected.some((e) => e.value === entry.value)) {
@@ -58,10 +71,11 @@ function Example() {
 
     return (
         <>
-            <p class="h4">{JSON.stringify(selected)}</p>
+            <p className="h4">{JSON.stringify(selected)}</p>
             <Toggle
                 type="checkbox"
-                data={[
+                selected={selected}
+                options={[
                     { label: 'Apple', value: 'apple' },
                     { label: 'Microsoft', value: 'microsoft' },
                 ]}
@@ -72,20 +86,20 @@ function Example() {
 }
 ```
 
-## Toggle with multiple entries
+**Note** the `selected` property. Similar to the single option `checked`
+property, this will render the passed options as checked by default when the
+component mounts.
 
-When you pass an array as the data prop to the toggle, `onChange` will return
-the entry of which option was just selected. You have to keep track of seleted
-entries in your own state (as shown in the above checkbox example).
+## Toggle with multiple options
 
-We've already had a look at checkboxes, but but Toggle can also render radio
-options buttons.
+We've already had a look at checkboxes, but Toggle can also render radio options
+and buttons.
 
 ### Radio
 
 ```jsx example
 function Example() {
-    const data = [
+    const options = [
         { label: 'hi', value: 2 },
         { label: 'test', value: 3 },
     ];
@@ -93,7 +107,7 @@ function Example() {
     return (
         <Toggle
             type="radio"
-            data={data}
+            options={options}
             onChange={(selected) => console.log(selected)}
         />
     );
@@ -104,15 +118,15 @@ function Example() {
 
 ```jsx example
 function Example() {
-    const data = [
-        { label: 'hi', value: 2, checked: true },
+    const options = [
+        { label: 'hi', value: 2 },
         { label: 'test', value: 3 },
     ];
 
     return (
         <Toggle
             type="radio-button"
-            data={data}
+            options={options}
             onChange={(e) => console.log(e)}
         />
     );
@@ -128,7 +142,6 @@ function Example() {
 ```ts
 type ToggleEntry = {
     label: string;
-    value?: unknown;
-    checked?: boolean;
+    value: unknown;
 };
 ```

@@ -1,13 +1,8 @@
 import React from 'react';
 import { useId } from '@finn-no/fabric-react-utils';
-import { ToggleEntry, ToggleProps } from './props';
+import { ToggleProps } from './props';
 import { classNames } from '@chbphone55/classnames';
 import { Item } from './item';
-
-function isSingle(data: ToggleProps['data']): data is ToggleEntry {
-    if ((data as ToggleEntry).label) return true;
-    return false;
-}
 
 export function Toggle(props: ToggleProps) {
     const id = useId();
@@ -22,11 +17,11 @@ export function Toggle(props: ToggleProps) {
                     props.type === 'radio' || props.type === 'checkbox',
             })}
         >
-            {isSingle(props.data) ? (
+            {!props.options && props.label ? (
                 <Item
-                    single
+                    label={props.label}
+                    checked={props.checked}
                     onChange={(e) => props.onChange(e)}
-                    entry={props.data}
                     name={`${id}:toggle`}
                     key={`${id + props.type}`}
                     type={
@@ -36,9 +31,13 @@ export function Toggle(props: ToggleProps) {
                     }
                 />
             ) : (
-                props.data.map((e, i) => (
+                props.options &&
+                props.options.map((option, i) => (
                     <Item
-                        entry={e}
+                        checked={props.selected?.some(
+                            (s) => s.value === option.value,
+                        )}
+                        option={option}
                         onChange={(e) => props.onChange(e)}
                         name={`${id}:toggle`}
                         key={`${id + i + props.type}`}

@@ -1,22 +1,36 @@
 export type ToggleEntry = {
     label: string;
-    value?: unknown;
-    checked?: boolean;
+    value: unknown;
 };
 
 export interface ToggleProps {
     /**
-     * The value of the Switch
+     * The type of Toggle
      */
     type: 'radio' | 'checkbox' | 'radio-button';
 
     /**
      * An array of options to render
      */
-    data: ToggleEntry | ToggleEntry[];
+    options?: ToggleEntry[];
 
     /**
-     * Retrieve the currently selected entry
+     * An array of options to be checked on mount
+     */
+    selected?: ToggleEntry[];
+
+    /**
+     * If you only need to render a single option, use this prop instead
+     */
+    label?: string;
+
+    /**
+     * Whether the single option should be checked by default
+     */
+    checked?: boolean;
+
+    /**
+     * Retrieve the selected entry or a boolean value, depending on whether you are working with single or multiple options
      */
     onChange: (value: ToggleEntry | boolean) => void;
 

@@ -3,29 +3,32 @@ import { useId } from '@finn-no/fabric-react-utils';
 import { ToggleEntry } from './props';
 
 interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
-    entry: ToggleEntry;
-    single?: boolean;
+    option?: ToggleEntry;
+    checked?: boolean;
+    label?: string;
     onChange: (data: ToggleEntry | boolean) => void;
 }
 
-export function Item({
-    entry: { label, value, checked },
-    single,
-    ...props
-}: ItemProps) {
+export function Item({ option, label, checked, ...props }: ItemProps) {
     const id = useId();
 
     return (
         <>
             <input
                 id={id}
-                defaultChecked={checked}
+                defaultChecked={option?.checked || checked}
                 {...props}
                 onChange={(e) =>
-                    props.onChange(single ? e.target.checked : { label, value })
+                    props.onChange(
+                        label
+                            ? e.target.checked
+                            : option
+                            ? { label: option?.label, value: option?.value }
+                            : false,
+                    )
                 }
             />
-            <label htmlFor={id}>{label}</label>
+            <label htmlFor={id}>{label || option?.label}</label>
         </>
     );
 }
