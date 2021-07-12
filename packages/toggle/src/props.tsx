@@ -10,6 +10,21 @@ export interface ToggleProps {
     type: 'radio' | 'checkbox' | 'radio-button';
 
     /**
+     * The option(s) title
+     */
+    title?: string;
+
+    /**
+     * Renders options in invalid state. Often paired together with `helpText` to provide feedback about the error.
+     */
+    invalid?: boolean;
+
+    /**
+     * Help text beneath options
+     */
+    helpText?: string;
+
+    /**
      * An array of options to render
      */
     options?: ToggleEntry[];

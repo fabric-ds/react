@@ -16,7 +16,7 @@ export function Item({ option, label, checked, ...props }: ItemProps) {
         <>
             <input
                 id={id}
-                defaultChecked={option?.checked || checked}
+                defaultChecked={checked}
                 {...props}
                 onChange={(e) =>
                     props.onChange(
