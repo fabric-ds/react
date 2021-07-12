@@ -1,6 +1,6 @@
 import React from 'react';
 import { useId } from '@finn-no/fabric-react-utils';
-import { ToggleProps } from './props';
+import { ToggleEntry, ToggleProps } from './props';
 import { classNames } from '@chbphone55/classnames';
 import { Item } from './item';
 
@@ -36,7 +36,7 @@ export function Toggle(props: ToggleProps) {
                     <Item
                         label={props.label}
                         checked={props.checked}
-                        onChange={(e) => props.onChange(e)}
+                        onChange={(e: boolean) => props.onChange(e)}
                         name={`${id}:toggle`}
                         key={`${id + props.type}`}
                         type={
@@ -54,7 +54,7 @@ export function Toggle(props: ToggleProps) {
                                 (s) => s.value === option.value,
                             )}
                             option={option}
-                            onChange={(e) => props.onChange(e)}
+                            onChange={(e: ToggleEntry) => props.onChange(e)}
                             name={`${id}:toggle`}
                             key={`${id + i + props.type}`}
                             type={
