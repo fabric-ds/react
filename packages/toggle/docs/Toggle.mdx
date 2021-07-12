@@ -93,7 +93,7 @@ property, this will render the passed options as checked by default when the
 component mounts.
 
 **Note** the `title` property. This gives you the option to label the options,
-but it is not required.
+but is not required.
 
 ## Toggle with multiple options
 
@@ -123,7 +123,7 @@ function Example() {
 ```
 
 **Note** the `helpText` property. This gives you the option to further explain
-the purpose of the toggle.
+the purpose of the toggle and the action to take.
 
 ### Radio buttons
 
@@ -166,11 +166,9 @@ option with equal width.
 
 ## Validation
 
-You must implement your own validation logic.
-
 Validation is as easy as passing the property `invalid` with a `helpText` to
-further explain the error. `helpText` can also be used as assistance label
-before an error occurs and `invalid` is set to false.
+further explain the error. `helpText` can also be used as an assistance label
+before an error occurs as long as `invalid` is set to false.
 
 ```jsx example
 function Example() {
