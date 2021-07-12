@@ -47,7 +47,7 @@ export interface ToggleProps {
     /**
      * Retrieve the selected entry or a boolean value, depending on whether you are working with single or multiple options
      */
-    onChange: (value: ToggleEntry | boolean) => void;
+    onChange: (value: ToggleEntry | boolean | any) => void;
 
     /**
      * Whether the elements should be small
