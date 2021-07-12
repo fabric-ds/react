@@ -10,7 +10,7 @@ const options = [
     { label: 'Amazon', value: 'amazon' },
 ];
 
-
+export const SingleOption = () => {
     return (
         <Toggle
             type="checkbox"
