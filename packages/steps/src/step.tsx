@@ -23,7 +23,7 @@ export interface StepProps {
     children: JSX.Element | JSX.Element[];
 }
 
-export function Step({ active, completed, children, ...props }: StepProps) {
+export function Step({ active, completed, children }: StepProps) {
     const StepsProps = useContext(StepsContext);
     const vertical = !StepsProps.horizontal;
     const left = !StepsProps.right;
