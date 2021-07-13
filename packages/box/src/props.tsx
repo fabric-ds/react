@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type BoxProps = {
+export interface BoxProps {
     children: React.ReactNode;
 
     /**
@@ -9,14 +9,14 @@ export type BoxProps = {
     className?: string;
 
     /**
-     * Action to be called when the component is clicked
-     */
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-
-    /**
      * CSS styles to inline on the component
      */
     style?: React.CSSProperties;
+
+    /**
+     * Action to be called when the component is clicked
+     */
+    onClick?: (e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent) => void;
 
     /**
      * Allows customization of the underlying HTML element
@@ -52,4 +52,4 @@ export type BoxProps = {
      * @default false
      */
     neutral?: boolean;
-};
+}
