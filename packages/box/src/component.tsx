@@ -11,17 +11,27 @@ const setup = ({
     bordered,
     className,
     ...attrs
-}: any) => ({
+}: Omit<BoxProps, 'children'>): {
+    tabIndex: number | undefined;
+    onKeyDown: ((event: KeyboardEvent) => void) | undefined;
+    className: string;
+} => ({
     ...attrs,
     tabIndex: clickable ? 0 : undefined,
-    onKeyDown: clickable ? (event) => {
-        // Manually mapping Enter and Space keydown events to the click event (if there is one).
-        // The browser doesn't do this automatically unless the element is a button or an a-element.
-        // The Box element can't be a button or link in case someone puts an interactive element inside the box, which would result in invalid HTML and severe a11y issues.
-        if (typeof attrs.onClick === 'function' && (event.keyCode === 13 || event.keyCode === 32)) {
-            attrs.onClick(event);
-        }
-    } : undefined,
+    onKeyDown: clickable
+        ? (event) => {
+              // Manually mapping Enter and Space keydown events to the click event (if there is one).
+              // The browser doesn't do this automatically unless the element is a button or an a-element.
+              // The Box element can't be a button or link in case someone puts an interactive element inside the box, which would result in invalid HTML and severe a11y issues.
+              if (
+                  typeof attrs.onClick === 'function' &&
+                  (event.key === 'Enter' || event.key === ' ')
+              ) {
+                  attrs.onClick(event);
+                  return false;
+              }
+          }
+        : undefined,
     className: classNames(
         box.box,
         {
@@ -41,10 +51,16 @@ const setup = ({
 export function Box(props: BoxProps) {
     const { children, as = 'div', ...rest } = props;
     const attrs = setup(rest);
-    return React.createElement(as, attrs, props.clickable ? (
-        <>
-            <div>{ children }</div>
-            <span role="button" aria-label="Les mer"></span>
-        </>
-    ) : children);
+    return React.createElement(
+        as,
+        attrs,
+        props.clickable ? (
+            <>
+                <div>{children}</div>
+                <span role="button" aria-label="Les mer"></span>
+            </>
+        ) : (
+            children
+        ),
+    );
 }

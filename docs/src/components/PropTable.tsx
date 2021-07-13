@@ -20,36 +20,38 @@ type PropTableProps = {
 
 export default function PropTable({ props }: PropTableProps) {
     return (
-        <table className={styles.table}>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Default</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {Object.values(props).map((prop) => (
-                    <tr key={prop.name}>
-                        <td>
-                            <Name prop={prop} />
-                        </td>
-                        <td>
-                            <Type prop={prop} />
-                        </td>
-                        <td>
-                            <DefaultValue prop={prop} />
-                        </td>
-                        <td
-                            dangerouslySetInnerHTML={{
-                                __html: prop.descriptionHtml,
-                            }}
-                        />
+        <div className="overflow-x-auto">
+            <table className={styles.table}>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {Object.values(props).map((prop) => (
+                        <tr key={prop.name}>
+                            <td>
+                                <Name prop={prop} />
+                            </td>
+                            <td>
+                                <Type prop={prop} />
+                            </td>
+                            <td>
+                                <DefaultValue prop={prop} />
+                            </td>
+                            <td
+                                dangerouslySetInnerHTML={{
+                                    __html: prop.descriptionHtml,
+                                }}
+                            />
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 }
 

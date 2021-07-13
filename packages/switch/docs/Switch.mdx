@@ -1,0 +1,63 @@
+import { useState } from 'react';
+import { Switch } from '../src';
+import packageData from '../package.json';
+
+# Switch
+
+This component allows users to toggle between validity for a condition.
+
+<PackageInfo packageData={packageData} componentNames={['Switch']} />
+
+## Examples
+
+```jsx example
+function Example() {
+    const [value, setValue] = useState(false);
+
+    return (
+        <Switch
+            value={value}
+            onClick={() => setValue(!value)}
+            aria-label="Toggle switch"
+        />
+    );
+}
+```
+
+#### Writing your own custom click handler
+
+```jsx example
+function Example() {
+    const [value, setValue] = useState(false);
+
+    return (
+        <Switch
+            value={value}
+            onClick={() => {
+                setValue(!value);
+                alert('Your own custom action when toggled');
+            }}
+            aria-label="Toggle switch"
+        />
+    );
+}
+```
+
+## Accessibility
+
+The Switch needs either `aria-label` or `aria-labelledby` to be accessible to
+screen readers.
+
+###
+
+#### Disabled property
+
+There is no visual styling to a disabled button. It is recommended to display a
+message to the user, for example a modal or toast, stating why the user cannot
+toggle the switch.
+
+## Props
+
+```props packages/switch/src/component.tsx
+
+```

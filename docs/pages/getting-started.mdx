@@ -12,9 +12,23 @@ See the
 [Fabric CSS getting started guide](https://pages.github.schibsted.io/finn/fabric-css/pages/getting-started.html)
 for more information.
 
-## Using TypeScript?
+### Usage with Podium
 
-The components are written in TS. To take advantage of that make sure your
-project is:
+If you are developing with [Podium](https://podium-lib.io/), Fabric's CSS should
+only by included by the
+[layout server](https://podium-lib.io/docs/layout/getting_started), not the
+individual [podlets](https://podium-lib.io/docs/podlet/getting_started). This
+prevents accidentally including several versions of Fabric on the same page.
 
--   Up to date on the latest `@types/react` definitions.
+## TypeScript support
+
+The components are written in TypeScript. To take advantage of this, make sure
+your project is up to date on the latest `@types/react` definitions.
+
+```shell
+# YARN
+yarn add @types/react -D
+
+# NPM
+npm i @types/react -D`
+```
