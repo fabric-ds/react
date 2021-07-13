@@ -48,6 +48,13 @@ export const Modal = ({
 }: ModalProps) => {
     const headingId = useId(ariaLabelledBy);
 
+    console.log(
+        classNames([
+            'bg-white outline-none rounded-8 overflow-hidden flex flex-col',
+            className,
+        ]),
+    );
+
     return (
         <DialogOverlay
             allowPinchZoom
@@ -61,10 +68,10 @@ export const Modal = ({
                 aria-label={ariaLabel}
                 // if aria-label is undefined we assume the user is using ModalHeading or their own heading
                 aria-labelledby={ariaLabel ? undefined : headingId}
-                className={classNames(
-                    'bg-white outline-none rounded-8 overflow-hidden flex flex-col',
+                className={classNames([
                     className,
-                )}
+                    'bg-white outline-none rounded-8 overflow-hidden flex flex-col',
+                ])}
                 style={{
                     maxWidth: 300,
                     maxHeight: '80vh',

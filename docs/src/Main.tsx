@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { MDXProvider } from '@mdx-js/react';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+    HashRouter as Router,
+    Switch as ReactSwitch,
+    Route,
+} from 'react-router-dom';
 
 import Nav from './components/Nav';
 import PackageInfo from './components/PackageInfo';
@@ -25,6 +29,7 @@ import Button from '../../packages/button/docs/Button.mdx';
 import Slider from '../../packages/slider/docs/Slider.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
 import Expandable from '../../packages/expandable/docs/Expandable.mdx';
+import Switch from '../../packages/switch/docs/Switch.mdx';
 
 const components = {
     PackageInfo,
@@ -44,20 +49,11 @@ const App = () => {
     return (
         <MDXProvider components={components}>
             <Router>
-                <div
-                    className="grid h-screen"
-                    style={{ gridTemplateColumns: '300px 1fr' }}
-                >
+                <div className="flex flex-col sm:h-full w-full md:h-screen md:flex-row">
                     <Nav />
-                    <div
-                        className="grid justify-center p-40"
-                        style={{
-                            gridTemplateRows: '1fr auto',
-                            gridTemplateColumns: 'minmax(auto, 900px)',
-                        }}
-                    >
-                        <main>
-                            <Switch>
+                    <div className="sm:p-0 flex-col justify-center w-full md:flex-row md:p-40 mx-auto">
+                        <main className="page-container nav-offset">
+                            <ReactSwitch>
                                 <Route path="/" exact>
                                     <Home />
                                 </Route>
@@ -119,12 +115,16 @@ const App = () => {
                                 <Route path="/expandable">
                                     <Expandable />
                                 </Route>
-                            </Switch>
+
+                                <Route path="/switch">
+                                    <Switch />
+                                </Route>
+                            </ReactSwitch>
                         </main>
                         <footer className="mt-20 text-right">
                             <a
                                 className="u-d1"
-                                href="https://github.schibsted.io/finn/fabric-react"
+                                href="https://github.com/finn-no/fabric-react"
                             >
                                 Github
                             </a>

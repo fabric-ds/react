@@ -32,7 +32,7 @@ export default function PackageInfo({
     const repositoryUrl = getRepoUrl(packageData);
 
     return (
-        <div className="my-32">
+        <div className="overflow-x-auto my-32">
             <table className={styles.table}>
                 <tbody>
                     <tr>
