@@ -30,6 +30,7 @@ export function Step({ active, completed, children }: StepProps) {
 
     return (
         <div
+            aria-current={active ? 'step' : undefined}
             className={classNames({
                 'f-step': true,
                 [c.stepVertical]: vertical,
@@ -62,6 +63,8 @@ export function Step({ active, completed, children }: StepProps) {
                 })}
             >
                 <svg
+                    role="img"
+                    aria-label="✓"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
