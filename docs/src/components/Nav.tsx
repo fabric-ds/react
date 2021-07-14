@@ -54,6 +54,7 @@ export default function Nav() {
 
                 <NavCategory title="Navigation">
                     <StyledLink to="/breadcrumbs">Breadcrumbs</StyledLink>
+                    <StyledLink to="/steps">Steps</StyledLink>
                     <StyledLink to="/tabs">Tabs</StyledLink>
                 </NavCategory>
 
