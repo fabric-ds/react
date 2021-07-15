@@ -1,7 +1,7 @@
 {
   "name": "@finn-no/fabric-react-box",
   "license": "ISC",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "type": "module",
   "exports": "./dist/index.js",
   "module": "dist/index.js",
@@ -22,5 +22,6 @@
   },
   "peerDependencies": {
     "react": "^17.0.0"
-  }
+  },
+  "gitHead": "9ea2e350846bd00dcb540855d7c1aabf051dad57"
 }
