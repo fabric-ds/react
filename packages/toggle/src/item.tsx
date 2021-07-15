@@ -5,11 +5,20 @@ import { ToggleEntry } from './props';
 interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
     option?: ToggleEntry;
     checked?: boolean;
+    invalid?: boolean;
+    helpId?: string;
     label?: string;
     onChange: (data: ToggleEntry | boolean) => void;
 }
 
-export function Item({ option, label, checked, ...props }: ItemProps) {
+export function Item({
+    option,
+    label,
+    invalid,
+    helpId,
+    checked,
+    ...props
+}: ItemProps) {
     const id = useId();
 
     return (
@@ -17,6 +26,8 @@ export function Item({ option, label, checked, ...props }: ItemProps) {
             <input
                 id={id}
                 defaultChecked={checked}
+                aria-invalid={invalid}
+                aria-errormessage={helpId}
                 {...props}
                 onChange={(e) =>
                     props.onChange(
