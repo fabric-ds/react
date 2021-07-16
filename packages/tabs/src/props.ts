@@ -12,6 +12,12 @@ export type TabsProps = {
      */
     children: React.ReactNode;
 
+    /**
+     * Used to set the name of the Tab that should be active on mount.
+     * Defaults to the first tab if not present and isActive is not set on any Tab.
+     */
+    active?: string;
+
     /** Additional CSS class for the container */
     className?: string;
 
@@ -53,4 +59,14 @@ export type TabProps = {
      * Action to be called when the component is clicked
      */
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+export type TabPanelProps = {
+    children?: React.ReactNode;
+
+    /** Tab name identifier. Must exactly match the name identifier of a Tab. */
+    name: string;
+
+    /** Show/hide panel manually (in server-side rendering). */
+    hidden?: boolean;
 };

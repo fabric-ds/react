@@ -11,7 +11,7 @@ import { debounce } from './utils';
 import type { TabsProps } from './props';
 
 const setup = (
-    { className, contained, children, onClick, ...rest }: any,
+    { className, contained, children, onClick, active, ...rest }: any,
     tabsRef,
     wunderbarRef,
 ) => ({
@@ -24,12 +24,14 @@ const setup = (
         [`grid-cols-${children.length}`]: true,
     }),
     wunderbar: cn(c.wunderbar),
-    attrs: { ...rest },
+    attrs: rest,
     updateWunderbar: () => {
         if (contained) return;
         window.requestAnimationFrame(() => {
             try {
-                const activeEl = tabsRef.current.querySelector('.active-tab');
+                const activeEl = tabsRef.current.querySelector(
+                    'button[role="tab"][aria-selected="true"]',
+                );
                 const { left: parentLeft } =
                     tabsRef.current.getBoundingClientRect();
                 const { left, width } = activeEl.getBoundingClientRect();
@@ -43,6 +45,9 @@ const setup = (
 });
 
 export function Tabs(props: TabsProps) {
+    const isBrowser = Boolean(
+        typeof document === 'object' && document?.createElement,
+    );
     const tabsRef = useRef(null);
     const wunderbarRef = useRef(null);
     const { children, contained, onChange } = props;
@@ -51,15 +56,85 @@ export function Tabs(props: TabsProps) {
         tabsRef,
         wunderbarRef,
     );
-    const [active, setIsActive] = useState('');
+    const findActive = (): string => {
+        if (props.active) {
+            return String(props.active);
+        } else if (Children.count(children) > 0) {
+            const childrenArray = Children.toArray(children);
+            const activeChild =
+                childrenArray?.find(
+                    // @ts-ignore: semantic error
+                    (child) => child?.props?.isActive,
+                ) || childrenArray[0];
+            // @ts-ignore: semantic error
+            return String(activeChild?.props?.name || '');
+        }
+        return '';
+    };
+    const [active, setActive] = useState(findActive());
 
-    const setActive = (name) => {
-        setIsActive(name);
+    const updatePanels = () => {
+        Children.forEach(children, (child) => {
+            if (typeof child === 'object') {
+                const panel = document.getElementById(
+                    // @ts-ignore: semantic error
+                    `fabric-tabpanel-${child?.props?.name}`,
+                );
+                if (panel) {
+                    // @ts-ignore: semantic error
+                    panel.hidden = child?.props?.name !== active;
+                }
+            }
+        });
+    };
+
+    const change = (name) => {
+        setActive(name);
         updateWunderbar();
         onChange && onChange(name);
     };
 
+    const handleKeyDown = (event) => {
+        if (
+            !event.altKey &&
+            !event.ctrlKey &&
+            !event.shiftKey &&
+            ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
+        ) {
+            try {
+                const tabs = [
+                    // @ts-ignore: semantic error
+                    ...tabsRef.current.querySelectorAll('button[role="tab"]'),
+                ];
+                const current = tabs.findIndex((tab) => tab.name === active);
+                const next = (() => {
+                    switch (event.key) {
+                        case 'Home':
+                            return 0;
+                        case 'End':
+                            return tabs.length - 1;
+                        case 'ArrowLeft':
+                            return Math.max(0, current - 1);
+                        case 'ArrowRight':
+                            return Math.min(tabs.length - 1, current + 1);
+                        default:
+                            return current;
+                    }
+                })();
+                if (current !== next) {
+                    event.preventDefault();
+                    change(tabs[next].name);
+                    tabs[next].focus();
+                }
+            } catch (err) {
+                console.warn('Problem handling keydown', err);
+            }
+        }
+    };
+
     useEffect(() => {
+        // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
+        isBrowser && updatePanels();
         updateWunderbar();
         const updateDebounced = debounce(updateWunderbar, 100);
         window.addEventListener('resize', updateDebounced);
@@ -67,21 +142,24 @@ export function Tabs(props: TabsProps) {
     });
 
     return (
-        <nav {...attrs} className={nav}>
-            <div className={div} ref={tabsRef}>
+        <div {...attrs} className={nav}>
+            <div
+                role="tablist"
+                className={div}
+                ref={tabsRef}
+                onKeyDown={handleKeyDown}
+            >
                 {Children.map(children, (child: any) => {
                     return cloneElement(child, {
                         contained,
-                        setActive,
-                        isActive:
-                            (active && active === child.props.name) ||
-                            (!active && child.props.isActive),
+                        setActive: change,
+                        isActive: child.props.name === active,
                     });
                 })}
                 {!contained && (
                     <span className={wunderbar} ref={wunderbarRef} />
                 )}
             </div>
-        </nav>
+        </div>
     );
 }

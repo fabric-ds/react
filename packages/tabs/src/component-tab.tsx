@@ -40,6 +40,7 @@ export function Tab(props: TabProps) {
         name,
         onClick,
         over,
+        isActive,
     } = props;
     const { tab, icon, content, attrs } = setup(props);
 
@@ -49,7 +50,17 @@ export function Tab(props: TabProps) {
     };
 
     return (
-        <button {...attrs} className={tab} onClick={handleClick}>
+        <button
+            type="button"
+            {...attrs}
+            role="tab"
+            aria-selected={isActive ? 'true' : 'false'}
+            aria-controls={isActive ? `fabric-tabpanel-${name}` : undefined}
+            id={`fabric-tab-${name}`}
+            tabIndex={isActive ? 0 : -1}
+            className={tab}
+            onClick={handleClick}
+        >
             {!children && <span className={content}>{label}</span>}
 
             {children && over && (
