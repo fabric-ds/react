@@ -32,7 +32,7 @@ export default function PackageInfo({
     const repositoryUrl = getRepoUrl(packageData);
 
     return (
-        <div className="my-32">
+        <div className="overflow-x-auto my-32">
             <table className={styles.table}>
                 <tbody>
                     <tr>
@@ -41,9 +41,13 @@ export default function PackageInfo({
                     </tr>
                     <tr>
                         <Th>install</Th>
-                        <td>
+                        <td className="flex items-center align-center">
                             <code className="prism-code">
                                 npm install {packageData.name}
+                            </code>
+                            <span className="h5 mx-8 bold">OR</span>
+                            <code className="prism-code">
+                                yarn add {packageData.name}
                             </code>
                         </td>
                     </tr>

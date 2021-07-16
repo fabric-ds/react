@@ -1,0 +1,106 @@
+import { useState } from 'react';
+import { Steps, Step } from '../src';
+import { Button } from '../../button/src';
+import packageData from '../package.json';
+
+# Steps
+
+<PackageInfo packageData={packageData} componentNames={['Steps', 'Step']} />
+
+The steps component is built to handle user journeys, making it clear to the end
+user where they are in the process.
+
+## Examples
+
+```jsx example
+function Example() {
+    return (
+        <Steps>
+            <Step completed>
+                <h4>Step one</h4>
+                <p>Content</p>
+            </Step>
+            <Step active>
+                <h4>Step two</h4>
+                <p>Content</p>
+            </Step>
+            <Step>
+                <h4>Step three</h4>
+                <p>Content</p>
+            </Step>
+        </Steps>
+    );
+}
+```
+
+**Note** the `active` and `completed` properties on the `<Step>` component. You
+have to conditionally set the truthiness of these properties depending on where
+in the process the user is. See interactive example below.
+
+### Interactive example
+
+```jsx example
+function Example() {
+    const [state, setState] = useState(0);
+    const [horizontal, setHorizontal] = useState(false);
+    const [right, setRight] = useState(false);
+
+    const handleIncrease = () => {
+        if (state === 3) {
+            return setState(0);
+        }
+
+        return setState((state) => state + 1);
+    };
+
+    return (
+        <>
+            <Button onClick={handleIncrease} small>
+                Complete a step
+            </Button>
+            <Button
+                className="ml-8"
+                onClick={() => setHorizontal(!horizontal)}
+                small
+            >
+                {horizontal ? 'Vertical' : 'Horizontal'}
+            </Button>
+            {!horizontal && (
+                <Button className="ml-8" onClick={() => setRight(!right)} small>
+                    {right ? 'Left' : 'Right'}
+                </Button>
+            )}
+
+            <Steps className="mt-20" horizontal={horizontal} right={right}>
+                <Step active={state === 0} completed={state > 0}>
+                    <h4 className="mt-0">Step one</h4>
+                    <p>Some content</p>
+                </Step>
+                <Step active={state === 1} completed={state > 1}>
+                    <h4 className="mt-0">Step two</h4>
+                    <p>Some content</p>
+                </Step>
+                <Step active={state === 2} completed={state > 2}>
+                    <h4 className="mt-0">Step three</h4>
+                    <p>Some content</p>
+                </Step>
+            </Steps>
+        </>
+    );
+}
+```
+
+**Note** the `horizontal` and `right` properties on the `<Steps>` component.
+These choose the direction and alignment of the steps.
+
+## Steps Props
+
+```props packages/steps/src/component.tsx
+
+```
+
+## Step Props
+
+```props packages/steps/src/step.tsx
+
+```
