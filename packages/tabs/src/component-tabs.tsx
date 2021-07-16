@@ -45,6 +45,9 @@ const setup = (
 });
 
 export function Tabs(props: TabsProps) {
+    const isBrowser = Boolean(
+        typeof document === 'object' && document?.createElement,
+    );
     const tabsRef = useRef(null);
     const wunderbarRef = useRef(null);
     const { children, contained, onChange } = props;
@@ -93,7 +96,9 @@ export function Tabs(props: TabsProps) {
 
     const handleKeyDown = (event) => {
         if (
-            !event.getModifierState() &&
+            !event.altKey &&
+            !event.ctrlKey &&
+            !event.shiftKey &&
             ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
         ) {
             try {
@@ -128,7 +133,8 @@ export function Tabs(props: TabsProps) {
     };
 
     useEffect(() => {
-        updatePanels();
+        // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
+        isBrowser && updatePanels();
         updateWunderbar();
         const updateDebounced = debounce(updateWunderbar, 100);
         window.addEventListener('resize', updateDebounced);
