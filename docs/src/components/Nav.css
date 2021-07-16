@@ -32,3 +32,11 @@
         margin: 0 auto;
     }
 }
+
+code {
+    background-color: var(--f-blue-50);
+    border-radius: 6px;
+    font-family: Finntype, Arial, Helvetica, sans-serif;
+    font-size: 90%;
+    padding: 2px 7px;
+}

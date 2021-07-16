@@ -48,13 +48,6 @@ export const Modal = ({
 }: ModalProps) => {
     const headingId = useId(ariaLabelledBy);
 
-    console.log(
-        classNames([
-            'bg-white outline-none rounded-8 overflow-hidden flex flex-col',
-            className,
-        ]),
-    );
-
     return (
         <DialogOverlay
             allowPinchZoom
