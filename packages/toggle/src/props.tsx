@@ -58,4 +58,9 @@ export interface ToggleProps {
      * Will make each radio-button equal width
      */
     equalWidth?: boolean;
+
+    /**
+     * Custom classes applied to the wrapping container
+     */
+    className?: string;
 }

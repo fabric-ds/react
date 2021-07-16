@@ -50,7 +50,7 @@ export function Toggle(props: ToggleProps) {
                 aria-describedby={
                     isRadioGroup && !isInvalid ? helpId : undefined
                 }
-                className={classNames({
+                className={classNames(props.className, {
                     'segment-control': props.type === 'radio-button',
                     'segment-control--justified': props.equalWidth,
                     'segment-control--small': props.small,
