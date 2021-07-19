@@ -1,177 +1,14 @@
+import React, { useState } from 'react';
 import { Card } from '../src';
 import { Toggle } from '../../toggle/src';
-import packageData from '../package.json';
 
-# Card
+const metadata = { title: 'Navigation/Card' };
+export default metadata;
 
-<PackageInfo packageData={packageData} componentNames={['Card']} />
-
-The Card component wraps any JSX and adds a bit of pseudo state styling, as well
-as letting you set the card as selected. See examples below.
-
-### Examples
-
-<div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32 my-20">
-    <Card>
-        <img
-            className="h-128 w-full object-cover"
-            src="https://source.unsplash.com/random/400x400"
-            alt="Description"
-        />
-        <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">
-            Ukens bolig
-        </p>
-        <div className="p-16">
-            <p className="text-12 text-gray-300">DNB Eiendom</p>
-            <p>
-                Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019.
-                Inkl. bl.a. vv/fyring.
-            </p>
-            <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
-            <p className="font-bold my-8">
-                52 m
-                <span
-                    style={{
-                        fontSize: 10,
-                        verticalAlign: 'super',
-                        marginRight: 5,
-                    }}
-                >
-                    2
-                </span>
-                Totalpris: 4 869 039 kr
-            </p>
-            <p className="text-14 text-gray-400 mb-0">
-                Eier (Selveier) <span className="text-gray-200">•</span>{' '}
-                Leilighet
-                <span className="text-gray-200">•</span> 2 soverom
-            </p>
-        </div>
-    </Card>
-    <Card>
-        <img
-            className="h-128 w-full object-cover"
-            src="https://source.unsplash.com/random/402x402"
-            alt="Description"
-        />
-        <div className="p-16">
-            <p className="text-12 text-gray-300">DNB Eiendom</p>
-            <p>
-                Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019.
-                Inkl. bl.a. vv/fyring.
-            </p>
-            <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
-            <p className="font-bold my-8">
-                52 m
-                <span
-                    style={{
-                        fontSize: 10,
-                        verticalAlign: 'super',
-                        marginRight: 5,
-                    }}
-                >
-                    2
-                </span>
-                Totalpris: 4 869 039 kr
-            </p>
-            <p className="text-14 text-gray-400 mb-0">
-                Eier (Selveier) <span className="text-gray-200">•</span>{' '}
-                Leilighet
-                <span className="text-gray-200">•</span> 2 soverom
-            </p>
-        </div>
-    </Card>
-    <Card>
-        <img
-            className="h-128 w-full object-cover"
-            src="https://source.unsplash.com/random/404x404"
-            alt="Description"
-        />
-        <div className="p-16">
-            <p className="text-12 text-gray-300">DNB Eiendom</p>
-            <p>
-                Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019.
-                Inkl. bl.a. vv/fyring.
-            </p>
-            <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
-            <p className="font-bold my-8">
-                52 m
-                <span
-                    style={{
-                        fontSize: 10,
-                        verticalAlign: 'super',
-                        marginRight: 5,
-                    }}
-                >
-                    2
-                </span>
-                Totalpris: 4 869 039 kr
-            </p>
-            <p className="text-14 text-gray-400 mb-0">
-                Eier (Selveier) <span className="text-gray-200">•</span>{' '}
-                Leilighet
-                <span className="text-gray-200">•</span> 2 soverom
-            </p>
-        </div>
-    </Card>
-</div>
-
-### Code
-
-The `<Card>` component takes any set of JSX elements as its children.
-
-```jsx
-<Card>
-    <img
-        className="h-128 w-full object-cover"
-        src="https://source.unsplash.com/random/400x400"
-        alt="Description"
-    />
-    <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">
-        Ukens bolig
-    </p>
-    <div className="p-16">
-        <p className="text-12 text-gray-300">DNB Eiendom</p>
-        <p>
-            Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl.
-            bl.a. vv/fyring.
-        </p>
-        <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
-        <p className="font-bold my-8">
-            52 m
-            <span
-                style={{
-                    fontSize: 10,
-                    verticalAlign: 'super',
-                    marginRight: 5,
-                }}
-            >
-                2
-            </span>
-            Totalpris: 4 869 039 kr
-        </p>
-        <p className="text-14 text-gray-400 mb-0">
-            Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
-            <span className="text-gray-200">•</span> 2 soverom
-        </p>
-    </div>
-</Card>
-```
-
-### Selecting
-
-You can mark a Card as selected by pasing the `selected` property. This will add
-an outline to indicate the selected state.
-
-Try clicking one of the cards below and watch them all get selected at once.
-
-```jsx example
-function Example() {
-    const [selected, setSelected] = React.useState(false);
-
+export const SingleCard = () => {
     return (
-        <div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32">
-            <Card onClick={() => setSelected(!selected)} selected={selected}>
+        <div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32 my-20">
+            <Card>
                 <img
                     className="h-128 w-full object-cover"
                     src="https://source.unsplash.com/random/400x400"
@@ -209,10 +46,102 @@ function Example() {
                     </p>
                 </div>
             </Card>
-            <Card onClick={() => setSelected(!selected)} selected={selected}>
+        </div>
+    );
+};
+
+export const SelectableCard = () => {
+    const [selected, setSelected] = useState(false);
+
+    return (
+        <div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32 my-20">
+            <Card selected={selected} onClick={() => setSelected(!selected)}>
                 <img
                     className="h-128 w-full object-cover"
-                    src="https://source.unsplash.com/random/403x403"
+                    src="https://source.unsplash.com/random/400x400"
+                    alt="Description"
+                />
+                <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">
+                    Ukens bolig
+                </p>
+                <div className="p-16">
+                    <p className="text-12 text-gray-300">DNB Eiendom</p>
+                    <p>
+                        Stilfull og gjennomgående 3-roms m/balkong. Oppusset i
+                        2019. Inkl. bl.a. vv/fyring.
+                    </p>
+                    <p className="text-14 text-gray-400 mb-4">
+                        Bøgata 25C, 0655 Oslo
+                    </p>
+                    <p className="font-bold my-8">
+                        52 m
+                        <span
+                            style={{
+                                fontSize: 10,
+                                verticalAlign: 'super',
+                                marginRight: 5,
+                            }}
+                        >
+                            2
+                        </span>
+                        Totalpris: 4 869 039 kr
+                    </p>
+                    <p className="text-14 text-gray-400 mb-0">
+                        Eier (Selveier) <span className="text-gray-200">•</span>{' '}
+                        Leilighet
+                        <span className="text-gray-200">•</span> 2 soverom
+                    </p>
+                </div>
+            </Card>
+        </div>
+    );
+};
+
+export const GridCards = () => {
+    return (
+        <div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32 my-20">
+            <Card>
+                <img
+                    className="h-128 w-full object-cover"
+                    src="https://source.unsplash.com/random/400x400"
+                    alt="Description"
+                />
+                <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">
+                    Ukens bolig
+                </p>
+                <div className="p-16">
+                    <p className="text-12 text-gray-300">DNB Eiendom</p>
+                    <p>
+                        Stilfull og gjennomgående 3-roms m/balkong. Oppusset i
+                        2019. Inkl. bl.a. vv/fyring.
+                    </p>
+                    <p className="text-14 text-gray-400 mb-4">
+                        Bøgata 25C, 0655 Oslo
+                    </p>
+                    <p className="font-bold my-8">
+                        52 m
+                        <span
+                            style={{
+                                fontSize: 10,
+                                verticalAlign: 'super',
+                                marginRight: 5,
+                            }}
+                        >
+                            2
+                        </span>
+                        Totalpris: 4 869 039 kr
+                    </p>
+                    <p className="text-14 text-gray-400 mb-0">
+                        Eier (Selveier) <span className="text-gray-200">•</span>{' '}
+                        Leilighet
+                        <span className="text-gray-200">•</span> 2 soverom
+                    </p>
+                </div>
+            </Card>
+            <Card>
+                <img
+                    className="h-128 w-full object-cover"
+                    src="https://source.unsplash.com/random/402x402"
                     alt="Description"
                 />
                 <div className="p-16">
@@ -244,7 +173,7 @@ function Example() {
                     </p>
                 </div>
             </Card>
-            <Card onClick={() => setSelected(!selected)} selected={selected}>
+            <Card>
                 <img
                     className="h-128 w-full object-cover"
                     src="https://source.unsplash.com/random/404x404"
@@ -281,17 +210,9 @@ function Example() {
             </Card>
         </div>
     );
-}
-```
+};
 
-### Toggles inside of Cards
-
-If you want want to use [Toggles](/fabric-react/#/toggle) inside of a Card you
-must wrap the it in a `<div className="p-24 field in-card">`. This will extend
-the Toggle's clickable area to fit the Card.
-
-```jsx example
-function Example() {
+export const TogglesInCard = () => {
     const [checked, setChecked] = React.useState(false);
     const [selected, setSelected] = React.useState([]);
 
@@ -351,14 +272,4 @@ function Example() {
             </div>
         </div>
     );
-}
-```
-
-**Note** the `className="-mb-4"` on the Toggle component. This removes the
-`margin-bottom` that follows the component. Otherwise it'd look like this
-
-# Props
-
-```props packages/card/src/component.tsx
-
-```
+};
