@@ -30,9 +30,14 @@ export interface ToggleProps {
     options?: ToggleEntry[];
 
     /**
-     * An array of options to be checked on mount
+     * An array of options to be selected / checked (controlled)
      */
     selected?: ToggleEntry[];
+
+    /**
+     * An array of options to be selected / checked on mount (uncontrolled)
+     */
+    defaultSelected?: ToggleEntry[];
 
     /**
      * If you only need to render a single option, use this prop instead
@@ -40,9 +45,14 @@ export interface ToggleProps {
     label?: string;
 
     /**
-     * Whether the single option should be checked by default
+     * Whether the single option should be checked (controlled)
      */
     checked?: boolean;
+
+    /**
+     * Whether the single option should be checked on mount (uncontrolled)
+     */
+    defaultChecked?: boolean;
 
     /**
      * Retrieve the selected entry or a boolean value, depending on whether you are working with single or multiple options

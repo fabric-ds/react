@@ -6,10 +6,8 @@ import packageData from '../package.json';
 
 <PackageInfo packageData={packageData} componentNames={['Card']} />
 
-The Card component is a container with a bit of state styles, but can render any
-jsx as its children. The component also lets you select the card, if need be.
-
-The Card component is a wrapper for any content you want to be able to select.
+The Card component wraps any JSX and adds a bit of pseudo state styling, as well
+as letting you set the card as selected. See examples below.
 
 ### Examples
 
@@ -115,7 +113,7 @@ The Card component is a wrapper for any content you want to be able to select.
     </Card>
 </div>
 
-### Usage
+### Code
 
 The `<Card>` component takes any set of JSX elements as its children.
 
@@ -157,6 +155,11 @@ The `<Card>` component takes any set of JSX elements as its children.
 ```
 
 ### Selecting
+
+You can mark a Card as selected by pasing the `selected` property. This will add
+an outline to indicate the selected state.
+
+Try clicking one of the cards below and watch them all get selected at once.
 
 ```jsx example
 function Example() {
@@ -274,17 +277,21 @@ function Example() {
 }
 ```
 
-#### Toggles inside of Cards
+### Toggles inside of Cards
+
+If you want want to use [Toggles](/fabric-react/#/toggle) inside of a Card you
+must wrap the it in a `<div className="p-24 field in-card">`. This will extend
+the Toggle's clickable area to fit the Card.
 
 ```jsx example
 function Example() {
     const [checked, setChecked] = React.useState(false);
-    const [radio, setRadio] = React.useState('');
+    const [radio, setRadio] = React.useState([]);
 
     return (
         <div>
             <Card selected={checked} class="mt-32 w-max">
-                <div class="p-24 field in-card">
+                <div className="p-24 field in-card">
                     <Toggle
                         type="checkbox"
                         onChange={(bool) => setChecked(bool)}
@@ -297,11 +304,12 @@ function Example() {
 
             <div class="flex gap-32 mt-32">
                 <Card selected={radio === 'a'} class="w-max">
-                    <div class="p-24 field in-card">
+                    <div className="p-24 field in-card">
                         <Toggle
                             type="radio"
                             className="-mb-4"
-                            onChange={(value) => setRadio(value.value)}
+                            onChange={(value) => setRadio([value])}
+                            selected={radio}
                             options={[
                                 {
                                     label: 'Radio in a box - A',
@@ -312,11 +320,12 @@ function Example() {
                     </div>
                 </Card>
                 <Card selected={radio === 'b'} class="w-max">
-                    <div class="p-24 field in-card">
+                    <div className="p-24 field in-card">
                         <Toggle
                             type="radio"
                             className="-mb-4"
-                            onChange={(value) => setRadio(value.value)}
+                            onChange={(value) => setRadio([value])}
+                            selected={radio}
                             options={[
                                 {
                                     label: 'Radio in a box - B',
@@ -331,6 +340,9 @@ function Example() {
     );
 }
 ```
+
+**Note** the `className="-mb-4"` on the Toggle component. This removes the
+`margin-bottom` that follows the component. Otherwise it'd look like this
 
 # Props
 
