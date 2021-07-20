@@ -32,6 +32,7 @@ import Expandable from '../../packages/expandable/docs/Expandable.mdx';
 import Switch from '../../packages/switch/docs/Switch.mdx';
 import Toggle from '../../packages/toggle/docs/Toggle.mdx';
 import Steps from '../../packages/steps/docs/Steps.mdx';
+import Card from '../../packages/card/docs/Card.mdx';
 import Toast from '../../packages/toast/docs/Toast.mdx';
 import { ToastContainer } from '../../packages/toast/src';
 
@@ -131,6 +132,10 @@ const App = () => {
 
                                     <Route path="/steps">
                                         <Steps />
+                                    </Route>
+
+                                    <Route path="/card">
+                                        <Card />
                                     </Route>
 
                                     <Route path="/toast">

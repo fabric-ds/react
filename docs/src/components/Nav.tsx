@@ -67,6 +67,7 @@ export default function Nav() {
 
                 <NavCategory title="Layout">
                     <StyledLink to="/box">Box</StyledLink>
+                    <StyledLink to="/card">Card</StyledLink>
                     <StyledLink to="/expandable">Expandable</StyledLink>
                 </NavCategory>
             </div>

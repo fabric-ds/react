@@ -32,7 +32,7 @@ function Example() {
             <Toggle
                 type="checkbox"
                 label="Apple"
-                checked={checked}
+                defaultChecked={checked}
                 onChange={(checked) => setChecked(checked)}
             />
         </>
@@ -40,10 +40,11 @@ function Example() {
 }
 ```
 
-**Note** the `checked` property, which is only used to set the default value on
-component mount. **It does not** actively pass down the state of the checkbox.
-Feel free to omit this property if you are not setting the default value of the
-checkbox.
+**Note** the `defaultChecked` property, which is only used to set the default
+value on component mount (uncontrolled). **It does not** actively pass down the
+state of the checkbox. Feel free to omit this property if you are not setting
+the default value of the checkbox or use the `checked` property (controlled) to
+actively pass down state.
 
 **Note** the `onChange` property returning a boolean value. This is because
 we're working with a single option. When using the `options` property, as seen
@@ -76,7 +77,7 @@ function Example() {
             <Toggle
                 type="checkbox"
                 title="Companies"
-                selected={selected}
+                defaultSelected={selected}
                 options={[
                     { label: 'Apple', value: 'apple' },
                     { label: 'Microsoft', value: 'microsoft' },
@@ -88,9 +89,10 @@ function Example() {
 }
 ```
 
-**Note** the `selected` property. Similar to the single option `checked`
-property, this will render the passed options as checked by default when the
-component mounts.
+**Note** the `defaultSelected` property (uncontrolled). Similar to the single
+option `checked` property, this will render the passed options as checked by
+default when the component mounts. If you wish to actively pass the state down
+use the `selected` property instead (controlled).
 
 **Note** the `title` property. This gives you the option to label the options,
 but is not required.

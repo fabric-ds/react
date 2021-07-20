@@ -22,7 +22,7 @@ import packageData from '../package.json';
 function Example() {
     const { toast } = useToast();
 
-    const [type, setType] = React.useState();
+    const [type, setType] = React.useState('success');
 
     const createToast = () => {
         toast("Hi! I'm an example toast!", {

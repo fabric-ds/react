@@ -36,6 +36,8 @@ export function Toggle(props: ToggleProps) {
     const isRadioGroup =
         props.type === 'radio' || props.type === 'radio-button';
 
+    const isControlled = !!props.selected || !!props.checked;
+
     return (
         <>
             {props.type === 'radio-button' && props.title && (
@@ -50,7 +52,7 @@ export function Toggle(props: ToggleProps) {
                 aria-describedby={
                     isRadioGroup && !isInvalid ? helpId : undefined
                 }
-                className={classNames({
+                className={classNames(props.className, {
                     'segment-control': props.type === 'radio-button',
                     'segment-control--justified': props.equalWidth,
                     'segment-control--small': props.small,
@@ -63,8 +65,10 @@ export function Toggle(props: ToggleProps) {
                 )}
                 {!props.options && props.label ? (
                     <Item
+                        controlled={isControlled}
                         label={props.label}
                         checked={props.checked}
+                        defaultChecked={props.defaultChecked}
                         onChange={(e: boolean) => props.onChange(e)}
                         name={`${id}:toggle`}
                         key={`${id + props.type}`}
@@ -76,7 +80,11 @@ export function Toggle(props: ToggleProps) {
                     props.options &&
                     props.options.map((option, i) => (
                         <Item
+                            controlled={isControlled}
                             checked={props.selected?.some(
+                                (s) => s.value === option.value,
+                            )}
+                            defaultChecked={props.defaultSelected?.some(
                                 (s) => s.value === option.value,
                             )}
                             option={option}

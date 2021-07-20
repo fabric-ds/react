@@ -6,7 +6,7 @@ export interface ToastProps {
 
     /**
      * Duration of toast in milliseconds
-     * @default 2400
+     * @default  2400
      */
     duration?: number;
 
