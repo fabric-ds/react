@@ -20,12 +20,23 @@ export const SingleOption = () => {
     );
 };
 
-export const SingleOptionCheckedDefault = () => {
+export const SingleOptionCheckedControlledDefault = () => {
     return (
         <Toggle
             type="checkbox"
             label="Apple"
             checked
+            onChange={(checked) => console.log(checked)}
+        />
+    );
+};
+
+export const SingleOptionCheckedUncontrolledDefault = () => {
+    return (
+        <Toggle
+            type="checkbox"
+            label="Apple"
+            defaultChecked
             onChange={(checked) => console.log(checked)}
         />
     );
