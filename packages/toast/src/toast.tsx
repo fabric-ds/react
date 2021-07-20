@@ -16,7 +16,7 @@ export function Toast({
     const isInfo = props.type === 'info';
     const isLoading = props.type === 'loading';
 
-    // const isProgrammatic = props.programmatic;
+    const isProgrammatic = props.programmatic;
     // const [disappeared, setDisappeared] = useState(false);
 
     // useEffect(() => {
@@ -101,7 +101,7 @@ export function Toast({
                         className={c.toastClose}
                         onClick={() => {
                             if (props.onClose) props.onClose();
-                            isProgramatic && removeToast(props.id);
+                            isProgrammatic && removeToast(props.id);
                         }}
                     >
                         <svg
