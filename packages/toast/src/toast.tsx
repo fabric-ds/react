@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { toast as c } from '@finn-no/fabric-component-classes';
 import { classNames } from '@chbphone55/classnames';
 import { ToastProps } from './props';
@@ -7,7 +7,7 @@ import { useToast } from './component';
 export function Toast({
     canClose = true,
     ...props
-}: ToastProps & { id: number; programatic?: boolean }) {
+}: ToastProps & { id: number; programmatic?: boolean }) {
     const { removeToast } = useToast();
 
     const isSuccess = props.type === 'success';
@@ -15,25 +15,20 @@ export function Toast({
     const isError = props.type === 'error';
     const isInfo = props.type === 'info';
     const isLoading = props.type === 'loading';
-    const isProgramatic = props.programatic;
 
-    const [disappeared, setDisappeared] = useState(false);
+    // const isProgrammatic = props.programmatic;
+    // const [disappeared, setDisappeared] = useState(false);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setDisappeared(true);
-        }, props.duration);
-    });
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setDisappeared(true);
+    //     }, props.duration);
+    // });
 
     return (
-        <div
-            className={classNames({
-                [c.toastWrapper]: true,
-            })}
-            role="status"
-            aria-live="polite"
-        >
+        <div className={c.toastWrapper} role="status" aria-live="polite">
             <div
+                id={`toast-${props.id}-wrapper`}
                 className={classNames({
                     [c.toast]: true,
                     [c.toastPositive]: isSuccess,

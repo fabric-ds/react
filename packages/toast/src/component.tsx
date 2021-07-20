@@ -4,7 +4,7 @@ import { Toast } from './toast';
 import { ToastProps } from './props';
 import { createContext, Dispatch, useContext, useEffect } from 'react';
 
-type Toast = ToastProps & { id?: number };
+type Toast = ToastProps & { id: number; programatic?: boolean };
 
 interface ToastContextProps {
     state: Toast[];
@@ -27,8 +27,8 @@ export function useToast(): {
             dispatch((o) => [
                 ...o,
                 {
-                    id,
-                    programatic: true,
+                    id: id as number,
+                    programmatic: true,
                     text: message,
                     duration: 2400,
                     ...options,
@@ -65,7 +65,7 @@ export function ToastContainer({ children }) {
                 <div className={`${c.toaster} relative`}>
                     {!!toasts.length &&
                         toasts.map((t, i) => (
-                            <Toast {...t} key={`toast-${t.id}-${i}`} />
+                            <Toast {...t} key={`toast-${t.id}`} />
                         ))}
                 </div>
             </aside>
