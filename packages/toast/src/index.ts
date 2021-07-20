@@ -1,3 +1,3 @@
 export { Toast } from './toast';
-export { ToastContainer } from './component';
+export { ToastContainer, useToast } from './component';
 export type { ToastProps } from './props';

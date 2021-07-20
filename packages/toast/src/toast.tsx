@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast as c } from '@finn-no/fabric-component-classes';
 import { classNames } from '@chbphone55/classnames';
 import { ToastProps } from './props';
+import { useToast } from './component';
 
-export function Toast({ canClose = true, ...props }: ToastProps) {
+export function Toast({
+    canClose = true,
+    ...props
+}: ToastProps & { id: number; programatic?: boolean }) {
+    const { removeToast } = useToast();
+
     const isSuccess = props.type === 'success';
     const isWarning = props.type === 'warning';
     const isError = props.type === 'error';
     const isInfo = props.type === 'info';
     const isLoading = props.type === 'loading';
+    const isProgramatic = props.programatic;
+
+    const [disappeared, setDisappeared] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setDisappeared(true);
+        }, props.duration);
+    });
 
     return (
-        <div className={c.toastWrapper}>
+        <div
+            className={classNames({
+                [c.toastWrapper]: true,
+            })}
+            role="status"
+            aria-live="polite"
+        >
             <div
                 className={classNames({
                     [c.toast]: true,
@@ -83,7 +104,10 @@ export function Toast({ canClose = true, ...props }: ToastProps) {
                 {canClose && (
                     <button
                         className={c.toastClose}
-                        onClick={() => props.onClose || undefined}
+                        onClick={() => {
+                            if (props.onClose) props.onClose();
+                            isProgramatic && removeToast(props.id);
+                        }}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

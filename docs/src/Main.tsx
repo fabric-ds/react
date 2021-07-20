@@ -33,6 +33,7 @@ import Switch from '../../packages/switch/docs/Switch.mdx';
 import Toggle from '../../packages/toggle/docs/Toggle.mdx';
 import Steps from '../../packages/steps/docs/Steps.mdx';
 import Toast from '../../packages/toast/docs/Toast.mdx';
+import { ToastContainer } from '../../packages/toast/src';
 
 const components = {
     PackageInfo,
@@ -50,104 +51,106 @@ const components = {
 
 const App = () => {
     return (
-        <MDXProvider components={components}>
-            <Router>
-                <div className="flex flex-col sm:h-full w-full md:h-screen md:flex-row">
-                    <Nav />
-                    <div className="sm:p-0 flex-col justify-center w-full md:flex-row md:p-40 mx-auto">
-                        <main className="page-container nav-offset">
-                            <ReactSwitch>
-                                <Route path="/" exact>
-                                    <Home />
-                                </Route>
-                                <Route path="/getting-started">
-                                    <GettingStarted />
-                                </Route>
+        <ToastContainer>
+            <MDXProvider components={components}>
+                <Router>
+                    <div className="flex flex-col sm:h-full w-full md:h-screen md:flex-row">
+                        <Nav />
+                        <div className="sm:p-0 flex-col justify-center w-full md:flex-row md:p-40 mx-auto">
+                            <main className="page-container nav-offset">
+                                <ReactSwitch>
+                                    <Route path="/" exact>
+                                        <Home />
+                                    </Route>
+                                    <Route path="/getting-started">
+                                        <GettingStarted />
+                                    </Route>
 
-                                <Route path="/modal">
-                                    <Modal />
-                                </Route>
+                                    <Route path="/modal">
+                                        <Modal />
+                                    </Route>
 
-                                <Route path="/breadcrumbs">
-                                    <Breadcrumbs />
-                                </Route>
+                                    <Route path="/breadcrumbs">
+                                        <Breadcrumbs />
+                                    </Route>
 
-                                <Route path="/radiogroup">
-                                    <RadioGroup />
-                                </Route>
+                                    <Route path="/radiogroup">
+                                        <RadioGroup />
+                                    </Route>
 
-                                <Route path="/checkboxgroup">
-                                    <CheckboxGroup />
-                                </Route>
-                                <Route path="/checkbox">
-                                    <Checkbox />
-                                </Route>
+                                    <Route path="/checkboxgroup">
+                                        <CheckboxGroup />
+                                    </Route>
+                                    <Route path="/checkbox">
+                                        <Checkbox />
+                                    </Route>
 
-                                <Route path="/textfield">
-                                    <TextField />
-                                </Route>
+                                    <Route path="/textfield">
+                                        <TextField />
+                                    </Route>
 
-                                <Route path="/select">
-                                    <Select />
-                                </Route>
+                                    <Route path="/select">
+                                        <Select />
+                                    </Route>
 
-                                <Route path="/tabs">
-                                    <Tabs />
-                                </Route>
+                                    <Route path="/tabs">
+                                        <Tabs />
+                                    </Route>
 
-                                <Route path="/textarea">
-                                    <TextArea />
-                                </Route>
+                                    <Route path="/textarea">
+                                        <TextArea />
+                                    </Route>
 
-                                <Route path="/slider">
-                                    <Slider />
-                                </Route>
+                                    <Route path="/slider">
+                                        <Slider />
+                                    </Route>
 
-                                <Route path="/combobox">
-                                    <Combobox />
-                                </Route>
+                                    <Route path="/combobox">
+                                        <Combobox />
+                                    </Route>
 
-                                <Route path="/button">
-                                    <Button />
-                                </Route>
+                                    <Route path="/button">
+                                        <Button />
+                                    </Route>
 
-                                <Route path="/box">
-                                    <Box />
-                                </Route>
+                                    <Route path="/box">
+                                        <Box />
+                                    </Route>
 
-                                <Route path="/expandable">
-                                    <Expandable />
-                                </Route>
+                                    <Route path="/expandable">
+                                        <Expandable />
+                                    </Route>
 
-                                <Route path="/switch">
-                                    <Switch />
-                                </Route>
+                                    <Route path="/switch">
+                                        <Switch />
+                                    </Route>
 
-                                <Route path="/toggle">
-                                    <Toggle />
-                                </Route>
+                                    <Route path="/toggle">
+                                        <Toggle />
+                                    </Route>
 
-                                <Route path="/steps">
-                                    <Steps />
-                                </Route>
+                                    <Route path="/steps">
+                                        <Steps />
+                                    </Route>
 
-                                <Route path="/toast">
-                                    <Toast />
-                                </Route>
-                            </ReactSwitch>
-                        </main>
-                        <footer className="mt-20 text-right">
-                            <a
-                                className="u-d1"
-                                href="https://github.com/finn-no/fabric-react"
-                            >
-                                Github
-                            </a>
-                        </footer>
+                                    <Route path="/toast">
+                                        <Toast />
+                                    </Route>
+                                </ReactSwitch>
+                            </main>
+                            <footer className="mt-20 text-right">
+                                <a
+                                    className="u-d1"
+                                    href="https://github.com/finn-no/fabric-react"
+                                >
+                                    Github
+                                </a>
+                            </footer>
+                        </div>
                     </div>
-                </div>
-            </Router>
-        </MDXProvider>
+                </Router>
+            </MDXProvider>
+        </ToastContainer>
     );
 };
 

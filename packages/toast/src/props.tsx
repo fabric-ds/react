@@ -5,7 +5,13 @@ export interface ToastProps {
     type?: 'success' | 'error' | 'warning' | 'info' | 'loading';
 
     /**
-     * The content
+     * Duration of toast in milliseconds
+     * @default 2400
+     */
+    duration?: number;
+
+    /**
+     * The toast message
      */
     text: string;
 
@@ -16,7 +22,7 @@ export interface ToastProps {
     canClose?: boolean;
 
     /**
-     * Handler for when closed
+     * Dismiss handler
      */
     onClose?: () => void;
 }

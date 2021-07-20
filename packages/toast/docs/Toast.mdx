@@ -1,12 +1,13 @@
-import { Toast, ToastContainer } from '../src';
+import { Toast, ToastContainer, useToast } from '../src';
 import { Button } from '../../button/src';
+import { Toggle } from '../../toggle/src';
 import packageData from '../package.json';
 
 # Toast
 
 <PackageInfo
     packageData={packageData}
-    componentNames={['Toast', 'ToastContainer']}
+    componentNames={['ToastContainer', 'useToast', 'Toast']}
 />
 
 <Toast type="success" text="hi" onClose={() => alert('hi')} />
@@ -19,11 +20,47 @@ import packageData from '../package.json';
 
 ```jsx example
 function Example() {
-    return <div></div>;
+    const { toast } = useToast();
+
+    const [type, setType] = React.useState();
+
+    const createToast = () => {
+        toast("Hi! I'm an example toast!", {
+            type,
+            duration: 4000,
+        });
+    };
+
+    return (
+        <>
+            <Toggle
+                type="radio"
+                onChange={(v) => setType(v.value)}
+                defaultSelected={[{ label: 'Success', value: 'success' }]}
+                options={[
+                    { label: 'Success', value: 'success' },
+                    { label: 'Error', value: 'error' },
+                    { label: 'Warning', value: 'warning' },
+                    { label: 'Info', value: 'info' },
+                    { label: 'Loading', value: 'loading' },
+                ]}
+            />
+            <Button className="mt-10" onClick={createToast}>
+                Create toast
+            </Button>
+        </>
+    );
+}
+
+/* Root */
+function App() {
+    return (
+        <ToastContainer>
+            <Example />
+        </ToastContainer>
+    );
 }
 ```
-
-<ToastContainer />
 
 # Toast props
 
