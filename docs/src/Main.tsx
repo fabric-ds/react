@@ -32,6 +32,7 @@ import Expandable from '../../packages/expandable/docs/Expandable.mdx';
 import Switch from '../../packages/switch/docs/Switch.mdx';
 import Toggle from '../../packages/toggle/docs/Toggle.mdx';
 import Steps from '../../packages/steps/docs/Steps.mdx';
+import Toast from '../../packages/toast/docs/Toast.mdx';
 
 const components = {
     PackageInfo,
@@ -125,9 +126,13 @@ const App = () => {
                                 <Route path="/toggle">
                                     <Toggle />
                                 </Route>
-                              
+
                                 <Route path="/steps">
                                     <Steps />
+                                </Route>
+
+                                <Route path="/toast">
+                                    <Toast />
                                 </Route>
                             </ReactSwitch>
                         </main>

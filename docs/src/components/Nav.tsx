@@ -61,6 +61,7 @@ export default function Nav() {
                 </NavCategory>
 
                 <NavCategory title="Overlays">
+                    <StyledLink to="/toast">Toast</StyledLink>
                     <StyledLink to="/modal">Modal</StyledLink>
                 </NavCategory>
 

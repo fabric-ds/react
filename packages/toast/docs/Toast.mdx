@@ -1,0 +1,32 @@
+import { Toast, ToastContainer } from '../src';
+import { Button } from '../../button/src';
+import packageData from '../package.json';
+
+# Toast
+
+<PackageInfo
+    packageData={packageData}
+    componentNames={['Toast', 'ToastContainer']}
+/>
+
+<Toast type="success" text="hi" onClose={() => alert('hi')} />
+<Toast type="error" text="hi" />
+<Toast type="warning" text="hi" canClose={false} />
+<Toast type="info" text="hi" />
+<Toast type="loading" text="hi" />
+
+### Automatically create toast
+
+```jsx example
+function Example() {
+    return <div></div>;
+}
+```
+
+<ToastContainer />
+
+# Toast props
+
+```props packages/toast/src/toast.tsx
+
+```
