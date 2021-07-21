@@ -19,11 +19,9 @@
 }
 
 .expandIn {
-    overflow: hidden;
     animation: expandIn 0.3s forwards;
 }
 
 .expandOut {
-    overflow: hidden;
     animation: expandOut 0.3s forwards;
 }
