@@ -2,10 +2,11 @@ export interface ToastProps {
     /**
      * Type of alert
      */
-    type?: 'success' | 'error' | 'warning' | 'info' | 'loading';
+    type?: 'success' | 'error' | 'warning' | 'info' | string;
 
     /**
      * Duration of toast in milliseconds
+     * Set to 0 to disable auto-removal
      * @default  2400
      */
     duration?: number;

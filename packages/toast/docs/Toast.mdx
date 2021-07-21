@@ -10,13 +10,38 @@ import packageData from '../package.json';
     componentNames={['ToastContainer', 'useToast', 'Toast']}
 />
 
-<Toast type="success" text="hi" onClose={() => alert('hi')} />
-<Toast type="error" text="hi" />
-<Toast type="warning" text="hi" canClose={false} />
-<Toast type="info" text="hi" />
-<Toast type="loading" text="hi" />
+The Toast component can be brought in for manual broadcast messages or
+programmatic toasting.
 
-### Automatically create toast
+### Manual broadcasting
+
+```jsx example
+function Example() {
+    const [type, setType] = React.useState('success');
+
+    return (
+        <>
+            <div className="mb-20">
+                <h4 className="m-0">Bringing in the component manually</h4>
+                <Toast type={type} text="Hello traveler!" canClose={false} />
+            </div>
+            <Toggle
+                type="radio"
+                onChange={(v) => setType(v.value)}
+                defaultSelected={[{ label: 'Success', value: 'success' }]}
+                options={[
+                    { label: 'Success', value: 'success' },
+                    { label: 'Error', value: 'error' },
+                    { label: 'Warning', value: 'warning' },
+                    { label: 'Info', value: 'info' },
+                ]}
+            />
+        </>
+    );
+}
+```
+
+### Programmatically create a toast
 
 ```jsx example
 function Example() {
@@ -25,9 +50,13 @@ function Example() {
     const [type, setType] = React.useState('success');
 
     const createToast = () => {
-        toast("Hi! I'm an example toast!", {
+        toast("Hi! I'm an example default toast!", {
             type,
-            duration: 4000,
+        });
+
+        toast("I won't go away, so you must close me!", {
+            type,
+            duration: 0,
         });
     };
 
@@ -42,7 +71,6 @@ function Example() {
                     { label: 'Error', value: 'error' },
                     { label: 'Warning', value: 'warning' },
                     { label: 'Info', value: 'info' },
-                    { label: 'Loading', value: 'loading' },
                 ]}
             />
             <Button className="mt-10" onClick={createToast}>
@@ -61,6 +89,11 @@ function App() {
     );
 }
 ```
+
+**Note** that you must wrap your App in the `<ToastContainer>` for toasts to
+properly work.
+
+**Note** that setting `duration: 0` will disable auto-dismissing.
 
 # Toast props
 

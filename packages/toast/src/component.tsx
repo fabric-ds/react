@@ -1,10 +1,16 @@
-import React, { useState, SetStateAction } from 'react';
 import { toaster as c } from '@finn-no/fabric-component-classes';
-import { Toast } from './toast';
+import React, {
+    createContext,
+    Dispatch,
+    SetStateAction,
+    useContext,
+    useEffect,
+    useState,
+} from 'react';
 import { ToastProps } from './props';
-import { createContext, Dispatch, useContext, useEffect } from 'react';
+import { Toast } from './toast';
 
-type Toast = ToastProps & { id: number; programatic?: boolean };
+type Toast = ToastProps & { id: string; programatic?: boolean };
 
 interface ToastContextProps {
     state: Toast[];
@@ -17,17 +23,20 @@ export const ToastContext = createContext<ToastContextProps>(
 
 export function useToast(): {
     toast: (message: string, options: Omit<ToastProps, 'text'>) => void;
-    removeToast: (id: number) => void;
+    removeToast: (id: string) => void;
 } {
     const { dispatch } = useContext(ToastContext);
 
     return {
         toast: (message: string, options: Omit<ToastProps, 'text'>) => {
-            const id = Math.floor(Math.random() * 100 + 1);
+            const id =
+                Date.now().toString(36) +
+                Math.random().toString(36).slice(2, 5);
+
             dispatch((o) => [
                 ...o,
                 {
-                    id: id as number,
+                    id,
                     programmatic: true,
                     text: message,
                     duration: 2400,
@@ -35,7 +44,7 @@ export function useToast(): {
                 },
             ]);
         },
-        removeToast: (id: number) => {
+        removeToast: (id: string) => {
             dispatch((o) => o.filter((toast) => toast.id !== id));
         },
     };
@@ -45,12 +54,12 @@ export function ToastContainer({ children }) {
     const [toasts, setToasts] = useState<Toast[]>([]);
 
     useEffect(() => {
+        console.log(toasts);
         toasts.forEach((t) => {
-            if (t.duration) {
-                setTimeout(() => {
-                    setToasts((o) => o.filter((toast) => toast.id !== t.id));
-                }, t.duration + 1000);
-            }
+            if (!t.duration) return;
+            setTimeout(() => {
+                setToasts((o) => o.filter((toast) => toast.id !== t.id));
+            }, t.duration + 1000);
         });
     }, [toasts]);
 

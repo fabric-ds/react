@@ -1,32 +1,52 @@
-import React from 'react';
-import { toast as c } from '@finn-no/fabric-component-classes';
 import { classNames } from '@chbphone55/classnames';
-import { ToastProps } from './props';
+import { toast as c } from '@finn-no/fabric-component-classes';
+import React, { useEffect, useState } from 'react';
 import { useToast } from './component';
+import { ToastProps } from './props';
+import './styles.css';
 
 export function Toast({
     canClose = true,
     ...props
-}: ToastProps & { id: number; programmatic?: boolean }) {
+}: ToastProps & { id?: string; programmatic?: boolean }) {
     const { removeToast } = useToast();
 
     const isSuccess = props.type === 'success';
     const isWarning = props.type === 'warning';
     const isError = props.type === 'error';
     const isInfo = props.type === 'info';
-    const isLoading = props.type === 'loading';
+    // const isLoading = props.type === 'loading';
 
     const isProgrammatic = props.programmatic;
-    // const [disappeared, setDisappeared] = useState(false);
+    const [disappeared, setDisappeared] = useState(false);
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setDisappeared(true);
-    //     }, props.duration);
-    // });
+    const handleClose = () => {
+        if (props.onClose) props.onClose();
+        if (isProgrammatic) {
+            setDisappeared(true);
+            setTimeout(() => {
+                removeToast(props.id as string);
+            }, 1000);
+        }
+    };
+
+    useEffect(() => {
+        if (!props.duration) return;
+
+        setTimeout(() => {
+            setDisappeared(true);
+        }, props.duration);
+    });
 
     return (
-        <div className={c.toastWrapper} role="status" aria-live="polite">
+        <div
+            className={classNames(c.toastWrapper, {
+                expandIn: isProgrammatic && !disappeared,
+                expandOut: isProgrammatic && disappeared,
+            })}
+            role="status"
+            aria-live="polite"
+        >
             <div
                 id={`toast-${props.id}-wrapper`}
                 className={classNames({
@@ -44,7 +64,7 @@ export function Toast({
                         [c.toastIconWarning]: isWarning,
                         [c.toastIconNegative]: isError,
                         [c.toastIconNeutral]: isInfo,
-                        [c.toastIconLoading]: isLoading,
+                        // [c.toastIconLoading]: isLoading,
                     })}
                 >
                     {props.type === 'success' ? (
@@ -97,13 +117,7 @@ export function Toast({
                     <p>{props.text}</p>
                 </div>
                 {canClose && (
-                    <button
-                        className={c.toastClose}
-                        onClick={() => {
-                            if (props.onClose) props.onClose();
-                            isProgrammatic && removeToast(props.id);
-                        }}
-                    >
+                    <button className={c.toastClose} onClick={handleClose}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
