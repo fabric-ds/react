@@ -54,7 +54,6 @@ export function ToastContainer({ children }) {
     const [toasts, setToasts] = useState<Toast[]>([]);
 
     useEffect(() => {
-        console.log(toasts);
         toasts.forEach((t) => {
             if (!t.duration) return;
             setTimeout(() => {
