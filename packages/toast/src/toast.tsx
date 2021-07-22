@@ -48,7 +48,7 @@ export function Toast({
             aria-live="polite"
         >
             <div
-                id={`toast-${props.id}-wrapper`}
+                id={props.id ? `toast-${props.id}-wrapper` : undefined}
                 className={classNames({
                     [c.toast]: true,
                     [c.toastPositive]: isSuccess,
