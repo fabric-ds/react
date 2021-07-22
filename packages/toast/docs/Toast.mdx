@@ -49,17 +49,6 @@ function Example() {
 
     const [type, setType] = React.useState('success');
 
-    const createToast = () => {
-        toast("Hi! I'm an example default toast!", {
-            type,
-        });
-
-        toast("I won't go away, so you must close me!", {
-            type,
-            duration: 0,
-        });
-    };
-
     return (
         <>
             <Toggle
@@ -73,8 +62,40 @@ function Example() {
                     { label: 'Info', value: 'info' },
                 ]}
             />
-            <Button className="mt-10" onClick={createToast}>
-                Create toast
+            <h4 className="mt-10">Create toast</h4>
+            <Button
+                small
+                onClick={() =>
+                    toast("Hi! I'm an example default toast!", {
+                        type,
+                    })
+                }
+            >
+                Default
+            </Button>
+            <Button
+                small
+                className="ml-10"
+                onClick={() =>
+                    toast("I won't go away, so you must close me!", {
+                        type,
+                        duration: 0,
+                    })
+                }
+            >
+                Disabled auto-removal
+            </Button>
+            <Button
+                small
+                className="ml-10"
+                onClick={() =>
+                    toast("You can't close me!", {
+                        type,
+                        canClose: false,
+                    })
+                }
+            >
+                Non closeable
             </Button>
         </>
     );
