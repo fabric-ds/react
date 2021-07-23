@@ -8,7 +8,7 @@ import './styles.css';
 export function Toast({
     canClose = true,
     ...props
-}: ToastProps & { id?: string; programmatic?: boolean }) {
+}: ToastProps & { programmatic?: boolean }) {
     const { removeToast } = useToast();
 
     const isSuccess = props.type === 'success';

@@ -1,5 +1,10 @@
 export interface ToastProps {
     /**
+     * Custom identifier
+     */
+    id?: string | number;
+
+    /**
      * Type of alert
      */
     type?: 'success' | 'error' | 'warning' | 'info' | string;

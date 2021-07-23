@@ -10,7 +10,7 @@ import React, {
 import { ToastProps } from './props';
 import { Toast } from './toast';
 
-type Toast = ToastProps & { id: string; programatic?: boolean };
+type Toast = ToastProps & { id: string | number; programatic?: boolean };
 
 interface ToastContextProps {
     state: Toast[];
