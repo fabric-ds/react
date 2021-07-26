@@ -27,20 +27,20 @@ function Example() {
             </Button>
 
             <Modal
-                title="Hello title"
                 left={left}
                 right
                 open={open}
                 onDismiss={toggleModal}
-                style={{
-                    '--f-modal-max-height': height,
-                    '--f-modal-height': '100%',
-                }}
+                title="Hello title"
                 footer={
                     <Button primary onClick={toggleModal}>
                         Confirm
                     </Button>
                 }
+                style={{
+                    '--f-modal-max-height': height,
+                    '--f-modal-height': '100%',
+                }}
             >
                 <div className="space-x-8">
                     <button
@@ -95,34 +95,6 @@ function Example() {
                         I set the microphone on fire, rap styles vary and carry
                         like Mariah.
                     </p>
-                    <p>
-                        Life as a shorty shouldn't be so rough. Small change,
-                        they putting shame in the game. My beats travel like a
-                        vortex through your spine, to the top of your cerebral
-                        cortex. Shame on you when you stepped through to The Ol
-                        Dirty Bastard straight from the Brooklyn Zoo. I come
-                        rough, tough like an Elephant tusk. I bomb atomically
-                        Socrates' philosophies and hypothesis can't define how I
-                        be dropping these mockeries. The rebel, I make more
-                        noise than heavy metal. Cash rules everything around me,
-                        dollar dollar bill, ya'll. If what you say is true, the
-                        Shaolin and the Wu-Tang could be dangerous.
-                    </p>
-                    <p>
-                        Perpendicular to the square we stay in gold like Flair,
-                        escape from your dragon's lair in particular. The game
-                        of chess, is like a swordfight, you must think first
-                        before you move. Leave it up to me while I be livin'
-                        proof I smoke on the mic like smoking Joe Frazier, the
-                        hell raiser, raising hell with the flavor. Step through
-                        your section with the Force like Luke Skywalker, rhyme
-                        author, orchestrate mind torture. Feeling mad hostile,
-                        ran the apostle, flowing like Christ when I speak the
-                        gospel. Well I'm a sire, I set the microphone on fire,
-                        rap styles vary and carry like Mariah. I grew up on the
-                        crime side, the New York Times side, Stayin' alive was
-                        no jive.
-                    </p>
                 </div>
             </Modal>
         </>
@@ -134,46 +106,44 @@ function Example() {
 
 Fabric guidelines state the following:
 
--   Don't add a close button (`X`) in the top right corner.
 -   The cancel action should always be on the left, while the main action is to
     the right.
 
 ## Non dismissable modals
 
 The `onDismiss` prop is optional. It can be dropped to create a modal that won't
-respond to <kbd>esc</kbd> keypresses and/or clicking outside the modal.
+respond to `esc` keypresses and/or clicking outside the modal.
 
 ```jsx example
 function Example() {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
     const [hasAgreed, setHasAgreed] = React.useState(false);
 
-    const handleOpen = () => setIsOpen(true);
-    const handleClose = () => setIsOpen(false);
+    const toggleModal = () => setOpen(!open);
 
     return (
         <>
-            <Button onClick={handleOpen}>Open modal</Button>
+            <Button utility onClick={toggleModal}>
+                Open modal
+            </Button>
 
             <Modal
-                isOpen={isOpen}
-                onDismiss={hasAgreed ? handleClose : undefined}
-            >
-                <ModalContent>
-                    <ModalHeading>Non dismissable</ModalHeading>
-                    <p>To go further, you need to agree to these bogus terms</p>
-                    <Toggle
-                        type="checkbox"
-                        label="I agree"
-                        checked={hasAgreed}
-                        onChange={(checked) => setHasAgreed(checked)}
-                    />
-                </ModalContent>
-                <ModalFooter>
-                    <Button primary disabled={!hasAgreed} onClick={handleClose}>
+                open={open}
+                onDismiss={hasAgreed ? toggleModal : undefined}
+                title="Non dismissable"
+                footer={
+                    <Button primary disabled={!hasAgreed} onClick={toggleModal}>
                         Save
                     </Button>
-                </ModalFooter>
+                }
+            >
+                <p>To go further, you need to agree to these bogus terms</p>
+                <Toggle
+                    type="checkbox"
+                    label="I agree"
+                    checked={hasAgreed}
+                    onChange={(state) => setHasAgreed(state)}
+                />
             </Modal>
         </>
     );
@@ -183,9 +153,11 @@ function Example() {
 ## Accessibility
 
 Modal needs either `aria-label` or `aria-labelledby` to be accessible to screen
-readers. Most likely you'll have some kind of primary heading for the modal. In
-that case, you can use `ModalHeading`. It automatically connects the heading to
-the dialog.
+readers.
+
+All dialogs must have a title. Titles appear in bold at the top of the dialog
+and use a few words to convey the outcome of what will happen if a user
+continues with an action. Use the property `title` for this.
 
 ### Customizing focus behavior
 
@@ -195,27 +167,32 @@ this can be used to focus a call to action button.
 
 ```jsx example
 function Example() {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
     const focusRef = React.useRef();
+
+    const toggleModal = () => setOpen(!open);
 
     return (
         <>
-            <Button onClick={() => setIsOpen(true)}>Open modal</Button>
-            <Modal isOpen={isOpen} initialFocusRef={focusRef}>
-                <ModalContent>
-                    <ModalHeading>Customized focus behavior</ModalHeading>
-                    <p>The call to action button has inital focus.</p>
-                </ModalContent>
-                <ModalFooter>
-                    <Button onClick={() => setIsOpen(false)}>Cancel</Button>
-                    <Button
-                        primary
-                        ref={focusRef}
-                        onClick={() => setIsOpen(false)}
-                    >
-                        Accept
-                    </Button>
-                </ModalFooter>
+            <Button utility onClick={toggleModal}>
+                Open modal
+            </Button>
+            <Modal
+                open={open}
+                initialFocusRef={focusRef}
+                title="Customized focus behavior"
+                footer={
+                    <>
+                        <Button onClick={toggleModal} className="mr-12">
+                            Cancel
+                        </Button>
+                        <Button primary ref={focusRef} onClick={toggleModal}>
+                            Accept
+                        </Button>
+                    </>
+                }
+            >
+                <p>The call to action button has inital focus.</p>
             </Modal>
         </>
     );

@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { modal as c } from '@finn-no/fabric-component-classes';
 import { classNames } from '@chbphone55/classnames';
-import { ModalProps } from './props';
+import { modal as c } from '@finn-no/fabric-component-classes';
+import React, { useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
+import { ModalProps } from './props';
 
 /**
  * A Modal dialog that renders on top the page
@@ -18,8 +18,12 @@ export const Modal = ({
         } else {
             document.body.style.overflow = 'auto';
         }
-        console.log(document?.getElementById('modal-backdrop')?.style);
     }, [props.open]);
+
+    useEffect(() => {
+        if (!props.initialFocusRef) return;
+        props.initialFocusRef.current?.focus();
+    }, [props.open, props.initialFocusRef]);
 
     if (!props.open) return <></>;
 
@@ -33,6 +37,12 @@ export const Modal = ({
                 <div
                     aria-label={ariaLabel ?? undefined}
                     aria-labelledby={ariaLabelledBy ?? undefined}
+                    onKeyDown={(event) => {
+                        if (!props.onDismiss) return;
+                        if (event.key === 'Escape') {
+                            props.onDismiss();
+                        }
+                    }}
                     className={c.modal}
                     tabIndex={-1}
                     aria-modal="true"
@@ -85,6 +95,7 @@ export const Modal = ({
                         {typeof props.right === 'boolean' && props.right ? (
                             <button
                                 aria-label="Lukk"
+                                tabIndex={!props.onDismiss ? -1 : undefined}
                                 onClick={props.onDismiss}
                                 className={classNames([
                                     c.transitionTitle,
