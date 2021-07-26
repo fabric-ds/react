@@ -17,9 +17,6 @@ import GettingStarted from '../pages/getting-started.mdx';
 import Modal from '../../packages/modal/docs/Modal.mdx';
 import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 
-import RadioGroup from '../../packages/radio/docs/RadioGroup.mdx';
-import CheckboxGroup from '../../packages/checkbox/docs/CheckboxGroup.mdx';
-import Checkbox from '../../packages/checkbox/docs/Checkbox.mdx';
 import Tabs from '../../packages/tabs/docs/Tabs.mdx';
 import TextField from '../../packages/textfield/docs/TextField.mdx';
 import Select from '../../packages/select/docs/Select.mdx';
@@ -75,17 +72,6 @@ const App = () => {
                                         <Breadcrumbs />
                                     </Route>
 
-                                    <Route path="/radiogroup">
-                                        <RadioGroup />
-                                    </Route>
-
-                                    <Route path="/checkboxgroup">
-                                        <CheckboxGroup />
-                                    </Route>
-                                    <Route path="/checkbox">
-                                        <Checkbox />
-                                    </Route>
-
                                     <Route path="/textfield">
                                         <TextField />
                                     </Route>
@@ -134,7 +120,7 @@ const App = () => {
                                         <Steps />
                                     </Route>
 
-                                    <Route path="/card">
+                                    <Route path="/Card">
                                         <Card />
                                     </Route>
 
