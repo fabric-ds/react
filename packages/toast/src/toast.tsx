@@ -1,9 +1,9 @@
+import React, { useEffect, useRef } from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { toast as c } from '@finn-no/fabric-component-classes';
-import React, { useEffect, useState } from 'react';
 import { useToast } from './component';
 import { ToastProps } from './props';
-import './styles.css';
+import { expand, collapse } from 'element-collapse';
 
 export function Toast({
     canClose = true,
@@ -11,44 +11,57 @@ export function Toast({
 }: ToastProps & { programmatic?: boolean }) {
     const { removeToast } = useToast();
 
+    const element = useRef<HTMLDivElement>(null);
+
     const isSuccess = props.type === 'success';
     const isWarning = props.type === 'warning';
     const isError = props.type === 'error';
     const isInfo = props.type === 'info';
     // const isLoading = props.type === 'loading';
 
-    const isProgrammatic = props.programmatic;
-    const [disappeared, setDisappeared] = useState(false);
+    const isProgrammatic = props.programmatic ?? false;
 
     const handleClose = () => {
         if (props.onClose) props.onClose();
         if (isProgrammatic) {
-            setDisappeared(true);
+            element.current && collapse(element.current);
             setTimeout(() => {
                 removeToast(props.id as string);
             }, 1000);
         }
     };
 
+    /**
+     * Expand element on mount
+     */
     useEffect(() => {
-        if (!props.duration) return;
+        if (!isProgrammatic || !element.current) return;
+        expand(element.current);
+    }, [isProgrammatic, element]);
+
+    /**
+     * If a duration is passed, handle auto dismiss
+     */
+    useEffect(() => {
+        if (!props.duration || !element.current || !isProgrammatic) return;
 
         setTimeout(() => {
-            setDisappeared(true);
+            collapse(element.current);
         }, props.duration);
-    });
+    }, [isProgrammatic, props.duration]);
 
     return (
         <div
-            className={classNames(c.toastWrapper, {
-                expandIn: isProgrammatic && !disappeared,
-                expandOut: isProgrammatic && disappeared,
-            })}
+            id={props.id ? `toast-${props.id}-wrapper` : undefined}
+            ref={element}
+            style={{
+                height: 0,
+            }}
+            className={c.toastWrapper}
             role="status"
             aria-live="polite"
         >
             <div
-                id={props.id ? `toast-${props.id}-wrapper` : undefined}
                 className={classNames({
                     [c.toast]: true,
                     [c.toastPositive]: isSuccess,

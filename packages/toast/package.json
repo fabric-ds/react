@@ -19,7 +19,8 @@
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
     "@finn-no/fabric-component-classes": "^0.0.18",
-    "@finn-no/fabric-react-utils": "^0.2.6"
+    "@finn-no/fabric-react-utils": "^0.2.6",
+    "element-collapse": "^0.9.1"
   },
   "peerDependencies": {
     "react": "^17.0.0"
