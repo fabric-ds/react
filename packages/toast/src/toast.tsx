@@ -19,7 +19,7 @@ export function Toast({
     const isInfo = props.type === 'info';
     // const isLoading = props.type === 'loading';
 
-    const isProgrammatic = props.programmatic ?? false;
+    const isProgrammatic = props.programmatic;
 
     const handleClose = () => {
         if (props.onClose) props.onClose();
