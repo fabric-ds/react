@@ -1,6 +1,6 @@
 import { Modal } from '../src';
 import { Button } from '../../button/src';
-import { Checkbox } from '../../checkbox/src';
+import { Toggle } from '../../toggle/src';
 import packageData from '../package.json';
 
 # Modal
@@ -162,12 +162,12 @@ function Example() {
                 <ModalContent>
                     <ModalHeading>Non dismissable</ModalHeading>
                     <p>To go further, you need to agree to these bogus terms</p>
-                    <Checkbox
+                    <Toggle
+                        type="checkbox"
+                        label="I agree"
                         checked={hasAgreed}
-                        onChange={(e) => setHasAgreed(e.target.checked)}
-                    >
-                        I agree
-                    </Checkbox>
+                        onChange={(checked) => setHasAgreed(checked)}
+                    />
                 </ModalContent>
                 <ModalFooter>
                     <Button primary disabled={!hasAgreed} onClick={handleClose}>
