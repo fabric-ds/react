@@ -19,7 +19,7 @@ export const Modal = ({
         teardown();
         if (!contentRef.current) return;
         props.open && setup(contentRef.current);
-    }, [props.open, props.onDismiss, contentRef]);
+    }, [props.open, contentRef]);
 
     useEffect(() => {
         if (!props.initialFocusRef) return;
