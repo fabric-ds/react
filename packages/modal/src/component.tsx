@@ -17,7 +17,6 @@ export const Modal = ({
 
     useEffect(() => {
         if (!contentRef.current) return;
-        console.log(contentRef);
         if (props.open) {
             setup(contentRef.current);
         } else {
