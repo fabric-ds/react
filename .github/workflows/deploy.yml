@@ -1,6 +1,9 @@
-name: Fabric React
+name: Deploy to GitHub Pages
 
-on: push
+on:
+    push:
+        branches:
+            - main
 
 jobs:
     publish:
@@ -17,7 +20,7 @@ jobs:
             - name: Build Docs
               run: |
                   yarn docs:build
-            - name: Deploy to GitHub Pages
+            - name: Deploy
               if: success()
               uses: crazy-max/ghaction-github-pages@v2
               with:
