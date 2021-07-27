@@ -21,7 +21,7 @@ export const Modal = ({
         if (props.open) {
             setup(contentRef.current);
         } else {
-            teardown(contentRef.current);
+            teardown();
         }
     }, [props.open, contentRef]);
 
