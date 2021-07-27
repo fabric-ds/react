@@ -79,13 +79,25 @@ export const Invalid = () => {
     );
 };
 
-export const SelectedDefault = () => {
+export const SelectedDefaultControlled = () => {
     return (
         <Toggle
             type="radio-button"
             title="Favorite color"
             helpText="Last selected by default"
             selected={[options[options.length - 1]]}
+            options={options}
+            onChange={(selected) => console.log(selected)}
+        />
+    );
+};
+
+export const SelectedDefaultUncontrolled = () => {
+    return (
+        <Toggle
+            type="radio-button"
+            title="Favorite color"
+            helpText="Last selected by default"
             options={options}
             onChange={(selected) => console.log(selected)}
         />

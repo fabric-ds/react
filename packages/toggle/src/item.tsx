@@ -3,8 +3,10 @@ import { useId } from '@finn-no/fabric-react-utils';
 import { ToggleEntry } from './props';
 
 interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
+    controlled: boolean;
     option?: ToggleEntry;
     checked?: boolean;
+    defaultChecked?: boolean;
     invalid?: boolean;
     helpId?: string;
     label?: string;
@@ -12,11 +14,13 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
 }
 
 export function Item({
+    controlled,
     option,
     label,
     invalid,
     helpId,
     checked,
+    defaultChecked,
     ...props
 }: ItemProps) {
     const id = useId();
@@ -25,7 +29,8 @@ export function Item({
         <>
             <input
                 id={id}
-                defaultChecked={checked}
+                checked={controlled ? checked : undefined}
+                defaultChecked={defaultChecked}
                 aria-invalid={invalid}
                 aria-errormessage={helpId}
                 {...props}

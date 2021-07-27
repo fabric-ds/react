@@ -43,11 +43,8 @@ export default function Nav() {
                 <NavCategory title="Forms">
                     <StyledLink to="/toggle">Toggle</StyledLink>
 
-                    <StyledLink to="/checkbox">Checkbox</StyledLink>
                     <StyledLink to="/switch">Switch</StyledLink>
-                    <StyledLink to="/checkboxgroup">CheckboxGroup</StyledLink>
                     <StyledLink to="/combobox">Combobox</StyledLink>
-                    <StyledLink to="/radiogroup">RadioGroup</StyledLink>
                     <StyledLink to="/select">Select</StyledLink>
                     <StyledLink to="/textfield">TextField</StyledLink>
                     <StyledLink to="/textarea">TextArea</StyledLink>
@@ -66,6 +63,7 @@ export default function Nav() {
 
                 <NavCategory title="Layout">
                     <StyledLink to="/box">Box</StyledLink>
+                    <StyledLink to="/card">Card</StyledLink>
                     <StyledLink to="/expandable">Expandable</StyledLink>
                 </NavCategory>
             </div>
