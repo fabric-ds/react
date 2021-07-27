@@ -1,8 +1,9 @@
 import { classNames } from '@chbphone55/classnames';
 import { modal as c } from '@finn-no/fabric-component-classes';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock';
 import { ModalProps } from './props';
+import { setup, teardown } from 'scroll-doctor';
 
 /**
  * A Modal dialog that renders on top the page
@@ -12,13 +13,17 @@ export const Modal = ({
     'aria-labelledby': ariaLabelledBy,
     ...props
 }: ModalProps) => {
+    const contentRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
+        if (!contentRef.current) return;
+        console.log(contentRef);
         if (props.open) {
-            document.body.style.overflow = 'hidden';
+            setup(contentRef.current);
         } else {
-            document.body.style.overflow = 'auto';
+            teardown(contentRef.current);
         }
-    }, [props.open]);
+    }, [props.open, contentRef]);
 
     useEffect(() => {
         if (!props.initialFocusRef) return;
@@ -124,7 +129,11 @@ export const Modal = ({
                         )}
                     </div>
 
-                    <div className={c.content} id="f-modal-content">
+                    <div
+                        ref={contentRef}
+                        className={c.content}
+                        id="f-modal-content"
+                    >
                         {props.children}
                     </div>
 
