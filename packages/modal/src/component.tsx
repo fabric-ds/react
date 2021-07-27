@@ -16,13 +16,10 @@ export const Modal = ({
     const contentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        teardown();
         if (!contentRef.current) return;
-        if (props.open) {
-            setup(contentRef.current);
-        } else {
-            teardown();
-        }
-    }, [props.open, contentRef]);
+        props.open && setup(contentRef.current);
+    }, [props.open, props.onDismiss, contentRef]);
 
     useEffect(() => {
         if (!props.initialFocusRef) return;
