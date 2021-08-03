@@ -56,6 +56,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             }
 
             if (!menuOpen) return;
+            if (!!!active?.id && ['Home', 'End'].includes(e.key)) return;
 
             const currIndex = validOptions.findIndex(
                 (o) => o.id === active?.id,
