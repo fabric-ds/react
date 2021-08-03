@@ -57,7 +57,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     'PageDown',
                     'Home',
                     'End',
-                ].includes(e.key)
+                ].includes(e.key) &&
+                validOptions.length
             )
                 return setMenuOpen(true);
 
@@ -191,6 +192,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                         )
                     }
                     label={props.label}
+                    invalid={props.invalid}
+                    helpText={props.helpText}
                     placeholder={props.placeholder}
                     aria-label={props['aria-label']}
                     aria-labelledby={props['aria-labelledby']}
@@ -206,7 +209,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 {menuOpen ? (
                     <div
                         ref={listRef}
-                        className={classNames({
+                        className={classNames(props.listClassName, {
                             'absolute left-0 right-0 pb-8 rounded-8 bg-white shadow':
                                 true,
                         })}

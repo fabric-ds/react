@@ -7,7 +7,7 @@ export type ComboboxProps = {
     /**
      * Unique identifier for the input field
      */
-    id?: string | number;
+    id?: string;
 
     /**
      * The available options to select from
@@ -46,10 +46,21 @@ export type ComboboxProps = {
      */
     onChange?(value: string): void;
 
+    /**  Renders the input field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
+    invalid?: boolean;
+
+    /** The content to display as the help text. */
+    helpText?: React.ReactNode;
+
     /**
-     * Additional combobox styling
+     * Additional container styling
      */
     className?: string;
+
+    /**
+     * Additional list styling
+     */
+    listClassName?: string;
 
     /**
      * Defines a string value that labels the current element. Must be set if `aria-labelledby` is not defined,
