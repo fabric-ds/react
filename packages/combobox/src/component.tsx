@@ -141,16 +141,20 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         useEffect(() => {
             if (!inputRef.current) return;
             const input = inputRef.current;
+            handleListPlacement();
 
             input.addEventListener('keydown', handlekeyDown);
-            return () => input.removeEventListener('keydown', handlekeyDown);
+            window.addEventListener('scroll', handleListPlacement);
+
+            return () => {
+                input.removeEventListener('keydown', handlekeyDown);
+                window.removeEventListener('scroll', handleListPlacement);
+            };
         });
 
         useEffect(() => {
             value.length && setMenuOpen(true);
             props.onChange && props.onChange(value);
-
-            handleListPlacement();
         }, [value, props]);
 
         useEffect(() => {
@@ -164,15 +168,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                         Math.random().toString(36).slice(2, 5),
                 })),
             );
-
-            handleListPlacement();
         }, [props.options]);
-
-        useEffect(() => {
-            window.addEventListener('scroll', handleListPlacement);
-            return () =>
-                window.removeEventListener('scroll', handleListPlacement);
-        }, []);
 
         return (
             <div
