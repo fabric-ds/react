@@ -110,9 +110,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     setActive(validOptions[validOptions.length - 1]);
                     break;
                 case 'Escape':
-                    setValue('');
+                    menuOpen ? setMenuOpen(false) : setValue('');
                     setActive(null);
-                    setMenuOpen(false);
                     break;
                 case 'Enter':
                     if (!active) return;
@@ -193,6 +192,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     placeholder={props.placeholder}
                     aria-label={props['aria-label']}
                     aria-labelledby={props['aria-labelledby']}
+                    role="combobox"
+                    aria-autocomplete="list"
+                    aria-expanded={!!active?.id || false}
+                    aria-activedescendant={menuOpen ? active?.id : undefined}
+                    aria-controls={`${id}-listbox`}
                     onFocus={() => {
                         if (!props.openOnFocus) return;
                         setMenuOpen(true);
@@ -226,6 +230,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                             }`}
                         </span>
                         <ul
+                            id={`${id}-listbox`}
                             role="listbox"
                             className={classNames(
                                 'm-0 p-0 select-none list-none',
