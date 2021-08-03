@@ -66,6 +66,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
             switch (e.key) {
                 case 'ArrowDown':
+                    e.preventDefault();
                     setActive(
                         nextIndex > validOptions.length
                             ? null
@@ -73,6 +74,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     );
                     break;
                 case 'ArrowUp':
+                    e.preventDefault();
                     setActive(
                         prevIndex === -2
                             ? validOptions[validOptions.length - 1]
