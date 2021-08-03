@@ -113,10 +113,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     if (!active) return;
                     handleSelect(active);
                     break;
-                default:
-                    setValue(active?.value || value);
-                    setActive(null);
-                    break;
             }
         };
 
