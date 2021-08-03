@@ -202,9 +202,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                         if (!props.openOnFocus) return;
                         setMenuOpen(true);
                     }}
-                    // onBlur={() => {
-                    //     setMenuOpen(false);
-                    // }}
+                    onBlur={() => {
+                        setMenuOpen(false);
+                    }}
                 />
 
                 {menuOpen ? (
