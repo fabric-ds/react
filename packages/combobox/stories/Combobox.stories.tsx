@@ -119,7 +119,6 @@ export const OptionText = () => {
 };
 
 export const RefForwarding = () => {
-    const [value, setValue] = React.useState('');
     const ref = React.useRef<HTMLInputElement>(null);
 
     if (ref.current) {
