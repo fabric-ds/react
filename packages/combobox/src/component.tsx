@@ -202,9 +202,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                         if (!props.openOnFocus) return;
                         setMenuOpen(true);
                     }}
-                    onBlur={() => {
-                        setMenuOpen(false);
-                    }}
+                    // onBlur={() => {
+                    //     setMenuOpen(false);
+                    // }}
                 />
 
                 {menuOpen ? (
@@ -224,11 +224,24 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                         }}
                     >
                         <span className="sr-only" role="status">
-                            {`${validOptions.length} ${
-                                validOptions.length === 1
-                                    ? 'resultat'
-                                    : 'resultater'
-                            }`}
+                            {options &&
+                            options.filter((o) =>
+                                o.value
+                                    .toLocaleLowerCase()
+                                    .includes(value.toLowerCase()),
+                            ).length
+                                ? `${validOptions.length} treff`
+                                : `Ingen treff, viser ${
+                                      validOptions.length > 1 ||
+                                      validOptions.length === 0
+                                          ? 'alle'
+                                          : ''
+                                  } ${validOptions.length} alternativ${
+                                      validOptions.length > 1 ||
+                                      validOptions.length === 0
+                                          ? 'er'
+                                          : ''
+                                  }`}
                         </span>
                         <ul
                             id={`${id}-listbox`}
