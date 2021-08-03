@@ -50,17 +50,12 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             // Ensure menu is open before we allow keyboard navigation
             if (
                 !menuOpen &&
-                [
-                    'ArrowDown',
-                    'ArrowUp',
-                    'PageUp',
-                    'PageDown',
-                    'Home',
-                    'End',
-                ].includes(e.key) &&
-                validOptions.length
-            )
+                ['ArrowDown', 'ArrowUp', 'PageUp', 'PageDown'].includes(e.key)
+            ) {
                 return setMenuOpen(true);
+            }
+
+            if (!menuOpen) return;
 
             const currIndex = validOptions.findIndex(
                 (o) => o.id === active?.id,
