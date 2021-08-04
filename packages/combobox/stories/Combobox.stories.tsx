@@ -112,7 +112,6 @@ export const OptionText = () => {
                 { value: 'Banana', label: '🍌 Banana' },
                 { value: 'Orange', label: '🍊 Orange' },
                 { value: 'Pineapple', label: '🍍 Pineapple' },
-                { value: 'Kiwi', label: '🥝 Kiwi' },
             ]}
         />
     );
