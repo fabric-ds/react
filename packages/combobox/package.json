@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
+    "@finn-no/fabric-react-textfield": "^0.2.7",
     "@finn-no/fabric-react-utils": "^0.2.6"
   },
   "peerDependencies": {

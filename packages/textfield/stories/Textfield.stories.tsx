@@ -1,6 +1,5 @@
-import * as React from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
-
 import { TextField as TroikaTextField } from '../src';
 
 const metadata = { title: 'Forms/TextField' };

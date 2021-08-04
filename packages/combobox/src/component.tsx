@@ -1,7 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
 import { useId } from '@finn-no/fabric-react-utils';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import { TextField } from '../../textfield/src';
+import { TextField } from '@finn-no/fabric-react-textfield';
 import { ComboboxOption, ComboboxProps } from './props';
 
 const OPTION_HIGHLIGHT_COLOR = 'bluegray-100';
