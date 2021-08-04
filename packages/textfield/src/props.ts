@@ -1,7 +1,3 @@
-import * as React from 'react';
-import { useId } from '@finn-no/fabric-react-utils';
-import { classNames } from '@chbphone55/classnames';
-
 export type TextFieldProps = {
     /** Describes the type of autocomplete functionality the input should provide if any. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefautocomplete) .*/
     autoComplete?: boolean;
@@ -86,60 +82,3 @@ export type TextFieldProps = {
     // omit these, otherwise they seem to form a union type (in the prop table docs)
     'onBlur' | 'onFocus' | 'onChange' | 'type' | 'value'
 >;
-
-function TextField(
-    {
-        className,
-        disabled,
-        id: providedId,
-        invalid,
-        error,
-        helpText,
-        label,
-        readOnly,
-        type = 'text',
-        style,
-        ...props
-    }: TextFieldProps,
-    ref: React.Ref<HTMLInputElement>,
-) {
-    const id = useId(providedId);
-
-    const helpId = helpText ? `${id}__hint` : undefined;
-
-    const isInvalid = invalid || error;
-
-    const classes = {
-        'input--is-invalid': isInvalid,
-        'input--is-disabled': disabled,
-        'input--is-read-only': readOnly,
-    };
-
-    return (
-        <div
-            className={classNames('input mb-0', classes, className)}
-            style={style}
-        >
-            {label && <label htmlFor={id}>{label}</label>}
-            <input
-                {...props}
-                aria-describedby={helpId}
-                aria-errormessage={isInvalid && helpId ? helpId : undefined}
-                aria-invalid={isInvalid}
-                disabled={disabled}
-                id={id}
-                readOnly={readOnly}
-                ref={ref}
-                type={type}
-            />
-            {helpText && (
-                <div className="input__sub-text" id={helpId}>
-                    {helpText}
-                </div>
-            )}
-        </div>
-    );
-}
-
-const _TextField = React.forwardRef(TextField);
-export { _TextField as TextField };
