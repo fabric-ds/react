@@ -1,12 +1,4 @@
-import {
-    Combobox,
-    ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
-    ComboboxOption,
-    ComboboxOptionText,
-} from '../src';
-import { TextField } from '../../textfield/src';
+import { Combobox } from '../src';
 import packageData from '../package.json';
 
 # Combobox
@@ -19,49 +11,25 @@ necessarily have to come from that list. Don't think of it like a `<select/>`,
 but more of an input with some suggestions. You can, however, validate that the
 value comes from the list, that's up to your app.
 
-<PackageInfo
-    packageData={packageData}
-    componentNames={[
-        'Combobox',
-        'ComboboxInput',
-        'ComboboxPopover',
-        'ComboboxList',
-        'ComboboxOption',
-        'ComboboxOptionText',
-    ]}
-/>
+<PackageInfo packageData={packageData} componentNames={['Combobox']} />
 
 ## Example
 
 ```jsx example
-<Combobox>
-    <ComboboxInput as={TextField} label="Choose a fruit" />
-    <ComboboxPopover>
-        <ComboboxList>
-            <ComboboxOption value="Apple" />
-            <ComboboxOption value="Banana" />
-            <ComboboxOption value="Orange" />
-            <ComboboxOption value="Pineapple" />
-        </ComboboxList>
-    </ComboboxPopover>
-</Combobox>
+<Combobox
+    label="Choose a fruit"
+    options={[
+        { value: 'Apple' },
+        { value: 'Banana' },
+        { value: 'Orange' },
+        { value: 'Pineapple' },
+    ]}
+/>
 ```
 
 ## Migrating from Troika
 
 -   You should no longer include or import any Troika React's combobox CSS.
-
-## Rendering the input
-
-To be flexible enough to suit your specific use case, the component allows you
-to decide what type of input element it should render with the `as` prop. This
-defaults to a regular HTML `<input />`, mostly because we didn't want Combobox
-to have a direct dependency on [TextField](/TextField). In most cases though,
-it's what you would normally render.
-
-```jsx
-<ComboboxInput as={TextField} label="Choose" />
-```
 
 ### Highlight matched text segments
 
@@ -69,106 +37,66 @@ If you want to highlight the matched text you can set the `matchTextSegments`
 prop.
 
 ```jsx example
-<Combobox matchTextSegments>
-    <ComboboxInput as={TextField} label="Choose a fruit" />
-    <ComboboxPopover>
-        <ComboboxList>
-            <ComboboxOption value="Apple" />
-            <ComboboxOption value="Banana" />
-            <ComboboxOption value="Orange" />
-            <ComboboxOption value="Pineapple" />
-        </ComboboxList>
-    </ComboboxPopover>
-</Combobox>
+<Combobox
+    matchTextSegments
+    label="Choose a fruit"
+    options={[
+        { value: 'Apple' },
+        { value: 'Banana' },
+        { value: 'Orange' },
+        { value: 'Pineapple' },
+    ]}
+/>
 ```
 
 Note that this prop only enables the component's default styling for text
-matches. The [CSS Selectors](#css-selectors) are always applied, so you can
-style text matches however you like without enabling this prop.
+matches. You can style text matches however you'd like by overriding styles on
+`[data-combobox-text-match]`. For example:
+
+```css example
+[data-combobox-text-match] {
+    background: yellow;
+}
+```
 
 ## Custom rendering in ComboboxOption
 
-Sometimes your items need to be more than just text, in these cases you can pass
-children to ComboboxOption, and then render a `<ComboboxOptionText/>` to keep
-the built-in text highlighting. Only the value is used to match, not the
-children.
+Sometimes you need to render something other than the value as the visible
+option, in these cases you can pass a `label`. The label is only for display.
+The `value` is what gets sent back when selected.
 
 ```jsx example
 function Example() {
     return (
-        <Combobox matchTextSegments>
-            <ComboboxInput
-                as={TextField}
-                label="Choose a fruit"
-                placeholder="Custom Option Rendering"
-            />
-            <ComboboxPopover>
-                <ComboboxList>
-                    <ComboboxOption value="Apple">
-                        🍎 <ComboboxOptionText />
-                    </ComboboxOption>
-                    <ComboboxOption value="Banana">
-                        🍌 <ComboboxOptionText />
-                    </ComboboxOption> <ComboboxOption value="Orange">
-                        🍊 <ComboboxOptionText />
-                    </ComboboxOption> <ComboboxOption value="Pineapple">
-                        🍍 <ComboboxOptionText />
-                    </ComboboxOption> <ComboboxOption value="Kiwi">
-                        🥝 <ComboboxOptionText />
-                    </ComboboxOption>
-                </ComboboxList>
-            </ComboboxPopover>
-        </Combobox>
+        <Combobox
+            matchTextSegments
+            label="Choose a fruit"
+            placeholder="Custom Option Rendering"
+            options={[
+                { value: 'Apple', label: '🍎 Apple' },
+                { value: 'Banana', label: '🍌 Banana' },
+                { value: 'Orange', label: '🍊 Orange' },
+                { value: 'Pineapple', label: '🍍 Pineapple' },
+            ]}
+        />
     );
 }
 ```
 
-## Arbitrary elements
-
-Sometimes your list is a bit more complicated, like categories of results, and
-lots of elements beside options inside the popover.
-
-You can even have other interactive elements inside the popover, it won't close
-when the user interacts with them.
-
-```jsx example
-function Example() {
-    return (
-        <Combobox>
-            <ComboboxInput as={TextField} label="Choose a fruit" />
-            <ComboboxPopover>
-                <ComboboxList>
-                    <h3>Citruses</h3>
-                    <ComboboxOption value="Orange" />
-
-                    <h3>Others</h3>
-                    <ComboboxOption value="Apple" />
-                    <ComboboxOption value="Banana" />
-                    <ComboboxOption value="Pineapple" />
-                    <ComboboxOption value="Kiwi" />
-                </ComboboxList>
-
-                <button>Add fruit</button>
-            </ComboboxPopover>
-        </Combobox>
-    );
-}
-```
-
-## Server side search
+## Client side search
 
 This example searches an API of Star Wars characters. Combobox does not
 implement any matching on your list (aside from highlighting the matched phrases
-in an option). Instead, you render an Option for each result you want in the
+in an option). Instead, you render an option for each result you want in the
 list. So your job is to:
 
 -   Establish the search term state
 -   Match the search to your list
--   Render a ComboboxOption for each match
+-   Render an option for each match
 
 There is nothing special about managing state for a combobox, it's like managing
 state for any other list in your app. As the input changes, you figure out what
-state you need, then render as many ComboboxOption elements as you want.
+state you need, then render as many options as you want.
 
 ```jsx example
 function Example() {
@@ -176,24 +104,13 @@ function Example() {
     const characters = useSWMatch(searchTerm);
 
     return (
-        <Combobox>
-            <ComboboxInput
-                as={TextField}
-                label="Star Wars character"
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <ComboboxPopover>
-                {characters.length > 0 ? (
-                    <ComboboxList>
-                        {characters.map((char) => (
-                            <ComboboxOption value={char.name} key={char.url} />
-                        ))}
-                    </ComboboxList>
-                ) : (
-                    <p>No results</p>
-                )}
-            </ComboboxPopover>
-        </Combobox>
+        <Combobox
+            matchTextSegments
+            label="Star Wars character"
+            onChange={(val) => setSearchTerm(val)}
+            onSelect={(val) => alert(val)}
+            options={characters}
+        />
     );
 }
 
@@ -204,19 +121,17 @@ function useSWMatch(term) {
     const [characters, setCharacters] = React.useState([]);
 
     React.useEffect(() => {
-        if (term.trim()) {
-            let isFresh = true;
+        if (!term.trim()) return;
+        let isFresh = true;
 
-            fetch('https://swapi.dev/api/people/?search=' + term.trim())
-                .then((res) => res.json())
-                .then((res) => {
-                    if (isFresh) {
-                        setCharacters(res.results);
-                    }
-                });
+        fetch('https://swapi.dev/api/people/?search=' + term.trim())
+            .then((res) => res.json())
+            .then((res) => {
+                if (!isFresh) return;
+                setCharacters(res.results.map((c) => ({ value: c.name })));
+            });
 
-            return () => (isFresh = false);
-        }
+        return () => (isFresh = false);
     }, [term]);
 
     return characters;
@@ -225,58 +140,13 @@ function useSWMatch(term) {
 
 ## Combobox Props
 
-```props packages/combobox/src/Combobox.tsx Combobox
+```props packages/combobox/src/component.tsx
 
 ```
 
-## ComboboxInput Props
-
-```props packages/combobox/src/Combobox.tsx ComboboxInput
-
-```
-
-## ComboboxPopover Props
-
-```props packages/combobox/src/Combobox.tsx ComboboxPopover
-
-```
-
-## ComboboxList Props
-
-```props packages/combobox/src/Combobox.tsx ComboboxList
-
-```
-
-## ComboboxOption Props
-
-```props packages/combobox/src/Combobox.tsx ComboboxOption
-
-```
-
-## CSS Selectors
-
-All components support the `className` and `style` props. The component also
-sets these data attributes that might be of interest for custom styles.
-
-```css
-/*
-* On ComboboxOption
-* The current selected item for keyboard navigation
-*/
-[data-highlighted] {
-}
-
-/* 
-* On a descendant of ComboboxOption
-* The string portions that match what the user has typed
-*/
-[data-user-value] {
-}
-
-/* 
-* On a descendant of ComboboxOption
-* The string portions that are suggested
-*/
-[data-suggested-value] {
-}
+```ts
+export type ComboboxOption = {
+    value: string;
+    label?: string;
+};
 ```

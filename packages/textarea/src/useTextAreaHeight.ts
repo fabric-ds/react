@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { useLayoutEffect } from '@finn-no/fabric-react-utils';
+import React, { useEffect, useRef } from 'react';
 
 type Params = {
     ref: React.RefObject<HTMLTextAreaElement>;
@@ -16,8 +16,8 @@ export default function useTextAreaHeight({
     minimumRows,
     maximumRows,
 }: Params): void {
-    const minHeight = React.useRef(-Infinity);
-    const maxHeight = React.useRef(Infinity);
+    const minHeight = useRef(-Infinity);
+    const maxHeight = useRef(Infinity);
 
     const isControlled = value !== undefined;
 
@@ -72,7 +72,7 @@ export default function useTextAreaHeight({
     /**
      * Resizing for uncontrolled textareas
      */
-    React.useEffect(() => {
+    useEffect(() => {
         if (ref.current && !isControlled) {
             const textarea = ref.current;
 
