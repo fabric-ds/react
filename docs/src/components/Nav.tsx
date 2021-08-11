@@ -30,6 +30,21 @@ export default function Nav() {
             </Link>
 
             <div className="flex flex-col space-y-20">
+                <NavCategory title="Sites">
+                    <StyledExternalLink to="https://opensource.finn.no/fabric-design">
+                        Design
+                    </StyledExternalLink>
+                    <StyledExternalLink to="https://opensource.finn.no/fabric-css">
+                        CSS
+                    </StyledExternalLink>
+                    <StyledExternalLink to="https://opensource.finn.no/fabric-vue">
+                        Vue
+                    </StyledExternalLink>
+                    <StyledExternalLink to="https://opensource.finn.no/fabric-elements">
+                        Elements
+                    </StyledExternalLink>
+                </NavCategory>
+
                 <NavCategory title="Guide">
                     <StyledLink to="/getting-started">
                         Getting started
@@ -85,3 +100,17 @@ const StyledLink = (props) => (
         className="link link--dark link--block px-10 py-6 rounded-4 hover:bg-bluegray-300 md:py-4 "
     />
 );
+
+const StyledExternalLink = (props) => {
+    const { href, children, ...rest } = props;
+    return (
+        <a
+            href={props.to}
+            {...rest}
+            activeClassName="bg-bluegray-300"
+            className="link link--dark link--block px-10 py-6 rounded-4 hover:bg-bluegray-300 md:py-4 "
+        >
+            {children}
+        </a>
+    );
+};
