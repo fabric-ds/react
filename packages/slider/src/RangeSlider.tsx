@@ -6,6 +6,7 @@ import { animated, interpolate, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import useInnerWidth from './useInnerWidth';
 import {
+    bigStep,
     clamp,
     nextValue,
     prevValue,
@@ -102,13 +103,21 @@ const RangeSlider = ({
             case 'ArrowLeft':
             case 'ArrowDown':
             case 'PageDown':
-                newValue = prevValue(oldValue, step, scale);
+                newValue = prevValue(
+                    oldValue,
+                    event.key === 'PageDown' ? bigStep(oldValue, step, min, max, scale) : step,
+                    scale
+                );
                 break;
 
             case 'ArrowUp':
             case 'ArrowRight':
             case 'PageUp':
-                newValue = nextValue(oldValue, step, scale);
+                newValue = nextValue(
+                    oldValue,
+                    event.key === 'PageUp' ? bigStep(oldValue, step, min, max, scale) : step,
+                    scale
+                );
                 break;
             case 'Home':
                 newValue = min;
@@ -261,14 +270,12 @@ const RangeSlider = ({
             />
             <animated.div
                 aria-disabled={disabled}
-                aria-label={props['aria-label']?.[Handle.Lower]}
+                aria-label={props['aria-label']?.[Handle.Lower] ?? (props['aria-labelledby'] ? undefined : 'Fra')}
                 aria-labelledby={props['aria-labelledby']?.[Handle.Lower]}
                 // the lower handle is limited by the upper handle
                 aria-valuemax={values[Handle.Upper]}
                 aria-valuemin={min}
-                aria-valuenow={spring.ratioLower.interpolate((ratio) =>
-                    ratioToValue(ratio, min, max, step, scale),
-                )}
+                aria-valuenow={values[Handle.Lower]}
                 aria-valuetext={props['aria-valuetext']?.[Handle.Lower]}
                 className={classNames({
                     [classes.thumbDisabled]: disabled,
@@ -302,14 +309,12 @@ const RangeSlider = ({
             </animated.div>
             <animated.div
                 aria-disabled={disabled}
-                aria-label={props['aria-label']?.[Handle.Upper]}
+                aria-label={props['aria-label']?.[Handle.Upper] ?? (props['aria-labelledby'] ? undefined : 'Til')}
                 aria-labelledby={props['aria-labelledby']?.[Handle.Upper]}
                 aria-valuemax={max}
                 // the upper handle is limited by the lower handle
                 aria-valuemin={values[Handle.Lower]}
-                aria-valuenow={spring.ratioUpper.interpolate((ratio) =>
-                    ratioToValue(ratio, min, max, step, scale),
-                )}
+                aria-valuenow={values[Handle.Upper]}
                 aria-valuetext={props['aria-valuetext']?.[Handle.Upper]}
                 className={classNames({
                     [classes.thumbDisabled]: disabled,

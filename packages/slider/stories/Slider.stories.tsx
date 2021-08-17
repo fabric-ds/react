@@ -73,12 +73,14 @@ export const Ranged = () => {
     const [output, setOutput] = React.useState(value);
     return (
         <div>
-            <output>
+            <output aria-live="off">
+                { /* Setting aria-live="off" here since it's a ranged slider. Users of screen readers would want to hear the value of the slider they are currently adjusting, not the value of the entire range. */ }
                 {output[0]} - {output[1]} kr
             </output>
             <RangeSlider
                 onChange={setValue}
                 onInput={setOutput}
+                aria-label={['Smallest amount', 'Largest amount']}
                 min={1000000}
                 max={10000000}
                 step={50000}

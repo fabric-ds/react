@@ -5,6 +5,7 @@ import { classNames } from '@chbphone55/classnames';
 import { slider as classes } from '@finn-no/fabric-component-classes';
 import { useDrag } from 'react-use-gesture';
 import {
+    bigStep,
     clamp,
     nextValue,
     prevValue,
@@ -90,13 +91,21 @@ const RegularSlider = ({
             case 'ArrowLeft':
             case 'ArrowDown':
             case 'PageDown':
-                newValue = prevValue(value, step, scale);
+                newValue = prevValue(
+                    value,
+                    event.key === 'PageDown' ? bigStep(value, step, min, max, scale) : step,
+                    scale
+                );
                 break;
 
             case 'ArrowUp':
             case 'ArrowRight':
             case 'PageUp':
-                newValue = nextValue(value, step, scale);
+                newValue = nextValue(
+                    value,
+                    event.key === 'PageUp' ? bigStep(value, step, min, max, scale) : step,
+                    scale
+                );
                 break;
             case 'Home':
                 newValue = min;
@@ -204,9 +213,7 @@ const RegularSlider = ({
                 aria-labelledby={props['aria-labelledby']}
                 aria-valuemax={max}
                 aria-valuemin={min}
-                aria-valuenow={spring.ratio.interpolate((ratio) =>
-                    ratioToValue(ratio, min, max, step, scale),
-                )}
+                aria-valuenow={value}
                 aria-valuetext={props['aria-valuetext']}
                 className={classNames({
                     [classes.thumbDisabled]: disabled,
