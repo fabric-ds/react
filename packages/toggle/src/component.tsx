@@ -39,80 +39,66 @@ export function Toggle(props: ToggleProps) {
     const isControlled = !!props.selected || !!props.checked;
 
     return (
-        <>
-            {props.type === 'radio-button' && props.title && (
+        <fieldset
+            role={isRadioGroup ? 'radiogroup' : undefined}
+            aria-invalid={isRadioGroup ? isInvalid : undefined}
+            aria-errormessage={
+                isRadioGroup && isInvalid ? helpId : undefined
+            }
+            aria-describedby={helpId}
+            className={classNames(props.className, {
+                'segment-control': props.type === 'radio-button',
+                'segment-control--justified': props.equalWidth,
+                'segment-control--small': props.small,
+                'input-toggle':
+                    props.type === 'radio' || props.type === 'checkbox',
+            })}
+        >
+            {props.title && (
                 <Title id={id} title={props.title} isInvalid={isInvalid} />
             )}
-            <fieldset
-                role={isRadioGroup ? 'radiogroup' : undefined}
-                aria-invalid={isRadioGroup ? isInvalid : undefined}
-                aria-errormessage={
-                    isRadioGroup && isInvalid ? helpId : undefined
-                }
-                aria-describedby={
-                    isRadioGroup && !isInvalid ? helpId : undefined
-                }
-                className={classNames(props.className, {
-                    'segment-control': props.type === 'radio-button',
-                    'segment-control--justified': props.equalWidth,
-                    'segment-control--small': props.small,
-                    'input-toggle':
-                        props.type === 'radio' || props.type === 'checkbox',
-                })}
-            >
-                {props.type !== 'radio-button' && props.title && (
-                    <Title id={id} title={props.title} isInvalid={isInvalid} />
-                )}
-                {!props.options && props.label ? (
+            {!props.options && props.label ? (
+                <Item
+                    controlled={isControlled}
+                    label={props.label}
+                    checked={props.checked}
+                    defaultChecked={props.defaultChecked}
+                    onChange={(e: boolean) => props.onChange(e)}
+                    name={`${id}:toggle`}
+                    key={`${id + props.type}`}
+                    invalid={isInvalid}
+                    helpId={helpId}
+                    type={isRadioGroup ? 'radio' : 'checkbox'}
+                />
+            ) : (
+                props.options &&
+                props.options.map((option, i) => (
                     <Item
                         controlled={isControlled}
-                        label={props.label}
-                        checked={props.checked}
-                        defaultChecked={props.defaultChecked}
-                        onChange={(e: boolean) => props.onChange(e)}
+                        checked={props.selected?.some(
+                            (s) => s.value === option.value,
+                        )}
+                        defaultChecked={props.defaultSelected?.some(
+                            (s) => s.value === option.value,
+                        )}
+                        option={option}
+                        onChange={(e: ToggleEntry) => props.onChange(e)}
                         name={`${id}:toggle`}
-                        key={`${id + props.type}`}
+                        key={`${id + i + props.type}`}
                         invalid={isInvalid}
                         helpId={helpId}
                         type={isRadioGroup ? 'radio' : 'checkbox'}
                     />
-                ) : (
-                    props.options &&
-                    props.options.map((option, i) => (
-                        <Item
-                            controlled={isControlled}
-                            checked={props.selected?.some(
-                                (s) => s.value === option.value,
-                            )}
-                            defaultChecked={props.defaultSelected?.some(
-                                (s) => s.value === option.value,
-                            )}
-                            option={option}
-                            onChange={(e: ToggleEntry) => props.onChange(e)}
-                            name={`${id}:toggle`}
-                            key={`${id + i + props.type}`}
-                            invalid={isInvalid}
-                            helpId={helpId}
-                            type={isRadioGroup ? 'radio' : 'checkbox'}
-                        />
-                    ))
-                )}
+                ))
+            )}
 
-                {props.type !== 'radio-button' && props.helpText && (
-                    <HelpText
-                        helpId={helpId}
-                        helpText={props.helpText}
-                        isInvalid={isInvalid}
-                    />
-                )}
-            </fieldset>
-            {props.type === 'radio-button' && props.helpText && (
+            {props.helpText && (
                 <HelpText
                     helpId={helpId}
                     helpText={props.helpText}
                     isInvalid={isInvalid}
                 />
             )}
-        </>
+        </fieldset>
     );
 }

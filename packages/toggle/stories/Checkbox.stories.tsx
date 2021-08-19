@@ -42,6 +42,17 @@ export const SingleOptionCheckedUncontrolledDefault = () => {
     );
 };
 
+export const SingleOptionHelpText = () => {
+    return (
+        <Toggle
+            type="checkbox"
+            label="Apple"
+            helpText="This is helper text"
+            onChange={(selected) => console.log(selected)}
+        />
+    );
+};
+
 export const MultipleOptions = () => {
     return (
         <Toggle
