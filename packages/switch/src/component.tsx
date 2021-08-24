@@ -22,17 +22,17 @@ export function Switch({
                 aria-label={ariaLabel}
                 aria-labelledby={ariaLabelledBy}
                 aria-checked={value}
-                onClick={() => onClick(!value)}
+                onClick={onClick}
                 className={classNames([c.label, switchFocus])}
                 {...attrs}
             >
-                <div
-                    className={classNames([c.switchTrack, 'top-0'], {
+                <span
+                    className={classNames([c.switchTrack, 'top-0', 'left-0'], {
                         [c.switchTrackSelected]: value,
                         [c.switchTrackUnselected]: !value,
                     })}
                 />
-                <div
+                <span
                     className={classNames(
                         [c.switchThumb, c.switchThumbNotDisabled],
                         {

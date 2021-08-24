@@ -12,7 +12,7 @@ export interface SwitchProps {
     /**
      * Handler for when the Switch is clicked
      */
-    onClick: (value: boolean) => void;
+    onClick: () => void;
 
     /**
      * Defines a string value that labels the current element. Must be set if `aria-labelledby` is not defined,
