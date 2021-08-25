@@ -32,10 +32,17 @@ export const Modal = ({
         <FocusLock>
             <div
                 id="modal-backdrop"
+                onClick={() => {
+                    if (!props.onDismiss) return;
+                    props.onDismiss();
+                }}
                 className={classNames(props.className, c.backdrop)}
                 style={{ ...props.style }}
             >
                 <div
+                    onClick={(e) => {
+                        e.stopPropagation();
+                    }}
                     aria-label={ariaLabel ?? undefined}
                     aria-labelledby={ariaLabelledBy ?? undefined}
                     onKeyDown={(event) => {
@@ -124,7 +131,6 @@ export const Modal = ({
                             props.right
                         )}
                     </div>
-
                     <div
                         ref={contentRef}
                         className={c.content}
