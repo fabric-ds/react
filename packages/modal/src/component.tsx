@@ -1,6 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
 import { modal as c } from '@finn-no/fabric-component-classes';
 import React, { useEffect, useRef } from 'react';
+import { useId } from '@finn-no/fabric-react-utils';
 import FocusLock from 'react-focus-lock';
 import { ModalProps } from './props';
 import { setup, teardown } from 'scroll-doctor';
@@ -14,6 +15,7 @@ export const Modal = ({
     ...props
 }: ModalProps) => {
     const contentRef = useRef<HTMLDivElement>(null);
+    const id = useId(props.id);
 
     useEffect(() => {
         teardown();
@@ -39,11 +41,14 @@ export const Modal = ({
                 style={{ ...props.style }}
             >
                 <div
+                    role="dialog"
+                    aria-modal="true"
+                    id={id}
                     onClick={(e) => {
                         e.stopPropagation();
                     }}
-                    aria-label={ariaLabel ?? undefined}
-                    aria-labelledby={ariaLabelledBy ?? undefined}
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledBy ?? ((props.title && !ariaLabel) ? `${id}__title` : undefined)}
                     onKeyDown={(event) => {
                         if (!props.onDismiss) return;
                         if (event.key === 'Escape') {
@@ -52,8 +57,6 @@ export const Modal = ({
                     }}
                     className={c.modal}
                     tabIndex={-1}
-                    aria-modal="true"
-                    role="dialog"
                 >
                     <div className={c.title}>
                         {typeof props.left === 'boolean' && props.left ? (
@@ -86,6 +89,7 @@ export const Modal = ({
                         )}
 
                         <div
+                            id={`${id}__title`}
                             className={classNames({
                                 [c.transitionTitle]: true,
                                 'justify-self-center': !!props.left,
