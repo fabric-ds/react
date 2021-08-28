@@ -31,7 +31,6 @@ export const Modal = ({
     return (
         <FocusLock>
             <div
-                id="modal-backdrop"
                 onClick={() => {
                     if (!props.onDismiss) return;
                     props.onDismiss();
@@ -134,7 +133,6 @@ export const Modal = ({
                     <div
                         ref={contentRef}
                         className={c.content}
-                        id="f-modal-content"
                     >
                         {props.children}
                     </div>
