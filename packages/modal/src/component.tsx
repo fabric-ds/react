@@ -33,10 +33,7 @@ export const Modal = ({
     return (
         <FocusLock>
             <div
-                onClick={() => {
-                    if (!props.onDismiss) return;
-                    props.onDismiss();
-                }}
+                onClick={props.onDismiss}
                 className={classNames(props.className, c.backdrop)}
                 style={{ ...props.style }}
             >
@@ -61,6 +58,7 @@ export const Modal = ({
                     <div className={c.title}>
                         {typeof props.left === 'boolean' && props.left ? (
                             <button
+                                type="button"
                                 aria-label="Tilbake"
                                 className={classNames([
                                     c.transitionTitle,
@@ -68,6 +66,7 @@ export const Modal = ({
                                     c.titleButtonLeft,
                                     'justify-self-start',
                                 ])}
+                                onClick={props.onDismiss}
                             >
                                 <svg
                                     className={classNames([
@@ -105,8 +104,8 @@ export const Modal = ({
 
                         {typeof props.right === 'boolean' && props.right ? (
                             <button
+                                type="button"
                                 aria-label="Lukk"
-                                tabIndex={!props.onDismiss ? -1 : undefined}
                                 onClick={props.onDismiss}
                                 className={classNames([
                                     c.transitionTitle,
