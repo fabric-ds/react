@@ -58,8 +58,8 @@ export function Toggle(props: ToggleProps) {
             )}
             <div
                 className={classNames({
-                    'flex flex-row': props.type === 'radio-button',
-                    'segment-control-options': props.type === 'radio-button',
+                    'flex flex-row segment-control-options':
+                        props.type === 'radio-button',
                 })}
             >
                 {!props.options && props.label ? (
