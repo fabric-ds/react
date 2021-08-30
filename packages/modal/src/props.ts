@@ -30,6 +30,11 @@ export type ModalProps = {
     className?: string;
 
     /**
+     * An id for the container and ARIA attributes. A random id is generated if none is provided.
+     */
+    id?: string;
+
+    /**
      * Additional styles to the contianer
      */
     style?: React.CSSProperties;
