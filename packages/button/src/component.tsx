@@ -43,10 +43,17 @@ function Button(
     forwardedRef: React.Ref<HTMLButtonElement> | React.Ref<HTMLAnchorElement>,
 ) {
     const { attrs, classes } = setup(props);
-    return attrs.href ? (
-        <a {...attrs} ref={forwardedRef} className={classes} />
-    ) : (
-        <button {...attrs} ref={forwardedRef} className={classes} />
+    return (
+        <>
+            {attrs.href ? (
+                <a {...attrs} ref={forwardedRef} className={classes} />
+            ) : (
+                <button {...attrs} ref={forwardedRef} className={classes} />
+            )}
+            {props.loading ? (
+                <span role="progressbar" aria-valuenow="0" aria-valuetext="Laster..." />
+            ) : null}
+        </>
     );
 }
 
