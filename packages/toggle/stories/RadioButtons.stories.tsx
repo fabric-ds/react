@@ -98,6 +98,7 @@ export const SelectedDefaultUncontrolled = () => {
             type="radio-button"
             title="Favorite color"
             helpText="Last selected by default"
+            defaultSelected={[options[options.length - 1]]}
             options={options}
             onChange={(selected) => console.log(selected)}
         />

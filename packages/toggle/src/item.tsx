@@ -32,7 +32,7 @@ export function Item({
                 checked={controlled ? checked : undefined}
                 defaultChecked={defaultChecked}
                 aria-invalid={invalid}
-                aria-errormessage={helpId}
+                aria-errormessage={invalid ? helpId : undefined}
                 {...props}
                 onChange={(e) =>
                     props.onChange(
