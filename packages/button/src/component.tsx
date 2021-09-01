@@ -38,24 +38,27 @@ const setup = (props) => ({
     }),
 });
 
-function Button(
-    props: ButtonProps,
-    forwardedRef: React.Ref<HTMLButtonElement> | React.Ref<HTMLAnchorElement>,
-) {
-    const { attrs, classes } = setup(props);
-    return (
-        <>
-            {attrs.href ? (
-                <a {...attrs} ref={forwardedRef} className={classes} />
-            ) : (
-                <button {...attrs} ref={forwardedRef} className={classes} />
-            )}
-            {props.loading ? (
-                <span role="progressbar" aria-valuenow="0" aria-valuetext="Laster..." />
-            ) : null}
-        </>
-    );
-}
-
-const _Button = React.forwardRef(Button);
-export { _Button as Button };
+export const Button = React.forwardRef(
+    (
+        props: ButtonProps,
+        ref: React.Ref<HTMLButtonElement> | React.Ref<HTMLAnchorElement>,
+    ) => {
+        const { attrs, classes } = setup(props);
+        return (
+            <>
+                {attrs.href ? (
+                    <a {...attrs} ref={ref} className={classes} />
+                ) : (
+                    <button {...attrs} ref={ref} className={classes} />
+                )}
+                {props.loading ? (
+                    <span
+                        role="progressbar"
+                        aria-valuenow={0}
+                        aria-valuetext="Laster..."
+                    />
+                ) : null}
+            </>
+        );
+    },
+);

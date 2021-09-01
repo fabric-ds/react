@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { Button } from '../src';
 
 const metadata = { title: 'Buttons/Button' };
 export default metadata;
 
 export const Example = () => {
-    const [loading, setLoading] = useState(true);
-
     return (
         <div className="flex flex-col space-y-32">
             <div>
@@ -16,16 +14,16 @@ export const Example = () => {
                     Simple
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" primary loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Loading' : 'Make Me Loading'}
+                <Button className="mr-32" primary loading>
+                    Loading
                 </Button>
                 {/* @ts-ignore */}
                 <Button className="mr-32" primary small>
                     Small
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" primary small loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Small Loading' : 'Make Me Loading'}
+                <Button className="mr-32" primary small loading>
+                    Small Loading
                 </Button>
             </div>
             <div>
@@ -35,32 +33,32 @@ export const Example = () => {
                     Simple
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" secondary loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Loading' : 'Make Me Loading'}
+                <Button className="mr-32" secondary loading>
+                    Loading
                 </Button>
                 {/* @ts-ignore */}
                 <Button className="mr-32" secondary quiet>
                     Quiet
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" secondary quiet loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Quiet Loading' : 'Make Me Loading'}
+                <Button className="mr-32" secondary quiet loading>
+                    Quiet Loading
                 </Button>
                 {/* @ts-ignore */}
                 <Button className="mr-32" secondary small>
                     Small
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" secondary small loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Small Loading' : 'Make Me Loading'}
+                <Button className="mr-32" secondary small loading>
+                    Small Loading
                 </Button>
                 {/* @ts-ignore */}
                 <Button className="mr-32" secondary quiet small>
                     Quiet Small
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" secondary quiet small loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Quiet Small Loading' : 'Make Me Loading'}
+                <Button className="mr-32" secondary quiet small loading>
+                    Quiet Small Loading
                 </Button>
             </div>
             <div>
@@ -70,32 +68,32 @@ export const Example = () => {
                     Primary
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" negative primary loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Primary Loading' : 'Make Me Loading'}
+                <Button className="mr-32" negative primary loading>
+                    Primary Loading
                 </Button>
                 {/* @ts-ignore */}
                 <Button className="mr-32" primary negative small>
                     Primary Small
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" primary negative small loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Primary Small Loading' : 'Make Me Loading'}
+                <Button className="mr-32" primary negative small loading>
+                    Primary Small Loading
                 </Button>
                 {/* @ts-ignore */}
                 <Button className="mr-32" negative quiet>
                     Quiet
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" negative quiet loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Quiet Loading' : 'Make Me Loading'}
+                <Button className="mr-32" negative quiet loading>
+                    Quiet Loading
                 </Button>
                 {/* @ts-ignore */}
                 <Button className="mr-32" negative quiet small>
                     Quiet Small
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" negative quiet small loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Quiet Small Loading' : 'Make Me Loading'}
+                <Button className="mr-32" negative quiet small loading>
+                    Quiet Small Loading
                 </Button>
             </div>
             <div>
@@ -105,16 +103,16 @@ export const Example = () => {
                     Simple
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" utility loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Loading' : 'Make Me Loading'}
+                <Button className="mr-32" utility loading>
+                    Loading
                 </Button>
                 {/* @ts-ignore */}
                 <Button className="mr-32" utility small>
                     Small
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" utility small loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Small Loading' : 'Make Me Loading'}
+                <Button className="mr-32" utility small loading>
+                    Small Loading
                 </Button>
             </div>
             <div>
@@ -124,8 +122,8 @@ export const Example = () => {
                     Simple
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" pill loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Loading' : 'Make Me Loading'}
+                <Button className="mr-32" pill loading>
+                    Loading
                 </Button>
             </div>
             <div>
@@ -135,8 +133,8 @@ export const Example = () => {
                     Simple
                 </Button>
                 {/* @ts-ignore */}
-                <Button className="mr-32" href="http://google.com" link loading={loading} onClick={() => setLoading(!loading)}>
-                    {loading ? 'Loading' : 'Make Me Loading'}
+                <Button className="mr-32" href="http://google.com" link small>
+                    Loading
                 </Button>
             </div>
         </div>
