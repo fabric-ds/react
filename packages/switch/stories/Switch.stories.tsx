@@ -7,22 +7,41 @@ export default metadata;
 export const DefaultDisabled = () => {
     const [value, setValue] = useState(false);
 
-    return <Switch onClick={(value) => setValue(value)} value={value} />;
+    return (
+        <Switch
+            aria-label="Toggle me"
+            onClick={() => setValue(!value)}
+            value={value}
+        />
+    );
 };
 
 export const DefaultEnabled = () => {
     const [value, setValue] = useState(true);
 
-    return <Switch onClick={(value) => setValue(value)} value={value} />;
+    return (
+        <Switch
+            aria-label="Toggle me"
+            onClick={() => setValue(!value)}
+            value={value}
+        />
+    );
 };
 
 export const CustomClickHandler = () => {
     const [value, setValue] = useState(false);
 
-    const handleClick = (value) => {
-        setValue(value);
-        alert('Your own custom click handler');
+    const handleClick = () => {
+        const newValue = !value;
+        setValue(newValue);
+        alert(`Custom click handler: Switch ${newValue ? 'enabled' : 'disabled'}.`);
     };
 
-    return <Switch onClick={handleClick} value={value} />;
+    return (
+        <Switch
+            aria-label="I have a custom click handler"
+            onClick={handleClick}
+            value={value}
+        />
+    );
 };
