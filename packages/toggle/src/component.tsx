@@ -39,30 +39,29 @@ export function Toggle(props: ToggleProps) {
     const isControlled = !!props.selected || !!props.checked;
 
     return (
-        <>
-            {props.type === 'radio-button' && props.title && (
+        <fieldset
+            role={isRadioGroup ? 'radiogroup' : undefined}
+            aria-invalid={isRadioGroup ? isInvalid : undefined}
+            aria-errormessage={isRadioGroup && isInvalid ? helpId : undefined}
+            aria-describedby={helpId}
+            className={classNames(props.className, {
+                'flex-col': true,
+                'segment-control': props.type === 'radio-button',
+                'segment-control--justified': props.equalWidth,
+                'segment-control--small': props.small,
+                'input-toggle':
+                    props.type === 'radio' || props.type === 'checkbox',
+            })}
+        >
+            {props.title && (
                 <Title id={id} title={props.title} isInvalid={isInvalid} />
             )}
-            <fieldset
-                role={isRadioGroup ? 'radiogroup' : undefined}
-                aria-invalid={isRadioGroup ? isInvalid : undefined}
-                aria-errormessage={
-                    isRadioGroup && isInvalid ? helpId : undefined
-                }
-                aria-describedby={
-                    isRadioGroup && !isInvalid ? helpId : undefined
-                }
-                className={classNames(props.className, {
-                    'segment-control': props.type === 'radio-button',
-                    'segment-control--justified': props.equalWidth,
-                    'segment-control--small': props.small,
-                    'input-toggle':
-                        props.type === 'radio' || props.type === 'checkbox',
+            <div
+                className={classNames({
+                    'flex flex-row segment-control-options':
+                        props.type === 'radio-button',
                 })}
             >
-                {props.type !== 'radio-button' && props.title && (
-                    <Title id={id} title={props.title} isInvalid={isInvalid} />
-                )}
                 {!props.options && props.label ? (
                     <Item
                         controlled={isControlled}
@@ -97,22 +96,15 @@ export function Toggle(props: ToggleProps) {
                         />
                     ))
                 )}
+            </div>
 
-                {props.type !== 'radio-button' && props.helpText && (
-                    <HelpText
-                        helpId={helpId}
-                        helpText={props.helpText}
-                        isInvalid={isInvalid}
-                    />
-                )}
-            </fieldset>
-            {props.type === 'radio-button' && props.helpText && (
+            {props.helpText && (
                 <HelpText
                     helpId={helpId}
                     helpText={props.helpText}
                     isInvalid={isInvalid}
                 />
             )}
-        </>
+        </fieldset>
     );
 }
