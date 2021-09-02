@@ -1,9 +1,11 @@
-import React from 'react';
-import { useLayoutEffect } from '@finn-no/fabric-react-utils';
-import { useSpring, animated } from 'react-spring';
 import { classNames } from '@chbphone55/classnames';
 import { slider as classes } from '@finn-no/fabric-component-classes';
+import { useLayoutEffect } from '@finn-no/fabric-react-utils';
+import React from 'react';
+import { animated, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
+import { RegularSliderProps } from './props';
+import useInnerWidth from './useInnerWidth';
 import {
     bigStep,
     clamp,
@@ -12,8 +14,6 @@ import {
     ratioToValue,
     valueToRatio,
 } from './utils';
-import useInnerWidth from './useInnerWidth';
-import { RegularSliderProps } from './props';
 
 const RegularSlider = ({
     className,
@@ -122,7 +122,6 @@ const RegularSlider = ({
             let dragValue = ratioToValue(ratio, min, max, step, scale);
 
             if (dragValue !== internvalValue.current) {
-                internvalValue.current = dragValue;
                 if (!isDragging) {
                     onChange(dragValue);
                 }

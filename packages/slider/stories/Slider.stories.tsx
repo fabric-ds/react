@@ -8,7 +8,6 @@ export default metadata;
 export const Regular = () => {
     const [value, setValue] = React.useState(0);
     const [output, setOutput] = React.useState(value);
-
     return (
         <div>
             <output>{output}</output>
@@ -48,7 +47,6 @@ export const RegularScaled = () => {
     ]);
     const [value, setValue] = React.useState(250);
     const [output, setOutput] = React.useState(value);
-
     return (
         <div>
             <output>
