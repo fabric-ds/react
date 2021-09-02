@@ -1,58 +1,19 @@
-import * as React from 'react';
-import { useLayoutEffect } from '@finn-no/fabric-react-utils';
-import { useSpring, animated } from 'react-spring';
 import { classNames } from '@chbphone55/classnames';
 import { slider as classes } from '@finn-no/fabric-component-classes';
+import { useLayoutEffect } from '@finn-no/fabric-react-utils';
+import React from 'react';
+import { animated, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
+import { RegularSliderProps } from './props';
+import useInnerWidth from './useInnerWidth';
 import {
+    bigStep,
     clamp,
     nextValue,
     prevValue,
     ratioToValue,
     valueToRatio,
-    Scale,
 } from './utils';
-import useInnerWidth from './useInnerWidth';
-
-export type RegularSliderProps = {
-    /** String value that labels the slider. */
-    'aria-label'?: string;
-
-    /** Identifies the element that labels the slider. */
-    'aria-labelledby'?: string;
-
-    /**  Human readable text alternative for the value. */
-    'aria-valuetext'?: string;
-
-    /** Additional CSS class for the container. */
-    className?: string;
-
-    /** Whether the slider is disabled. */
-    disabled?: boolean;
-
-    /** Handler that is called every time the value of the slider changes. */
-    onInput?: (value: number) => void;
-
-    /** Handler that is called when the value of the slider has settled. */
-    onChange?: (value: number) => void;
-
-    /** The greatest value in the range of permitted values. */
-    max?: number;
-
-    /** The lowest value in the range of permitted values. */
-    min?: number;
-
-    /** A d3-scale object for non linear slider scales.
-     * @see d3-scale repository https://github.com/d3/d3-scale
-     */
-    scale?: Scale;
-
-    /** Specifies the value granularity. */
-    step?: number;
-
-    /** The current value. */
-    value: number;
-};
 
 const RegularSlider = ({
     className,
@@ -90,13 +51,24 @@ const RegularSlider = ({
             case 'ArrowLeft':
             case 'ArrowDown':
             case 'PageDown':
-                newValue = prevValue(value, step, scale);
+                newValue = prevValue(
+                    value,
+                    event.key === 'PageDown'
+                        ? bigStep(value, step, min, max, scale)
+                        : step,
+                    scale,
+                );
                 break;
-
             case 'ArrowUp':
             case 'ArrowRight':
             case 'PageUp':
-                newValue = nextValue(value, step, scale);
+                newValue = nextValue(
+                    value,
+                    event.key === 'PageUp'
+                        ? bigStep(value, step, min, max, scale)
+                        : step,
+                    scale,
+                );
                 break;
             case 'Home':
                 newValue = min;
@@ -150,7 +122,9 @@ const RegularSlider = ({
             let dragValue = ratioToValue(ratio, min, max, step, scale);
 
             if (dragValue !== internvalValue.current) {
-                internvalValue.current = dragValue;
+                if (!isDragging) {
+                    onChange(dragValue);
+                }
                 onInput(dragValue);
             }
 
@@ -204,9 +178,7 @@ const RegularSlider = ({
                 aria-labelledby={props['aria-labelledby']}
                 aria-valuemax={max}
                 aria-valuemin={min}
-                aria-valuenow={spring.ratio.interpolate((ratio) =>
-                    ratioToValue(ratio, min, max, step, scale),
-                )}
+                aria-valuenow={value}
                 aria-valuetext={props['aria-valuetext']}
                 className={classNames({
                     [classes.thumbDisabled]: disabled,

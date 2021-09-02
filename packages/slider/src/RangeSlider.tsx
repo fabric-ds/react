@@ -1,58 +1,19 @@
-import * as React from 'react';
-import { useLayoutEffect } from '@finn-no/fabric-react-utils';
-import { slider as classes } from '@finn-no/fabric-component-classes';
+import React from 'react';
 import { classNames } from '@chbphone55/classnames';
+import { slider as classes } from '@finn-no/fabric-component-classes';
+import { useLayoutEffect } from '@finn-no/fabric-react-utils';
 import { animated, interpolate, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
+import { RangeSliderProps } from './props';
 import useInnerWidth from './useInnerWidth';
 import {
+    bigStep,
     clamp,
     nextValue,
     prevValue,
     ratioToValue,
-    Scale,
     valueToRatio,
 } from './utils';
-
-export type RangeSliderProps = {
-    /** String value that labels the slider. */
-    'aria-label'?: [string, string];
-
-    /** Identifies the element that labels the slider. */
-    'aria-labelledby'?: [string, string];
-
-    /** Human readable text alternative for the value. */
-    'aria-valuetext'?: [string, string];
-
-    /** Additional CSS class for the container. */
-    className?: string;
-
-    /** Whether the slider is disabled. */
-    disabled?: boolean;
-
-    /** Handler that is called every time the value of the slider changes. */
-    onInput?: (value: [number, number]) => void;
-
-    /** Handler that is called when the value of the slider has settled. */
-    onChange?: (value: [number, number]) => void;
-
-    /** The greatest value in the range of permitted values. */
-    max?: number;
-
-    /** The lowest value in the range of permitted values. */
-    min?: number;
-
-    /** A d3-scale object for non linear slider scales.
-     * @see d3-scale repository https://github.com/d3/d3-scale
-     */
-    scale?: Scale;
-
-    /** Specifies the value granularity. */
-    step?: number;
-
-    /** The current value */
-    value: [number, number];
-};
 
 enum Handle {
     Lower = 0,
@@ -102,13 +63,25 @@ const RangeSlider = ({
             case 'ArrowLeft':
             case 'ArrowDown':
             case 'PageDown':
-                newValue = prevValue(oldValue, step, scale);
+                newValue = prevValue(
+                    oldValue,
+                    event.key === 'PageDown'
+                        ? bigStep(oldValue, step, min, max, scale)
+                        : step,
+                    scale,
+                );
                 break;
 
             case 'ArrowUp':
             case 'ArrowRight':
             case 'PageUp':
-                newValue = nextValue(oldValue, step, scale);
+                newValue = nextValue(
+                    oldValue,
+                    event.key === 'PageUp'
+                        ? bigStep(oldValue, step, min, max, scale)
+                        : step,
+                    scale,
+                );
                 break;
             case 'Home':
                 newValue = min;
@@ -208,6 +181,13 @@ const RangeSlider = ({
 
             if (dragValue !== internalValue.current[memo.handle]) {
                 internalValue.current[memo.handle] = dragValue;
+
+                if (!isDragging) {
+                    onChange(
+                        internalValue.current.concat() as [number, number],
+                    );
+                }
+
                 onInput(internalValue.current.concat() as [number, number]);
             }
 
@@ -261,14 +241,15 @@ const RangeSlider = ({
             />
             <animated.div
                 aria-disabled={disabled}
-                aria-label={props['aria-label']?.[Handle.Lower]}
+                aria-label={
+                    props['aria-label']?.[Handle.Lower] ??
+                    (props['aria-labelledby'] ? undefined : 'Fra')
+                }
                 aria-labelledby={props['aria-labelledby']?.[Handle.Lower]}
                 // the lower handle is limited by the upper handle
                 aria-valuemax={values[Handle.Upper]}
                 aria-valuemin={min}
-                aria-valuenow={spring.ratioLower.interpolate((ratio) =>
-                    ratioToValue(ratio, min, max, step, scale),
-                )}
+                aria-valuenow={values[Handle.Lower]}
                 aria-valuetext={props['aria-valuetext']?.[Handle.Lower]}
                 className={classNames({
                     [classes.thumbDisabled]: disabled,
@@ -302,14 +283,15 @@ const RangeSlider = ({
             </animated.div>
             <animated.div
                 aria-disabled={disabled}
-                aria-label={props['aria-label']?.[Handle.Upper]}
+                aria-label={
+                    props['aria-label']?.[Handle.Upper] ??
+                    (props['aria-labelledby'] ? undefined : 'Til')
+                }
                 aria-labelledby={props['aria-labelledby']?.[Handle.Upper]}
                 aria-valuemax={max}
                 // the upper handle is limited by the lower handle
                 aria-valuemin={values[Handle.Lower]}
-                aria-valuenow={spring.ratioUpper.interpolate((ratio) =>
-                    ratioToValue(ratio, min, max, step, scale),
-                )}
+                aria-valuenow={values[Handle.Upper]}
                 aria-valuetext={props['aria-valuetext']?.[Handle.Upper]}
                 className={classNames({
                     [classes.thumbDisabled]: disabled,
