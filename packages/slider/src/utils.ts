@@ -1,9 +1,4 @@
-// a d3 scale like object.
-export interface Scale {
-    (value: number): number;
-    invertExtent(value: number): [number, number];
-    thresholds(): number[];
-}
+import { Scale } from './props';
 
 /**
  * Restricts the value to the given range.
@@ -34,31 +29,26 @@ export function ratioToValue(
     step: number,
     scale?: Scale,
 ): number {
-    if (scale) {
-        return scale(ratio);
-    }
+    if (scale) return scale(ratio);
 
     let value = (max - min) * ratio;
-
     value = Math.round(value / step) * step + min;
+
     return clamp(min, value, max);
 }
 
 export function nextValue(value: number, step: number, scale?: Scale): number {
-    if (!scale) {
-        return value + step;
-    }
+    if (!scale) return value + step;
 
     const range = scale.range();
     const index = range.indexOf(value);
     const next = Math.min(range.length - 1, index + step);
+
     return range[next];
 }
 
 export function prevValue(value: number, step: number, scale?: Scale): number {
-    if (!scale) {
-        return value - step;
-    }
+    if (!scale) return value - step;
 
     const range = scale.range();
     const index = range.indexOf(value);
@@ -66,15 +56,32 @@ export function prevValue(value: number, step: number, scale?: Scale): number {
     return range[prev];
 }
 
-export function bigStep(value: number, step: number, min: number, max: number, scale?: Scale): number {
-    // Included value in the parameter definition for futureproofing, in case we want to tailor the step increments based on where in the range it is.
-
+// Included value in the parameter definition for futureproofing, in case we want to tailor the step increments based on where in the range it is.
+export function bigStep(
+    value: number,
+    step: number,
+    min: number,
+    max: number,
+    scale?: Scale,
+): number {
     const minFactor = 2;
     const maxFactor = 20;
 
     if (!scale) {
-        return step * Math.max(minFactor, Math.min(maxFactor, Math.ceil((max - min) / 10 / step)));
+        return (
+            step *
+            Math.max(
+                minFactor,
+                Math.min(maxFactor, Math.ceil((max - min) / 10 / step)),
+            )
+        );
     }
 
-    return step * Math.max(minFactor, Math.min(maxFactor, Math.ceil(scale.range().length / 10 / step)));
+    return (
+        step *
+        Math.max(
+            minFactor,
+            Math.min(maxFactor, Math.ceil(scale.range().length / 10 / step)),
+        )
+    );
 }

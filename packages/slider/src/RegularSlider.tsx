@@ -11,49 +11,9 @@ import {
     prevValue,
     ratioToValue,
     valueToRatio,
-    Scale,
 } from './utils';
 import useInnerWidth from './useInnerWidth';
-
-export type RegularSliderProps = {
-    /** String value that labels the slider. */
-    'aria-label'?: string;
-
-    /** Identifies the element that labels the slider. */
-    'aria-labelledby'?: string;
-
-    /**  Human readable text alternative for the value. */
-    'aria-valuetext'?: string;
-
-    /** Additional CSS class for the container. */
-    className?: string;
-
-    /** Whether the slider is disabled. */
-    disabled?: boolean;
-
-    /** Handler that is called every time the value of the slider changes. */
-    onInput?: (value: number) => void;
-
-    /** Handler that is called when the value of the slider has settled. */
-    onChange?: (value: number) => void;
-
-    /** The greatest value in the range of permitted values. */
-    max?: number;
-
-    /** The lowest value in the range of permitted values. */
-    min?: number;
-
-    /** A d3-scale object for non linear slider scales.
-     * @see d3-scale repository https://github.com/d3/d3-scale
-     */
-    scale?: Scale;
-
-    /** Specifies the value granularity. */
-    step?: number;
-
-    /** The current value. */
-    value: number;
-};
+import { RegularSliderProps } from './props';
 
 const RegularSlider = ({
     className,
@@ -93,18 +53,21 @@ const RegularSlider = ({
             case 'PageDown':
                 newValue = prevValue(
                     value,
-                    event.key === 'PageDown' ? bigStep(value, step, min, max, scale) : step,
-                    scale
+                    event.key === 'PageDown'
+                        ? bigStep(value, step, min, max, scale)
+                        : step,
+                    scale,
                 );
                 break;
-
             case 'ArrowUp':
             case 'ArrowRight':
             case 'PageUp':
                 newValue = nextValue(
                     value,
-                    event.key === 'PageUp' ? bigStep(value, step, min, max, scale) : step,
-                    scale
+                    event.key === 'PageUp'
+                        ? bigStep(value, step, min, max, scale)
+                        : step,
+                    scale,
                 );
                 break;
             case 'Home':
@@ -160,6 +123,9 @@ const RegularSlider = ({
 
             if (dragValue !== internvalValue.current) {
                 internvalValue.current = dragValue;
+                if (!isDragging) {
+                    onChange(dragValue);
+                }
                 onInput(dragValue);
             }
 
