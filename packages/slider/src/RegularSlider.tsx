@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useLayoutEffect } from '@finn-no/fabric-react-utils';
 import { useSpring, animated } from 'react-spring';
 import { classNames } from '@chbphone55/classnames';

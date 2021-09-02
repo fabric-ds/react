@@ -181,6 +181,13 @@ const RangeSlider = ({
 
             if (dragValue !== internalValue.current[memo.handle]) {
                 internalValue.current[memo.handle] = dragValue;
+
+                if (!isDragging) {
+                    onChange(
+                        internalValue.current.concat() as [number, number],
+                    );
+                }
+
                 onInput(internalValue.current.concat() as [number, number]);
             }
 
