@@ -53,6 +53,7 @@ export const Button = React.forwardRef(
                 )}
                 {props.loading ? (
                     <span
+                        className="sr-only"
                         role="progressbar"
                         aria-valuenow={0}
                         aria-valuetext="Laster..."
