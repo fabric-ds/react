@@ -74,6 +74,18 @@ export const WithTitle = () => {
     );
 };
 
+export const Optional = () => {
+    return (
+        <Toggle
+            optional
+            type="checkbox"
+            title="Companies"
+            options={options}
+            onChange={(selected) => console.log(selected)}
+        />
+    );
+};
+
 export const HelpText = () => {
     return (
         <Toggle
