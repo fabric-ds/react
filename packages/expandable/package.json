@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@finn-no/fabric-component-classes": "^0.0.27"
+    "@finn-no/fabric-component-classes": "^0.0.27",
+    "element-collapse": "^0.9.1"
   },
   "peerDependencies": {
     "react": "^17.0.0"

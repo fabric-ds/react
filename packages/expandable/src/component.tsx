@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { classNames } from '@chbphone55/classnames';
+import { expand, collapse } from 'element-collapse';
 import {
     buttonReset,
     box as boxClasses,
@@ -43,6 +44,7 @@ const setup = ({
 });
 
 export function Expandable(props: ExpandableProps) {
+    const boxRef = useRef(null);
     const { children, expanded = false, onChange, ...rest } = props;
     const [stateExpanded, setStateExpanded] = React.useState(expanded);
     const {
@@ -58,6 +60,13 @@ export function Expandable(props: ExpandableProps) {
     const toggleExpandable = (state) => {
         setStateExpanded(!state);
         if (onChange) onChange(!state);
+
+        if (!boxRef.current || !props.animated) return;
+        if (!state) {
+            expand(boxRef.current);
+        } else {
+            collapse(boxRef.current);
+        }
     };
 
     return (
@@ -88,13 +97,15 @@ export function Expandable(props: ExpandableProps) {
                     </div>
                 )}
             </button>
-            {stateExpanded && (
-                <div>
-                    <div className="overflow-hidden">
-                        <div className={contentClasses}>{children}</div>
-                    </div>
-                </div>
-            )}
+            <div
+                ref={boxRef}
+                className={classNames({
+                    'overflow-hidden': true,
+                    'h-0': !stateExpanded,
+                })}
+            >
+                <div className={contentClasses}>{children}</div>
+            </div>
         </div>
     );
 }
