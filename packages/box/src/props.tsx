@@ -1,7 +1,9 @@
-import * as React from 'react';
-
+import React from 'react';
 export interface BoxProps {
-    children: React.ReactNode;
+    /**
+     * Expand element children
+     */
+    children: JSX.Element | JSX.Element[];
 
     /**
      * Additional classes to include
@@ -16,7 +18,9 @@ export interface BoxProps {
     /**
      * Action to be called when the component is clicked
      */
-    onClick?: (e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent) => void;
+    onClick?: (
+        e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent,
+    ) => void;
 
     /**
      * Allows customization of the underlying HTML element
@@ -53,3 +57,23 @@ export interface BoxProps {
      */
     neutral?: boolean;
 }
+
+export type ClickableProps = {
+    /**
+     * Clickable element children
+     */
+    children: JSX.Element | JSX.Element[] | string;
+
+    /**
+     * Redirect to url on click
+     * If passed, clickable renders as an anchor tag allowing you to pass properties such as target, rel, etc.
+     */
+    href?: string;
+
+    /**
+     * Click handler
+     * If passed, clickable renders as a button with a click event
+     */
+    onClick?: () => void;
+} & Partial<Omit<HTMLAnchorElement, 'children'>> &
+    Partial<Omit<HTMLButtonElement, 'children'>>;

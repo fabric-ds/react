@@ -67,3 +67,11 @@ export const NoChevron = () => {
         </Expandable>
     );
 };
+
+export const Animated = () => {
+    return (
+        <Expandable title="Animated box" box info animated>
+            <h1>I am expandable</h1>
+        </Expandable>
+    );
+};

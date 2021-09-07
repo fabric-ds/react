@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Box } from '../src';
+import React from 'react';
+import { Box, Clickable } from '../src';
 
 const metadata = { title: 'Layout/Box' };
 export default metadata;
@@ -34,9 +34,29 @@ export const Neutral = () => (
     </Box>
 );
 
-export const Clickable = () => (
-    <Box info clickable onClick={() => alert(`You clicked me!`)}>
-        <h1>Hover over me, i'm clickable</h1>
+export const ClickableButton = () => (
+    <Box info clickable>
+        <h1>
+            <Clickable className="font-bold" onClick={() => alert('hey')}>
+                Clickable example
+            </Clickable>
+        </h1>
+        <p>Other contents will go here.</p>
+    </Box>
+);
+
+export const ClickableAnchor = () => (
+    <Box info clickable>
+        <h1>
+            <Clickable
+                className="font-bold text-gray-700 hover:no-underline"
+                href="https://finn.no"
+                target="_blank"
+            >
+                Clickable example
+            </Clickable>
+        </h1>
+        <p>Other contents will go here.</p>
     </Box>
 );
 

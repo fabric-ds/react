@@ -1,11 +1,11 @@
-import { Box } from '../src';
+import { Box, Clickable } from '../src';
 import packageData from '../package.json';
 
 # Box
 
 Box is a layout component used for separating content areas on a page.
 
-<PackageInfo packageData={packageData} componentNames={['Box']} />
+<PackageInfo packageData={packageData} componentNames={['Box', 'Clickable']} />
 
 ## Visual Options
 
@@ -36,11 +36,32 @@ Box is a layout component used for separating content areas on a page.
 </Box>
 ```
 
-### Clickable
+### Clickable (using button)
 
 ```jsx example
 <Box info clickable>
-    <h1>Clickable example</h1>
+    <h1>
+        <Clickable className="font-bold" onClick={() => alert('hey')}>
+            Clickable example
+        </Clickable>
+    </h1>
+    <p>Box contents go here.</p>
+</Box>
+```
+
+### Clickable (using anchor)
+
+```jsx example
+<Box info clickable>
+    <h1>
+        <Clickable
+            className="font-bold text-gray-700 hover:no-underline"
+            href="https://finn.no"
+            target="_blank"
+        >
+            Clickable example
+        </Clickable>
+    </h1>
     <p>Box contents go here.</p>
 </Box>
 ```
@@ -57,5 +78,11 @@ Box is a layout component used for separating content areas on a page.
 ## Props
 
 ```props packages/box/src/component.tsx
+
+```
+
+## Clickable props
+
+```props packages/box/src/clickable.tsx
 
 ```

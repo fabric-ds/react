@@ -62,4 +62,10 @@ export type ExpandableProps = {
      * @default true
      */
     chevron?: boolean;
+
+    /**
+     * Animate open and close
+     * @default false
+     */
+    animated?: boolean;
 };

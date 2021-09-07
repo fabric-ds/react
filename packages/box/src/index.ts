@@ -1,2 +1,3 @@
 export { Box } from './component';
-export type { BoxProps } from './props';
+export { Clickable } from './clickable';
+export type { BoxProps, ClickableProps } from './props';
