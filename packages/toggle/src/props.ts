@@ -65,6 +65,12 @@ export interface ToggleProps {
     small?: boolean;
 
     /**
+     * Whether the toggle is optional
+     * Appends (valgfritt) to the end of the title for indication
+     */
+    optional?: boolean;
+
+    /**
      * Will make each radio-button equal width
      */
     equalWidth?: boolean;
