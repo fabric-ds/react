@@ -1,7 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 export interface BoxProps {
-    children: React.ReactNode;
+    /**
+     * Expand element children
+     */
+    children: JSX.Element | JSX.Element[];
 
     /**
      * Additional classes to include
@@ -16,7 +19,9 @@ export interface BoxProps {
     /**
      * Action to be called when the component is clicked
      */
-    onClick?: (e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent) => void;
+    onClick?: (
+        e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent,
+    ) => void;
 
     /**
      * Allows customization of the underlying HTML element
