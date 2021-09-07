@@ -53,6 +53,18 @@ export const WithTitle = () => {
     );
 };
 
+export const Optional = () => {
+    return (
+        <Toggle
+            optional
+            type="radio-button"
+            title="Favorite color"
+            options={options}
+            onChange={(selected) => console.log(selected)}
+        />
+    );
+};
+
 export const HelpText = () => {
     return (
         <Toggle

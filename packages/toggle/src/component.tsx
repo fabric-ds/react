@@ -4,7 +4,7 @@ import { ToggleEntry, ToggleProps } from './props';
 import { classNames } from '@chbphone55/classnames';
 import { Item } from './item';
 
-function Title({ id, isInvalid, title }) {
+function Title({ id, isInvalid, title, optional }) {
     return (
         <legend
             id={`${id}__title`}
@@ -13,6 +13,12 @@ function Title({ id, isInvalid, title }) {
             })}
         >
             {title}
+            {optional && (
+                <span className="pl-2 font-normal text-14 text-gray-500">
+                    {' '}
+                    (valgfritt)
+                </span>
+            )}
         </legend>
     );
 }
@@ -44,22 +50,23 @@ export function Toggle(props: ToggleProps) {
             aria-invalid={isRadioGroup ? isInvalid : undefined}
             aria-errormessage={isRadioGroup && isInvalid ? helpId : undefined}
             aria-describedby={helpId}
-            className={classNames(props.className, {
-                'flex-col': true,
-                'segment-control': props.type === 'radio-button',
-                'segment-control--justified': props.equalWidth,
-                'segment-control--small': props.small,
-                'input-toggle':
-                    props.type === 'radio' || props.type === 'checkbox',
-            })}
+            className="field"
         >
             {props.title && (
-                <Title id={id} title={props.title} isInvalid={isInvalid} />
+                <Title
+                    id={id}
+                    title={props.title}
+                    isInvalid={isInvalid}
+                    optional={props.optional}
+                />
             )}
             <div
-                className={classNames({
-                    'flex flex-row segment-control-options':
-                        props.type === 'radio-button',
+                className={classNames(props.className, {
+                    'segment-control': props.type === 'radio-button',
+                    'segment-control--justified': props.equalWidth,
+                    'segment-control--small': props.small,
+                    'input-toggle':
+                        props.type === 'radio' || props.type === 'checkbox',
                 })}
             >
                 {!props.options && props.label ? (
