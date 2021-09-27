@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
     useElementSizeObserver,
     useLayoutEffect,
-} from '@finn-no/fabric-react-utils';
+} from '@fabric-ds/react-utils';
 
 // By deducting the handle width we lock the handle to edges of the slider
 export default function useInnerWidth(

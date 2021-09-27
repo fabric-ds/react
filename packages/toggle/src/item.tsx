@@ -1,5 +1,5 @@
 import React from 'react';
-import { useId } from '@finn-no/fabric-react-utils';
+import { useId } from '@fabric-ds/react-utils';
 import { ToggleEntry } from './props';
 
 interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {

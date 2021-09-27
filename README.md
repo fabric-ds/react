@@ -1,6 +1,4 @@
-# [Fabric React](https://pages.github.schibsted.io/finn/fabric-react/)
-
-[![Build Status](https://travis.schibsted.io/finn/fabric-react.svg?token=c2i7RTPCstzjYPkxuoGG&branch=master)](https://travis.schibsted.io/finn/fabric-react)
+# Fabric React
 
 Monorepo for Fabric React.
 

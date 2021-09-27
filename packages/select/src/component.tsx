@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useId } from '@finn-no/fabric-react-utils';
+import { useId } from '@fabric-ds/react-utils';
 import { classNames } from '@chbphone55/classnames';
 import type { SelectProps } from './props';
 

@@ -125,7 +125,7 @@ const App = () => {
                         <footer className="mt-20 text-right">
                             <a
                                 className="u-d1"
-                                href="https://github.com/finn-no/fabric-react"
+                                href="https://github.com/fabric-ds/react"
                             >
                                 Github
                             </a>
