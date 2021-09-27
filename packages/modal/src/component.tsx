@@ -1,5 +1,5 @@
 import { classNames } from '@chbphone55/classnames';
-import { modal as c } from '@finn-no/fabric-component-classes';
+import { modal as c } from '@fabric-ds/component-classes';
 import React, { useEffect, useRef } from 'react';
 import { useId } from '@fabric-ds/react-utils';
 import FocusLock from 'react-focus-lock';

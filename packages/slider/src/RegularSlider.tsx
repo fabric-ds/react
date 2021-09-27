@@ -1,5 +1,5 @@
 import { classNames } from '@chbphone55/classnames';
-import { slider as classes } from '@finn-no/fabric-component-classes';
+import { slider as classes } from '@fabric-ds/component-classes';
 import { useLayoutEffect } from '@fabric-ds/react-utils';
 import React from 'react';
 import { animated, useSpring } from 'react-spring';

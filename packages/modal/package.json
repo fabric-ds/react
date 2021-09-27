@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@finn-no/fabric-component-classes": "^0.0.27",
+    "@fabric-ds/component-classes": "^0.0.31",
     "@fabric-ds/react-utils": "^0.2.6",
     "react-focus-lock": "^2.5.2",
     "scroll-doctor": "^0.9.1"
