@@ -1,5 +1,5 @@
 import React from 'react';
-import { card as c } from '@finn-no/fabric-component-classes';
+import { card as c } from '@fabric-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
 import { CardProps } from './props';
 

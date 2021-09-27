@@ -1,5 +1,5 @@
 {
-  "name": "@finn-no/fabric-react-expandable",
+  "name": "@fabric-ds/react-expandable",
   "license": "ISC",
   "version": "0.0.6",
   "type": "module",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@finn-no/fabric-component-classes": "^0.0.27",
+    "@fabric-ds/component-classes": "^0.0.31",
     "element-collapse": "^0.9.1"
   },
   "peerDependencies": {

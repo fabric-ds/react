@@ -1,5 +1,5 @@
 {
-  "name": "@finn-no/fabric-react-slider",
+  "name": "@fabric-ds/react-slider",
   "license": "SEE LICENSE IN LICENSE",
   "version": "0.0.5",
   "type": "module",
@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@finn-no/fabric-component-classes": "^0.0.27",
-    "@finn-no/fabric-react-utils": "^0.2.6",
+    "@fabric-ds/component-classes": "^0.0.31",
+    "@fabric-ds/react-utils": "^0.2.6",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^8.0.1"
   },

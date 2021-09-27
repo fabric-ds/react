@@ -1,5 +1,5 @@
 {
-  "name": "@finn-no/fabric-react-tabs",
+  "name": "@fabric-ds/react-tabs",
   "license": "SEE LICENSE IN LICENSE",
   "version": "0.2.7",
   "type": "module",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@finn-no/fabric-component-classes": "^0.0.27"
+    "@fabric-ds/component-classes": "^0.0.31"
   },
   "peerDependencies": {
     "react": "^17.0.0"

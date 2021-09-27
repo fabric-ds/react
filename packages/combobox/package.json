@@ -1,5 +1,5 @@
 {
-  "name": "@finn-no/fabric-react-combobox",
+  "name": "@fabric-ds/react-combobox",
   "license": "SEE LICENSE IN LICENSE",
   "version": "1.0.0",
   "type": "module",
@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@finn-no/fabric-react-textfield": "^0.2.8",
-    "@finn-no/fabric-react-utils": "^0.2.6"
+    "@fabric-ds/react-textfield": "^0.2.8",
+    "@fabric-ds/react-utils": "^0.2.6"
   },
   "peerDependencies": {
     "react": "^17.0.0"

@@ -1,5 +1,5 @@
 import { classNames } from '@chbphone55/classnames';
-import { useId } from '@finn-no/fabric-react-utils';
+import { useId } from '@fabric-ds/react-utils';
 import React, { forwardRef } from 'react';
 import { TextFieldProps } from './props';
 

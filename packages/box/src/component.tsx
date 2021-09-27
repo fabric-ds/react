@@ -1,5 +1,5 @@
 import { classNames } from '@chbphone55/classnames';
-import { box } from '@finn-no/fabric-component-classes';
+import { box } from '@fabric-ds/component-classes';
 import React from 'react';
 import type { BoxProps } from './props';
 
