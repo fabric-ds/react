@@ -1,7 +1,7 @@
 {
   "name": "@fabric-ds/react-slider",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "exports": "./dist/index.js",
   "module": "dist/index.es.js",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
     "@fabric-ds/component-classes": "^0.0.31",
-    "@fabric-ds/react-utils": "^0.2.6",
+    "@fabric-ds/react-utils": "^0.2.7",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^8.0.1"
   },
