@@ -13,4 +13,3 @@ export * from './packages/tabs/src';
 export * from './packages/textarea/src';
 export * from './packages/textfield/src';
 export * from './packages/toggle/src';
-export * from './packages/utils/src';

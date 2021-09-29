@@ -1,7 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
 import { modal as c } from '@fabric-ds/component-classes';
 import React, { useEffect, useRef } from 'react';
-import { useId } from '@fabric-ds/react-utils';
+import { useId } from '../../utils/src';
 import FocusLock from 'react-focus-lock';
 import { ModalProps } from './props';
 import { setup, teardown } from 'scroll-doctor';

@@ -1,4 +1,4 @@
-import { useLayoutEffect } from '@fabric-ds/react-utils';
+import { useLayoutEffect } from '../../utils/src';
 import React, { useEffect, useRef } from 'react';
 
 type Params = {

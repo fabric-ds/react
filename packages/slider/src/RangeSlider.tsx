@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { slider as classes } from '@fabric-ds/component-classes';
-import { useLayoutEffect } from '@fabric-ds/react-utils';
+import { useLayoutEffect } from '../../utils/src';
 import { animated, interpolate, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import { RangeSliderProps } from './props';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useId } from '@fabric-ds/react-utils';
+import { useId } from '../../utils/src';
 import { ToggleEntry, ToggleProps } from './props';
 import { classNames } from '@chbphone55/classnames';
 import { Item } from './item';
