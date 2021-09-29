@@ -7,8 +7,6 @@ import {
     Route,
 } from 'react-router-dom';
 
-import Nav from './components/Nav';
-import PackageInfo from './components/PackageInfo';
 import Code from './components/Code';
 import PropTable from './components/PropTable';
 
@@ -32,7 +30,6 @@ import Steps from '../../packages/steps/docs/Steps.mdx';
 import Card from '../../packages/card/docs/Card.mdx';
 
 const components = {
-    PackageInfo,
     code: Code,
     PropTable,
     pre: (props) => <div {...props} />,
@@ -50,7 +47,6 @@ const App = () => {
         <MDXProvider components={components}>
             <Router>
                 <div className="flex flex-col sm:h-full w-full md:h-screen md:flex-row">
-                    <Nav />
                     <div className="sm:p-0 flex-col justify-center w-full md:flex-row md:p-40 mx-auto">
                         <main className="page-container nav-offset">
                             <ReactSwitch>
