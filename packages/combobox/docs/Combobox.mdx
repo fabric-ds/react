@@ -1,5 +1,4 @@
 import { Combobox } from '../src';
-import packageData from '../package.json';
 
 # Combobox
 
@@ -11,25 +10,23 @@ necessarily have to come from that list. Don't think of it like a `<select/>`,
 but more of an input with some suggestions. You can, however, validate that the
 value comes from the list, that's up to your app.
 
-<PackageInfo packageData={packageData} componentNames={['Combobox']} />
-
 ## Example
 
 ```jsx example
 <Combobox
-    label="Choose a fruit"
-    options={[
-        { value: 'Apple' },
-        { value: 'Banana' },
-        { value: 'Orange' },
-        { value: 'Pineapple' },
-    ]}
+  label="Choose a fruit"
+  options={[
+    { value: 'Apple' },
+    { value: 'Banana' },
+    { value: 'Orange' },
+    { value: 'Pineapple' },
+  ]}
 />
 ```
 
 ## Migrating from Troika
 
--   You should no longer include or import any Troika React's combobox CSS.
+- You should no longer include or import any Troika React's combobox CSS.
 
 ### Highlight matched text segments
 
@@ -38,14 +35,14 @@ prop.
 
 ```jsx example
 <Combobox
-    matchTextSegments
-    label="Choose a fruit"
-    options={[
-        { value: 'Apple' },
-        { value: 'Banana' },
-        { value: 'Orange' },
-        { value: 'Pineapple' },
-    ]}
+  matchTextSegments
+  label="Choose a fruit"
+  options={[
+    { value: 'Apple' },
+    { value: 'Banana' },
+    { value: 'Orange' },
+    { value: 'Pineapple' },
+  ]}
 />
 ```
 
@@ -55,7 +52,7 @@ matches. You can style text matches however you'd like by overriding styles on
 
 ```css example
 [data-combobox-text-match] {
-    background: yellow;
+  background: yellow;
 }
 ```
 
@@ -67,19 +64,19 @@ The `value` is what gets sent back when selected.
 
 ```jsx example
 function Example() {
-    return (
-        <Combobox
-            matchTextSegments
-            label="Choose a fruit"
-            placeholder="Custom Option Rendering"
-            options={[
-                { value: 'Apple', label: '🍎 Apple' },
-                { value: 'Banana', label: '🍌 Banana' },
-                { value: 'Orange', label: '🍊 Orange' },
-                { value: 'Pineapple', label: '🍍 Pineapple' },
-            ]}
-        />
-    );
+  return (
+    <Combobox
+      matchTextSegments
+      label="Choose a fruit"
+      placeholder="Custom Option Rendering"
+      options={[
+        { value: 'Apple', label: '🍎 Apple' },
+        { value: 'Banana', label: '🍌 Banana' },
+        { value: 'Orange', label: '🍊 Orange' },
+        { value: 'Pineapple', label: '🍍 Pineapple' },
+      ]}
+    />
+  );
 }
 ```
 
@@ -90,9 +87,9 @@ implement any matching on your list (aside from highlighting the matched phrases
 in an option). Instead, you render an option for each result you want in the
 list. So your job is to:
 
--   Establish the search term state
--   Match the search to your list
--   Render an option for each match
+- Establish the search term state
+- Match the search to your list
+- Render an option for each match
 
 There is nothing special about managing state for a combobox, it's like managing
 state for any other list in your app. As the input changes, you figure out what
@@ -100,41 +97,41 @@ state you need, then render as many options as you want.
 
 ```jsx example
 function Example() {
-    const [searchTerm, setSearchTerm] = React.useState('');
-    const characters = useSWMatch(searchTerm);
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const characters = useSWMatch(searchTerm);
 
-    return (
-        <Combobox
-            matchTextSegments
-            label="Star Wars character"
-            onChange={(val) => setSearchTerm(val)}
-            onSelect={(val) => alert(val)}
-            options={characters}
-        />
-    );
+  return (
+    <Combobox
+      matchTextSegments
+      label="Star Wars character"
+      onChange={(val) => setSearchTerm(val)}
+      onSelect={(val) => alert(val)}
+      options={characters}
+    />
+  );
 }
 
 // Note that this is a simplified example querying an API on every change to the input field
 // Normally you would have some sort of throttling/debouncing and request cancellation
 // to reduce the load on both the client and the server.
 function useSWMatch(term) {
-    const [characters, setCharacters] = React.useState([]);
+  const [characters, setCharacters] = React.useState([]);
 
-    React.useEffect(() => {
-        if (!term.trim()) return;
-        let isFresh = true;
+  React.useEffect(() => {
+    if (!term.trim()) return;
+    let isFresh = true;
 
-        fetch('https://swapi.dev/api/people/?search=' + term.trim())
-            .then((res) => res.json())
-            .then((res) => {
-                if (!isFresh) return;
-                setCharacters(res.results.map((c) => ({ value: c.name })));
-            });
+    fetch('https://swapi.dev/api/people/?search=' + term.trim())
+      .then((res) => res.json())
+      .then((res) => {
+        if (!isFresh) return;
+        setCharacters(res.results.map((c) => ({ value: c.name })));
+      });
 
-        return () => (isFresh = false);
-    }, [term]);
+    return () => (isFresh = false);
+  }, [term]);
 
-    return characters;
+  return characters;
 }
 ```
 
@@ -146,7 +143,7 @@ function useSWMatch(term) {
 
 ```ts
 export type ComboboxOption = {
-    value: string;
-    label?: string;
+  value: string;
+  label?: string;
 };
 ```

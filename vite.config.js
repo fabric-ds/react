@@ -4,21 +4,21 @@ import slug from 'remark-slug';
 import autoLinkHeadings from 'remark-autolink-headings';
 
 export default function config({ mode }) {
-    return {
-        base: '/react/',
-        plugins: [
-            reactRefresh(),
-            mdx({
-                remarkPlugins: [
-                    slug,
-                    autoLinkHeadings,
-                    require('./docs/src/plugins/jsxExample.cjs'),
-                    require('./docs/src/plugins/propTable.cjs'),
-                ],
-            }),
+  return {
+    base: '/react/',
+    plugins: [
+      reactRefresh(),
+      mdx({
+        remarkPlugins: [
+          slug,
+          autoLinkHeadings,
+          require('./docs/src/plugins/jsxExample.cjs'),
+          require('./docs/src/plugins/propTable.cjs'),
         ],
-        build: {
-            outDir: 'site',
-        },
-    };
+      }),
+    ],
+    build: {
+      outDir: 'site',
+    },
+  };
 }

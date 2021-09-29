@@ -1,12 +1,9 @@
 import { Expandable } from '../src';
-import packageData from '../package.json';
 
 # Expandable
 
 Expandable is a layout component used for creating expandable content areas on a
 page.
-
-<PackageInfo packageData={packageData} componentNames={['Expandable']} />
 
 ## Visual Options
 
@@ -14,7 +11,7 @@ page.
 
 ```jsx example
 <Expandable title="I am expandable">
-    <p>Expandable contents go here.</p>
+  <p>Expandable contents go here.</p>
 </Expandable>
 ```
 
@@ -22,7 +19,7 @@ page.
 
 ```jsx example
 <Expandable title="I am expandable" box>
-    <p>Expandable contents go here.</p>
+  <p>Expandable contents go here.</p>
 </Expandable>
 ```
 
@@ -30,7 +27,7 @@ page.
 
 ```jsx example
 <Expandable title="I am expandable" info box>
-    <p>Expandable contents go here.</p>
+  <p>Expandable contents go here.</p>
 </Expandable>
 ```
 
@@ -38,7 +35,7 @@ page.
 
 ```jsx example
 <Expandable title="I am expandable" info box animated>
-    <p>Expandable contents go here.</p>
+  <p>Expandable contents go here.</p>
 </Expandable>
 ```
 
@@ -46,8 +43,8 @@ page.
 
 ```jsx example
 <Expandable title="I am expandable" onChange={(state) => console.log(state)}>
-    <h1>onChange example</h1>
-    <p>Expandable contents go here.</p>
+  <h1>onChange example</h1>
+  <p>Expandable contents go here.</p>
 </Expandable>
 ```
 
@@ -58,7 +55,7 @@ prop.
 
 ```jsx example
 <Expandable title="I am initially..." expanded>
-    <p>...expanded</p>
+  <p>...expanded</p>
 </Expandable>
 ```
 
@@ -69,18 +66,18 @@ combination with the `expanded` prop
 
 ```jsx example
 function Example() {
-    const [open, setOpen] = React.useState(true);
-    return (
-        <Expandable
-            title="Expandable box"
-            box
-            info
-            expanded={open}
-            onChange={setOpen}
-        >
-            <p>I am expanded</p>
-        </Expandable>
-    );
+  const [open, setOpen] = React.useState(true);
+  return (
+    <Expandable
+      title="Expandable box"
+      box
+      info
+      expanded={open}
+      onChange={setOpen}
+    >
+      <p>I am expanded</p>
+    </Expandable>
+  );
 }
 ```
 

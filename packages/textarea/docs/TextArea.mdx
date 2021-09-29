@@ -1,11 +1,8 @@
 import { TextArea } from '../src';
-import packageData from '../package.json';
 
 # TextArea
 
 A multiline text input component.
-
-<PackageInfo packageData={packageData} componentNames={['TextArea']} />
 
 ## Example
 
@@ -15,8 +12,8 @@ A multiline text input component.
 
 ## Migrating from Troika
 
--   You should no longer include or import any Troika input CSS.
--   `error` has been deprecated. Use `invalid` instead.
+- You should no longer include or import any Troika input CSS.
+- `error` has been deprecated. Use `invalid` instead.
 
 ## Value
 
@@ -26,22 +23,19 @@ be provided using the `value` prop.
 
 ```jsx example
 function Example() {
-    let [value, setValue] = React.useState('Lorem ipsum');
+  let [value, setValue] = React.useState('Lorem ipsum');
 
-    return (
-        <div className="flex space-x-32">
-            <TextArea
-                label="Description (Uncontrolled)"
-                defaultValue="Lorem ipsum"
-            />
+  return (
+    <div className="flex space-x-32">
+      <TextArea label="Description (Uncontrolled)" defaultValue="Lorem ipsum" />
 
-            <TextArea
-                label="Description (Controlled)"
-                onChange={(event) => setValue(event.target.value)}
-                value={value}
-            />
-        </div>
-    );
+      <TextArea
+        label="Description (Controlled)"
+        onChange={(event) => setValue(event.target.value)}
+        value={value}
+      />
+    </div>
+  );
 }
 ```
 
@@ -101,8 +95,8 @@ use disabled on an element.
 
 ```jsx example
 <div className="flex flex-col y-space-32">
-    <TextArea label="Description" disabled value="Lorem ipsum dolor sit amet" />
-    <TextArea label="Description" disabled />
+  <TextArea label="Description" disabled value="Lorem ipsum dolor sit amet" />
+  <TextArea label="Description" disabled />
 </div>
 ```
 
@@ -116,12 +110,12 @@ for more information.
 
 ```jsx example
 <div className="flex flex-col y-space-32">
-    <TextArea
-        label="Description"
-        readOnly
-        defaultValue="Lorem ipsum dolor sit amet"
-    />
-    <TextArea label="Description" readOnly />
+  <TextArea
+    label="Description"
+    readOnly
+    defaultValue="Lorem ipsum dolor sit amet"
+  />
+  <TextArea label="Description" readOnly />
 </div>
 ```
 
@@ -139,9 +133,9 @@ show.
 
 ```jsx example
 <TextArea
-    label="Description"
-    maximumRows={3}
-    defaultValue={'Lorem\nipsum\ndolor\nsit\namet'}
+  label="Description"
+  maximumRows={3}
+  defaultValue={'Lorem\nipsum\ndolor\nsit\namet'}
 />
 ```
 

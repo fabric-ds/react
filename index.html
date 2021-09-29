@@ -1,16 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Fabric React</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-            href="https://assets.finn.no/pkg/@fabric-ds/css/v0/fabric.min.css"
-            rel="stylesheet"
-        />
-    </head>
-    <body>
-        <div id="root"></div>
-        <script type="module" src="./docs/src/Main.tsx"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fabric React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://assets.finn.no/pkg/@fabric-ds/css/v0/fabric.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://assets.finn.no/pkg/@fabric-ds/common/v1/template/index.js"
+      rel="modulepreload"
+    />
+    <link
+      href="https://assets.finn.no/pkg/@fabric-ds/common/v1/asset-links/index.js"
+      rel="modulepreload"
+    />
+  </head>
+  <body>
+    <f-docs-template>
+      <script data-for="sidebar" type="application/json">
+        {
+          "category": "React",
+          "items": [
+            {
+              "title": "Guide",
+              "open": true,
+              "items": [
+                {
+                  "title": "Getting Started",
+                  "href": "react#/getting-started"
+                }
+              ]
+            },
+            {
+              "title": "Buttons",
+              "open": true,
+              "items": [{ "title": "Button", "href": "react#/button" }]
+            },
+            {
+              "title": "Forms",
+              "open": true,
+              "items": [
+                { "title": "Toggle", "href": "react#/toggle" },
+                { "title": "Switch", "href": "react#/switch" },
+                {
+                  "title": "Combobox",
+                  "href": "react#/combobox"
+                },
+                { "title": "Select", "href": "react#/select" },
+                {
+                  "title": "Textfield",
+                  "href": "react#/textfield"
+                },
+                {
+                  "title": "Textarea",
+                  "href": "react#/textarea"
+                },
+                { "title": "slider", "href": "react#/slider" }
+              ]
+            },
+            {
+              "title": "Navigation",
+              "open": true,
+              "items": [
+                {
+                  "title": "Breadcrumbs",
+                  "href": "react#/breadcrumbs"
+                },
+                { "title": "Steps", "href": "react#/steps" },
+                { "title": "Tabs", "href": "react#/tabs" }
+              ]
+            },
+            {
+              "title": "Overlays",
+              "open": true,
+              "items": [{ "title": "Modal", "href": "react#/modal" }]
+            },
+            {
+              "title": "Layout",
+              "open": true,
+              "items": [
+                { "title": "Box", "href": "react#/box" },
+                { "title": "Card", "href": "react#/card" },
+                {
+                  "title": "Expandable",
+                  "href": "react#/expandable"
+                }
+              ]
+            }
+          ]
+        }
+      </script>
+      <main id="root" slot="content"></main>
+      <script data-for="footer" type="application/json">
+        {
+          "github": {
+            "name": "Github",
+            "href": "https://github.com/fabric-ds/elements"
+          },
+          "slack": {
+            "name": "#finn-fabric",
+            "href": "https://sch-chat.slack.com/archives/C01GYKPJVFT"
+          }
+        }
+      </script>
+    </f-docs-template>
+
+    <script type="module" src="./docs/src/Main.tsx"></script>
+    <script
+      src="https://assets.finn.no/pkg/@fabric-ds/common/v1/template/index.js"
+      type="module"
+    ></script>
+    <script
+      src="https://assets.finn.no/pkg/@fabric-ds/common/v1/asset-links/index.js"
+      type="module"
+    ></script>
+  </body>
 </html>

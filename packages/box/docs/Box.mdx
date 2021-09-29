@@ -1,11 +1,8 @@
 import { Box, Clickable } from '../src';
-import packageData from '../package.json';
 
 # Box
 
 Box is a layout component used for separating content areas on a page.
-
-<PackageInfo packageData={packageData} componentNames={['Box', 'Clickable']} />
 
 ## Visual Options
 
@@ -13,8 +10,8 @@ Box is a layout component used for separating content areas on a page.
 
 ```jsx example
 <Box>
-    <h1>Default example</h1>
-    <p>Box contents go here.</p>
+  <h1>Default example</h1>
+  <p>Box contents go here.</p>
 </Box>
 ```
 
@@ -22,8 +19,8 @@ Box is a layout component used for separating content areas on a page.
 
 ```jsx example
 <Box info>
-    <h1>Info example</h1>
-    <p>Box contents go here.</p>
+  <h1>Info example</h1>
+  <p>Box contents go here.</p>
 </Box>
 ```
 
@@ -31,8 +28,8 @@ Box is a layout component used for separating content areas on a page.
 
 ```jsx example
 <Box bordered>
-    <h1>Bordered example</h1>
-    <p>Box contents go here.</p>
+  <h1>Bordered example</h1>
+  <p>Box contents go here.</p>
 </Box>
 ```
 
@@ -40,12 +37,12 @@ Box is a layout component used for separating content areas on a page.
 
 ```jsx example
 <Box info clickable>
-    <h1>
-        <Clickable className="font-bold" onClick={() => alert('hey')}>
-            Clickable example
-        </Clickable>
-    </h1>
-    <p>Box contents go here.</p>
+  <h1>
+    <Clickable className="font-bold" onClick={() => alert('hey')}>
+      Clickable example
+    </Clickable>
+  </h1>
+  <p>Box contents go here.</p>
 </Box>
 ```
 
@@ -53,16 +50,16 @@ Box is a layout component used for separating content areas on a page.
 
 ```jsx example
 <Box info clickable>
-    <h1>
-        <Clickable
-            className="font-bold text-gray-700 hover:no-underline"
-            href="https://finn.no"
-            target="_blank"
-        >
-            Clickable example
-        </Clickable>
-    </h1>
-    <p>Box contents go here.</p>
+  <h1>
+    <Clickable
+      className="font-bold text-gray-700 hover:no-underline"
+      href="https://finn.no"
+      target="_blank"
+    >
+      Clickable example
+    </Clickable>
+  </h1>
+  <p>Box contents go here.</p>
 </Box>
 ```
 
@@ -70,8 +67,8 @@ Box is a layout component used for separating content areas on a page.
 
 ```jsx example
 <Box neutral>
-    <h1>Neutral example</h1>
-    <p>Box contents go here.</p>
+  <h1>Neutral example</h1>
+  <p>Box contents go here.</p>
 </Box>
 ```
 

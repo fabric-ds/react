@@ -2,13 +2,11 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { MDXProvider } from '@mdx-js/react';
 import {
-    HashRouter as Router,
-    Switch as ReactSwitch,
-    Route,
+  HashRouter as Router,
+  Switch as ReactSwitch,
+  Route,
 } from 'react-router-dom';
 
-import Nav from './components/Nav';
-import PackageInfo from './components/PackageInfo';
 import Code from './components/Code';
 import PropTable from './components/PropTable';
 
@@ -32,109 +30,93 @@ import Steps from '../../packages/steps/docs/Steps.mdx';
 import Card from '../../packages/card/docs/Card.mdx';
 
 const components = {
-    PackageInfo,
-    code: Code,
-    PropTable,
-    pre: (props) => <div {...props} />,
-    img: ({ style, ...props }) => (
-        // eslint-disable-next-line jsx-a11y/alt-text
-        <img {...props} style={{ maxWidth: '100%', ...style }} />
-    ),
-    h1: (props) => <h1 className="mb-20" {...props} />,
-    h2: (props) => <h2 className="mt-48 mb-20" {...props} />,
-    h3: (props) => <h3 className="mt-20 mb-20" {...props} />,
+  code: Code,
+  PropTable,
+  pre: (props) => <div {...props} />,
+  img: ({ style, ...props }) => (
+    // eslint-disable-next-line jsx-a11y/alt-text
+    <img {...props} style={{ maxWidth: '100%', ...style }} />
+  ),
+  h1: (props) => <h1 className="mb-20" {...props} />,
+  h2: (props) => <h2 className="mt-48 mb-20" {...props} />,
+  h3: (props) => <h3 className="mt-20 mb-20" {...props} />,
 };
 
 const App = () => {
-    return (
-        <MDXProvider components={components}>
-            <Router>
-                <div className="flex flex-col sm:h-full w-full md:h-screen md:flex-row">
-                    <Nav />
-                    <div className="sm:p-0 flex-col justify-center w-full md:flex-row md:p-40 mx-auto">
-                        <main className="page-container nav-offset">
-                            <ReactSwitch>
-                                <Route path="/" exact>
-                                    <Home />
-                                </Route>
-                                <Route path="/getting-started">
-                                    <GettingStarted />
-                                </Route>
+  return (
+    <MDXProvider components={components}>
+      <Router>
+        <ReactSwitch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/getting-started">
+            <GettingStarted />
+          </Route>
 
-                                <Route path="/modal">
-                                    <Modal />
-                                </Route>
+          <Route path="/modal">
+            <Modal />
+          </Route>
 
-                                <Route path="/breadcrumbs">
-                                    <Breadcrumbs />
-                                </Route>
+          <Route path="/breadcrumbs">
+            <Breadcrumbs />
+          </Route>
 
-                                <Route path="/textfield">
-                                    <TextField />
-                                </Route>
+          <Route path="/textfield">
+            <TextField />
+          </Route>
 
-                                <Route path="/select">
-                                    <Select />
-                                </Route>
+          <Route path="/select">
+            <Select />
+          </Route>
 
-                                <Route path="/tabs">
-                                    <Tabs />
-                                </Route>
+          <Route path="/tabs">
+            <Tabs />
+          </Route>
 
-                                <Route path="/textarea">
-                                    <TextArea />
-                                </Route>
+          <Route path="/textarea">
+            <TextArea />
+          </Route>
 
-                                <Route path="/slider">
-                                    <Slider />
-                                </Route>
+          <Route path="/slider">
+            <Slider />
+          </Route>
 
-                                <Route path="/combobox">
-                                    <Combobox />
-                                </Route>
+          <Route path="/combobox">
+            <Combobox />
+          </Route>
 
-                                <Route path="/button">
-                                    <Button />
-                                </Route>
+          <Route path="/button">
+            <Button />
+          </Route>
 
-                                <Route path="/box">
-                                    <Box />
-                                </Route>
+          <Route path="/box">
+            <Box />
+          </Route>
 
-                                <Route path="/expandable">
-                                    <Expandable />
-                                </Route>
+          <Route path="/expandable">
+            <Expandable />
+          </Route>
 
-                                <Route path="/switch">
-                                    <Switch />
-                                </Route>
+          <Route path="/switch">
+            <Switch />
+          </Route>
 
-                                <Route path="/toggle">
-                                    <Toggle />
-                                </Route>
+          <Route path="/toggle">
+            <Toggle />
+          </Route>
 
-                                <Route path="/steps">
-                                    <Steps />
-                                </Route>
+          <Route path="/steps">
+            <Steps />
+          </Route>
 
-                                <Route path="/Card">
-                                    <Card />
-                                </Route>
-                            </ReactSwitch>
-                        </main>
-                        <footer className="mt-20 text-right">
-                            <a
-                                className="u-d1"
-                                href="https://github.com/fabric-ds/react"
-                            >
-                                Github
-                            </a>
-                        </footer>
-                    </div>
-                </div>
-            </Router>
-        </MDXProvider>
-    );
+          <Route path="/Card">
+            <Card />
+          </Route>
+        </ReactSwitch>
+      </Router>
+    </MDXProvider>
+  );
 };
 
 render(App(), document.querySelector('#root'));

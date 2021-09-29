@@ -1,19 +1,16 @@
 import { Select } from '../src';
-import packageData from '../package.json';
 
 # Select
 
 A dropdown component for selecting a single value.
 
-<PackageInfo packageData={packageData} componentNames={['Select']} />
-
 ## Example
 
 ```jsx example
 <Select label="Berries">
-    <option value="s">Strawberries</option>
-    <option value="r">Raspberries</option>
-    <option value="c">Cloudberries</option>
+  <option value="s">Strawberries</option>
+  <option value="r">Raspberries</option>
+  <option value="c">Cloudberries</option>
 </Select>
 ```
 
@@ -24,27 +21,27 @@ Alternatively, a controlled value can be provided using the `value` prop.
 
 ```jsx example
 function Example() {
-    let [value, setValue] = React.useState('c');
+  let [value, setValue] = React.useState('c');
 
-    return (
-        <div className="flex flex-col space-y-32">
-            <Select label="Berries (uncontrolled)">
-                <option value="s">Strawberries</option>
-                <option value="r">Raspberries</option>
-                <option value="c">Cloudberries</option>
-            </Select>
+  return (
+    <div className="flex flex-col space-y-32">
+      <Select label="Berries (uncontrolled)">
+        <option value="s">Strawberries</option>
+        <option value="r">Raspberries</option>
+        <option value="c">Cloudberries</option>
+      </Select>
 
-            <Select
-                label="Berries (controlled)"
-                value={value}
-                onChange={(event) => setValue(event.target.value)}
-            >
-                <option value="s">Strawberries</option>
-                <option value="r">Raspberries</option>
-                <option value="c">Cloudberries</option>
-            </Select>
-        </div>
-    );
+      <Select
+        label="Berries (controlled)"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+      >
+        <option value="s">Strawberries</option>
+        <option value="r">Raspberries</option>
+        <option value="c">Cloudberries</option>
+      </Select>
+    </div>
+  );
 }
 ```
 
@@ -67,9 +64,9 @@ aren't enough. You can force the hint text to always display by setting the
 
 ```jsx example
 <Select label="Berries" hint="We'll make jam of your selection" always>
-    <option value="s">Strawberries</option>
-    <option value="r">Raspberries</option>
-    <option value="c">Cloudberries</option>
+  <option value="s">Strawberries</option>
+  <option value="r">Raspberries</option>
+  <option value="c">Cloudberries</option>
 </Select>
 ```
 
@@ -84,9 +81,9 @@ error.
 
 ```jsx example
 <Select label="Berries" invalid hint="The wrong selection gets you berried">
-    <option value="s">Strawberries</option>
-    <option value="r">Raspberries</option>
-    <option value="c">Cloudberries</option>
+  <option value="s">Strawberries</option>
+  <option value="r">Raspberries</option>
+  <option value="c">Cloudberries</option>
 </Select>
 ```
 

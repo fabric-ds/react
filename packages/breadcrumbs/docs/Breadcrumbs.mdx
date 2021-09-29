@@ -1,21 +1,18 @@
 import { Breadcrumbs } from '../src';
-import packageData from '../package.json';
 
 # Breadcrumbs
 
 Breadcrumbs show the navigation structure for the current location.
 
-<PackageInfo packageData={packageData} componentNames={['Breadcrumbs']} />
-
 ## Example
 
 ```jsx example
 <Breadcrumbs>
-    <a href="#/url/1">Eiendom</a>
-    <a href="#/url/2">Bolig til salgs</a>
-    <a href="#/url/3" aria-current="page">
-        Oslo
-    </a>
+  <a href="#/url/1">Eiendom</a>
+  <a href="#/url/2">Bolig til salgs</a>
+  <a href="#/url/3" aria-current="page">
+    Oslo
+  </a>
 </Breadcrumbs>
 ```
 

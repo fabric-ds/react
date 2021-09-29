@@ -1,11 +1,8 @@
 import { Button } from '../src';
-import packageData from '../package.json';
 
 # Button
 
 Buttons are used to perform actions, with different visuals for different needs.
-
-<PackageInfo packageData={packageData} componentNames={['Button']} />
 
 ## Example
 
@@ -15,17 +12,17 @@ Buttons are used to perform actions, with different visuals for different needs.
 
 ## Migrating from Troika
 
--   You should no longer include or import any Troika button CSS.
--   The variants are no longer different named exports. Use component properties
-    instead.
--   There is now a single button component for all cases. As a quick guide:
-    -   `<CallToAction>` should be migrated to `<Button primary>`.
-    -   `<DestructiveButton>` should be migrated to `<Button negative>`.
-    -   `<DestructiveFlatButton>` should be migrated to `<Button negative>`.
-    -   `<FlatButton>` should be migrated to `<Button>`.
-    -   `<LinkButton>` should be migrated to `<Button href="...">`.
--   The `inProgress` property should be changed to `loading`.
--   The `disabled` has been removed as it is an anti-pattern (see below).
+- You should no longer include or import any Troika button CSS.
+- The variants are no longer different named exports. Use component properties
+  instead.
+- There is now a single button component for all cases. As a quick guide:
+  - `<CallToAction>` should be migrated to `<Button primary>`.
+  - `<DestructiveButton>` should be migrated to `<Button negative>`.
+  - `<DestructiveFlatButton>` should be migrated to `<Button negative>`.
+  - `<FlatButton>` should be migrated to `<Button>`.
+  - `<LinkButton>` should be migrated to `<Button href="...">`.
+- The `inProgress` property should be changed to `loading`.
+- The `disabled` has been removed as it is an anti-pattern (see below).
 
 ## Accessibility
 
@@ -60,8 +57,8 @@ property
 
 ```jsx example
 <div className="flex space-x-32">
-    <Button secondary>Save</Button>
-    <Button>Save</Button>
+  <Button secondary>Save</Button>
+  <Button>Save</Button>
 </div>
 ```
 
