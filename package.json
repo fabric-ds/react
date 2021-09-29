@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
-  "private": true,
   "workspaces": [
     "packages/*"
   ],
@@ -18,7 +17,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^17.0.0"
+    "react": "^16.13.1"
   },
   "scripts": {
     "prebuild": "rimraf packages/*/dist",
@@ -30,7 +29,9 @@
     "format": "prettier --write . --ignore-path .gitignore",
     "lint": "npm run lint:format && npm run lint:eslint",
     "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
-    "lint:format": "prettier --check . --ignore-path .gitignore"
+    "lint:format": "prettier --check . --ignore-path .gitignore",
+    "eik:publish": "npx @eik/cli publish",
+    "eik:alias": "npx @eik/cli pkg-alias"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -75,5 +76,9 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0"
+  },
+  "eik": {
+    "server": "https://assets.finn.no",
+    "files": "dist"
   }
 }

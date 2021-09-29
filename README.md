@@ -22,8 +22,7 @@ yarn docs:dev
 
 ## How to release
 
-1. Make sure you're on `master`
-2. `git pull`
-3. Make sure you have set up
-   [npm publishing to local repository](https://confluence.schibsted.io/display/FINNWEB/How+to+publish+to+our+local+NPM+registry)
-4. `yarn lerna publish`
+1. `npm run build` - Builds files in ./dist directory
+1. `npm run publish` - Releases to npm
+1. `npm run eik:publish` - publishes to the Eik server
+1. `npm run eik:alias` - Update the Eik alias
