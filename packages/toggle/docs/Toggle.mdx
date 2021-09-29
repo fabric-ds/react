@@ -21,19 +21,19 @@ of the toggle.
 
 ```jsx example
 function Example() {
-    const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState(false);
 
-    return (
-        <>
-            <p className="h4">{checked.toString()}</p>
-            <Toggle
-                type="checkbox"
-                label="Apple"
-                defaultChecked={checked}
-                onChange={(checked) => setChecked(checked)}
-            />
-        </>
-    );
+  return (
+    <>
+      <p className="h4">{checked.toString()}</p>
+      <Toggle
+        type="checkbox"
+        label="Apple"
+        defaultChecked={checked}
+        onChange={(checked) => setChecked(checked)}
+      />
+    </>
+  );
 }
 ```
 
@@ -56,33 +56,33 @@ callback. It will now return the option which was selected.
 
 ```jsx example
 function Example() {
-    const [selected, setSelected] = React.useState([
-        { label: 'Microsoft', value: 'microsoft' },
-    ]);
+  const [selected, setSelected] = React.useState([
+    { label: 'Microsoft', value: 'microsoft' },
+  ]);
 
-    const handleSelect = (entry) => {
-        if (selected.some((e) => e.value === entry.value)) {
-            return setSelected(selected.filter((s) => s.value !== entry.value));
-        }
+  const handleSelect = (entry) => {
+    if (selected.some((e) => e.value === entry.value)) {
+      return setSelected(selected.filter((s) => s.value !== entry.value));
+    }
 
-        return setSelected([...selected, entry]);
-    };
+    return setSelected([...selected, entry]);
+  };
 
-    return (
-        <>
-            <p className="h4">{JSON.stringify(selected)}</p>
-            <Toggle
-                type="checkbox"
-                title="Companies"
-                defaultSelected={selected}
-                options={[
-                    { label: 'Apple', value: 'apple' },
-                    { label: 'Microsoft', value: 'microsoft' },
-                ]}
-                onChange={handleSelect}
-            />
-        </>
-    );
+  return (
+    <>
+      <p className="h4">{JSON.stringify(selected)}</p>
+      <Toggle
+        type="checkbox"
+        title="Companies"
+        defaultSelected={selected}
+        options={[
+          { label: 'Apple', value: 'apple' },
+          { label: 'Microsoft', value: 'microsoft' },
+        ]}
+        onChange={handleSelect}
+      />
+    </>
+  );
 }
 ```
 
@@ -103,21 +103,21 @@ and buttons.
 
 ```jsx example
 function Example() {
-    const options = [
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' },
-    ];
+  const options = [
+    { label: 'Red', value: 'red' },
+    { label: 'Blue', value: 'blue' },
+    { label: 'Green', value: 'green' },
+  ];
 
-    return (
-        <Toggle
-            type="radio"
-            title="Favorite color"
-            helpText="Choose your absolute favorite color"
-            options={options}
-            onChange={(selected) => console.log(selected)}
-        />
-    );
+  return (
+    <Toggle
+      type="radio"
+      title="Favorite color"
+      helpText="Choose your absolute favorite color"
+      options={options}
+      onChange={(selected) => console.log(selected)}
+    />
+  );
 }
 ```
 
@@ -128,35 +128,35 @@ the purpose of the toggle and the action to take.
 
 ```jsx example
 function Example() {
-    const options = [
-        { label: 'Oslo', value: 1 },
-        { label: 'Lørenskog', value: 2 },
-        { label: 'Hamar', value: 3 },
-    ];
+  const options = [
+    { label: 'Oslo', value: 1 },
+    { label: 'Lørenskog', value: 2 },
+    { label: 'Hamar', value: 3 },
+  ];
 
-    const [equalWidth, setEqualWidth] = React.useState(false);
+  const [equalWidth, setEqualWidth] = React.useState(false);
 
-    return (
-        <>
-            <Button
-                className="mb-8"
-                onClick={() => setEqualWidth(!equalWidth)}
-                primary={equalWidth}
-                negative={!equalWidth}
-                small
-            >
-                Equal width: {equalWidth.toString()}
-            </Button>
-            <div>
-                <Toggle
-                    type="radio-button"
-                    options={options}
-                    equalWidth={equalWidth}
-                    onChange={(e) => console.log(e)}
-                />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <Button
+        className="mb-8"
+        onClick={() => setEqualWidth(!equalWidth)}
+        primary={equalWidth}
+        negative={!equalWidth}
+        small
+      >
+        Equal width: {equalWidth.toString()}
+      </Button>
+      <div>
+        <Toggle
+          type="radio-button"
+          options={options}
+          equalWidth={equalWidth}
+          onChange={(e) => console.log(e)}
+        />
+      </div>
+    </>
+  );
 }
 ```
 
@@ -171,24 +171,24 @@ before an error occurs as long as `invalid` is set to false.
 
 ```jsx example
 function Example() {
-    const [selected, setSelected] = React.useState([
-        { label: 'Blue', value: 'blue' },
-    ]);
+  const [selected, setSelected] = React.useState([
+    { label: 'Blue', value: 'blue' },
+  ]);
 
-    return (
-        <Toggle
-            type="checkbox"
-            title="Favorite colors"
-            helpText="Blue surely isn't amongst your favorites?"
-            invalid
-            selected={selected}
-            options={[
-                { label: 'Red', value: 'red' },
-                { label: 'Blue', value: 'blue' },
-                { label: 'Green', value: 'green' },
-            ]}
-        />
-    );
+  return (
+    <Toggle
+      type="checkbox"
+      title="Favorite colors"
+      helpText="Blue surely isn't amongst your favorites?"
+      invalid
+      selected={selected}
+      options={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+    />
+  );
 }
 ```
 
@@ -199,37 +199,37 @@ quite simple.
 
 ```jsx example
 function Example() {
-    const [selected, setSelected] = React.useState([
+  const [selected, setSelected] = React.useState([
+    { label: 'Blue', value: 'blue' },
+  ]);
+
+  const handleSelect = (entry) => {
+    if (selected.some((e) => e.value === entry.value)) {
+      return setSelected(selected.filter((s) => s.value !== entry.value));
+    }
+
+    return setSelected([...selected, entry]);
+  };
+
+  return (
+    <Toggle
+      type="checkbox"
+      title="Favorite colors"
+      helpText={
+        selected.some((e) => e.value === 'blue')
+          ? "Blue surely isn't amongst your favorites?"
+          : 'Choose your favorite colors'
+      }
+      invalid={!!selected.some((e) => e.value === 'blue')}
+      selected={selected}
+      onChange={handleSelect}
+      options={[
+        { label: 'Red', value: 'red' },
         { label: 'Blue', value: 'blue' },
-    ]);
-
-    const handleSelect = (entry) => {
-        if (selected.some((e) => e.value === entry.value)) {
-            return setSelected(selected.filter((s) => s.value !== entry.value));
-        }
-
-        return setSelected([...selected, entry]);
-    };
-
-    return (
-        <Toggle
-            type="checkbox"
-            title="Favorite colors"
-            helpText={
-                selected.some((e) => e.value === 'blue')
-                    ? "Blue surely isn't amongst your favorites?"
-                    : 'Choose your favorite colors'
-            }
-            invalid={!!selected.some((e) => e.value === 'blue')}
-            selected={selected}
-            onChange={handleSelect}
-            options={[
-                { label: 'Red', value: 'red' },
-                { label: 'Blue', value: 'blue' },
-                { label: 'Green', value: 'green' },
-            ]}
-        />
-    );
+        { label: 'Green', value: 'green' },
+      ]}
+    />
+  );
 }
 ```
 
@@ -241,7 +241,7 @@ function Example() {
 
 ```ts
 type ToggleEntry = {
-    label: string;
-    value: unknown;
+  label: string;
+  value: unknown;
 };
 ```

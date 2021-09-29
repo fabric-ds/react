@@ -6,13 +6,13 @@ const metadata = { title: 'Forms/TextField' };
 export default metadata;
 
 const TextField = (args) => (
-    <TroikaTextField
-        label="Address"
-        onChange={action('change')}
-        onFocus={action('focus')}
-        onBlur={action('blur')}
-        {...args}
-    />
+  <TroikaTextField
+    label="Address"
+    onChange={action('change')}
+    onFocus={action('focus')}
+    onBlur={action('blur')}
+    {...args}
+  />
 );
 
 export const standard = () => <TextField />;
@@ -32,12 +32,12 @@ export const readOnly = () => <TextField readOnly />;
 export const autoFocus = () => <TextField autoFocus />;
 
 export const helpText = () => (
-    <TextField helpText="Necessary because of reasons" />
+  <TextField helpText="Necessary because of reasons" />
 );
 
 export const invalid = () => (
-    <div className="flex flex-col space-y-48">
-        <TextField invalid />
-        <TextField helpText="Error text" invalid />
-    </div>
+  <div className="flex flex-col space-y-48">
+    <TextField invalid />
+    <TextField helpText="Error text" invalid />
+  </div>
 );

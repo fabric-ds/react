@@ -9,15 +9,15 @@ This component allows users to toggle between validity for a condition.
 
 ```jsx example
 function Example() {
-    const [value, setValue] = useState(false);
+  const [value, setValue] = useState(false);
 
-    return (
-        <Switch
-            value={value}
-            onClick={() => setValue(!value)}
-            aria-label="Toggle switch"
-        />
-    );
+  return (
+    <Switch
+      value={value}
+      onClick={() => setValue(!value)}
+      aria-label="Toggle switch"
+    />
+  );
 }
 ```
 
@@ -25,18 +25,18 @@ function Example() {
 
 ```jsx example
 function Example() {
-    const [value, setValue] = useState(false);
+  const [value, setValue] = useState(false);
 
-    return (
-        <Switch
-            value={value}
-            onClick={() => {
-                setValue(!value);
-                alert('Your own custom action when toggled');
-            }}
-            aria-label="Toggle switch"
-        />
-    );
+  return (
+    <Switch
+      value={value}
+      onClick={() => {
+        setValue(!value);
+        alert('Your own custom action when toggled');
+      }}
+      aria-label="Toggle switch"
+    />
+  );
 }
 ```
 

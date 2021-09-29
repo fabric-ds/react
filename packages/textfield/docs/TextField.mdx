@@ -12,9 +12,9 @@ A single-line text input component.
 
 ## Migrating from Troika
 
--   You should no longer include or import any Troika input CSS.
--   `error` has been deprecated. Use `invalid` instead.
--   **BREAKING**: `appendAddon` from Troika is currently unsupported.
+- You should no longer include or import any Troika input CSS.
+- `error` has been deprecated. Use `invalid` instead.
+- **BREAKING**: `appendAddon` from Troika is currently unsupported.
 
 ## Value
 
@@ -24,22 +24,19 @@ be provided using the `value` prop.
 
 ```jsx example
 function Example() {
-    let [value, setValue] = React.useState('me@email.com');
+  let [value, setValue] = React.useState('me@email.com');
 
-    return (
-        <div className="flex space-x-32">
-            <TextField
-                label="Email (Uncontrolled)"
-                defaultValue="me@email.com"
-            />
+  return (
+    <div className="flex space-x-32">
+      <TextField label="Email (Uncontrolled)" defaultValue="me@email.com" />
 
-            <TextField
-                label="Email (Controlled)"
-                value={value}
-                onChange={(event) => setValue(event.target.value)}
-            />
-        </div>
-    );
+      <TextField
+        label="Email (Controlled)"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+      />
+    </div>
+  );
 }
 ```
 
@@ -61,8 +58,8 @@ placeholder aren't enough.
 
 ```jsx example
 <TextField
-    label="Telefonnummer"
-    helpText="Vil kun brukes til brukerverifisering"
+  label="Telefonnummer"
+  helpText="Vil kun brukes til brukerverifisering"
 />
 ```
 
@@ -102,8 +99,8 @@ use disabled on an element.
 
 ```jsx example
 <div className="flex flex-col space-y-32">
-    <TextField label="E-post" disabled value="puse@finn.no" />
-    <TextField label="E-post" disabled />
+  <TextField label="E-post" disabled value="puse@finn.no" />
+  <TextField label="E-post" disabled />
 </div>
 ```
 
@@ -117,8 +114,8 @@ for more information.
 
 ```jsx example
 <div className="flex flex-col space-y-32">
-    <TextField label="E-post" readOnly value="puse@finn.no" />
-    <TextField label="E-post" readOnly />
+  <TextField label="E-post" readOnly value="puse@finn.no" />
+  <TextField label="E-post" readOnly />
 </div>
 ```
 
