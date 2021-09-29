@@ -7,10 +7,10 @@
   "module": "./src/index.ts",
   "main": "./src/index.ts",
   "files": [
-    "dist/"
+    "src/"
   ],
   "scripts": {
-    "build": "microbundle -i src/index.ts -o dist/index.js --jsx React.createElement --format modern --no-pkg-main",
+    "build": "microbundle -i src/index.ts -o src/index.ts --jsx React.createElement --format modern --no-pkg-main",
     "prepublishOnly": "yarn build"
   },
   "publishConfig": {

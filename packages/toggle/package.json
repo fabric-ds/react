@@ -3,13 +3,13 @@
   "license": "ISC",
   "version": "0.0.4",
   "type": "module",
-  "exports": "./dist/index.js",
-  "module": "dist/index.js",
+  "exports": "./src/index.ts",
+  "module": "src/index.ts",
   "files": [
-    "dist/"
+    "src/"
   ],
   "scripts": {
-    "build": "microbundle -i src/index.ts -o dist/index.js --jsx React.createElement --format modern --no-pkg-main",
+    "build": "microbundle -i src/index.ts -o src/index.ts --jsx React.createElement --format modern --no-pkg-main",
     "prepublishOnly": "yarn build"
   },
   "types": "dist/index.d.ts",
