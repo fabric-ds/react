@@ -5,7 +5,7 @@ import autoLinkHeadings from 'remark-autolink-headings';
 
 export default function config({ mode }) {
   return {
-    base: '/react/',
+    base: '/',
     plugins: [
       reactRefresh(),
       mdx({
