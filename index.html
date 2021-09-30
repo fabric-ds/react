@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <title>Fabric React</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      f-docs-template {
+        animation: fadeIn 0.3s;
+      }
+      :not(:defined) {
+        opacity: 0;
+      }
+    </style>
     <link
       href="https://assets.finn.no/pkg/@fabric-ds/css/v0/fabric.min.css"
       rel="stylesheet"
