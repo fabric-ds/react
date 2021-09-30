@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production npx microbundle -i index.ts -o dist/index.js --jsx React.createElement --format modern --no-pkg-main",
-    "docs:build": "vite build",
+    "docs:build": "vite build && cd site && cp index.html 404.html",
     "docs:dev": "vite",
     "dev": "start-storybook -p 9003 --ci",
     "format": "prettier --write . --ignore-path .gitignore",
