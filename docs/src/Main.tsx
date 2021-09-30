@@ -47,70 +47,70 @@ const App = () => {
     <MDXProvider components={components}>
       <Router>
         <ReactSwitch>
-          <Route path="/react/" exact>
+          <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/react/getting-started">
+          <Route path="/getting-started">
             <GettingStarted />
           </Route>
 
-          <Route path="/react/modal">
+          <Route path="/modal">
             <Modal />
           </Route>
 
-          <Route path="/react/breadcrumbs">
+          <Route path="/breadcrumbs">
             <Breadcrumbs />
           </Route>
 
-          <Route path="/react/textfield">
+          <Route path="/textfield">
             <TextField />
           </Route>
 
-          <Route path="/react/select">
+          <Route path="/select">
             <Select />
           </Route>
 
-          <Route path="/react/tabs">
+          <Route path="/tabs">
             <Tabs />
           </Route>
 
-          <Route path="/react/textarea">
+          <Route path="/textarea">
             <TextArea />
           </Route>
 
-          <Route path="/react/slider">
+          <Route path="/slider">
             <Slider />
           </Route>
 
-          <Route path="/react/combobox">
+          <Route path="/combobox">
             <Combobox />
           </Route>
 
-          <Route path="/react/button">
+          <Route path="/button">
             <Button />
           </Route>
 
-          <Route path="/react/box">
+          <Route path="/box">
             <Box />
           </Route>
 
-          <Route path="/react/expandable">
+          <Route path="/expandable">
             <Expandable />
           </Route>
 
-          <Route path="/react/switch">
+          <Route path="/switch">
             <Switch />
           </Route>
 
-          <Route path="/react/toggle">
+          <Route path="/toggle">
             <Toggle />
           </Route>
 
-          <Route path="/react/steps">
+          <Route path="/steps">
             <Steps />
           </Route>
 
-          <Route path="/react/Card">
+          <Route path="/Card">
             <Card />
           </Route>
         </ReactSwitch>
