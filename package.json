@@ -17,7 +17,7 @@
     "react": "^16.13.1"
   },
   "scripts": {
-    "build": "NODE_ENV=production npx microbundle -i index.ts -o dist/index.js --jsx React.createElement --format modern --no-pkg-main",
+    "build": "NODE_ENV=production npx microbundle -i index.ts -o dist/index.js --jsx React.createElement --jsxFragment React.Fragment --format modern --no-pkg-main",
     "docs:build": "vite build && cd site && cp index.html 404.html && cp ../CNAME .",
     "docs:dev": "vite",
     "dev": "start-storybook -p 9003 --ci",
