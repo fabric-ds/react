@@ -2,7 +2,7 @@
   "name": "@fabric-ds/react",
   "version": "0.0.4",
   "server": "https://assets.finn.no",
-  "type": "npm",
+  "type": "package",
   "files": "./dist/eik",
   "import-map": [
     "https://assets.finn.no/map/finn/v2",
