@@ -1,0 +1,11 @@
+{
+  "name": "@fabric-ds/react",
+  "version": "0.0.3",
+  "server": "https://assets.finn.no",
+  "type": "npm",
+  "files": "./dist/eik",
+  "import-map": [
+    "https://assets.finn.no/map/finn/v2",
+    "https://assets.finn.no/map/troika-css/v1"
+  ]
+}

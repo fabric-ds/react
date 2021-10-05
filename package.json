@@ -96,14 +96,5 @@
     "react-focus-lock": "^2.5.2",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^9.1.3"
-  },
-  "eik": {
-    "server": "https://assets.finn.no",
-    "type": "npm",
-    "files": "./dist/eik",
-    "import-map": [
-      "https://assets.finn.no/map/finn/v2",
-      "https://assets.finn.no/map/troika-css/v1"
-    ]
   }
 }
