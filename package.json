@@ -3,7 +3,10 @@
   "version": "0.0.3",
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
-  "exports": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./ts": "./index.ts"
+  },
   "module": "dist/index.js",
   "main": "dist/index.js",
   "files": [
@@ -17,7 +20,9 @@
     "react": "^16.13.1"
   },
   "scripts": {
-    "build": "NODE_ENV=production npx microbundle -i index.ts -o dist/index.js --jsx React.createElement --jsxFragment React.Fragment --format modern --no-pkg-main",
+    "build:eik": "node esbuild.mjs",
+    "build:npm": "tsc",
+    "build": "npm run build:npm && npm run build:eik",
     "docs:build": "vite build && cd site && cp index.html 404.html && cp ../CNAME .",
     "docs:dev": "vite",
     "dev": "start-storybook -p 9003 --ci",
@@ -26,11 +31,13 @@
     "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
     "lint:format": "prettier --check . --ignore-path .gitignore",
     "eik:publish": "npx @eik/cli publish",
-    "eik:alias": "npx @eik/cli pkg-alias"
+    "eik:alias": "npx @eik/cli pkg-alias",
+    "teststuff": "npx npm-dts generate"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@chbphone55/classnames": "^2.0.0",
+    "@eik/esbuild-plugin": "^1.0.4",
     "@fabric-ds/component-classes": "^0.0.31",
     "@fabric-ds/tailwind-config": "^0.5.20",
     "@mdx-js/mdx": "1.6.22",
@@ -46,6 +53,7 @@
     "babel-eslint": "^10.1.0",
     "d3-scale": "^4.0.2",
     "element-collapse": "^0.9.1",
+    "esbuild": "^0.13.3",
     "eslint": "^7.18.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
@@ -80,6 +88,10 @@
   "eik": {
     "server": "https://assets.finn.no",
     "type": "npm",
-    "files": "dist"
+    "files": "./eik",
+    "import-map": [
+      "https://assets.finn.no/map/finn/v2",
+      "https://assets.finn.no/map/troika-css/v1"
+    ]
   }
 }

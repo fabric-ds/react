@@ -12,7 +12,15 @@
     "skipLibCheck": true,
     "strictNullChecks": true,
     "target": "ESNext",
-    "typeRoots": ["@types", "./node_modules/@types"]
+    "typeRoots": [
+      "@types",
+      "./node_modules/@types"
+    ],
+    "outDir": "dist/types"
   },
-  "exclude": ["**/__tests__"]
+  "exclude": [
+    "**/__tests__",
+    "**/*.stories.tsx",
+    "docs"
+  ]
 }
