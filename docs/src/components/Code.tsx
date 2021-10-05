@@ -16,7 +16,7 @@ const Code = ({ children, className, ...props }) => {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={className}
-          style={{ ...style, padding: '20px 20px 0px' }}
+          style={{ ...style, padding: '20px 20px 0px', overflowX: 'auto' }}
         >
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line, key: i })}>

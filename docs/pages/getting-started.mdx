@@ -1,8 +1,3 @@
-<div className="grid lg:grid-cols-3 gap-16">
-    <div className="lg:col-span-2">
-
-
-
 # Getting started
 
 This page describes how to get started building an application with Fabric
@@ -10,14 +5,17 @@ React.
 
 ## Setting up your app
 
-Ensure the [Fabric CSS](https://css.fabric-ds.io) stylesheet is loaded in the page you are working on.
+Ensure the [Fabric CSS](https://css.fabric-ds.io) stylesheet is loaded in the
+page you are working on.
 
-See the [Fabric CSS getting started guide](https://css.fabric-ds.io/pages/getting-started.html) for
-more information.
+See the
+[Fabric CSS getting started guide](https://css.fabric-ds.io/pages/getting-started.html)
+for more information.
 
 ## Installation
 
-All the Fabric React code is provided as a single package and each component can be imported from this package.
+All the Fabric React code is provided as a single package and each component can
+be imported from this package.
 
 ### Install from NPM
 
@@ -26,6 +24,7 @@ The Fabric React package can be installed from NPM.
 ```shell
 npm install @fabric-ds/react
 ```
+
 ### Install from Eik
 
 The same package is also available via our Eik CDN server
@@ -36,7 +35,8 @@ https://assets.finn.no/pkg/@fabric-ds/react/v0/index.js
 
 ### Importing Components
 
-Once installed, components can be imported into your app by name. Below are examples of how thats done
+Once installed, components can be imported into your app by name. Below are
+examples of how thats done
 
 <br />
 
@@ -44,30 +44,42 @@ Once installed, components can be imported into your app by name. Below are exam
 
 👉 _**This is the most common method and should be used in most cases**_
 
-When importing from NPM you will need to ensure you have build tooling in place. If you are working with Podium podlets or layouts which is the most common use case at Finn, you likely already have Eik in place with Rollup or Esbuild in which case no further action should be needed.
+When importing from NPM you will need to ensure you have build tooling in place.
+If you are working with Podium podlets or layouts which is the most common use
+case at Finn, you likely already have Eik in place with Rollup or Esbuild in
+which case no further action should be needed.
 
-If not, take a look at the React [getting started](https://reactjs.org/docs/getting-started.html) docs.
+If not, take a look at the React
+[getting started](https://reactjs.org/docs/getting-started.html) docs.
 
 _Example_
+
 ```js
 import { Button } from '@fabric-ds/react';
 ```
+
 <br />
 
 #### Importing directly from Eik
 
 👉 _**This is great for prototyping (can also be used in production)**_
 
-It is also possible to import components directly from the URL on our Eik server. While not common, it should be possible to write React code without the need for a build setup. You might find this useful for rapid prototyping something on a hack day for example!
+It is also possible to import components directly from the URL on our Eik
+server. While not common, it should be possible to write React code without the
+need for a build setup. You might find this useful for rapid prototyping
+something on a hack day for example!
 
 _Example_
+
 ```js
 import { Button } from 'https://assets.finn.no/pkg/@fabric-ds/react/v0/index.js';
 ```
 
-If you go down this route, other dependencies such as React and React Dom will also need to be imported via URLs. These can also be found on the Eik server.
+If you go down this route, other dependencies such as React and React Dom will
+also need to be imported via URLs. These can also be found on the Eik server.
 
 _Example_
+
 ```js
 import React from 'https://assets.finn.no/npm/@pika/react/v16/index.js';
 import ReactDom from 'https://assets.finn.no/npm/@pika/react-dom/v16/index.js';
@@ -77,7 +89,8 @@ import ReactDom from 'https://assets.finn.no/npm/@pika/react-dom/v16/index.js';
 
 #### Individual component imports
 
-You can find the specific import statement to import each component on that component's documentation page. For example, here's the [button page](/button)
+You can find the specific import statement to import each component on that
+component's documentation page. For example, here's the [button page](/button)
 
 ## TypeScript support
 
@@ -91,8 +104,3 @@ yarn add @types/react -D
 # NPM
 npm i @types/react -D
 ```
-</div>
-    <div>
-        <f-docs-highlight-box></f-docs-highlight-box>
-    </div>
-</div>
