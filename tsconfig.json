@@ -16,7 +16,7 @@
       "@types",
       "./node_modules/@types"
     ],
-    "outDir": "dist/types"
+    "outDir": "dist/npm"
   },
   "exclude": [
     "**/__tests__",

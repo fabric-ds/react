@@ -4,13 +4,15 @@
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
   "exports": {
-    ".": "./dist/index.js",
+    ".": "./dist/npm/index.js",
     "./ts": "./index.ts"
   },
-  "module": "dist/index.js",
-  "main": "dist/index.js",
+  "module": "dist/npm/index.js",
+  "main": "dist/npm/index.js",
   "files": [
-    "dist/"
+    "dist/npm",
+    "index.ts",
+    "packages/**/src/*"
   ],
   "types": "dist/index.d.ts",
   "publishConfig": {
@@ -20,9 +22,10 @@
     "react": "^16.13.1"
   },
   "scripts": {
+    "build:clean": "rm -rf dist",
     "build:eik": "node esbuild.mjs",
     "build:npm": "tsc",
-    "build": "npm run build:npm && npm run build:eik",
+    "build": "npm run build:clean && npm run build:npm && npm run build:eik",
     "docs:build": "vite build && cd site && cp index.html 404.html && cp ../CNAME .",
     "docs:dev": "vite",
     "dev": "start-storybook -p 9003 --ci",
@@ -88,7 +91,7 @@
   "eik": {
     "server": "https://assets.finn.no",
     "type": "npm",
-    "files": "./eik",
+    "files": "./dist/eik",
     "import-map": [
       "https://assets.finn.no/map/finn/v2",
       "https://assets.finn.no/map/troika-css/v1"

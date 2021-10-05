@@ -5,7 +5,7 @@ esbuild
   .build({
     entryPoints: ['index.ts'],
     bundle: true,
-    outdir: 'eik',
+    outdir: 'dist/eik',
     format: 'esm',
     sourcemap: true,
     plugins: [plugin()],
