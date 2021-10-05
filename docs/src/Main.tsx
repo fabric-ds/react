@@ -1,33 +1,29 @@
-import * as React from 'react';
-import { render } from 'react-dom';
 import { MDXProvider } from '@mdx-js/react';
+import React from 'react';
+import { render } from 'react-dom';
 import {
   BrowserRouter as Router,
-  Switch as ReactSwitch,
   Route,
+  Switch as ReactSwitch,
 } from 'react-router-dom';
-
+import Box from '../../packages/box/docs/Box.mdx';
+import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
+import Button from '../../packages/button/docs/Button.mdx';
+import Card from '../../packages/card/docs/Card.mdx';
+import Combobox from '../../packages/combobox/docs/Combobox.mdx';
+import Expandable from '../../packages/expandable/docs/Expandable.mdx';
+import Modal from '../../packages/modal/docs/Modal.mdx';
+import Select from '../../packages/select/docs/Select.mdx';
+import Slider from '../../packages/slider/docs/Slider.mdx';
+import Steps from '../../packages/steps/docs/Steps.mdx';
+import Switch from '../../packages/switch/docs/Switch.mdx';
+import Tabs from '../../packages/tabs/docs/Tabs.mdx';
+import TextArea from '../../packages/textarea/docs/TextArea.mdx';
+import TextField from '../../packages/textfield/docs/TextField.mdx';
+import Toggle from '../../packages/toggle/docs/Toggle.mdx';
+import Home from '../pages/index.jsx';
 import Code from './components/Code';
 import PropTable from './components/PropTable';
-
-import Home from '../pages/index.jsx';
-import GettingStarted from '../pages/getting-started.mdx';
-import Modal from '../../packages/modal/docs/Modal.mdx';
-import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
-
-import Tabs from '../../packages/tabs/docs/Tabs.mdx';
-import TextField from '../../packages/textfield/docs/TextField.mdx';
-import Select from '../../packages/select/docs/Select.mdx';
-import TextArea from '../../packages/textarea/docs/TextArea.mdx';
-import Combobox from '../../packages/combobox/docs/Combobox.mdx';
-import Button from '../../packages/button/docs/Button.mdx';
-import Slider from '../../packages/slider/docs/Slider.mdx';
-import Box from '../../packages/box/docs/Box.mdx';
-import Expandable from '../../packages/expandable/docs/Expandable.mdx';
-import Switch from '../../packages/switch/docs/Switch.mdx';
-import Toggle from '../../packages/toggle/docs/Toggle.mdx';
-import Steps from '../../packages/steps/docs/Steps.mdx';
-import Card from '../../packages/card/docs/Card.mdx';
 
 const components = {
   code: Code,
@@ -49,9 +45,6 @@ const App = () => {
         <ReactSwitch>
           <Route path="/" exact>
             <Home />
-          </Route>
-          <Route path="/getting-started">
-            <GettingStarted />
           </Route>
 
           <Route path="/modal">
