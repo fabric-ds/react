@@ -10,8 +10,7 @@ import {
 import Code from './components/Code';
 import PropTable from './components/PropTable';
 
-import Home from '../pages/index.jsx';
-import GettingStarted from '../pages/getting-started.mdx';
+import Home from '../pages/getting-started.mdx';
 import Modal from '../../packages/modal/docs/Modal.mdx';
 import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 
@@ -49,9 +48,6 @@ const App = () => {
         <ReactSwitch>
           <Route path="/" exact>
             <Home />
-          </Route>
-          <Route path="/getting-started">
-            <GettingStarted />
           </Route>
 
           <Route path="/modal">
