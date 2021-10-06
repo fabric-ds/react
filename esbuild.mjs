@@ -5,7 +5,7 @@ await eik.load();
 
 await esbuild.build({
   plugins: [eik.plugin()],
-  entryPoints: ['index.ts'],
+  entryPoints: ['packages/index.ts'],
   bundle: true,
   outdir: 'dist/eik',
   format: 'esm',
