@@ -1,26 +1,32 @@
 {
+  "include": ["src", "@types/index.d.ts"],
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "emitDeclarationOnly": false,
-    "jsx": "preserve",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "noEmitOnError": true,
+    "lib": ["DOM", "ESNext"],
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "src",
+    "outDir": "dist/npm",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
-    "resolveJsonModule": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
-    "target": "ESNext",
-    "typeRoots": [
-      "@types",
-      "./node_modules/@types"
-    ],
-    "outDir": "dist/npm"
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "downlevelIteration": true,
+
+    "allowSyntheticDefaultImports": true,
+    "noEmitOnError": true,
+    "strictNullChecks": true
   },
-  "exclude": [
-    "**/__tests__",
-    "**/*.stories.tsx",
-    "docs"
-  ]
+  "typeRoots": ["node_modules/@types", "@types"],
+  "exclude": ["**/__tests__", "**/*.stories.tsx", "docs"]
 }

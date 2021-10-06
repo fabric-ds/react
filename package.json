@@ -11,10 +11,9 @@
   "main": "dist/npm/index.js",
   "files": [
     "dist/npm",
-    "index.ts",
-    "packages/**/src/*"
+    "index.ts"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/npm/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
