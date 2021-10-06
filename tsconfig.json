@@ -1,12 +1,12 @@
 {
-  "include": ["src", "@types/index.d.ts"],
+  "include": ["packages", "@types/index.d.ts"],
   "compilerOptions": {
     "module": "ESNext",
     "lib": ["DOM", "ESNext"],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
-    "rootDir": "src",
+    "rootDir": "packages",
     "outDir": "dist/npm",
     "strict": true,
     "noImplicitReturns": true,
