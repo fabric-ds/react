@@ -58,7 +58,7 @@ export function prevValue(value: number, step: number, scale?: Scale): number {
 
 // Included value in the parameter definition for futureproofing, in case we want to tailor the step increments based on where in the range it is.
 export function bigStep(
-  value: number,
+  _: number, // value (renamed for ts to compile correctly — no unused varaibles)
   step: number,
   min: number,
   max: number,

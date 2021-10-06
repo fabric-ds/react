@@ -69,16 +69,16 @@ export default function useTextAreaHeight({
    * Resizing for uncontrolled textareas
    */
   useEffect(() => {
-    if (ref.current && !isControlled) {
-      const textarea = ref.current;
+    if (!ref.current && isControlled) return;
 
-      const handleInput = () => {
-        resize(textarea);
-      };
+    const textarea = ref.current as HTMLTextAreaElement;
 
-      textarea.addEventListener('input', handleInput);
+    const handleInput = () => {
+      resize(textarea);
+    };
 
-      return () => textarea.removeEventListener('input', handleInput);
-    }
+    textarea.addEventListener('input', handleInput);
+
+    return () => textarea.removeEventListener('input', handleInput);
   }, [ref, isControlled]);
 }

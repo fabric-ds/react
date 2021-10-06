@@ -73,6 +73,7 @@ export function Toggle(props: ToggleProps) {
             label={props.label}
             checked={props.checked}
             defaultChecked={props.defaultChecked}
+            // @ts-ignore TODO: typecheck
             onChange={(e: boolean) => props.onChange(e)}
             name={`${id}:toggle`}
             key={`${id + props.type}`}
@@ -90,6 +91,7 @@ export function Toggle(props: ToggleProps) {
                 (s) => s.value === option.value,
               )}
               option={option}
+              // @ts-ignore TODO: typecheck
               onChange={(e: ToggleEntry) => props.onChange(e)}
               name={`${id}:toggle`}
               key={`${id + i + props.type}`}
