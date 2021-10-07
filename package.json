@@ -3,10 +3,7 @@
   "version": "0.0.4",
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
-  "exports": {
-    ".": "./dist/npm/index.js",
-    "./ts": "./index.ts"
-  },
+  "exports": "./dist/npm/index.js",
   "module": "dist/npm/index.js",
   "main": "dist/npm/index.js",
   "files": [
