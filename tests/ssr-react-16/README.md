@@ -1,13 +1,13 @@
-# Eik React (No JSX)
+# SSR React 16 (No JSX)
 
-Without JSX, we do not need to include a build setup.
-
-N.B. `npm install` is not needed, this project has no installable dependencies.
+Without JSX, we do not need to include a build setup for SSR but we do for the client side to inline dependencies.
 
 To run:
 
 ```sh
-npm run serve
+npm install
+npm run build
+npm start
 ```
 
 Visit `localhost:8080`
