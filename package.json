@@ -6,9 +6,9 @@
   "exports": "./dist/npm/index.js",
   "module": "dist/npm/index.js",
   "main": "dist/npm/index.js",
+  "type": "module",
   "files": [
-    "dist/npm",
-    "index.ts"
+    "dist/npm"
   ],
   "types": "dist/npm/index.d.ts",
   "publishConfig": {
@@ -30,8 +30,7 @@
     "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
     "lint:format": "prettier --check . --ignore-path .gitignore",
     "eik:publish": "npx @eik/cli publish",
-    "eik:alias": "npx @eik/cli pkg-alias",
-    "teststuff": "npx npm-dts generate"
+    "eik:alias": "npx @eik/cli pkg-alias"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

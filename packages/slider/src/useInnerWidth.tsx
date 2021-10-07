@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { useElementSizeObserver, useLayoutEffect } from '../../utils/src';
+import {
+  useElementSizeObserver,
+  useLayoutEffect,
+} from '../../utils/src/index.js';
 
 // By deducting the handle width we lock the handle to edges of the slider
 export default function useInnerWidth(

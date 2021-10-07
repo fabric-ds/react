@@ -7,8 +7,8 @@ import React, {
 } from 'react';
 import { classNames as cn } from '@chbphone55/classnames';
 import { tabs as c } from '@fabric-ds/component-classes';
-import { debounce } from './utils';
-import type { TabsProps } from './props';
+import { debounce } from './utils.js';
+import type { TabsProps } from './props.js';
 
 const setup = (
   { className, contained, children, onClick, active, ...rest }: any,

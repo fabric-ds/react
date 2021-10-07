@@ -1,6 +1,6 @@
 import React from 'react';
-import { useId } from '../../utils/src';
-import { ToggleEntry } from './props';
+import { useId } from '../../utils/src/index.js';
+import { ToggleEntry } from './props.js';
 
 interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   controlled: boolean;

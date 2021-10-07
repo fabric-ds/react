@@ -1,4 +1,4 @@
-import { Scale } from './props';
+import { Scale } from './props.js';
 
 /**
  * Restricts the value to the given range.

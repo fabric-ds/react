@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { interleave } from './utils';
-import type { BreadcrumbsProps } from './props';
+import { interleave } from './utils.js';
+import type { BreadcrumbsProps } from './props.js';
 
 const setup = (props) => {
   const { children, ariaLabel, className, ...rest } = props;

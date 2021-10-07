@@ -1,5 +1,5 @@
 import React from 'react';
-import { SwitchProps } from './props';
+import { SwitchProps } from './props.js';
 import { classNames } from '@chbphone55/classnames';
 import { switchToggle as c } from '@fabric-ds/component-classes';
 

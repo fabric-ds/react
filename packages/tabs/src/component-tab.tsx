@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames as cn } from '@chbphone55/classnames';
 import { tab as c } from '@fabric-ds/component-classes';
-import type { TabProps } from './props';
+import type { TabProps } from './props.js';
 
 const setup = ({
   className,

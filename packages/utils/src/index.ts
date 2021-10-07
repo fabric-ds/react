@@ -1,3 +1,3 @@
-export { default as useElementSizeObserver } from './useElementSizeObserver';
-export { useLayoutEffect } from './useIsomorphicLayoutEffect';
-export { useId } from './useId';
+export { default as useElementSizeObserver } from './useElementSizeObserver.js';
+export { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
+export { useId } from './useId.js';

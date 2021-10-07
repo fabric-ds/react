@@ -2,7 +2,7 @@ import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { step as c } from '@fabric-ds/component-classes';
 import { useContext } from 'react';
-import { StepsContext } from './component';
+import { StepsContext } from './component.js';
 
 export interface StepProps {
   /**

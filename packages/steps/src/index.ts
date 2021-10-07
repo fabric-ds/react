@@ -1,4 +1,4 @@
-export { Steps } from './component';
-export { Step } from './step';
-export type { StepsProps } from './props';
-export type { StepProps } from './step';
+export { Steps } from './component.js';
+export { Step } from './step.js';
+export type { StepsProps } from './props.js';
+export type { StepProps } from './step.js';

@@ -1,2 +1,2 @@
-export { TextArea } from './component';
-export type { TextAreaProps } from './props';
+export { TextArea } from './component.js';
+export type { TextAreaProps } from './props.js';

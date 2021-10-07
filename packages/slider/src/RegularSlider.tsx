@@ -1,11 +1,11 @@
 import { classNames } from '@chbphone55/classnames';
 import { slider as classes } from '@fabric-ds/component-classes';
-import { useLayoutEffect } from '../../utils/src';
+import { useLayoutEffect } from '../../utils/src/index.js';
 import React from 'react';
 import { animated, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
-import { RegularSliderProps } from './props';
-import useInnerWidth from './useInnerWidth';
+import { RegularSliderProps } from './props.js';
+import useInnerWidth from './useInnerWidth.js';
 import {
   bigStep,
   clamp,
@@ -13,7 +13,7 @@ import {
   prevValue,
   ratioToValue,
   valueToRatio,
-} from './utils';
+} from './utils.js';
 
 const RegularSlider = ({
   className,

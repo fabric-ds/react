@@ -46,7 +46,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useLayoutEffect } from './useIsomorphicLayoutEffect';
+import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 
 let serverHandoffComplete = false;
 // Generate a pseudorandom seed to prefix to each generated id instead of solely relying on the counter.

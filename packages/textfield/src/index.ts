@@ -1,2 +1,2 @@
-export { TextField } from './component';
-export type { TextFieldProps } from './props';
+export { TextField } from './component.js';
+export type { TextFieldProps } from './props.js';

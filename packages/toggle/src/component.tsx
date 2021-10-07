@@ -1,8 +1,8 @@
 import React from 'react';
-import { useId } from '../../utils/src';
-import { ToggleEntry, ToggleProps } from './props';
+import { useId } from '../../utils/src/index.js';
+import { ToggleEntry, ToggleProps } from './props.js';
 import { classNames } from '@chbphone55/classnames';
-import { Item } from './item';
+import { Item } from './item.js';
 
 function Title({ id, isInvalid, title, optional }) {
   return (

@@ -1,6 +1,6 @@
 import { classNames } from '@chbphone55/classnames';
 import React from 'react';
-import { ClickableProps } from './props';
+import { ClickableProps } from './props.js';
 
 export function Clickable({ children, ...props }: ClickableProps) {
   return React.createElement(

@@ -1,8 +1,8 @@
 import { classNames } from '@chbphone55/classnames';
-import { useId } from '../../utils/src';
+import { useId } from '../../utils/src/index.js';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import { TextField } from '../../textfield/src';
-import { ComboboxOption, ComboboxProps } from './props';
+import { TextField } from '../../textfield/src/index.js';
+import { ComboboxOption, ComboboxProps } from './props.js';
 
 const OPTION_HIGHLIGHT_COLOR = 'bluegray-100';
 const OPTION_CLASS_NAME = 'f-react-combobox-option';

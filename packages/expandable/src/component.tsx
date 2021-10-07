@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { expand, collapse } from 'element-collapse';
 import { buttonReset, box as boxClasses } from '@fabric-ds/component-classes';
-import type { ExpandableProps } from './props';
+import type { ExpandableProps } from './props.js';
 
 const setup = ({
   title = '',

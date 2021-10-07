@@ -1,2 +1,2 @@
-export { Switch } from './component';
-export type { SwitchProps } from './props';
+export { Switch } from './component.js';
+export type { SwitchProps } from './props.js';

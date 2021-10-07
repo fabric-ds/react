@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@chbphone55/classnames';
-import type { ButtonProps } from './props';
+import type { ButtonProps } from './props.js';
 
 const setup = (props) => ({
   attrs: {

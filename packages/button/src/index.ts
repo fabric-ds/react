@@ -1,2 +1,2 @@
-export { Button } from './component';
-export type { ButtonProps } from './props';
+export { Button } from './component.js';
+export type { ButtonProps } from './props.js';

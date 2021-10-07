@@ -1,7 +1,7 @@
 import React from 'react';
 import { card as c } from '@fabric-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
-import { CardProps } from './props';
+import { CardProps } from './props.js';
 
 export function Card({ as = 'article', children, ...props }: CardProps) {
   return React.createElement(

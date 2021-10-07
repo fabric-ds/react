@@ -1,2 +1,2 @@
-export { Card } from './component';
-export type { CardProps } from './props';
+export { Card } from './component.js';
+export type { CardProps } from './props.js';

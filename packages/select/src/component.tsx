@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useId } from '../../utils/src';
+import { useId } from '../../utils/src/index.js';
 import { classNames } from '@chbphone55/classnames';
-import type { SelectProps } from './props';
+import type { SelectProps } from './props.js';
 
 const setup = (props) => {
   const { className, invalid, id, hint, always, label, style, ...rest } = props;

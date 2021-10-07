@@ -1,11 +1,11 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { slider as classes } from '@fabric-ds/component-classes';
-import { useLayoutEffect } from '../../utils/src';
+import { useLayoutEffect } from '../../utils/src/index.js';
 import { animated, interpolate, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
-import { RangeSliderProps } from './props';
-import useInnerWidth from './useInnerWidth';
+import { RangeSliderProps } from './props.js';
+import useInnerWidth from './useInnerWidth.js';
 import {
   bigStep,
   clamp,
@@ -13,7 +13,7 @@ import {
   prevValue,
   ratioToValue,
   valueToRatio,
-} from './utils';
+} from './utils.js';
 
 enum Handle {
   Lower = 0,

@@ -1,7 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
-import { useId } from '../../utils/src';
+import { useId } from '../../utils/src/index.js';
 import React, { forwardRef } from 'react';
-import { TextFieldProps } from './props';
+import { TextFieldProps } from './props.js';
 
 export const TextField = forwardRef(
   (

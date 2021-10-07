@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useLayoutEffect } from './useIsomorphicLayoutEffect';
+import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 
 /**
  * Hook for determining the size of an element using the Resize Observer API.

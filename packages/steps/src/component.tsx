@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { StepsProps } from './props';
+import { StepsProps } from './props.js';
 import { classNames } from '@chbphone55/classnames';
 
 export const StepsContext = createContext<{

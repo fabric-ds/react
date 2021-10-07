@@ -1,4 +1,4 @@
-import { useLayoutEffect } from '../../utils/src';
+import { useLayoutEffect } from '../../utils/src/index.js';
 import React, { useEffect, useRef } from 'react';
 
 type Params = {

@@ -1,2 +1,2 @@
-export { Expandable } from './component';
-export type { ExpandableProps } from './props';
+export { Expandable } from './component.js';
+export type { ExpandableProps } from './props.js';

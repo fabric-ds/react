@@ -1,7 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
 import { box } from '@fabric-ds/component-classes';
 import React from 'react';
-import type { BoxProps } from './props';
+import type { BoxProps } from './props.js';
 
 export function Box({ children, as = 'div', ...props }: BoxProps) {
   return React.createElement(

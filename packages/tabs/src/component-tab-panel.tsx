@@ -1,6 +1,6 @@
 import React from 'react';
 import { tab as c } from '@fabric-ds/component-classes';
-import type { TabPanelProps } from './props';
+import type { TabPanelProps } from './props.js';
 
 export function TabPanel(props: TabPanelProps) {
   const { children, name, hidden, ...attrs } = props;

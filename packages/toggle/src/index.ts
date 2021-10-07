@@ -1,2 +1,2 @@
-export { Toggle } from './component';
-export type { ToggleProps } from './props';
+export { Toggle } from './component.js';
+export type { ToggleProps } from './props.js';

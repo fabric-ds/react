@@ -1,8 +1,8 @@
 import { classNames } from '@chbphone55/classnames';
-import { useId } from '../../utils/src';
+import { useId } from '../../utils/src/index.js';
 import React, { forwardRef, Ref, useRef } from 'react';
-import { TextAreaProps } from './props';
-import useTextAreaHeight from './useTextAreaHeight';
+import { TextAreaProps } from './props.js';
+import useTextAreaHeight from './useTextAreaHeight.js';
 
 /**
  * A textarea component that automatically resizes as content changes.
