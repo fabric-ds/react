@@ -1,7 +1,4 @@
-# SSR React 16 (No JSX)
-
-Without JSX, we do not need to include a build setup for SSR but we do for the
-client side to inline dependencies.
+# SSR React 16 with Typescript
 
 To run:
 
@@ -11,4 +8,4 @@ npm run build
 npm start
 ```
 
-Visit `localhost:8080`
+Visit `localhost:3000`

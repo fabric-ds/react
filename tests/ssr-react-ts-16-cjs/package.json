@@ -1,0 +1,26 @@
+{
+  "name": "ssr-react-16",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon ./dist/server.js",
+    "build:client": "npx esbuild ./src/client.tsx --outdir=dist --target=es2017 --bundle --sourcemap --format=esm",
+    "build:ssr": "npx esbuild ./src/index.tsx --outdir=dist --target=es2017 --bundle --sourcemap --format=cjs --external:react --platform=node",
+    "build:server": "npx esbuild ./src/server.ts --outdir=dist --target=es2020 --sourcemap --format=cjs --platform=node",
+    "build": "rm -rf dist && npm run build:server && npm run build:ssr && npm run build:client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fabric-ds/react": "*",
+    "fastify": "^3.22.0",
+    "react-dom": "16.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.10.3",
+    "typescript": "^4.4.3"
+  }
+}

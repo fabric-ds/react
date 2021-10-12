@@ -1,4 +1,4 @@
-# SSR React 16
+# SSR React 16 CJS
 
 To run:
 
