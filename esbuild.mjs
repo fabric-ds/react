@@ -13,24 +13,24 @@ const excludes = Object.keys(pkg.peerDependencies).concat(
   Object.keys(pkg.dependencies),
 );
 
-const shared = {
+await esbuild.build({
+  plugins: [eik.plugin()],
   entryPoints: ['packages/index.ts'],
+  bundle: true,
+  outdir: 'dist/eik',
   format: 'esm',
   sourcemap: true,
-  minify: true,
-  bundle: true,
-};
-
-await esbuild.build({
-  ...shared,
-  outdir: 'dist/eik',
   target: 'es2017',
-  plugins: [eik.plugin()],
+  minify: true,
 });
 
 await esbuild.build({
-  ...shared,
+  entryPoints: ['packages/index.ts'],
+  bundle: true,
   outdir: 'dist/npm',
+  format: 'esm',
+  sourcemap: true,
   target: 'es2021',
+  minify: true,
   external: excludes,
 });
