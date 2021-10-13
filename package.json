@@ -20,8 +20,8 @@
   "scripts": {
     "build:clean": "rm -rf dist",
     "build:eik": "node esbuild.mjs",
-    "build:types": "tsc",
-    "build:npm": "npx esbuild ./packages/index.ts --outdir=dist/npm --target=es2017 --bundle --sourcemap --format=esm --external:react",
+    "build:types": "tsc && sed 's+declare module \"index\"+declare module \"@fabric-ds/react\"+g' ./dist/npm/index.d.ts > ./dist/npm/updated.d.ts && mv ./dist/npm/updated.d.ts ./dist/npm/index.d.ts",
+    "build:npm": "npx esbuild ./packages/index.ts --outdir=dist/npm --target=es2017 --bundle --sourcemap --format=esm --external:react --minify",
     "build": "npm run build:clean && npm run build:npm && npm run build:eik && npm run build:types",
     "docs:build": "vite build && cd site && cp index.html 404.html && cp ../CNAME .",
     "docs:dev": "vite",

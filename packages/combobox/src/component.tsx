@@ -199,6 +199,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
               'absolute left-0 right-0 pb-8 rounded-8 bg-white shadow': true,
             })}
             style={{
+              zIndex: 2,
               top: !isVisibleBelow
                 ? listRef.current
                   ? -listRef.current?.clientHeight + (props.label ? 22 : 0)
