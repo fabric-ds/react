@@ -1,0 +1,22 @@
+{
+  "name": "ssr-react-16",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon server.js",
+    "build:client": "npx esbuild ./client.jsx --outdir=dist --target=es2017 --bundle --sourcemap --format=esm",
+    "build:server": "npx esbuild ./index.jsx --outdir=dist --target=es2017 --bundle --sourcemap --format=esm --external:react",
+    "build": "npm run build:server && npm run build:client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fabric-ds/react": "*",
+    "fastify": "^3.22.0",
+    "react-dom": "16.14.0"
+  }
+}
