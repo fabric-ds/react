@@ -1,11 +1,48 @@
 import React from 'react';
-import { Button, TextArea, Card } from '@fabric-ds/react';
+import { Button, TextArea, Card, Toggle, Combobox } from '@fabric-ds/react';
+
+function useSWMatch(term) {
+  const [characters, setCharacters] = React.useState([]);
+
+  // @ts-ignore
+  React.useEffect(() => {
+    if (!term.trim()) return;
+    let isFresh = true;
+
+    fetch('https://swapi.dev/api/people/?search=' + term.trim())
+      .then((res) => res.json())
+      .then((res) => {
+        if (!isFresh) return;
+        setCharacters(res.results.map((c) => ({ value: c.name })));
+      });
+
+    return () => (isFresh = false);
+  }, [term]);
+
+  return characters;
+}
 
 export default function App() {
   const [selected, setSelected] = React.useState(false);
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const characters = useSWMatch(searchTerm);
 
   return (
     <div className="m-10">
+      <Toggle
+        onChange={() => console.log('hi')}
+        type="radio"
+        options={[{ label: 'hi', value: 'test' }]}
+        helpText="hi"
+        invalid
+      />
+      <Combobox
+        matchTextSegments
+        label="Star Wars character"
+        onChange={(val) => setSearchTerm(val)}
+        onSelect={(val) => alert(val)}
+        options={characters}
+      />
       <Button
         className="mb-10"
         onClick={() => {
