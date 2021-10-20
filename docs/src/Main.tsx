@@ -33,9 +33,6 @@ const components = {
     // eslint-disable-next-line jsx-a11y/alt-text
     <img {...props} style={{ maxWidth: '100%', ...style }} />
   ),
-  h1: (props) => <h1 className="mb-20" {...props} />,
-  h2: (props) => <h2 className="mt-48 mb-20" {...props} />,
-  h3: (props) => <h3 className="mt-20 mb-20" {...props} />,
 };
 
 const App = () => {

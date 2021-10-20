@@ -1,18 +1,4 @@
-.example {
-  padding: 30px;
-  border: 3px solid rgb(246, 248, 250);
-  margin-bottom: 16px;
-}
-
 .prism-code {
   font-size: 14px;
   overflow-x: auto;
-}
-
-code {
-  padding: 0.2em 0.4em;
-  margin: 0;
-  font-size: 80%;
-  background-color: rgba(175, 184, 193, 0.2);
-  border-radius: 6px;
 }
