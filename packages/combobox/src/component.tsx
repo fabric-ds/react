@@ -148,7 +148,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     useEffect(() => {
       if (!props.value) return;
 
-      if (props.value.trim().length === 0) setMenuOpen(false);
+      if (!props.value.trim().length) setMenuOpen(false);
       if (props.value.length) setMenuOpen(true);
     }, [props.value]);
 
