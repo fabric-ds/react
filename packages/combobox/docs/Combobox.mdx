@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Combobox } from '../src';
 
 # Combobox
@@ -19,15 +20,23 @@ import { Combobox } from '@fabric-ds/react';
 ## Example
 
 ```jsx example
-<Combobox
-  label="Choose a fruit"
-  options={[
-    { value: 'Apple' },
-    { value: 'Banana' },
-    { value: 'Orange' },
-    { value: 'Pineapple' },
-  ]}
-/>
+function Example() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Combobox
+      label="Choose a fruit"
+      value={value}
+      onChange={(val) => setValue(val)}
+      options={[
+        { value: 'Apple' },
+        { value: 'Banana' },
+        { value: 'Orange' },
+        { value: 'Pineapple' },
+      ]}
+    />
+  );
+}
 ```
 
 ## Migrating from Troika
@@ -40,16 +49,24 @@ If you want to highlight the matched text you can set the `matchTextSegments`
 prop.
 
 ```jsx example
-<Combobox
-  matchTextSegments
-  label="Choose a fruit"
-  options={[
-    { value: 'Apple' },
-    { value: 'Banana' },
-    { value: 'Orange' },
-    { value: 'Pineapple' },
-  ]}
-/>
+function Example() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Combobox
+      label="Choose a fruit"
+      value={value}
+      onChange={(val) => setValue(val)}
+      matchTextSegments
+      options={[
+        { value: 'Apple' },
+        { value: 'Banana' },
+        { value: 'Orange' },
+        { value: 'Pineapple' },
+      ]}
+    />
+  );
+}
 ```
 
 Note that this prop only enables the component's default styling for text
@@ -70,11 +87,15 @@ The `value` is what gets sent back when selected.
 
 ```jsx example
 function Example() {
+  const [value, setValue] = React.useState('');
+
   return (
     <Combobox
-      matchTextSegments
       label="Choose a fruit"
       placeholder="Custom Option Rendering"
+      value={value}
+      onChange={(val) => setValue(val)}
+      matchTextSegments
       options={[
         { value: 'Apple', label: '🍎 Apple' },
         { value: 'Banana', label: '🍌 Banana' },
@@ -103,14 +124,15 @@ state you need, then render as many options as you want.
 
 ```jsx example
 function Example() {
-  const [searchTerm, setSearchTerm] = React.useState('');
-  const characters = useSWMatch(searchTerm);
+  const [value, setValue] = React.useState('');
+  const characters = useSWMatch(value);
 
   return (
     <Combobox
-      matchTextSegments
       label="Star Wars character"
-      onChange={(val) => setSearchTerm(val)}
+      matchTextSegments
+      value={value}
+      onChange={(val) => setValue(val)}
       onSelect={(val) => alert(val)}
       options={characters}
     />
