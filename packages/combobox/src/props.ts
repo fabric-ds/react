@@ -25,6 +25,11 @@ export type ComboboxProps = {
   placeholder?: string;
 
   /**
+   * Input value
+   */
+  value: string;
+
+  /**
    * Whether the popover opens when focus is on the text field.
    * @default false
    */
@@ -44,7 +49,7 @@ export type ComboboxProps = {
   /**
    * Called when the value of the input changes
    */
-  onChange?(value: string): void;
+  onChange(value: string): void;
 
   /**  Renders the input field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
   invalid?: boolean;

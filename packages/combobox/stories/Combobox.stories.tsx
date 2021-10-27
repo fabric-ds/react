@@ -5,65 +5,39 @@ import { action } from '@storybook/addon-actions';
 const metadata = { title: 'Forms/Combobox' };
 export default metadata;
 
-export const Basic = () => (
-  <>
-    <p>Start typing to see suggestions</p>
-    <Combobox
-      label="Stillingstittel"
-      onSelect={action('select')}
-      options={[
-        { value: 'Product manager' },
-        { value: 'Produktledelse' },
-        { value: 'Prosessoperatør' },
-        { value: 'Prosjekteier' },
-      ]}
-    />
-  </>
-);
+export const Basic = () => {
+  const [value, setValue] = React.useState('');
 
-export const MatchTextSegments = () => (
-  <>
-    <p>Highlight text matches</p>
-    <Combobox
-      onSelect={action('select')}
-      matchTextSegments
-      label="Stillingstittel"
-      options={[
-        { value: 'Product manager' },
-        { value: 'Produktledelse' },
-        { value: 'Prosessoperatør' },
-        { value: 'Prosjekteier' },
-      ]}
-    />
-  </>
-);
-
-export const OpenOnFocus = () => (
-  <>
-    <p>The comboboxlist opens when the input has focus</p>
-    <Combobox
-      openOnFocus
-      onSelect={action('select')}
-      label="Stillingstittel"
-      options={[
-        { value: 'Product manager' },
-        { value: 'Produktledelse' },
-        { value: 'Prosessoperatør' },
-        { value: 'Prosjekteier' },
-      ]}
-    />
-  </>
-);
-
-export const SelectOnClick = () => {
   return (
     <>
-      <p>
-        When the user clicks inside the text box the current value will be
-        selected (like the URL bar in browsers).
-      </p>
+      <p>Start typing to see suggestions</p>
       <Combobox
+        label="Stillingstittel"
+        value={value}
+        onChange={(val) => setValue(val)}
         onSelect={action('select')}
+        options={[
+          { value: 'Product manager' },
+          { value: 'Produktledelse' },
+          { value: 'Prosessoperatør' },
+          { value: 'Prosjekteier' },
+        ]}
+      />
+    </>
+  );
+};
+
+export const MatchTextSegments = () => {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <>
+      <p>Highlight text matches</p>
+      <Combobox
+        value={value}
+        onChange={(val) => setValue(val)}
+        onSelect={action('select')}
+        matchTextSegments
         label="Stillingstittel"
         options={[
           { value: 'Product manager' },
@@ -76,18 +50,16 @@ export const SelectOnClick = () => {
   );
 };
 
-export const PersistSelection = () => {
-  const [_, setValue] = React.useState('');
+export const OpenOnFocus = () => {
+  const [value, setValue] = React.useState('');
 
   return (
     <>
-      <p>
-        When the list is opened, if an option's value matches the value in the
-        input, it will automatically be highlighted and be the starting point
-        for any keyboard navigation of the list.
-      </p>
+      <p>The comboboxlist opens when the input has focus</p>
       <Combobox
-        onSelect={setValue}
+        value={value}
+        onChange={(val) => setValue(val)}
+        onSelect={action('select')}
         openOnFocus
         label="Stillingstittel"
         options={[
@@ -101,34 +73,18 @@ export const PersistSelection = () => {
   );
 };
 
-export const OptionText = () => {
-  return (
-    <Combobox
-      label="Favorite fruit"
-      placeholder="What's your favorite fruit?"
-      onSelect={action('select')}
-      options={[
-        { value: 'Apple', label: '🍎 Apple' },
-        { value: 'Banana', label: '🍌 Banana' },
-        { value: 'Orange', label: '🍊 Orange' },
-        { value: 'Pineapple', label: '🍍 Pineapple' },
-      ]}
-    />
-  );
-};
-
-export const RefForwarding = () => {
-  const ref = React.useRef<HTMLInputElement>(null);
-
-  if (ref.current) {
-    console.log(ref.current);
-  }
+export const SelectOnClick = () => {
+  const [value, setValue] = React.useState('');
 
   return (
     <>
-      <p>Should log input element on change because of React ref</p>
+      <p>
+        When the user clicks inside the text box the current value will be
+        selected (like the URL bar in browsers).
+      </p>
       <Combobox
-        ref={ref}
+        value={value}
+        onChange={(val) => setValue(val)}
         onSelect={action('select')}
         label="Stillingstittel"
         options={[
@@ -136,6 +92,28 @@ export const RefForwarding = () => {
           { value: 'Produktledelse' },
           { value: 'Prosessoperatør' },
           { value: 'Prosjekteier' },
+        ]}
+      />
+    </>
+  );
+};
+
+export const OptionText = () => {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <>
+      <Combobox
+        value={value}
+        onChange={(val) => setValue(val)}
+        onSelect={action('select')}
+        label="Favorite fruit"
+        placeholder="What's your favorite fruit?"
+        options={[
+          { value: 'Apple', label: '🍎 Apple' },
+          { value: 'Banana', label: '🍌 Banana' },
+          { value: 'Orange', label: '🍊 Orange' },
+          { value: 'Pineapple', label: '🍍 Pineapple' },
         ]}
       />
     </>

@@ -17,7 +17,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const listRef = useRef<HTMLDivElement>(null);
 
     const [isVisibleBelow, setIsVisibleBelow] = useState(true);
-    const [value, setValue] = useState('');
     const [active, setActive] = useState<Option | null>(null);
     const [menuOpen, setMenuOpen] = useState(false);
     const [options, setOptions] = useState<Option[]>(
@@ -30,16 +29,17 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const validOptions =
       options &&
       options.filter((o) =>
-        o.value.toLocaleLowerCase().includes(value.toLowerCase()),
+        o.value.toLocaleLowerCase().includes(props.value.toLowerCase()),
       ).length
         ? options.filter((o) =>
-            o.value.toLocaleLowerCase().includes(value.toLowerCase()),
+            o.value.toLocaleLowerCase().includes(props.value.toLowerCase()),
           )
         : options;
 
     const handleSelect = (o: Option) => {
       props.onSelect && props.onSelect(o.value);
-      setValue('');
+      props.onChange(o.value);
+
       setActive(null);
       setMenuOpen(false);
     };
@@ -100,16 +100,20 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           setActive(validOptions[validOptions.length - 1]);
           break;
         case 'Escape':
-          menuOpen ? setMenuOpen(false) : setValue('');
+          menuOpen ? setMenuOpen(false) : props.onChange('');
           setActive(null);
           break;
         case 'Enter':
           if (!active) return;
           handleSelect(active);
           break;
+        case 'Backspace':
+          props.onChange(active?.value || props.value);
+          setActive(null);
+          break;
         default:
           if (e.key.length === 1) {
-            setValue(active?.value || value);
+            props.onChange(active?.value || props.value);
             setActive(null);
           }
           break;
@@ -131,7 +135,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     useEffect(() => {
       if (!inputRef.current) return;
       const input = inputRef.current;
-      handleListPlacement();
 
       input.addEventListener('keydown', handlekeyDown);
       window.addEventListener('scroll', handleListPlacement);
@@ -143,10 +146,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     });
 
     useEffect(() => {
-      value.length && setMenuOpen(true);
-      props.onChange && props.onChange(value);
-      if (value.trim().length === 0) setMenuOpen(false);
-    }, [value, props]);
+      if (!props.value) return;
+
+      if (props.value.trim().length === 0) setMenuOpen(false);
+      if (props.value.length) setMenuOpen(true);
+    }, [props.value]);
 
     useEffect(() => {
       if (!props.options.length) return;
@@ -164,13 +168,22 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         className={classNames(props.className, {
           relative: true,
         })}
+        onBlur={(event) => {
+          // If the clicked element on page is not a child of the container
+          if (!event.currentTarget.contains(event.relatedTarget)) {
+            setMenuOpen(false);
+          }
+        }}
       >
         <TextField
           id={id}
           ref={ref || inputRef}
-          value={active?.value || value}
+          value={active?.value || props.value}
           onChange={(e) =>
-            setValue(!value.length ? e.target.value.trim() : e.target.value)
+            props.onChange &&
+            props.onChange(
+              !props.value.length ? e.target.value.trim() : e.target.value,
+            )
           }
           label={props.label}
           invalid={props.invalid}
@@ -186,9 +199,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           onFocus={() => {
             if (!props.openOnFocus) return;
             setMenuOpen(true);
-          }}
-          onBlur={() => {
-            setMenuOpen(false);
           }}
         />
 
@@ -210,7 +220,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             <span className="sr-only" role="status">
               {options &&
               options.filter((o) =>
-                o.value.toLocaleLowerCase().includes(value.toLowerCase()),
+                o.value.toLocaleLowerCase().includes(props.value.toLowerCase()),
               ).length
                 ? `${validOptions.length} treff`
                 : `Ingen treff, viser ${
@@ -236,7 +246,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
                 if (props.matchTextSegments) {
                   match = [...display].map((l, i) => {
-                    if ([...value.toLowerCase()].includes(l.toLowerCase())) {
+                    if (
+                      [...props.value.toLowerCase()].includes(l.toLowerCase())
+                    ) {
                       return (
                         <span
                           data-combobox-text-match
@@ -258,7 +270,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     aria-selected={active?.id === o.id || false}
                     role="option"
                     tabIndex={-1}
-                    onClick={() => handleSelect(o)}
+                    onClick={() => {
+                      setActive(o);
+
+                      setTimeout(() => {
+                        handleSelect(o);
+                      }, 1);
+                    }}
                     className={classNames({
                       [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
                         true,
