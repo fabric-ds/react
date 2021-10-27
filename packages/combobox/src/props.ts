@@ -25,7 +25,7 @@ export type ComboboxProps = {
   placeholder?: string;
 
   /**
-   * Input value
+   * The TextField input value
    */
   value: string;
 
