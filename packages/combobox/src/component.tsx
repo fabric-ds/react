@@ -20,25 +20,27 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const [active, setActive] = useState<Option | null>(null);
     const [menuOpen, setMenuOpen] = useState(false);
     const [options, setOptions] = useState<Option[]>(
-      props.options.map((o: ComboboxOption) => ({
-        ...o,
+      props.options.map((option: ComboboxOption) => ({
+        ...option,
         id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
       })),
     );
 
     const validOptions =
       options &&
-      options.filter((o) =>
-        o.value.toLocaleLowerCase().includes(props.value.toLowerCase()),
+      options.filter((option) =>
+        option.value.toLocaleLowerCase().includes(props.value.toLowerCase()),
       ).length
-        ? options.filter((o) =>
-            o.value.toLocaleLowerCase().includes(props.value.toLowerCase()),
+        ? options.filter((option) =>
+            option.value
+              .toLocaleLowerCase()
+              .includes(props.value.toLowerCase()),
           )
         : options;
 
-    const handleSelect = (o: Option) => {
-      props.onSelect && props.onSelect(o.value);
-      props.onChange(o.value);
+    const handleSelect = (option: Option) => {
+      props.onSelect && props.onSelect(option.value);
+      props.onChange(option.value);
 
       setActive(null);
       setMenuOpen(false);
@@ -56,7 +58,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       if (!menuOpen) return;
       if (!!!active?.id && ['Home', 'End'].includes(e.key)) return;
 
-      const currIndex = validOptions.findIndex((o) => o.id === active?.id);
+      const currIndex = validOptions.findIndex(
+        (option) => option.id === active?.id,
+      );
       const nextIndex = currIndex + 1;
       const prevIndex = currIndex - 1;
 
@@ -146,8 +150,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     });
 
     useEffect(() => {
-      if (!props.value) return;
-
       if (!props.value.trim().length) setMenuOpen(false);
       if (props.value.length) setMenuOpen(true);
     }, [props.value]);
@@ -219,8 +221,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           >
             <span className="sr-only" role="status">
               {options &&
-              options.filter((o) =>
-                o.value.toLocaleLowerCase().includes(props.value.toLowerCase()),
+              options.filter((option) =>
+                option.value
+                  .toLocaleLowerCase()
+                  .toLocaleLowerCase()
+                  .includes(props.value.toLowerCase()),
               ).length
                 ? `${validOptions.length} treff`
                 : `Ingen treff, viser ${
@@ -240,47 +245,54 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 [MATCH_SEGMENTS_CLASS_NAME]: props.matchTextSegments,
               })}
             >
-              {validOptions.map((o) => {
-                const display = o.label || o.value;
+              {validOptions.map((option) => {
+                const display = option.label || option.value;
                 let match: JSX.Element[] = [];
 
                 if (props.matchTextSegments) {
-                  match = [...display].map((l, i) => {
+                  match = [...display].map((letter, i) => {
                     if (
-                      [...props.value.toLowerCase()].includes(l.toLowerCase())
+                      [...props.value.toLowerCase()].includes(
+                        letter.toLowerCase(),
+                      )
                     ) {
                       return (
                         <span
                           data-combobox-text-match
-                          key={`${o.id}-bold-letter-${l}-${i}`}
+                          key={`${option.id}-bold-letter-${letter}-${i}`}
                           className="font-bold"
                         >
-                          {l}
+                          {letter}
                         </span>
                       );
                     } else {
-                      return <span key={`${o.id}-letter-${l}-${i}`}>{l}</span>;
+                      return (
+                        <span key={`${option.id}-letter-${letter}-${i}`}>
+                          {letter}
+                        </span>
+                      );
                     }
                   });
                 }
 
                 return (
                   <li
-                    key={o.id}
-                    aria-selected={active?.id === o.id || false}
+                    key={option.id}
+                    aria-selected={active?.id === option.id || false}
                     role="option"
                     tabIndex={-1}
                     onClick={() => {
-                      setActive(o);
+                      setActive(option);
 
                       setTimeout(() => {
-                        handleSelect(o);
+                        handleSelect(option);
                       }, 1);
                     }}
                     className={classNames({
                       [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
                         true,
-                      [`bg-${OPTION_HIGHLIGHT_COLOR}`]: active?.id === o.id,
+                      [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
+                        active?.id === option.id,
                     })}
                   >
                     {props.matchTextSegments ? match : display}
