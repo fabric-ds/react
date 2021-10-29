@@ -17,29 +17,31 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const listRef = useRef<HTMLDivElement>(null);
 
     const [isVisibleBelow, setIsVisibleBelow] = useState(true);
-    const [value, setValue] = useState('');
     const [active, setActive] = useState<Option | null>(null);
     const [menuOpen, setMenuOpen] = useState(false);
     const [options, setOptions] = useState<Option[]>(
-      props.options.map((o: ComboboxOption) => ({
-        ...o,
+      props.options.map((option: ComboboxOption) => ({
+        ...option,
         id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
       })),
     );
 
     const validOptions =
       options &&
-      options.filter((o) =>
-        o.value.toLocaleLowerCase().includes(value.toLowerCase()),
+      options.filter((option) =>
+        option.value.toLocaleLowerCase().includes(props.value.toLowerCase()),
       ).length
-        ? options.filter((o) =>
-            o.value.toLocaleLowerCase().includes(value.toLowerCase()),
+        ? options.filter((option) =>
+            option.value
+              .toLocaleLowerCase()
+              .includes(props.value.toLowerCase()),
           )
         : options;
 
-    const handleSelect = (o: Option) => {
-      props.onSelect && props.onSelect(o.value);
-      setValue('');
+    const handleSelect = (option: Option) => {
+      props.onSelect && props.onSelect(option.value);
+      props.onChange(option.value);
+
       setActive(null);
       setMenuOpen(false);
     };
@@ -56,7 +58,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       if (!menuOpen) return;
       if (!!!active?.id && ['Home', 'End'].includes(e.key)) return;
 
-      const currIndex = validOptions.findIndex((o) => o.id === active?.id);
+      const currIndex = validOptions.findIndex(
+        (option) => option.id === active?.id,
+      );
       const nextIndex = currIndex + 1;
       const prevIndex = currIndex - 1;
 
@@ -100,16 +104,20 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           setActive(validOptions[validOptions.length - 1]);
           break;
         case 'Escape':
-          menuOpen ? setMenuOpen(false) : setValue('');
+          menuOpen ? setMenuOpen(false) : props.onChange('');
           setActive(null);
           break;
         case 'Enter':
           if (!active) return;
           handleSelect(active);
           break;
+        case 'Backspace':
+          props.onChange(active?.value || props.value);
+          setActive(null);
+          break;
         default:
           if (e.key.length === 1) {
-            setValue(active?.value || value);
+            props.onChange(active?.value || props.value);
             setActive(null);
           }
           break;
@@ -131,7 +139,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     useEffect(() => {
       if (!inputRef.current) return;
       const input = inputRef.current;
-      handleListPlacement();
 
       input.addEventListener('keydown', handlekeyDown);
       window.addEventListener('scroll', handleListPlacement);
@@ -143,10 +150,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     });
 
     useEffect(() => {
-      value.length && setMenuOpen(true);
-      props.onChange && props.onChange(value);
-      if (value.trim().length === 0) setMenuOpen(false);
-    }, [value, props]);
+      if (!props.value.trim().length) setMenuOpen(false);
+      if (props.value.length) setMenuOpen(true);
+    }, [props.value]);
 
     useEffect(() => {
       if (!props.options.length) return;
@@ -164,13 +170,22 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         className={classNames(props.className, {
           relative: true,
         })}
+        onBlur={(event) => {
+          // If the clicked element on page is not a child of the container
+          if (!event.currentTarget.contains(event.relatedTarget)) {
+            setMenuOpen(false);
+          }
+        }}
       >
         <TextField
           id={id}
           ref={ref || inputRef}
-          value={active?.value || value}
+          value={active?.value || props.value}
           onChange={(e) =>
-            setValue(!value.length ? e.target.value.trim() : e.target.value)
+            props.onChange &&
+            props.onChange(
+              !props.value.length ? e.target.value.trim() : e.target.value,
+            )
           }
           label={props.label}
           invalid={props.invalid}
@@ -186,9 +201,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           onFocus={() => {
             if (!props.openOnFocus) return;
             setMenuOpen(true);
-          }}
-          onBlur={() => {
-            setMenuOpen(false);
           }}
         />
 
@@ -209,8 +221,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           >
             <span className="sr-only" role="status">
               {options &&
-              options.filter((o) =>
-                o.value.toLocaleLowerCase().includes(value.toLowerCase()),
+              options.filter((option) =>
+                option.value
+                  .toLocaleLowerCase()
+                  .toLocaleLowerCase()
+                  .includes(props.value.toLowerCase()),
               ).length
                 ? `${validOptions.length} treff`
                 : `Ingen treff, viser ${
@@ -230,39 +245,54 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 [MATCH_SEGMENTS_CLASS_NAME]: props.matchTextSegments,
               })}
             >
-              {validOptions.map((o) => {
-                const display = o.label || o.value;
+              {validOptions.map((option) => {
+                const display = option.label || option.value;
                 let match: JSX.Element[] = [];
 
                 if (props.matchTextSegments) {
-                  match = [...display].map((l, i) => {
-                    if ([...value.toLowerCase()].includes(l.toLowerCase())) {
+                  match = [...display].map((letter, i) => {
+                    if (
+                      [...props.value.toLowerCase()].includes(
+                        letter.toLowerCase(),
+                      )
+                    ) {
                       return (
                         <span
                           data-combobox-text-match
-                          key={`${o.id}-bold-letter-${l}-${i}`}
+                          key={`${option.id}-bold-letter-${letter}-${i}`}
                           className="font-bold"
                         >
-                          {l}
+                          {letter}
                         </span>
                       );
                     } else {
-                      return <span key={`${o.id}-letter-${l}-${i}`}>{l}</span>;
+                      return (
+                        <span key={`${option.id}-letter-${letter}-${i}`}>
+                          {letter}
+                        </span>
+                      );
                     }
                   });
                 }
 
                 return (
                   <li
-                    key={o.id}
-                    aria-selected={active?.id === o.id || false}
+                    key={option.id}
+                    aria-selected={active?.id === option.id || false}
                     role="option"
                     tabIndex={-1}
-                    onClick={() => handleSelect(o)}
+                    onClick={() => {
+                      setActive(option);
+
+                      setTimeout(() => {
+                        handleSelect(option);
+                      }, 1);
+                    }}
                     className={classNames({
                       [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
                         true,
-                      [`bg-${OPTION_HIGHLIGHT_COLOR}`]: active?.id === o.id,
+                      [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
+                        active?.id === option.id,
                     })}
                   >
                     {props.matchTextSegments ? match : display}
