@@ -20,7 +20,7 @@ const setup = (props) => ({
     type: props.href ? undefined : props.type || 'button',
   },
   classes: classNames({
-    button: !props.href,
+    button: !props.link,
     // primary buttons
     'button--primary': props.primary,
     'button--destructive': props.negative,

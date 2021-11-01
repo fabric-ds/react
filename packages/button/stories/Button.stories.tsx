@@ -13,6 +13,9 @@ export const Example = () => {
         <Button className="mr-32" primary>
           Simple
         </Button>
+        <Button className="mr-32" primary href="https://google.com">
+          Simple
+        </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" primary loading>
           Loading
