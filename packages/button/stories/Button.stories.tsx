@@ -14,7 +14,7 @@ export const Example = () => {
           Simple
         </Button>
         <Button className="mr-32" primary href="https://google.com">
-          Simple
+          Simple href
         </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" primary loading>
@@ -34,6 +34,9 @@ export const Example = () => {
         {/* @ts-ignore */}
         <Button className="mr-32" secondary>
           Simple
+        </Button>
+        <Button className="mr-32" secondary href="https://google.com">
+          Simple href
         </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" secondary loading>
@@ -67,19 +70,22 @@ export const Example = () => {
       <div>
         <h3>Negative</h3>
         {/* @ts-ignore */}
-        <Button className="mr-32" negative primary>
+        <Button className="mr-32" negative>
           Primary
         </Button>
+        <Button className="mr-32" negative href="https://google.com">
+          Simple href
+        </Button>
         {/* @ts-ignore */}
-        <Button className="mr-32" negative primary loading>
+        <Button className="mr-32" negative loading>
           Primary Loading
         </Button>
         {/* @ts-ignore */}
-        <Button className="mr-32" primary negative small>
+        <Button className="mr-32" negative small>
           Primary Small
         </Button>
         {/* @ts-ignore */}
-        <Button className="mr-32" primary negative small loading>
+        <Button className="mr-32" negative small loading>
           Primary Small Loading
         </Button>
         {/* @ts-ignore */}
@@ -104,6 +110,9 @@ export const Example = () => {
         {/* @ts-ignore */}
         <Button className="mr-32" utility>
           Simple
+        </Button>
+        <Button className="mr-32" utility href="https://google.com">
+          Simple href
         </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" utility loading>
