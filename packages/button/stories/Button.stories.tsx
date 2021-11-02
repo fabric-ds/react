@@ -141,11 +141,11 @@ export const Example = () => {
       <div>
         <h3>Link</h3>
         {/* @ts-ignore */}
-        <Button className="mr-32" href="http://google.com" link>
+        <Button className="mr-32" link>
           Simple
         </Button>
         {/* @ts-ignore */}
-        <Button className="mr-32" href="http://google.com" link small>
+        <Button className="mr-32" link small>
           Loading
         </Button>
       </div>
