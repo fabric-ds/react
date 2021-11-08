@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from '../src';
 import { Toggle } from '../../toggle/src';
+import { Clickable } from '../../box/src';
 
 const metadata = { title: 'Navigation/Card' };
 export default metadata;
@@ -194,6 +195,54 @@ export const GridCards = () => {
         </div>
       </Card>
     </div>
+  );
+};
+
+export const AnchorCard = () => {
+  return (
+    <Card>
+      <div aria-owns="title_id"></div>
+      <img
+        className="h-128 w-full object-cover"
+        src="https://source.unsplash.com/random/400x400"
+        alt="Description"
+      />
+      <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">
+        Ukens bolig
+      </p>
+      <div className="p-16">
+        <p className="text-12 text-gray-300">DNB Eiendom</p>
+        <h3 className="text-16 font-normal text-gray-800" id="title_id">
+          <Clickable
+            href="//finn.no"
+            target="_blank"
+            title="Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring."
+            className="text-current hover:no-underline focus:no-underline"
+          >
+            Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl.
+            bl.a. vv/fyring.
+          </Clickable>
+        </h3>
+        <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+        <p className="font-bold my-8">
+          52 m
+          <span
+            style={{
+              fontSize: 10,
+              verticalAlign: 'super',
+              marginRight: 5,
+            }}
+          >
+            2
+          </span>
+          Totalpris: 4 869 039 kr
+        </p>
+        <p className="text-14 text-gray-400 mb-0">
+          Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
+          <span className="text-gray-200">•</span> 2 soverom
+        </p>
+      </div>
+    </Card>
   );
 };
 
