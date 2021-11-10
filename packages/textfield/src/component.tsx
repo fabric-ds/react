@@ -27,7 +27,14 @@ export const TextField = forwardRef(
     const isInvalid = invalid || error;
 
     return (
-      <div className={classNames({ 'has-suffix': true })}>
+      <div
+        className={classNames({
+          // @ts-expect-error Will look into type here
+          'has-suffix': children?.props.suffix,
+          // @ts-expect-error
+          'has-prefix': children?.props.prefix,
+        })}
+      >
         <div className="input">
           {label && <label htmlFor={id}>{label}</label>}
           <div

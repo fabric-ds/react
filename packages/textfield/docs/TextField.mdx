@@ -1,4 +1,4 @@
-import { TextField, Suffix } from '../src';
+import { TextField, Affix } from '../src';
 
 # TextField
 
@@ -110,31 +110,38 @@ use disabled on an element.
 </div>
 ```
 
-### Suffix
+### Affix
 
-If you wish to use a suffix you must first import the Suffix component.
+If you wish to use an affix you must first import the Affix component.
 
 ```js
-import { Suffix } from '@fabric-ds/react';
+import { Affix } from '@fabric-ds/react';
 ```
 
-Then you include as a child of TextField like so:
+Then you include as a child of TextField like so and pass the appropiate types
+(see bottom of this page for types)
 
 ```jsx example
 <TextField label="Price" placeholder="1 000 000">
-  <Suffix label="kr" />
+  <Affix suffix label="kr" />
+</TextField>
+```
+
+```jsx example
+<TextField label="Price" placeholder="1 000 000">
+  <Affix prefix label="kr" />
 </TextField>
 ```
 
 ```jsx example
 <TextField>
-  <Suffix clear onClick={() => alert('clear')} />
+  <Affix suffix clear onClick={() => alert('clear')} />
 </TextField>
 ```
 
 ```jsx example
 <TextField>
-  <Suffix search onClick={() => alert('search')} />
+  <Affix suffix search onClick={() => alert('search')} />
 </TextField>
 ```
 
@@ -159,8 +166,8 @@ for more information.
 
 ```
 
-## Suffix Props
+## Affix Props
 
-```props packages/textfield/src/suffix.tsx
+```props packages/textfield/src/affix.tsx
 
 ```

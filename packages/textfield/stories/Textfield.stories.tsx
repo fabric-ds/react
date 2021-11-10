@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Suffix, TextField as TroikaTextField } from '../src';
+import { Affix, TextField as TroikaTextField } from '../src';
 
 const metadata = { title: 'Forms/TextField' };
 export default metadata;
@@ -31,21 +31,39 @@ export const readOnly = () => <TextField readOnly />;
 
 export const autoFocus = () => <TextField autoFocus />;
 
+export const clearPrefix = () => (
+  <TextField>
+    <Affix prefix clear onClick={() => alert('clear')} />
+  </TextField>
+);
+
+export const searchPrefix = () => (
+  <TextField>
+    <Affix prefix search onClick={() => alert('search')} />
+  </TextField>
+);
+
+export const labelPrefix = () => (
+  <TextField>
+    <Affix prefix label="kr" />
+  </TextField>
+);
+
 export const clearSuffix = () => (
   <TextField>
-    <Suffix clear onClick={() => alert('clear')} />
+    <Affix suffix clear onClick={() => alert('clear')} />
   </TextField>
 );
 
 export const searchSuffix = () => (
   <TextField>
-    <Suffix search onClick={() => alert('search')} />
+    <Affix suffix search onClick={() => alert('search')} />
   </TextField>
 );
 
 export const labelSuffix = () => (
   <TextField>
-    <Suffix label="kr" />
+    <Affix suffix label="kr" />
   </TextField>
 );
 

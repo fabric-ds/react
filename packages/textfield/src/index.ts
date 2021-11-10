@@ -1,3 +1,3 @@
 export { TextField } from './component';
-export { Suffix } from './suffix';
+export { Affix } from './affix';
 export type { TextFieldProps } from './props';

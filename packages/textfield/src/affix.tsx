@@ -1,17 +1,19 @@
 import React from 'react';
-import { suffix as s } from '@fabric-ds/component-classes';
+import { suffix, prefix } from '@fabric-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
-import { SuffixProps } from './props';
+import { AffixProps } from './props';
 
-export function Suffix(props: SuffixProps) {
+export function Affix(props: AffixProps) {
+  const classBase = props.prefix ? prefix : suffix;
+
   return React.createElement(
     props.label ? 'div' : 'button',
     {
       onClick: props.onClick,
       className: classNames({
-        [s.wrapper]: true,
-        [s.wrapperWithLabel]: props.label,
-        [s.wrapperWithIcon]: !props.label,
+        [classBase.wrapper]: true,
+        [classBase.wrapperWithLabel]: props.label,
+        [classBase.wrapperWithIcon]: !props.label,
       }),
     },
     <div>
@@ -57,7 +59,7 @@ export function Suffix(props: SuffixProps) {
         </svg>
       )}
 
-      {props.label && <span className={s.label}>{props.label}</span>}
+      {props.label && <span className={classBase.label}>{props.label}</span>}
     </div>,
   );
 }

@@ -86,7 +86,13 @@ export type TextFieldProps = {
   'onBlur' | 'onFocus' | 'onChange' | 'type' | 'value'
 >;
 
-export interface SuffixProps {
+export interface AffixProps {
+  /** Affix added at the beginning of input */
+  prefix?: boolean;
+
+  /** Affix added at the end of input */
+  suffix?: boolean;
+
   /** Displays a clear icon */
   clear?: boolean;
 
