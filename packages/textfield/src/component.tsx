@@ -29,9 +29,7 @@ export const TextField = forwardRef(
     return (
       <div
         className={classNames({
-          // @ts-expect-error Will look into type here
           'has-suffix': children?.props.suffix,
-          // @ts-expect-error
           'has-prefix': children?.props.prefix,
         })}
       >

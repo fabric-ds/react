@@ -76,7 +76,7 @@ export type TextFieldProps = {
   type?: 'text' | 'search' | 'email' | 'password' | 'url' | 'tel' | 'number';
 
   /** For suffix or prefix use */
-  children?: React.ReactNode;
+  children?: JSX.Element;
 
   /** The current value (controlled). */
   value?: string;
