@@ -1,3 +1,5 @@
+export type SuffixType = string | 'clear' | 'search';
+
 export type TextFieldProps = {
   /** Describes the type of autocomplete functionality the input should provide if any. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefautocomplete) .*/
   autoComplete?: boolean;
@@ -75,6 +77,9 @@ export type TextFieldProps = {
   /** The type of input to render. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdeftype). */
   type?: 'text' | 'search' | 'email' | 'password' | 'url' | 'tel' | 'number';
 
+  /** For suffix or prefix use */
+  children?: React.ReactNode;
+
   /** The current value (controlled). */
   value?: string;
 } & Omit<
@@ -82,3 +87,17 @@ export type TextFieldProps = {
   // omit these, otherwise they seem to form a union type (in the prop table docs)
   'onBlur' | 'onFocus' | 'onChange' | 'type' | 'value'
 >;
+
+export interface SuffixProps {
+  /** Displays a clear icon */
+  clear?: boolean;
+
+  /** Displays a search icon */
+  search?: boolean;
+
+  /** Displays a string */
+  label?: string;
+
+  /** Click handler paired with clear or search */
+  onClick?: () => void;
+}

@@ -1,4 +1,4 @@
-import { TextField } from '../src';
+import { TextField, Suffix } from '../src';
 
 # TextField
 
@@ -110,6 +110,34 @@ use disabled on an element.
 </div>
 ```
 
+### Suffix
+
+If you wish to use a suffix you must first import the Suffix component.
+
+```js
+import { Suffix } from '@fabric-ds/react';
+```
+
+Then you include as a child of TextField like so:
+
+```jsx example
+<TextField label="Price" placeholder="1 000 000">
+  <Suffix label="kr" />
+</TextField>
+```
+
+```jsx example
+<TextField>
+  <Suffix clear onClick={() => alert('clear')} />
+</TextField>
+```
+
+```jsx example
+<TextField>
+  <Suffix search onClick={() => alert('search')} />
+</TextField>
+```
+
 ### Read only
 
 The `readOnly` boolean prop makes the TextField's text content immutable. Unlike
@@ -125,8 +153,14 @@ for more information.
 </div>
 ```
 
-## Props
+## TextField Props
 
 ```props packages/textfield/src/component.tsx
+
+```
+
+## Suffix Props
+
+```props packages/textfield/src/suffix.tsx
 
 ```
