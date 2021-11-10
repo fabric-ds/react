@@ -1,4 +1,4 @@
-import { TextField } from '../src';
+import { TextField, Affix } from '../src';
 
 # TextField
 
@@ -110,6 +110,41 @@ use disabled on an element.
 </div>
 ```
 
+### Affix
+
+If you wish to use an affix you must first import the Affix component.
+
+```js
+import { Affix } from '@fabric-ds/react';
+```
+
+Then you include it as a child of TextField component and pass the appropiate
+props (see bottom of this page for types)
+
+```jsx example
+<TextField label="Price" placeholder="1 000 000">
+  <Affix suffix label="kr" />
+</TextField>
+```
+
+```jsx example
+<TextField label="Price" placeholder="1 000 000">
+  <Affix prefix label="kr" />
+</TextField>
+```
+
+```jsx example
+<TextField>
+  <Affix suffix clear onClick={() => alert('clear')} />
+</TextField>
+```
+
+```jsx example
+<TextField>
+  <Affix suffix search onClick={() => alert('search')} />
+</TextField>
+```
+
 ### Read only
 
 The `readOnly` boolean prop makes the TextField's text content immutable. Unlike
@@ -125,8 +160,14 @@ for more information.
 </div>
 ```
 
-## Props
+## TextField Props
 
 ```props packages/textfield/src/component.tsx
+
+```
+
+## Affix Props
+
+```props packages/textfield/src/affix.tsx
 
 ```
