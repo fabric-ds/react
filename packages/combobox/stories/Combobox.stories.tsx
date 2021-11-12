@@ -1,5 +1,6 @@
 import React from 'react';
 import { Combobox } from '../src';
+import { Affix } from '../../textfield/src';
 import { action } from '@storybook/addon-actions';
 
 const metadata = { title: 'Forms/Combobox' };
@@ -116,6 +117,30 @@ export const OptionText = () => {
           { value: 'Pineapple', label: '🍍 Pineapple' },
         ]}
       />
+    </>
+  );
+};
+
+export const WithAffix = () => {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <>
+      <Combobox
+        value={value}
+        onChange={(val) => setValue(val)}
+        onSelect={action('select')}
+        label="Favorite fruit"
+        placeholder="What's your favorite fruit?"
+        options={[
+          { value: 'Apple', label: '🍎 Apple' },
+          { value: 'Banana', label: '🍌 Banana' },
+          { value: 'Orange', label: '🍊 Orange' },
+          { value: 'Pineapple', label: '🍍 Pineapple' },
+        ]}
+      >
+        <Affix suffix clear onClick={() => setValue('')} />
+      </Combobox>
     </>
   );
 };

@@ -76,4 +76,7 @@ export type ComboboxProps = {
    * Identifies the element (or elements) that labels the current element. Must be set if `aria-label` is not defined.
    */
   'aria-labelledby'?: string;
+
+  /** For affix use */
+  children?: JSX.Element;
 };
