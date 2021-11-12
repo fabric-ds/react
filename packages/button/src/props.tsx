@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export type ButtonProps = {
   children: React.ReactNode;
 
@@ -82,6 +80,16 @@ export type ButtonProps = {
    * Set the href for the location where clicking the button will take you to. Uses an a tag instead of a button tag for the underlying implementation
    */
   href?: string;
+
+  /**
+   * Anchor target, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+   */
+  target?: string;
+
+  /**
+   * The relationship of the linked URL
+   */
+  rel?: string;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['button']>,
   // omit children here, because we don't want children to be optional
