@@ -9,13 +9,12 @@ export function Card({ as = 'article', children, ...props }: CardProps) {
     {
       ...props,
       className: classNames(props.className, {
-        'outline-none focus:ring ring-offset-1 ring-aqua-200': true,
         [c.card]: true,
+        [c.cardShadow]: !props.flat,
         [c.cardSelected]: props.selected,
-        [c.cardOutline]: true,
-        [props.selected ? c.cardOutlineSelected : c.cardOutlineUnselected]:
-          true,
-        [props.selected ? 'focus:border-blue-500' : '']: true,
+        [c.cardFlat]: props.flat,
+        [props.selected ? c.cardFlatSelected : c.cardFlatUnselected]:
+          props.flat,
       }),
       tabIndex: 0,
       onKeyDown: props.onClick
@@ -41,6 +40,14 @@ export function Card({ as = 'article', children, ...props }: CardProps) {
       {!props.onClick && props.selected && (
         <span role="checkbox" aria-checked="true" aria-disabled="true" />
       )}
+
+      <div
+        className={classNames({
+          [c.cardOutline]: !props.flat,
+          [props.selected ? c.cardOutlineSelected : c.cardOutlineUnselected]:
+            !props.flat,
+        })}
+      />
 
       {children}
     </>,

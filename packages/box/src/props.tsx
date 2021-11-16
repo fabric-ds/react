@@ -60,6 +60,21 @@ export interface BoxProps {
 
 export type ClickableProps = {
   /**
+   * Passes radio type to the underlying toggle
+   */
+  radio?: boolean;
+
+  /**
+   * Passes checkbox type to the underlying toggle
+   */
+  checkbox?: boolean;
+
+  /**
+   * Value of the dead toggle
+   */
+  value?: string;
+
+  /**
    * Clickable element children
    */
   children: JSX.Element | JSX.Element[] | string;
@@ -69,6 +84,11 @@ export type ClickableProps = {
    * If passed, clickable renders as an anchor tag allowing you to pass properties such as target, rel, etc.
    */
   href?: string;
+
+  /**
+   * Additional classnames to the toggle label
+   */
+  labelClassName?: string;
 
   /**
    * Click handler
