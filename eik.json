@@ -1,6 +1,6 @@
 {
   "name": "@fabric-ds/react",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "server": "https://assets.finn.no",
   "type": "package",
   "files": "./dist/eik",
