@@ -149,6 +149,18 @@ export const Example = () => {
           Loading
         </Button>
       </div>
+      <div>
+        <h3>Link (href)</h3>
+        {/* @ts-ignore */}
+        <Button
+          className="mr-32"
+          link
+          href="https://google.com/"
+          target="_blank"
+        >
+          Simple
+        </Button>
+      </div>
     </div>
   );
 };

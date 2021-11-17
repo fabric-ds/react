@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Combobox } from '../src';
+import { Affix } from '../../textfield/src/affix';
 
 # Combobox
 
@@ -21,7 +22,7 @@ import { Combobox } from '@fabric-ds/react';
 
 ```jsx example
 function Example() {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = useState('');
 
   return (
     <Combobox
@@ -50,7 +51,7 @@ prop.
 
 ```jsx example
 function Example() {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = useState('');
 
   return (
     <Combobox
@@ -87,7 +88,7 @@ The `value` is what gets sent back when selected.
 
 ```jsx example
 function Example() {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = useState('');
 
   return (
     <Combobox
@@ -124,7 +125,7 @@ state you need, then render as many options as you want.
 
 ```jsx example
 function Example() {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = useState('');
   const characters = useSWMatch(value);
 
   return (
@@ -143,7 +144,7 @@ function Example() {
 // Normally you would have some sort of throttling/debouncing and request cancellation
 // to reduce the load on both the client and the server.
 function useSWMatch(term) {
-  const [characters, setCharacters] = React.useState([]);
+  const [characters, setCharacters] = useState([]);
 
   React.useEffect(() => {
     if (!term.trim()) return;
@@ -163,6 +164,41 @@ function useSWMatch(term) {
 }
 ```
 
+### Affix
+
+If you wish to use an affix you must first import the Affix component.
+
+```js
+import { Affix } from '@fabric-ds/react';
+```
+
+Then you include it as a child of Combobox component and pass the appropiate
+props (see bottom of this page for types)
+
+```jsx example
+function Example() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Combobox
+      label="Choose a fruit"
+      placeholder="Your favorite fruit"
+      value={value}
+      onChange={(val) => setValue(val)}
+      matchTextSegments
+      options={[
+        { value: 'Apple', label: '🍎 Apple' },
+        { value: 'Banana', label: '🍌 Banana' },
+        { value: 'Orange', label: '🍊 Orange' },
+        { value: 'Pineapple', label: '🍍 Pineapple' },
+      ]}
+    >
+      <Affix suffix clear onClick={() => setValue('')} />
+    </Combobox>
+  );
+}
+```
+
 ## Combobox Props
 
 ```props packages/combobox/src/component.tsx
@@ -174,4 +210,10 @@ export type ComboboxOption = {
   value: string;
   label?: string;
 };
+```
+
+## Affix Props
+
+```props packages/textfield/src/affix.tsx
+
 ```

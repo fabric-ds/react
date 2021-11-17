@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import { Clickable, DeadToggle } from '../../_helpers';
 import { Card } from '../src';
-import { Toggle } from '../../toggle/src';
-import { Clickable } from '../../box/src';
 
 const metadata = { title: 'Navigation/Card' };
 export default metadata;
@@ -248,62 +247,82 @@ export const AnchorCard = () => {
 
 export const TogglesInCard = () => {
   const [checked, setChecked] = React.useState(false);
-  const [selected, setSelected] = React.useState([]);
+  const [selected, setSelected] = React.useState('');
 
   return (
     <div>
-      <Card selected={checked} className="mt-32 w-max">
-        <div className="p-24 field in-card">
-          <Toggle
-            type="checkbox"
-            onChange={(bool) => setChecked(bool)}
-            className="-mb-4"
-            label="Check in a box"
-            checked={checked}
-          />
+      <Card
+        selected={checked}
+        onClick={() => setChecked(!checked)}
+        className="mt-32 w-max"
+      >
+        <div className="p-24 flex items-center">
+          <DeadToggle checkbox checked={checked} className="-mt-8" />
+          <Clickable checkbox labelClassName="ml-12">
+            Checkbox in a card
+          </Clickable>
         </div>
       </Card>
 
       <div className="flex gap-32 mt-32">
-        <Card
-          selected={selected.some((e) => e.value === 'a')}
-          className="w-max"
-        >
-          <div className="p-24 field in-card">
-            <Toggle
-              type="radio"
-              className="-mb-4"
-              onChange={(value) => setSelected([value])}
-              selected={selected}
-              options={[
-                {
-                  label: 'Radio in a box - A',
-                  value: 'a',
-                },
-              ]}
-            />
+        <Card selected={selected === 'a'} onClick={() => setSelected('a')}>
+          <div className="p-24 flex items-center">
+            <DeadToggle radio checked={selected === 'a'} className="-mt-8" />
+            <Clickable radio labelClassName="ml-12">
+              Radio in a card - A
+            </Clickable>
           </div>
         </Card>
-        <Card
-          selected={selected.some((e) => e.value === 'b')}
-          className="w-max"
-        >
-          <div className="p-24 field in-card">
-            <Toggle
-              type="radio"
-              className="-mb-4"
-              onChange={(value) => setSelected([value])}
-              selected={selected}
-              options={[
-                {
-                  label: 'Radio in a box - B',
-                  value: 'b',
-                },
-              ]}
-            />
+        <Card selected={selected === 'b'} onClick={() => setSelected('b')}>
+          <div className="p-24 flex items-center">
+            <DeadToggle radio checked={selected === 'b'} className="-mt-8" />
+            <Clickable radio labelClassName="ml-12">
+              Radio in a card - B
+            </Clickable>
           </div>
         </Card>
       </div>
+    </div>
+  );
+};
+
+export const DeadToggleInCard = () => {
+  const [selected, setSelected] = React.useState('');
+
+  return (
+    <div className="flex">
+      <Card
+        flat
+        className="py-12 px-16 w-max"
+        selected={selected === 'a'}
+        onClick={() => setSelected('a')}
+      >
+        <div className="flex items-center">
+          <DeadToggle radio checked={selected === 'a'} className="-mt-6" />
+          <div className="ml-16">
+            <h4 className="mb-0">
+              <Clickable radio>Purchase foo</Clickable>
+            </h4>
+            <p className="mb-0 text-14">520 kr/mnd</p>
+          </div>
+        </div>
+      </Card>
+      <Card
+        flat
+        className="py-12 px-16 w-max ml-20"
+        selected={selected === 'b'}
+        onClick={() => setSelected('b')}
+      >
+        <div className="flex items-center">
+          <DeadToggle radio checked={selected === 'b'} className="-mt-6" />
+          <div className="ml-16">
+            <h4 className="mb-0">
+              <Clickable radio>Purchase bar</Clickable>
+            </h4>
+            <p className="mb-0 text-14">124 kr/mnd</p>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 };

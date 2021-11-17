@@ -1,5 +1,10 @@
 export interface CardProps {
   /**
+   * Removes box shadow around card
+   */
+  flat?: boolean;
+
+  /**
    * The contents of the Card
    */
   children: JSX.Element | JSX.Element[];

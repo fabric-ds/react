@@ -75,7 +75,7 @@ export type TextFieldProps = {
   /** The type of input to render. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdeftype). */
   type?: 'text' | 'search' | 'email' | 'password' | 'url' | 'tel' | 'number';
 
-  /** For suffix or prefix use */
+  /** For affix use */
   children?: JSX.Element;
 
   /** The current value (controlled). */

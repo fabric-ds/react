@@ -108,6 +108,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           setActive(null);
           break;
         case 'Enter':
+          e.preventDefault();
           if (!active) return;
           handleSelect(active);
           break;
@@ -165,6 +166,32 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       );
     }, [props.options]);
 
+    const TextFieldProps = {
+      id,
+      ref: ref || inputRef,
+      value: active?.value || props.value,
+      onChange: (e) =>
+        props.onChange &&
+        props.onChange(
+          !props.value.length ? e.target.value.trim() : e.target.value,
+        ),
+      label: props.label,
+      invalid: props.invalid,
+      helpText: props.helpText,
+      placeholder: props.placeholder,
+      role: 'combobox',
+      'aria-label': props['aria-label'],
+      'aria-labelledby': props['aria-labelledby'],
+      'aria-autocomplete': 'list',
+      'aria-expanded': !!active?.id || false,
+      'aria-activedescendant': menuOpen ? active?.id : undefined,
+      'aria-controls': `${id}-listbox`,
+      onFocus: () => {
+        if (!props.openOnFocus) return;
+        setMenuOpen(true);
+      },
+    };
+
     return (
       <div
         className={classNames(props.className, {
@@ -177,32 +204,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           }
         }}
       >
-        <TextField
-          id={id}
-          ref={ref || inputRef}
-          value={active?.value || props.value}
-          onChange={(e) =>
-            props.onChange &&
-            props.onChange(
-              !props.value.length ? e.target.value.trim() : e.target.value,
-            )
-          }
-          label={props.label}
-          invalid={props.invalid}
-          helpText={props.helpText}
-          placeholder={props.placeholder}
-          aria-label={props['aria-label']}
-          aria-labelledby={props['aria-labelledby']}
-          role="combobox"
-          aria-autocomplete="list"
-          aria-expanded={!!active?.id || false}
-          aria-activedescendant={menuOpen ? active?.id : undefined}
-          aria-controls={`${id}-listbox`}
-          onFocus={() => {
-            if (!props.openOnFocus) return;
-            setMenuOpen(true);
-          }}
-        />
+        {props.children ? (
+          // @ts-ignore
+          <TextField {...TextFieldProps}>{props.children}</TextField>
+        ) : (
+          // @ts-ignore
+          <TextField {...TextFieldProps} />
+        )}
 
         {menuOpen ? (
           <div
@@ -283,7 +291,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     tabIndex={-1}
                     onClick={() => {
                       setActive(option);
-
                       setTimeout(() => {
                         handleSelect(option);
                       }, 1);

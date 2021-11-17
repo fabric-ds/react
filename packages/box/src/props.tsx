@@ -57,23 +57,3 @@ export interface BoxProps {
    */
   neutral?: boolean;
 }
-
-export type ClickableProps = {
-  /**
-   * Clickable element children
-   */
-  children: JSX.Element | JSX.Element[] | string;
-
-  /**
-   * Redirect to url on click
-   * If passed, clickable renders as an anchor tag allowing you to pass properties such as target, rel, etc.
-   */
-  href?: string;
-
-  /**
-   * Click handler
-   * If passed, clickable renders as a button with a click event
-   */
-  onClick?: () => void;
-} & Partial<Omit<HTMLAnchorElement, 'children'>> &
-  Partial<Omit<HTMLButtonElement, 'children'>>;
