@@ -1,8 +1,8 @@
 import { classNames } from '@chbphone55/classnames';
 import React from 'react';
-import { Item } from './item';
+import { Item } from '../toggle/src/item';
 
-interface DeadToggleProps {
+export interface DeadToggleProps {
   /**
    * Passes radio type to the underlying toggle
    */

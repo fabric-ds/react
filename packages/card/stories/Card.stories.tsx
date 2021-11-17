@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Clickable } from '../../box/src';
-import { DeadToggle } from '../../toggle/src/dead-toggle';
+import { Clickable, DeadToggle } from '../../_helpers';
 import { Card } from '../src';
 
 const metadata = { title: 'Navigation/Card' };

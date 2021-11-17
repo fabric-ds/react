@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Clickable } from '../src';
+import { Box } from '../src';
+import { Clickable } from '../../_helpers';
 
 const metadata = { title: 'Layout/Box' };
 export default metadata;
