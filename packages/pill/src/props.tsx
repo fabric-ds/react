@@ -5,6 +5,16 @@ export type PillProps = {
   label?: string;
 
   /**
+   * Label read by screen readers when targetting a pill
+   */
+  openSRLabel?: string;
+
+  /**
+   * Label read by screen readers when targetting the pill close button
+   */
+  closeSRLabel?: string;
+
+  /**
    * Render icon inside of Pill
    */
   icon?: React.ReactNode;

@@ -28,7 +28,7 @@ export function Pill(props: PillProps) {
           [props.canClose ? c.labelWithClose : c.labelWithoutClose]: true,
         })}
       >
-        <span className="sr-only">Åpne filter </span>
+        <span className="sr-only">{props.openSRLabel || 'Åpne filter'}</span>
         {props.icon || <span>{props.label}</span>}
       </button>
       {props.canClose && (
@@ -41,7 +41,9 @@ export function Pill(props: PillProps) {
           })}
           onClick={props.onClose}
         >
-          <span className="sr-only">Fjern filter {props.label}</span>
+          <span className="sr-only">
+            {props.closeSRLabel || `Fjern filter ${props.label}`}
+          </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="12"
