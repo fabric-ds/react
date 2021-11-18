@@ -39,8 +39,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         : options;
 
     const handleSelect = (option: Option) => {
-      props.onSelect && props.onSelect(option.value);
       props.onChange(option.value);
+      props.onSelect && props.onSelect(option.value);
 
       setActive(null);
       setMenuOpen(false);
