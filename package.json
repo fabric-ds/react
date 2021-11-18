@@ -33,8 +33,7 @@
     "eik:publish": "npx @eik/cli publish",
     "eik:alias": "npx @eik/cli pkg-alias",
     "preversion": "npx @eik/cli login && npm run build",
-    "version": "npm publish",
-    "postversion": "npm run eik:publish && git push --follow-tags"
+    "postversion": "npm publish && npm run eik:publish && git push --follow-tags"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
