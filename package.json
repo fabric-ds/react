@@ -31,7 +31,10 @@
     "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
     "lint:format": "prettier --check . --ignore-path .gitignore",
     "eik:publish": "npx @eik/cli publish",
-    "eik:alias": "npx @eik/cli pkg-alias"
+    "eik:alias": "npx @eik/cli pkg-alias",
+    "preversion": "npx @eik/cli login && npm run build",
+    "version": "npm publish",
+    "postversion": "npm run eik:publish && git push --follow-tags"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
