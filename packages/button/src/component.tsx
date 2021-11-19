@@ -28,6 +28,7 @@ export const Button = forwardRef(
       <>
         {props.href ? (
           <a
+            href={props.href}
             target={props.target}
             rel={
               props.target === '_blank' ? props.rel || 'noopener' : undefined
