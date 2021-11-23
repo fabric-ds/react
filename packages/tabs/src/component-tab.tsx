@@ -38,10 +38,10 @@ export function Tab(props: TabProps) {
     setActive = () => {},
     name,
     onClick,
-    over,
     isActive,
   } = props;
   const { tab, icon, content, attrs } = setup(props);
+  const { over, ...rest } = attrs;
 
   const handleClick = (e) => {
     setActive(name);
@@ -51,7 +51,7 @@ export function Tab(props: TabProps) {
   return (
     <button
       type="button"
-      {...attrs}
+      {...rest}
       role="tab"
       aria-selected={isActive ? 'true' : 'false'}
       aria-controls={isActive ? `fabric-tabpanel-${name}` : undefined}
