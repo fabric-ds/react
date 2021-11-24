@@ -8,7 +8,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
 
   return (
     <nav
-      className={classNames('flex space-x-8', props.className)}
+      className={classNames('flex space-x-8 space-x-reverse', props.className)}
       aria-label={ariaLabel}
       {...rest}
     >
