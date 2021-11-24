@@ -153,8 +153,8 @@ export const Example = () => {
         <h3>Link (href)</h3>
         {/* @ts-ignore */}
         <Button
-          className="mr-32"
           link
+          className="mr-32"
           href="https://google.com/"
           target="_blank"
         >

@@ -3,11 +3,12 @@ import { card as c } from '@fabric-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
 import { CardProps } from './props';
 
-export function Card({ as = 'article', children, ...props }: CardProps) {
+export function Card(props: CardProps) {
+  const { as = 'article', children, flat, ...rest } = props;
   return React.createElement(
     as,
     {
-      ...props,
+      ...rest,
       className: classNames(props.className, {
         [c.card]: true,
         [c.cardShadow]: !props.flat,

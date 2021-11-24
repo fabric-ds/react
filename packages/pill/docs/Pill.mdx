@@ -1,0 +1,89 @@
+import { Pill } from '../src';
+import { IconSearch16, IconPlus16 } from '@fabric-ds/icons/react';
+
+# Pill
+
+Pill is a type of button that is often used as a filter, but can also be used as
+a rounded button for overlays, etc.
+
+## Import
+
+```js
+import { Pill } from '@fabric-ds/react';
+```
+
+## Examples
+
+```jsx example
+<div className="flex space-x-8">
+  <Pill label="Example" />
+  <Pill label="Example" canClose onClose={() => alert('onClose event')} />
+  <Pill label="Example" suggestion />
+  <Pill
+    label="Example"
+    suggestion
+    canClose
+    onClose={() => alert('onClose event')}
+  />
+</div>
+```
+
+You can also make the Pill clickable like so
+
+```jsx example
+<div className="flex space-x-8">
+  <Pill label="Example" onClick={() => alert('onClick event')} />
+  <Pill label="Example" onClick={() => alert('onClick event')} suggestion />
+</div>
+```
+
+or have both the label and close button clickable if you wish
+
+```jsx example
+<div className="flex space-x-8">
+  <Pill
+    label="Example"
+    onClick={() => alert('onClick event')}
+    canClose
+    onClose={() => alert('onClose event')}
+  />
+  <Pill
+    label="Example"
+    onClick={() => alert('onClick event')}
+    suggestion
+    canClose
+    onClose={() => alert('onClose event')}
+  />
+</div>
+```
+
+## Icons in Pill
+
+You can pass any valid HTML as the icon prop, but in this example we will use
+icons from `@fabric-ds/icons`
+
+```js
+import { IconSearch16, IconPlus16 } from '@fabric-ds/icons/react';
+```
+
+```jsx example
+<div className="flex space-x-8">
+  <Pill
+    icon={<IconSearch16 />}
+    onClick={() => alert('onClick event')}
+    className="py-12"
+  />
+  <Pill
+    icon={<IconPlus16 />}
+    onClick={() => alert('onClick event')}
+    suggestion
+    className="py-12"
+  />
+</div>
+```
+
+## Props
+
+```props packages/pill/src/component.tsx
+
+```

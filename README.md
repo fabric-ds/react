@@ -22,7 +22,5 @@ yarn docs:dev
 
 ## How to release
 
-1. `npm run build` - Builds files in ./dist directory
-1. `npm run publish` - Releases to npm
-1. `npm run eik:publish` - publishes to the Eik server
-1. `npm run eik:alias` - Update the Eik alias
+Run `npm version major|minor|patch`. 
+Pre and post hooks will take care of Eik login, asset building and publishing to NPM and Eik.

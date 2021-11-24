@@ -2,6 +2,7 @@ export * from './_helpers';
 export * from './box/src';
 export * from './breadcrumbs/src';
 export * from './button/src';
+export * from './pill/src';
 export * from './card/src';
 export * from './combobox/src';
 export * from './expandable/src';

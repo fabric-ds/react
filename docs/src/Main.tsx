@@ -9,6 +9,7 @@ import {
 import Box from '../../packages/box/docs/Box.mdx';
 import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
+import Pill from '../../packages/pill/docs/Pill.mdx';
 import Card from '../../packages/card/docs/Card.mdx';
 import Combobox from '../../packages/combobox/docs/Combobox.mdx';
 import Expandable from '../../packages/expandable/docs/Expandable.mdx';
@@ -78,6 +79,10 @@ const App = () => {
 
           <Route path="/button">
             <Button />
+          </Route>
+
+          <Route path="/pill">
+            <Pill />
           </Route>
 
           <Route path="/box">

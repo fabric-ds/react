@@ -3,12 +3,12 @@ import { tab as c } from '@fabric-ds/component-classes';
 import type { TabPanelProps } from './props';
 
 export function TabPanel(props: TabPanelProps) {
-  const { children, name, hidden, ...attrs } = props;
+  const { children, name, hidden, ...rest } = props;
 
   return (
     <div
       tabIndex={-1}
-      {...attrs}
+      {...rest}
       role="tabpanel"
       aria-labelledby={`fabric-tab-${name}`}
       id={`fabric-tabpanel-${name}`}

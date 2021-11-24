@@ -1,6 +1,6 @@
 {
   "name": "@fabric-ds/react",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
   "type": "module",
@@ -31,14 +31,16 @@
     "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
     "lint:format": "prettier --check . --ignore-path .gitignore",
     "eik:publish": "npx @eik/cli publish",
-    "eik:alias": "npx @eik/cli pkg-alias"
+    "eik:alias": "npx @eik/cli pkg-alias",
+    "preversion": "npx @eik/cli login && npm run build",
+    "postversion": "npm publish && npm run eik:publish && git push --follow-tags"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@chbphone55/classnames": "^2.0.0",
     "@eik/esbuild-plugin": "^1.0.4",
     "@fabric-ds/component-classes": "^0.0.35",
-    "@fabric-ds/icons": "^0.3.8",
+    "@fabric-ds/icons": "^0.3.12",
     "@fabric-ds/tailwind-config": "^0.5.20",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "1.6.22",
