@@ -1,6 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Affix, TextField as TroikaTextField } from '../src';
+import { TextField as TroikaTextField } from '../src';
+import { Affix } from '../../_helpers';
 
 const metadata = { title: 'Forms/TextField' };
 export default metadata;
