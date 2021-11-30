@@ -29,6 +29,7 @@ function Example() {
       label="Choose a fruit"
       value={value}
       onChange={(val) => setValue(val)}
+      onSelect={(val) => setValue(val)}
       options={[
         { value: 'Apple' },
         { value: 'Banana' },
@@ -58,6 +59,7 @@ function Example() {
       label="Choose a fruit"
       value={value}
       onChange={(val) => setValue(val)}
+      onSelect={(val) => setValue(val)}
       matchTextSegments
       options={[
         { value: 'Apple' },
@@ -96,6 +98,7 @@ function Example() {
       placeholder="Custom Option Rendering"
       value={value}
       onChange={(val) => setValue(val)}
+      onSelect={(val) => setValue(val)}
       matchTextSegments
       options={[
         { value: 'Apple', label: '🍎 Apple' },
@@ -134,7 +137,10 @@ function Example() {
       matchTextSegments
       value={value}
       onChange={(val) => setValue(val)}
-      onSelect={(val) => alert(val)}
+      onSelect={(val) => {
+        setValue(val);
+        alert(val);
+      }}
       options={characters}
     />
   );
@@ -185,6 +191,7 @@ function Example() {
       placeholder="Your favorite fruit"
       value={value}
       onChange={(val) => setValue(val)}
+      onSelect={(val) => setValue(val)}
       matchTextSegments
       options={[
         { value: 'Apple', label: '🍎 Apple' },
