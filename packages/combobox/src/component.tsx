@@ -155,8 +155,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     }, [props.value]);
 
     useEffect(() => {
-      if (!props.options.length) return;
-
       setOptions(
         props.options.map((o: ComboboxOption) => ({
           ...o,
