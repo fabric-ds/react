@@ -16,7 +16,10 @@ export const Basic = () => {
         label="Stillingstittel"
         value={value}
         onChange={(val) => setValue(val)}
-        onSelect={action('select')}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
         options={[
           { value: 'Product manager' },
           { value: 'Produktledelse' },
@@ -37,7 +40,10 @@ export const MatchTextSegments = () => {
       <Combobox
         value={value}
         onChange={(val) => setValue(val)}
-        onSelect={action('select')}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
         matchTextSegments
         label="Stillingstittel"
         options={[
@@ -60,7 +66,10 @@ export const OpenOnFocus = () => {
       <Combobox
         value={value}
         onChange={(val) => setValue(val)}
-        onSelect={action('select')}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
         openOnFocus
         label="Stillingstittel"
         options={[
@@ -86,7 +95,10 @@ export const SelectOnClick = () => {
       <Combobox
         value={value}
         onChange={(val) => setValue(val)}
-        onSelect={action('select')}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
         label="Stillingstittel"
         options={[
           { value: 'Product manager' },
@@ -107,7 +119,10 @@ export const OptionText = () => {
       <Combobox
         value={value}
         onChange={(val) => setValue(val)}
-        onSelect={action('select')}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
         label="Favorite fruit"
         placeholder="What's your favorite fruit?"
         options={[
@@ -129,7 +144,10 @@ export const WithAffix = () => {
       <Combobox
         value={value}
         onChange={(val) => setValue(val)}
-        onSelect={action('select')}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
         label="Favorite fruit"
         placeholder="What's your favorite fruit?"
         options={[
