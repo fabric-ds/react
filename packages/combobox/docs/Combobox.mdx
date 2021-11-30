@@ -206,6 +206,35 @@ function Example() {
 }
 ```
 
+### Clearing input on select
+
+If you want, you can have the input field cleared after a value has been
+selected
+
+```jsx example
+function Example() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Combobox
+      label="Choose a fruit"
+      value={value}
+      onChange={(val) => setValue(val)}
+      onSelect={(val) => {
+        alert(val);
+        setValue('');
+      }}
+      options={[
+        { value: 'Apple' },
+        { value: 'Banana' },
+        { value: 'Orange' },
+        { value: 'Pineapple' },
+      ]}
+    />
+  );
+}
+```
+
 ## Combobox Props
 
 ```props packages/combobox/src/component.tsx
