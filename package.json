@@ -1,6 +1,6 @@
 {
   "name": "@fabric-ds/react",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
   "type": "module",
