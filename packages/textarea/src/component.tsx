@@ -1,15 +1,15 @@
 import { classNames } from '@chbphone55/classnames';
+import React, { forwardRef, useRef } from 'react';
 import { useId } from '../../utils/src';
-import React, { forwardRef, Ref, useRef } from 'react';
 import { TextAreaProps } from './props';
 import useTextAreaHeight from './useTextAreaHeight';
 
 /**
  * A textarea component that automatically resizes as content changes.
  */
-export const TextArea = forwardRef(
-  (
-    {
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  (props, forwardRef) => {
+    const {
       className,
       disabled,
       error,
@@ -22,10 +22,9 @@ export const TextArea = forwardRef(
       readOnly,
       style,
       value,
-      ...props
-    }: TextAreaProps,
-    forwardRef: Ref<HTMLTextAreaElement>,
-  ) => {
+      ...rest
+    } = props;
+
     const id = useId(providedId);
     const ref = useRef<HTMLTextAreaElement | null>(null);
 
@@ -51,13 +50,23 @@ export const TextArea = forwardRef(
       >
         {label && <label htmlFor={id}>{label}</label>}
         <textarea
-          {...props}
+          {...rest}
           aria-describedby={helpId}
           aria-errormessage={isInvalid && helpId ? helpId : undefined}
           aria-invalid={isInvalid}
           disabled={disabled}
           id={id}
-          ref={forwardRef || ref}
+          // Support both our own ref and any forwarded ref
+          ref={(node) => {
+            ref.current = node;
+            if (forwardRef) {
+              if (typeof forwardRef === 'function') {
+                forwardRef(node);
+              } else {
+                forwardRef.current = node;
+              }
+            }
+          }}
           readOnly={readOnly}
           value={value}
         />

@@ -1,19 +1,9 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import { TextArea as TroikaTextArea } from '../src';
+import { TextArea } from '../src';
 
 const metadata = { title: 'Forms/TextArea' };
 export default metadata;
-
-const TextArea = (args) => (
-  <TroikaTextArea
-    label="Description"
-    onChange={action('change')}
-    onFocus={action('focus')}
-    onBlur={action('blur')}
-    {...args}
-  />
-);
 
 export const standard = () => <TextArea helpText="Hint message" />;
 
@@ -29,6 +19,16 @@ export const ValueControlled = () => {
       maximumRows={6}
     />
   );
+};
+
+export const TextFieldWithRef = () => {
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    console.log(ref.current);
+  });
+
+  return <TextArea value="hey" ref={ref} />;
 };
 
 export const required = () => <TextArea required />;
