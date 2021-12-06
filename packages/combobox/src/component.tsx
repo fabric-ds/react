@@ -39,7 +39,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         : options;
 
     const handleSelect = (option: Option) => {
-      props.onChange(option.value);
       props.onSelect && props.onSelect(option.value);
 
       setActive(null);
@@ -151,13 +150,16 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     });
 
     useEffect(() => {
-      if (!props.value.trim().length) setMenuOpen(false);
-      if (props.value.length) setMenuOpen(true);
-    }, [props.value]);
+      // only open the menu if input field has value and options exist
+      // this will prevent showing a mini menu without content if no options are present
+      if (props.value.trim().length && options.length) {
+        setMenuOpen(true);
+      } else {
+        setMenuOpen(false);
+      }
+    }, [options.length, props.value]);
 
     useEffect(() => {
-      if (!props.options.length) return;
-
       setOptions(
         props.options.map((o: ComboboxOption) => ({
           ...o,
