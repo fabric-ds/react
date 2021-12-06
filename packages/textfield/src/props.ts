@@ -85,23 +85,3 @@ export type TextFieldProps = {
   // omit these, otherwise they seem to form a union type (in the prop table docs)
   'onBlur' | 'onFocus' | 'onChange' | 'type' | 'value'
 >;
-
-export interface AffixProps {
-  /** Affix added at the beginning of input */
-  prefix?: boolean;
-
-  /** Affix added at the end of input */
-  suffix?: boolean;
-
-  /** Displays a clear icon */
-  clear?: boolean;
-
-  /** Displays a search icon */
-  search?: boolean;
-
-  /** Displays a string */
-  label?: string;
-
-  /** Click handler paired with clear or search */
-  onClick?: () => void;
-}

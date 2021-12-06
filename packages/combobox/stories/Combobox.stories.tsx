@@ -1,6 +1,6 @@
 import React from 'react';
 import { Combobox } from '../src';
-import { Affix } from '../../textfield/src';
+import { Affix } from '../../_helpers';
 import { action } from '@storybook/addon-actions';
 
 const metadata = { title: 'Forms/Combobox' };
