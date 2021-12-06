@@ -1,7 +1,26 @@
 import React from 'react';
 import { suffix, prefix } from '@fabric-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
-import { AffixProps } from './props';
+
+interface AffixProps {
+  /** Affix added at the beginning of input */
+  prefix?: boolean;
+
+  /** Affix added at the end of input */
+  suffix?: boolean;
+
+  /** Displays a clear icon */
+  clear?: boolean;
+
+  /** Displays a search icon */
+  search?: boolean;
+
+  /** Displays a string */
+  label?: string;
+
+  /** Click handler paired with clear or search */
+  onClick?: () => void;
+}
 
 export function Affix(props: AffixProps) {
   const classBase = props.prefix ? prefix : suffix;
