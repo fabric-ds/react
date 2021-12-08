@@ -5,7 +5,6 @@
   "type": "package",
   "files": "./dist/eik",
   "import-map": [
-    "https://assets.finn.no/map/finn/v2",
-    "https://assets.finn.no/map/troika-css/v1"
+    "https://assets.finn.no/map/react/v2"
   ]
 }
