@@ -150,14 +150,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     });
 
     useEffect(() => {
-      // only open the menu if input field has value and options exist
-      // this will prevent showing a mini menu without content if no options are present
-      if (props.value.trim().length && options.length) {
-        setMenuOpen(true);
-      } else {
-        setMenuOpen(false);
-      }
-    }, [options.length, props.value]);
+      if (!props.value.trim().length) setMenuOpen(false);
+      if (props.value.length) setMenuOpen(true);
+    }, [props.value]);
 
     useEffect(() => {
       setOptions(
@@ -219,6 +214,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             ref={listRef}
             className={classNames(props.listClassName, {
               'absolute left-0 right-0 pb-8 rounded-8 bg-white shadow': true,
+              'sr-only': !options.length,
             })}
             style={{
               zIndex: 2,
