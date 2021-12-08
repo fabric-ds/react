@@ -9,7 +9,7 @@ export type BreadcrumbsProps = {
 
   className?: string;
 
-  children?: React.ReactNode[];
+  children?: React.ReactChild | React.ReactChild[];
 
   style?: React.CSSProperties;
   // omit aria-label for better prop table docs
