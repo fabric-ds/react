@@ -22,8 +22,6 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
     return array;
   }
 
-  console.log(flatChildren);
-
   return (
     <nav
       className={classNames('flex space-x-8 space-x-reverse', props.className)}
