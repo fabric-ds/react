@@ -28,7 +28,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
       aria-label={ariaLabel}
       {...rest}
     >
-      <h2 className="u-screen-reader-only">{ariaLabel}</h2>
+      <h2 className="sr-only">{ariaLabel}</h2>
       {flatChildren.map((crumb, i) => [
         crumb,
         i !== flatChildren.length - 1 && (
