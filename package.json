@@ -1,6 +1,6 @@
 {
   "name": "@fabric-ds/react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
   "type": "module",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@chbphone55/classnames": "^2.0.0",
-    "@eik/esbuild-plugin": "^1.0.4",
+    "@eik/esbuild-plugin": "^1.1.0",
     "@fabric-ds/component-classes": "^0.0.35",
     "@fabric-ds/icons": "^0.3.12",
     "@fabric-ds/tailwind-config": "^0.5.20",
