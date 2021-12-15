@@ -100,6 +100,7 @@ export function Expandable(props: ExpandableProps) {
           'overflow-hidden': true,
           'h-0': !stateExpanded,
         })}
+        aria-hidden={!stateExpanded}
       >
         <div className={contentClasses}>{children}</div>
       </div>
