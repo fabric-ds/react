@@ -40,9 +40,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
     const handleSelect = (option: Option) => {
       props.onSelect && props.onSelect(option.value);
-
       setActive(null);
-      setMenuOpen(false);
     };
 
     const handlekeyDown = (e) => {
@@ -107,9 +105,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           setActive(null);
           break;
         case 'Enter':
-          e.preventDefault();
-          if (!active) return;
-          handleSelect(active);
+          if (active) {
+            // Handle Enter only when option is selected, otherwise let the event
+            // bubble up to any enclosing form elements etc.
+            e.preventDefault();
+            handleSelect(active);
+          }
+          setMenuOpen(false);
           break;
         case 'Backspace':
           props.onChange(active?.value || props.value);
@@ -291,6 +293,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                       setActive(option);
                       setTimeout(() => {
                         handleSelect(option);
+                        setMenuOpen(false);
                       }, 1);
                     }}
                     className={classNames({
