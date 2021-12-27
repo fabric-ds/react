@@ -3,6 +3,9 @@ import { suffix, prefix } from '@fabric-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
 
 interface AffixProps {
+  /** Defines a string value that labels the affix element. */
+  'aria-label'?: string;
+
   /** Affix added at the beginning of input */
   prefix?: boolean;
 
@@ -28,6 +31,7 @@ export function Affix(props: AffixProps) {
   return React.createElement(
     props.label ? 'div' : 'button',
     {
+      'aria-label': props['aria-label'],
       onClick: props.onClick,
       className: classNames({
         [classBase.wrapper]: true,
