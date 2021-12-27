@@ -26,11 +26,18 @@ export const TextField = forwardRef(
     const helpId = helpText ? `${id}__hint` : undefined;
     const isInvalid = invalid || error;
 
+    const hasSuffix = React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && child.props.suffix,
+    );
+    const hasPrefix = React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && child.props.prefix,
+    );
+
     return (
       <div
         className={classNames({
-          'has-suffix': React.isValidElement(children) && children.props.suffix,
-          'has-prefix': React.isValidElement(children) && children.props.prefix,
+          'has-suffix': hasSuffix,
+          'has-prefix': hasPrefix,
         })}
       >
         <div className="input">
