@@ -31,6 +31,42 @@ export const Basic = () => {
   );
 };
 
+export const BubbleEventOnEnter = () => {
+  const [value, setValue] = React.useState('');
+
+  React.useEffect(() => {
+    console.log('Bubbled value', value);
+  }, [value]);
+
+  return (
+    <>
+      <p>Start typing to see suggestions</p>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          alert(value);
+        }}
+      >
+        <Combobox
+          label="Stillingstittel"
+          value={value}
+          onChange={(val) => setValue(val)}
+          onSelect={(val) => {
+            setValue(val);
+            action('select')(val);
+          }}
+          options={[
+            { value: 'Product manager' },
+            { value: 'Produktledelse' },
+            { value: 'Prosessoperatør' },
+            { value: 'Prosjekteier' },
+          ]}
+        />
+      </form>
+    </>
+  );
+};
+
 export const MatchTextSegments = () => {
   const [value, setValue] = React.useState('');
 
