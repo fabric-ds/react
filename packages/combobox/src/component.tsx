@@ -284,6 +284,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 return (
                   <li
                     key={option.id}
+                    id={option.id}
                     aria-selected={active?.id === option.id || false}
                     role="option"
                     tabIndex={-1}
