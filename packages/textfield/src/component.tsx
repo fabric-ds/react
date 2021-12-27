@@ -29,8 +29,8 @@ export const TextField = forwardRef(
     return (
       <div
         className={classNames({
-          'has-suffix': children?.props.suffix,
-          'has-prefix': children?.props.prefix,
+          'has-suffix': React.isValidElement(children) && children.props.suffix,
+          'has-prefix': React.isValidElement(children) && children.props.prefix,
         })}
       >
         <div className="input">

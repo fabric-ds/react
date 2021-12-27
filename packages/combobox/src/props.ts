@@ -78,5 +78,5 @@ export type ComboboxProps = {
   'aria-labelledby'?: string;
 
   /** For affix use */
-  children?: JSX.Element;
+  children?: React.ReactNode;
 };
