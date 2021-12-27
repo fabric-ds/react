@@ -98,7 +98,7 @@ export function Expandable(props: ExpandableProps) {
         ref={boxRef}
         className={classNames({
           'overflow-hidden': true,
-          'h-0': !stateExpanded,
+          'h-0 invisible': !stateExpanded,
         })}
         aria-hidden={!stateExpanded}
       >
