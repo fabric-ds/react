@@ -31,7 +31,7 @@ export function Affix(props: AffixProps) {
   return React.createElement(
     props.label ? 'div' : 'button',
     {
-      'aria-label': props['aria-label'],
+      'aria-label': !props.label ? props['aria-label'] : undefined,
       onClick: props.onClick,
       className: classNames({
         [classBase.wrapper]: true,
@@ -39,7 +39,7 @@ export function Affix(props: AffixProps) {
         [classBase.wrapperWithIcon]: !props.label,
       }),
     },
-    <div>
+    <>
       {props.clear && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -83,6 +83,6 @@ export function Affix(props: AffixProps) {
       )}
 
       {props.label && <span className={classBase.label}>{props.label}</span>}
-    </div>,
+    </>,
   );
 }
