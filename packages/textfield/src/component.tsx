@@ -1,11 +1,11 @@
 import { classNames } from '@chbphone55/classnames';
-import { useId } from '../../utils/src';
 import React, { forwardRef } from 'react';
+import { useId } from '../../utils/src';
 import { TextFieldProps } from './props';
 
-export const TextField = forwardRef(
-  (
-    {
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+  (props, ref) => {
+    const {
       className,
       disabled,
       id: providedId,
@@ -17,10 +17,9 @@ export const TextField = forwardRef(
       readOnly,
       type = 'text',
       style,
-      ...props
-    }: TextFieldProps,
-    ref: React.Ref<HTMLInputElement>,
-  ) => {
+      ...rest
+    } = props;
+
     const id = useId(providedId);
 
     const helpId = helpText ? `${id}__hint` : undefined;
@@ -45,7 +44,7 @@ export const TextField = forwardRef(
             style={style}
           >
             <input
-              {...props}
+              {...rest}
               aria-describedby={helpId}
               aria-errormessage={isInvalid && helpId ? helpId : undefined}
               aria-invalid={isInvalid}
