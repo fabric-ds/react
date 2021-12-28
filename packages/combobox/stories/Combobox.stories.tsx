@@ -108,6 +108,7 @@ export const OpenOnFocus = () => {
         }}
         openOnFocus
         label="Stillingstittel"
+        autoComplete="password"
         options={[
           { value: 'Product manager' },
           { value: 'Produktledelse' },
