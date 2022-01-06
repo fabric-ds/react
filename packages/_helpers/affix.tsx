@@ -28,10 +28,19 @@ interface AffixProps {
 export function Affix(props: AffixProps) {
   const classBase = props.prefix ? prefix : suffix;
 
+  let buttonType;
+  if (props.search) {
+    buttonType = 'submit';
+  }
+  if (props.clear) {
+    buttonType = 'reset';
+  }
+
   return React.createElement(
     props.label ? 'div' : 'button',
     {
       'aria-label': !props.label ? props['aria-label'] : undefined,
+      type: buttonType,
       onClick: props.onClick,
       className: classNames({
         [classBase.wrapper]: true,
