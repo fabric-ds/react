@@ -28,39 +28,38 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <div
         className={classNames({
+          'input mb-0': true,
           'has-suffix': children?.props.suffix,
           'has-prefix': children?.props.prefix,
         })}
       >
-        <div className="input">
-          {label && <label htmlFor={id}>{label}</label>}
-          <div
-            className={classNames(className, {
-              'input mb-0': true,
-              'input--is-invalid': isInvalid,
-              'input--is-disabled': disabled,
-              'input--is-read-only': readOnly,
-            })}
-            style={style}
-          >
-            <input
-              {...rest}
-              aria-describedby={helpId}
-              aria-errormessage={isInvalid && helpId ? helpId : undefined}
-              aria-invalid={isInvalid}
-              disabled={disabled}
-              id={id}
-              readOnly={readOnly}
-              ref={ref}
-              type={type}
-            />
-            {helpText && (
-              <div className="input__sub-text" id={helpId}>
-                {helpText}
-              </div>
-            )}
-            {children}
-          </div>
+        {label && <label htmlFor={id}>{label}</label>}
+        <div
+          className={classNames(className, {
+            'input mb-0': true,
+            'input--is-invalid': isInvalid,
+            'input--is-disabled': disabled,
+            'input--is-read-only': readOnly,
+          })}
+          style={style}
+        >
+          <input
+            {...rest}
+            aria-describedby={helpId}
+            aria-errormessage={isInvalid && helpId ? helpId : undefined}
+            aria-invalid={isInvalid}
+            disabled={disabled}
+            id={id}
+            readOnly={readOnly}
+            ref={ref}
+            type={type}
+          />
+          {helpText && (
+            <div className="input__sub-text" id={helpId}>
+              {helpText}
+            </div>
+          )}
+          {children}
         </div>
       </div>
     );
