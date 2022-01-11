@@ -79,4 +79,7 @@ export type ComboboxProps = {
 
   /** For affix use */
   children?: React.ReactNode;
-};
+} & Omit<
+  React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
+  'onBlur' | 'onFocus' | 'onChange' | 'type' | 'value' | 'label'
+>;

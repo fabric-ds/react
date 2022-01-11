@@ -67,6 +67,12 @@ export const labelSuffix = () => (
     <Affix suffix label="kr" />
   </TextField>
 );
+export const suffixAndPrefix = () => (
+  <TextField>
+    <Affix prefix label="kr" />
+    <Affix suffix clear onClick={() => alert('clear')} />
+  </TextField>
+);
 
 export const helpText = () => (
   <TextField helpText="Necessary because of reasons" />

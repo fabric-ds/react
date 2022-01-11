@@ -146,6 +146,21 @@ props (see bottom of this page for types)
 </TextField>
 ```
 
+## You can also use both a prefix and suffix
+
+```jsx example
+<TextField>
+  <Affix prefix label="kr" />
+  <Affix suffix search onClick={() => alert('search')} />
+</TextField>
+```
+
+```jsx example
+<TextField>
+  <Affix suffix search onClick={() => alert('search')} />
+</TextField>
+```
+
 ### Read only
 
 The `readOnly` boolean prop makes the TextField's text content immutable. Unlike

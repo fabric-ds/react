@@ -200,11 +200,20 @@ function Example() {
         { value: 'Pineapple', label: '🍍 Pineapple' },
       ]}
     >
-      <Affix suffix clear onClick={() => setValue('')} />
+      <Affix
+        suffix
+        clear
+        aria-label="Clear text"
+        onClick={() => setValue('')}
+      />
     </Combobox>
   );
 }
 ```
+
+**Note** that when using the Affix component without a `label` you should
+specify an `aria-label`. See props at the bottom of this page. See
+[TextField](/textfield#affix) for more details on Affix.
 
 ### Clearing input on select
 

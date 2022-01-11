@@ -1,11 +1,11 @@
 import { classNames } from '@chbphone55/classnames';
-import { useId } from '../../utils/src';
 import React, { forwardRef } from 'react';
+import { useId } from '../../utils/src';
 import { TextFieldProps } from './props';
 
-export const TextField = forwardRef(
-  (
-    {
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+  (props, ref) => {
+    const {
       className,
       disabled,
       id: providedId,
@@ -17,10 +17,9 @@ export const TextField = forwardRef(
       readOnly,
       type = 'text',
       style,
-      ...props
-    }: TextFieldProps,
-    ref: React.Ref<HTMLInputElement>,
-  ) => {
+      ...rest
+    } = props;
+
     const id = useId(providedId);
 
     const helpId = helpText ? `${id}__hint` : undefined;
@@ -40,19 +39,18 @@ export const TextField = forwardRef(
           'has-prefix': hasPrefix,
         })}
       >
-        <div className="input">
+        <div
+          className={classNames({
+            'input mb-0': true,
+            'input--is-invalid': isInvalid,
+            'input--is-disabled': disabled,
+            'input--is-read-only': readOnly,
+          })}
+        >
           {label && <label htmlFor={id}>{label}</label>}
-          <div
-            className={classNames(className, {
-              'input mb-0': true,
-              'input--is-invalid': isInvalid,
-              'input--is-disabled': disabled,
-              'input--is-read-only': readOnly,
-            })}
-            style={style}
-          >
+          <div className="relative">
             <input
-              {...props}
+              {...rest}
               aria-describedby={helpId}
               aria-errormessage={isInvalid && helpId ? helpId : undefined}
               aria-invalid={isInvalid}
@@ -62,13 +60,14 @@ export const TextField = forwardRef(
               ref={ref}
               type={type}
             />
-            {helpText && (
-              <div className="input__sub-text" id={helpId}>
-                {helpText}
-              </div>
-            )}
             {children}
           </div>
+
+          {helpText && (
+            <div className="input__sub-text" id={helpId}>
+              {helpText}
+            </div>
+          )}
         </div>
       </div>
     );
