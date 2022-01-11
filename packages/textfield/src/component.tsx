@@ -25,26 +25,24 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const helpId = helpText ? `${id}__hint` : undefined;
     const isInvalid = invalid || error;
 
+    const hasPrefix = children?.props.prefix;
+
     return (
       <div
         className={classNames({
           'input mb-0': true,
+          'input--is-invalid': isInvalid,
+          'input--is-disabled': disabled,
+          'input--is-read-only': readOnly,
           'has-suffix': children?.props.suffix,
-          'has-prefix': children?.props.prefix,
+          'has-prefix': hasPrefix,
         })}
       >
         {label && <label htmlFor={id}>{label}</label>}
-        <div
-          className={classNames(className, {
-            'input mb-0': true,
-            'input--is-invalid': isInvalid,
-            'input--is-disabled': disabled,
-            'input--is-read-only': readOnly,
-          })}
-          style={style}
-        >
+        <div className="relative">
           <input
             {...rest}
+            style={{ paddingLeft: hasPrefix && 37 }}
             aria-describedby={helpId}
             aria-errormessage={isInvalid && helpId ? helpId : undefined}
             aria-invalid={isInvalid}
@@ -54,13 +52,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             ref={ref}
             type={type}
           />
-          {helpText && (
-            <div className="input__sub-text" id={helpId}>
-              {helpText}
-            </div>
-          )}
           {children}
         </div>
+
+        {helpText && (
+          <div className="input__sub-text" id={helpId}>
+            {helpText}
+          </div>
+        )}
       </div>
     );
   },
