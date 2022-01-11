@@ -73,7 +73,7 @@ export type TextFieldProps = {
   type?: 'text' | 'search' | 'email' | 'password' | 'url' | 'tel' | 'number';
 
   /** For affix use */
-  children?: JSX.Element;
+  children?: React.ReactNode;
 
   /** The current value (controlled). */
   value?: string;

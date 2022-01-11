@@ -78,7 +78,7 @@ export type ComboboxProps = {
   'aria-labelledby'?: string;
 
   /** For affix use */
-  children?: JSX.Element;
+  children?: React.ReactNode;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
   'onBlur' | 'onFocus' | 'onChange' | 'type' | 'value' | 'label'

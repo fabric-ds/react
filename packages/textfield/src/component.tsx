@@ -25,45 +25,50 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const helpId = helpText ? `${id}__hint` : undefined;
     const isInvalid = invalid || error;
 
-    const hasPrefix = children?.props.prefix;
-    const hasSuffix = children?.props.suffix;
+    const hasSuffix = React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && child.props.suffix,
+    );
+    const hasPrefix = React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && child.props.prefix,
+    );
 
     return (
       <div
         className={classNames({
-          'input mb-0': true,
-          'input--is-invalid': isInvalid,
-          'input--is-disabled': disabled,
-          'input--is-read-only': readOnly,
           'has-suffix': hasSuffix,
           'has-prefix': hasPrefix,
         })}
       >
-        {label && <label htmlFor={id}>{label}</label>}
-        <div className="relative">
-          <input
-            {...rest}
-            style={{
-              paddingLeft: hasPrefix && 37,
-              paddingRight: hasSuffix && 37,
-            }}
-            aria-describedby={helpId}
-            aria-errormessage={isInvalid && helpId ? helpId : undefined}
-            aria-invalid={isInvalid}
-            disabled={disabled}
-            id={id}
-            readOnly={readOnly}
-            ref={ref}
-            type={type}
-          />
-          {children}
-        </div>
-
-        {helpText && (
-          <div className="input__sub-text" id={helpId}>
-            {helpText}
+        <div
+          className={classNames({
+            'input mb-0': true,
+            'input--is-invalid': isInvalid,
+            'input--is-disabled': disabled,
+            'input--is-read-only': readOnly,
+          })}
+        >
+          {label && <label htmlFor={id}>{label}</label>}
+          <div className="relative">
+            <input
+              {...rest}
+              aria-describedby={helpId}
+              aria-errormessage={isInvalid && helpId ? helpId : undefined}
+              aria-invalid={isInvalid}
+              disabled={disabled}
+              id={id}
+              readOnly={readOnly}
+              ref={ref}
+              type={type}
+            />
+            {children}
           </div>
-        )}
+
+          {helpText && (
+            <div className="input__sub-text" id={helpId}>
+              {helpText}
+            </div>
+          )}
+        </div>
       </div>
     );
   },
