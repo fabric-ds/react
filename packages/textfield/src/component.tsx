@@ -26,6 +26,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const isInvalid = invalid || error;
 
     const hasPrefix = children?.props.prefix;
+    const hasSuffix = children?.props.suffix;
 
     return (
       <div
@@ -34,7 +35,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           'input--is-invalid': isInvalid,
           'input--is-disabled': disabled,
           'input--is-read-only': readOnly,
-          'has-suffix': children?.props.suffix,
+          'has-suffix': hasSuffix,
           'has-prefix': hasPrefix,
         })}
       >
@@ -42,7 +43,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         <div className="relative">
           <input
             {...rest}
-            style={{ paddingLeft: hasPrefix && 37 }}
+            style={{
+              paddingLeft: hasPrefix && 37,
+              paddingRight: hasSuffix && 37,
+            }}
             aria-describedby={helpId}
             aria-errormessage={isInvalid && helpId ? helpId : undefined}
             aria-invalid={isInvalid}
