@@ -37,9 +37,23 @@ export type ComboboxProps = {
 
   /**
    * Whether the matching text segments in the options should be highlighted. Customise the styling by using CSS selectors to override `[data-combobox-text-match]`.
+   * This uses the default matching algorithm. Use the `highlightValueMatch` to pass your own matching function.
    * @default false
    */
   matchTextSegments?: boolean;
+
+  /** Disable client-side static filtering
+   * @default false
+   */
+  disableStaticFiltering?: boolean;
+
+  /**
+   * Pass your own function for highlight matching
+   */
+  hightlightValueMatch?: (
+    optionValue: string,
+    inputValue: string,
+  ) => React.ReactNode;
 
   /**
    * Called when the user selects an option
@@ -50,6 +64,11 @@ export type ComboboxProps = {
    * Called when the value of the input changes
    */
   onChange(value: string): void;
+  /**
+
+   * Called when the input is focus
+   */
+  onFocus?: () => void;
 
   /**  Renders the input field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
   invalid?: boolean;
@@ -81,5 +100,5 @@ export type ComboboxProps = {
   children?: React.ReactNode;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
-  'onBlur' | 'onFocus' | 'onChange' | 'type' | 'value' | 'label'
+  'onBlur' | 'onChange' | 'type' | 'value' | 'label'
 >;

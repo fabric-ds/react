@@ -82,6 +82,27 @@ matches. You can style text matches however you'd like by overriding styles on
 }
 ```
 
+The `matchTextSegments` uses the default algorithm for input/option matching. To
+write your own matching algorithm, pass a function to the `hightlightValueMatch`
+prop. In most cases you won't have to alter this.
+
+Example
+
+```tsx
+// PSEUDO CODE
+function highlightValueMatch(optionValue: string, inputValue: string) {
+    // ADDITIONAL CODE?
+    if match // return JSX string value with additional visual styling
+    else // return JSX string value
+  });
+}
+```
+
+## Asynchronous option fetching
+
+When you fetch options asynchronously, it is often preferred to pass the
+`disableStaticFiltering` prop so that you don't filter the options client side.
+
 ## Custom rendering in ComboboxOption
 
 Sometimes you need to render something other than the value as the visible
