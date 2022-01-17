@@ -49,7 +49,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     } = props;
 
     const id = useId(pid);
-    const currentInputValue = useRef(value);
     const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
 
@@ -59,11 +58,10 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
     useEffect(() => {
       setCurrentOptions(
-        createOptionsWithIdAndMatch(options, currentInputValue.current).filter(
-          (option) =>
-            !disableStaticFiltering
-              ? option.value.toLocaleLowerCase().includes(value.toLowerCase())
-              : true,
+        createOptionsWithIdAndMatch(options, value).filter((option) =>
+          !disableStaticFiltering
+            ? option.value.toLocaleLowerCase().includes(value.toLowerCase())
+            : true,
         ),
       );
     }, [options, disableStaticFiltering, value]);
@@ -206,7 +204,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       ref: ref || inputRef,
       value: activeOption?.value || value,
       onChange: function (e) {
-        currentInputValue.current = e.target.value;
         if (onChange) {
           onChange(!value.length ? e.target.value.trim() : e.target.value);
         }
