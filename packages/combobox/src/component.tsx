@@ -3,6 +3,7 @@ import { useId } from '../../utils/src';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { TextField } from '../../textfield/src';
 import { ComboboxOption, ComboboxProps } from './props';
+import { generateId } from '../../utils/src/useId';
 
 const OPTION_HIGHLIGHT_COLOR = 'bluegray-100';
 const OPTION_CLASS_NAME = 'f-react-combobox-option';
@@ -16,7 +17,7 @@ function createOptionsWithIdAndMatch(
 ): Option[] {
   return options.map((option) => ({
     ...option,
-    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
+    id: generateId(),
     currentInputValue,
   }));
 }
@@ -55,6 +56,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const [isOpen, setOpen] = useState(false);
     const [activeOption, setActiveOption] = useState<Option | null>(null);
     const [currentOptions, setCurrentOptions] = useState<Option[]>([]);
+
+    console.log(currentOptions);
 
     useEffect(() => {
       setCurrentOptions(
