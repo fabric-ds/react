@@ -57,8 +57,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const [activeOption, setActiveOption] = useState<Option | null>(null);
     const [currentOptions, setCurrentOptions] = useState<Option[]>([]);
 
-    console.log(currentOptions);
-
     useEffect(() => {
       setCurrentOptions(
         createOptionsWithIdAndMatch(options, value).filter((option) =>
