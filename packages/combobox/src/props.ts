@@ -50,7 +50,7 @@ export type ComboboxProps = {
   /**
    * Pass your own function for highlight matching
    */
-  hightlightValueMatch?: (
+  highlightValueMatch?: (
     optionValue: string,
     inputValue: string,
   ) => React.ReactNode;

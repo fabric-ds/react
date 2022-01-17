@@ -153,7 +153,7 @@ export const CustomMatchAlgorithm = () => {
           setValue(val);
           action('select')(val);
         }}
-        hightlightValueMatch={highlightValueMatch}
+        highlightValueMatch={highlightValueMatch}
         label="Stillingstittel"
         options={[
           { value: 'Product manager' },

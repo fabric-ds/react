@@ -43,7 +43,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       listClassName,
       disableStaticFiltering = false,
       matchTextSegments,
-      hightlightValueMatch,
+      highlightValueMatch,
       children,
       ...rest
     } = props;
@@ -291,7 +291,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 const display = option.label || option.value;
                 let match: React.ReactNode = [];
 
-                if (matchTextSegments && !hightlightValueMatch) {
+                if (matchTextSegments && !highlightValueMatch) {
                   const startIdx = display
                     .toLowerCase()
                     .indexOf(value.toLowerCase());
@@ -310,8 +310,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                   } else {
                     match = <span>{display}</span>;
                   }
-                } else if (hightlightValueMatch) {
-                  match = hightlightValueMatch(display, value);
+                } else if (highlightValueMatch) {
+                  match = highlightValueMatch(display, value);
                 }
 
                 return (
@@ -335,9 +335,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                         activeOption?.id === option.id,
                     })}
                   >
-                    {matchTextSegments || hightlightValueMatch
-                      ? match
-                      : display}
+                    {matchTextSegments || highlightValueMatch ? match : display}
                   </li>
                 );
               })}
