@@ -35,6 +35,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       onSelect,
       onChange,
       onFocus,
+      onBlur,
       label,
       invalid,
       helpText,
@@ -229,6 +230,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         onFocus && onFocus();
         setOpen(true);
       },
+      onBlur,
       ...rest,
     };
 

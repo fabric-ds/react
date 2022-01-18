@@ -64,11 +64,16 @@ export type ComboboxProps = {
    * Called when the value of the input changes
    */
   onChange(value: string): void;
-  /**
 
+  /**
    * Called when the input is focus
    */
   onFocus?: () => void;
+
+  /**
+   * Called when the input loses focus
+   */
+  onBlur?: () => void;
 
   /**  Renders the input field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
   invalid?: boolean;
@@ -100,5 +105,5 @@ export type ComboboxProps = {
   children?: React.ReactNode;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
-  'onBlur' | 'onChange' | 'type' | 'value' | 'label'
+  'onChange' | 'type' | 'value' | 'label'
 >;
