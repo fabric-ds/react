@@ -181,8 +181,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           break;
         default:
           if (e.key.length === 1) {
-            onChange(activeOption?.value || value);
-            setActiveOption(null);
+            onChange(navigationOption?.value || value);
+            setNavigationOption(null);
           }
           break;
       }
