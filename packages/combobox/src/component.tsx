@@ -54,7 +54,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const listRef = useRef<HTMLDivElement>(null);
 
     const [isOpen, setOpen] = useState(false);
-    const [activeOption, setActiveOption] = useState<Option | null>(null);
+    const [navigationOption, setNavigationOption] = useState<Option | null>(
+      null,
+    );
     const [currentOptions, setCurrentOptions] = useState<Option[]>([]);
 
     useEffect(() => {
@@ -69,28 +71,31 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
     const handleSelect = (option: Option) => {
       onSelect && onSelect(option.value);
-      setActiveOption(null);
+
+      // Set empty states on select
+      setNavigationOption(null);
+      setCurrentOptions([]);
     };
 
     function findAndSetActiveOption(e: KeyboardEvent): void {
       e.preventDefault();
 
       const currIndex = currentOptions.findIndex(
-        (option) => option.id === activeOption?.id,
+        (option) => option.id === navigationOption?.id,
       );
       const nextIndex = currIndex + 1;
       const prevIndex = currIndex - 1;
 
       switch (e.key) {
         case 'ArrowDown':
-          setActiveOption(
+          setNavigationOption(
             nextIndex > currentOptions.length
               ? null
               : currentOptions[nextIndex],
           );
           break;
         case 'ArrowUp':
-          setActiveOption(
+          setNavigationOption(
             prevIndex === -2
               ? currentOptions[currentOptions.length - 1]
               : prevIndex < 0
@@ -99,24 +104,24 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           );
           break;
         case 'PageUp':
-          setActiveOption(
+          setNavigationOption(
             currIndex - 10 < 0
               ? currentOptions[0]
               : currentOptions[currIndex - 10],
           );
           break;
         case 'PageDown':
-          setActiveOption(
+          setNavigationOption(
             currIndex + 10 > currentOptions.length
               ? currentOptions[currentOptions.length - 1]
               : currentOptions[currIndex + 10],
           );
           break;
         case 'Home':
-          setActiveOption(currentOptions[0]);
+          setNavigationOption(currentOptions[0]);
           break;
         case 'End':
-          setActiveOption(currentOptions[currentOptions.length - 1]);
+          setNavigationOption(currentOptions[currentOptions.length - 1]);
           break;
       }
     }
@@ -142,12 +147,16 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
       // Other keys
       switch (e.key) {
+        case 'ArrowLeft':
+          onChange && onChange(navigationOption?.value || value);
+          setNavigationOption(null);
+          break;
         case 'Enter':
-          if (activeOption) {
+          if (navigationOption) {
             // Handle Enter only when option is selected, otherwise let the event
             // bubble up to any enclosing form elements etc.
             e.preventDefault();
-            handleSelect(activeOption);
+            handleSelect(navigationOption);
           }
           setOpen(false);
           break;
@@ -164,23 +173,14 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             // Clear the combobox if popover is hidden
             onChange('');
           }
-          setActiveOption(null);
-          break;
-        case ' ':
-          // Input change event is not triggered when space is added at end of value
-          onChange(value);
-          setOpen(true);
+          setNavigationOption(null);
           break;
         case 'Backspace':
-          onChange(activeOption?.value || value);
-          setActiveOption(null);
+          onChange(navigationOption?.value || value);
+          setNavigationOption(null);
           break;
         default:
-          if (e.key.length === 1) {
-            onChange(activeOption?.value || value);
-            setActiveOption(null);
-          }
-          break;
+          return true;
       }
     };
 
@@ -203,7 +203,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const TextFieldProps = {
       id,
       ref: ref || inputRef,
-      value: activeOption?.value || value,
+      value: navigationOption?.value || value,
       onChange: function (e) {
         if (onChange) {
           onChange(!value.length ? e.target.value.trim() : e.target.value);
@@ -217,8 +217,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       'aria-label': props['aria-label'],
       'aria-labelledby': props['aria-labelledby'],
       'aria-autocomplete': 'list',
-      'aria-expanded': !!activeOption?.id || false,
-      'aria-activedescendant': isOpen ? activeOption?.id : undefined,
+      'aria-expanded': !!navigationOption?.id || false,
+      'aria-activedescendant': isOpen ? navigationOption?.id : undefined,
       'aria-controls': listboxId,
       onFocus: () => {
         if (!openOnFocus) return;
@@ -319,11 +319,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                   <li
                     key={option.id}
                     id={option.id}
-                    aria-selected={activeOption?.id === option.id || false}
+                    aria-selected={navigationOption?.id === option.id || false}
                     role="option"
                     tabIndex={-1}
                     onClick={() => {
-                      setActiveOption(option);
+                      setNavigationOption(option);
                       setTimeout(() => {
                         handleSelect(option);
                         setOpen(false);
@@ -333,7 +333,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                       [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
                         true,
                       [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
-                        activeOption?.id === option.id,
+                        navigationOption?.id === option.id,
                     })}
                   >
                     {matchTextSegments || highlightValueMatch ? match : display}
