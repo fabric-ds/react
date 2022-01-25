@@ -27,7 +27,7 @@ function isPlural(array) {
 }
 
 export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
-  (props, ref) => {
+  (props, forwardRef) => {
     const {
       id: pid,
       options,
@@ -51,8 +51,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     } = props;
 
     const id = useId(pid);
-    const inputRef = useRef<HTMLInputElement>(null);
-    const listRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const [isOpen, setOpen] = useState(false);
     const [navigationOption, setNavigationOption] = useState<Option | null>(
@@ -181,7 +180,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           setNavigationOption(null);
           break;
         default:
-          if (e.key.length === 1) {
+          if (e.key.length) {
             onChange(navigationOption?.value || value);
             setNavigationOption(null);
           }
@@ -199,20 +198,22 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       };
     });
 
-    useEffect(() => {
-      if (!value.trim().length) setOpen(false);
-      if (value.length) setOpen(true);
-    }, [value]);
-
     const listboxId = `${id}-listbox`;
     const TextFieldProps = {
       id,
-      ref: ref || inputRef,
+      ref: function (node: HTMLInputElement) {
+        inputRef.current = node;
+        if (forwardRef) {
+          if (typeof forwardRef === 'function') {
+            forwardRef(node);
+          } else {
+            forwardRef.current = node;
+          }
+        }
+      },
       value: navigationOption?.value || value,
       onChange: function (e) {
-        if (onChange) {
-          onChange(!value.length ? e.target.value.trim() : e.target.value);
-        }
+        onChange && onChange(e.target.value);
       },
       label,
       invalid,
@@ -222,7 +223,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       'aria-label': props['aria-label'],
       'aria-labelledby': props['aria-labelledby'],
       'aria-autocomplete': 'list',
-      'aria-expanded': !!navigationOption?.id || false,
+      'aria-expanded': !!navigationOption?.id,
       'aria-activedescendant': isOpen ? navigationOption?.id : undefined,
       'aria-controls': listboxId,
       onFocus: () => {
@@ -275,80 +276,77 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
               }`}
         </span>
 
-        {isOpen && (
-          <div
-            ref={listRef}
-            className={classNames(listClassName, {
-              'absolute left-0 right-0 pb-8 rounded-8 bg-white shadow': true,
-              'sr-only': !currentOptions.length,
+        <div
+          hidden={!isOpen && !currentOptions.length}
+          className={classNames(listClassName, {
+            'absolute left-0 right-0 pb-8 rounded-8 bg-white shadow': true,
+          })}
+          style={{
+            // Force popover above misc. page content (mobile safari issue)
+            zIndex: 3,
+          }}
+        >
+          <ul
+            id={listboxId}
+            role="listbox"
+            className={classNames('m-0 p-0 select-none list-none', {
+              [MATCH_SEGMENTS_CLASS_NAME]: matchTextSegments,
             })}
-            style={{
-              // Force popover above misc. page content (mobile safari issue)
-              zIndex: 3,
-            }}
           >
-            <ul
-              id={listboxId}
-              role="listbox"
-              className={classNames('m-0 p-0 select-none list-none', {
-                [MATCH_SEGMENTS_CLASS_NAME]: matchTextSegments,
-              })}
-            >
-              {currentOptions.map((option) => {
-                const display = option.label || option.value;
-                let match: React.ReactNode = [];
+            {currentOptions.map((option) => {
+              const display = option.label || option.value;
+              let match: React.ReactNode = [];
 
-                if (matchTextSegments && !highlightValueMatch) {
-                  const startIdx = display
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase());
+              if (matchTextSegments && !highlightValueMatch) {
+                const startIdx = display
+                  .toLowerCase()
+                  .indexOf(value.toLowerCase());
 
-                  if (startIdx !== -1) {
-                    const endIdx = startIdx + value.length;
-                    match = (
-                      <>
-                        {display.substring(0, startIdx)}
-                        <span data-combobox-text-match className="font-bold">
-                          {display.substring(startIdx, endIdx)}
-                        </span>
-                        {display.substring(endIdx)}
-                      </>
-                    );
-                  } else {
-                    match = <span>{display}</span>;
-                  }
-                } else if (highlightValueMatch) {
-                  match = highlightValueMatch(display, value);
+                if (startIdx !== -1) {
+                  const endIdx = startIdx + value.length;
+                  match = (
+                    <>
+                      {display.substring(0, startIdx)}
+                      <span data-combobox-text-match className="font-bold">
+                        {display.substring(startIdx, endIdx)}
+                      </span>
+                      {display.substring(endIdx)}
+                    </>
+                  );
+                } else {
+                  match = <span>{display}</span>;
                 }
+              } else if (highlightValueMatch) {
+                match = highlightValueMatch(display, value);
+              }
 
-                return (
-                  <li
-                    key={option.id}
-                    id={option.id}
-                    aria-selected={navigationOption?.id === option.id || false}
-                    role="option"
-                    tabIndex={-1}
-                    onClick={() => {
-                      setNavigationOption(option);
-                      setTimeout(() => {
-                        handleSelect(option);
-                        setOpen(false);
-                      }, 1);
-                    }}
-                    className={classNames({
-                      [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
-                        true,
-                      [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
-                        navigationOption?.id === option.id,
-                    })}
-                  >
-                    {matchTextSegments || highlightValueMatch ? match : display}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
+              return (
+                <li
+                  key={option.id}
+                  id={option.id}
+                  aria-selected={navigationOption?.id === option.id || false}
+                  role="option"
+                  tabIndex={-1}
+                  onClick={() => {
+                    setNavigationOption(option);
+                    setTimeout(() => {
+                      handleSelect(option);
+                      setOpen(false);
+                    }, 1);
+                  }}
+                  className={classNames({
+                    [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
+                      true,
+                    [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
+                      navigationOption?.id === option.id,
+                  })}
+                >
+                  {matchTextSegments || highlightValueMatch ? match : display}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     );
   },
