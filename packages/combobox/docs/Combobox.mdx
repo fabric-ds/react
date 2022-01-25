@@ -150,7 +150,8 @@ state you need, then render as many options as you want.
 ```jsx example
 function Example() {
   const [value, setValue] = useState('');
-  const characters = useSWMatch(value);
+  const [selectedValue, setSelectedValue] = useState('');
+  const characters = useDebouncedSearch(value, 300);
 
   return (
     <Combobox
@@ -158,35 +159,44 @@ function Example() {
       disableStaticFiltering
       matchTextSegments
       value={value}
-      onChange={(val) => setValue(val)}
-      onSelect={(val) => {
+      onChange={(val) => {
         setValue(val);
+      }}
+      onSelect={(val) => {
+        setSelectedValue(val);
         alert(val);
       }}
       options={characters}
-    />
+    >
+      <Affix
+        suffix
+        clear
+        aria-label="Clear text"
+        onClick={() => {
+          setValue('');
+        }}
+      />
+    </Combobox>
   );
 }
 
-// Note that this is a simplified example querying an API on every change to the input field
-// Normally you would have some sort of throttling/debouncing and request cancellation
-// to reduce the load on both the client and the server.
-function useSWMatch(term) {
-  const [characters, setCharacters] = useState([]);
+// Generic debouncer
+function useDebouncedSearch(query, delay) {
+  const [characters, setCharacters] = React.useState([]);
 
   React.useEffect(() => {
-    if (!term.trim()) return;
-    let isFresh = true;
+    const handler = setTimeout(() => {
+      fetch('https://swapi.dev/api/people/?search=' + query.trim())
+        .then((res) => res.json())
+        .then((res) => {
+          setCharacters(res.results.map((c) => ({ value: c.name })));
+        });
+    }, delay);
 
-    fetch('https://swapi.dev/api/people/?search=' + term.trim())
-      .then((res) => res.json())
-      .then((res) => {
-        if (!isFresh) return;
-        setCharacters(res.results.map((c) => ({ value: c.name })));
-      });
-
-    return () => (isFresh = false);
-  }, [term]);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [query]);
 
   return characters;
 }

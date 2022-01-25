@@ -271,3 +271,59 @@ export const WithAffix = () => {
     </>
   );
 };
+
+export const AsyncFetch = () => {
+  const [value, setValue] = React.useState('');
+  const characters = useDebouncedSearch(value, 300);
+
+  // Generic debouncer
+  function useDebouncedSearch(query, delay) {
+    const [characters, setCharacters] = React.useState([]);
+
+    React.useEffect(() => {
+      const handler = setTimeout(() => {
+        fetch('https://swapi.dev/api/people/?search=' + query.trim())
+          .then((res) => res.json())
+          .then((res) => {
+            setCharacters(res.results.map((c) => ({ value: c.name })));
+          });
+      }, delay);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [query]);
+
+    return characters;
+  }
+
+  return (
+    <Combobox
+      label="Star Wars character"
+      disableStaticFiltering
+      matchTextSegments
+      value={value}
+      onChange={(val) => {
+        setValue(val);
+      }}
+      onSelect={(val) => {
+        setValue(val);
+        alert(val);
+      }}
+      onBlur={(val) => {
+        console.warn(`on blur: ${val}`);
+        setValue(val);
+      }}
+      options={characters}
+    >
+      <Affix
+        suffix
+        clear
+        aria-label="Clear text"
+        onClick={() => {
+          setValue('');
+        }}
+      />
+    </Combobox>
+  );
+};
