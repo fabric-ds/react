@@ -298,32 +298,32 @@ export const AsyncFetch = () => {
   }
 
   return (
-    <Combobox
-      label="Star Wars character"
-      disableStaticFiltering
-      matchTextSegments
-      value={value}
-      onChange={(val) => {
-        setValue(val);
-      }}
-      onSelect={(val) => {
-        setValue(val);
-        alert(val);
-      }}
-      onBlur={(val) => {
-        console.warn(`on blur: ${val}`);
-        setValue(val);
-      }}
-      options={characters}
-    >
-      <Affix
-        suffix
-        clear
-        aria-label="Clear text"
-        onClick={() => {
-          setValue('');
+    <div>
+      <Combobox
+        label="Star Wars character"
+        disableStaticFiltering
+        matchTextSegments
+        openOnFocus
+        value={value}
+        onChange={(val) => {
+          setValue(val);
         }}
-      />
-    </Combobox>
+        onSelect={(val) => {
+          setValue(val);
+          alert(val);
+        }}
+        options={characters}
+      >
+        <Affix
+          suffix
+          clear
+          aria-label="Clear text"
+          onClick={() => {
+            setValue('');
+          }}
+        />
+      </Combobox>
+      <button>other tabbable</button>
+    </div>
   );
 };

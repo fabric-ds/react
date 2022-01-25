@@ -1,41 +1,43 @@
 import { classNames } from '@chbphone55/classnames';
-import { useId } from '../../utils/src';
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import React, {
+  Dispatch,
+  forwardRef,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { TextField } from '../../textfield/src';
-import { ComboboxOption, ComboboxProps } from './props';
-import { generateId } from '../../utils/src/useId';
+import { useId } from '../../utils/src';
+import { ComboboxProps, OptionWithIdAndMatch } from './props';
+import { createOptionsWithIdAndMatch, getAriaText } from './utils';
 
 const OPTION_HIGHLIGHT_COLOR = 'bluegray-100';
 const OPTION_CLASS_NAME = 'f-react-combobox-option';
 const MATCH_SEGMENTS_CLASS_NAME = 'f-react-combobox-match';
 
-type Option = ComboboxOption & { id: string; currentInputValue: string };
-
-function createOptionsWithIdAndMatch(
-  options: ComboboxOption[],
-  currentInputValue: string,
-): Option[] {
-  return options.map((option) => ({
-    ...option,
-    id: generateId(),
-    currentInputValue,
-  }));
-}
-
-function isPlural(array) {
-  return array.length > 1 || array.length === 0;
-}
-
 export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
-  (props, forwardRef) => {
+  ({ id: pid, ...props }, forwardRef) => {
+    const id = useId(pid);
+    const listboxId = `${id}-listbox`;
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
+    // Options list open boolean
+    const [isOpen, setOpen] = useState(false);
+
+    // The option the user has navigated to with their keyboard
+    const [navigationOption, setNavigationOption] =
+      useState<OptionWithIdAndMatch | null>(null);
+
+    // Available options based on user's input value
+    const [currentOptions, setCurrentOptions] = useState<
+      OptionWithIdAndMatch[]
+    >([]);
+
+    // Destructure props
     const {
-      id: pid,
       options,
       value,
-      onSelect,
-      onChange,
-      onFocus,
-      onBlur,
       label,
       invalid,
       helpText,
@@ -45,20 +47,16 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       listClassName,
       disableStaticFiltering = false,
       matchTextSegments,
-      highlightValueMatch,
       children,
+      highlightValueMatch,
+      onSelect,
+      onChange,
+      onFocus,
+      onBlur,
       ...rest
     } = props;
 
-    const id = useId(pid);
-    const inputRef = useRef<HTMLInputElement | null>(null);
-
-    const [isOpen, setOpen] = useState(false);
-    const [navigationOption, setNavigationOption] = useState<Option | null>(
-      null,
-    );
-    const [currentOptions, setCurrentOptions] = useState<Option[]>([]);
-
+    // Set and filter available options based on user input
     useEffect(() => {
       setCurrentOptions(
         createOptionsWithIdAndMatch(options, value).filter((option) =>
@@ -69,64 +67,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       );
     }, [options, disableStaticFiltering, value]);
 
-    const handleSelect = (option: Option) => {
-      onSelect && onSelect(option.value);
-
-      // Set empty states on select
-      setNavigationOption(null);
-      setCurrentOptions([]);
-    };
-
-    function findAndSetActiveOption(e: KeyboardEvent): void {
-      e.preventDefault();
-
-      const currIndex = currentOptions.findIndex(
-        (option) => option.id === navigationOption?.id,
-      );
-      const nextIndex = currIndex + 1;
-      const prevIndex = currIndex - 1;
-
-      switch (e.key) {
-        case 'ArrowDown':
-          setNavigationOption(
-            nextIndex > currentOptions.length
-              ? null
-              : currentOptions[nextIndex],
-          );
-          break;
-        case 'ArrowUp':
-          setNavigationOption(
-            prevIndex === -2
-              ? currentOptions[currentOptions.length - 1]
-              : prevIndex < 0
-              ? null
-              : currentOptions[prevIndex],
-          );
-          break;
-        case 'PageUp':
-          setNavigationOption(
-            currIndex - 10 < 0
-              ? currentOptions[0]
-              : currentOptions[currIndex - 10],
-          );
-          break;
-        case 'PageDown':
-          setNavigationOption(
-            currIndex + 10 > currentOptions.length
-              ? currentOptions[currentOptions.length - 1]
-              : currentOptions[currIndex + 10],
-          );
-          break;
-        case 'Home':
-          setNavigationOption(currentOptions[0]);
-          break;
-        case 'End':
-          setNavigationOption(currentOptions[currentOptions.length - 1]);
-          break;
-      }
-    }
-
-    const handlekeyDown = (e: KeyboardEvent) => {
+    function handlekeyDown(e: KeyboardEvent) {
       const isNavigationKey = [
         'ArrowDown',
         'ArrowUp',
@@ -136,21 +77,20 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         'End',
       ].includes(e.key);
 
+      const ignoreList = ['ArrowDown', 'ArrowLeft', 'ArrowUp', 'ArrowRight'];
+
       if (isNavigationKey && !isOpen) {
         return setOpen(true);
-      }
-
-      if (isNavigationKey) {
-        if (!isOpen) return;
-        findAndSetActiveOption(e);
+      } else if (isNavigationKey && isOpen) {
+        findAndSetActiveOption(e, {
+          setNavigationOption,
+          navigationOption,
+          currentOptions,
+        });
       }
 
       // Other keys
       switch (e.key) {
-        case 'ArrowLeft':
-          onChange && onChange(navigationOption?.value || value);
-          setNavigationOption(null);
-          break;
         case 'Enter':
           if (navigationOption) {
             // Handle Enter only when option is selected, otherwise let the event
@@ -178,15 +118,28 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         case 'Backspace':
           onChange(navigationOption?.value || value);
           setNavigationOption(null);
+          setOpen(true);
           break;
         default:
-          if (e.key.length) {
-            onChange(navigationOption?.value || value);
+          if (ignoreList.includes(e.key)) {
+            break;
+          }
+
+          setOpen(true);
+          if (navigationOption) {
+            onChange && onChange(navigationOption.value);
             setNavigationOption(null);
+          } else {
+            onChange && onChange(value);
           }
           break;
       }
-    };
+
+      // We can assume the user has a dynamic list
+      if (disableStaticFiltering) {
+        currentOptions.length && setOpen(true);
+      }
+    }
 
     useEffect(() => {
       if (!inputRef.current) return;
@@ -198,23 +151,22 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       };
     });
 
-    const listboxId = `${id}-listbox`;
+    function handleSelect(option: OptionWithIdAndMatch) {
+      onSelect && onSelect(option.value); // this may trigger an external api call
+      setOpen(false);
+      setNavigationOption(null);
+
+      // Set empty states on select and clear when dynamic list
+      if (disableStaticFiltering) {
+        setCurrentOptions(
+          currentOptions.filter((o) => o.id !== navigationOption?.id),
+        );
+      }
+    }
+
     const TextFieldProps = {
       id,
-      ref: function (node: HTMLInputElement) {
-        inputRef.current = node;
-        if (forwardRef) {
-          if (typeof forwardRef === 'function') {
-            forwardRef(node);
-          } else {
-            forwardRef.current = node;
-          }
-        }
-      },
       value: navigationOption?.value || value,
-      onChange: function (e) {
-        onChange && onChange(e.target.value);
-      },
       label,
       invalid,
       helpText,
@@ -226,32 +178,35 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       'aria-expanded': !!navigationOption?.id,
       'aria-activedescendant': isOpen ? navigationOption?.id : undefined,
       'aria-controls': listboxId,
-      onFocus: () => {
+      onChange: function (e) {
+        onChange && onChange(e.target.value);
+      },
+      onFocus: function () {
         if (!openOnFocus) return;
         onFocus && onFocus();
         setOpen(true);
       },
-      onBlur,
+      onBlur: function (e) {
+        handleInputBlur(e, setOpen);
+        onBlur && onBlur(navigationOption?.value || value);
+      },
+      ref: function (node: HTMLInputElement) {
+        inputRef.current = node;
+        if (forwardRef) {
+          if (typeof forwardRef === 'function') {
+            forwardRef(node);
+          } else {
+            forwardRef.current = node;
+          }
+        }
+      },
       ...rest,
     };
 
-    // If the clicked element on page is not a child of the container
-    function handleContainerBlur(e: React.FocusEvent) {
-      const isClickOutsideContainer = !e.currentTarget.contains(
-        e.relatedTarget,
-      );
-
-      if (isClickOutsideContainer) {
-        setOpen(false);
-      }
-    }
-
     return (
       <div
-        className={classNames(className, {
-          relative: true,
-        })}
-        onBlur={handleContainerBlur}
+        className={classNames(className, 'relative')}
+        onBlur={(e) => handleContainerBlur(e, setOpen)}
       >
         {children ? (
           // @ts-ignore
@@ -262,28 +217,17 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         )}
 
         <span className="sr-only" role="status">
-          {currentOptions &&
-          currentOptions.filter((option) =>
-            option.value.toLowerCase().includes(value.toLowerCase()),
-          ).length
-            ? `${currentOptions.length} resultat${
-                isPlural(currentOptions) ? 'er' : ''
-              }`
-            : `Ingen resultater, viser ${
-                isPlural(currentOptions) ? 'alle' : ''
-              } ${currentOptions.length} alternativ${
-                isPlural(currentOptions) ? 'er' : ''
-              }`}
+          {getAriaText(currentOptions, value)}
         </span>
 
         <div
-          hidden={!isOpen && !currentOptions.length}
-          className={classNames(listClassName, {
-            'absolute left-0 right-0 pb-8 rounded-8 bg-white shadow': true,
-          })}
+          hidden={!isOpen || !currentOptions.length}
+          className={classNames(
+            listClassName,
+            'absolute left-0 right-0 bg-primary pb-8 rounded-8 bg-white shadow',
+          )}
           style={{
-            // Force popover above misc. page content (mobile safari issue)
-            zIndex: 3,
+            zIndex: 3, // Force popover above misc. page content (mobile safari issue)
           }}
         >
           <ul
@@ -298,6 +242,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
               let match: React.ReactNode = [];
 
               if (matchTextSegments && !highlightValueMatch) {
+                console.log(option);
                 const startIdx = display
                   .toLowerCase()
                   .indexOf(value.toLowerCase());
@@ -324,8 +269,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 <li
                   key={option.id}
                   id={option.id}
-                  aria-selected={navigationOption?.id === option.id || false}
                   role="option"
+                  aria-selected={navigationOption?.id === option.id}
                   tabIndex={-1}
                   onClick={() => {
                     setNavigationOption(option);
@@ -351,3 +296,83 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     );
   },
 );
+
+function findAndSetActiveOption(
+  e: KeyboardEvent,
+  {
+    setNavigationOption,
+    navigationOption,
+    currentOptions,
+  }: {
+    setNavigationOption: Dispatch<SetStateAction<OptionWithIdAndMatch | null>>;
+    navigationOption: OptionWithIdAndMatch | null;
+    currentOptions: OptionWithIdAndMatch[];
+  },
+): void {
+  e.preventDefault();
+
+  const currIndex = currentOptions.findIndex(
+    (option) => option.id === navigationOption?.id,
+  );
+  const nextIndex = currIndex + 1;
+  const prevIndex = currIndex - 1;
+
+  switch (e.key) {
+    case 'ArrowDown':
+      setNavigationOption(
+        nextIndex > currentOptions.length ? null : currentOptions[nextIndex],
+      );
+      break;
+    case 'ArrowUp':
+      setNavigationOption(
+        prevIndex === -2
+          ? currentOptions[currentOptions.length - 1]
+          : prevIndex < 0
+          ? null
+          : currentOptions[prevIndex],
+      );
+      break;
+    case 'PageUp':
+      setNavigationOption(
+        currIndex - 10 < 0 ? currentOptions[0] : currentOptions[currIndex - 10],
+      );
+      break;
+    case 'PageDown':
+      setNavigationOption(
+        currIndex + 10 > currentOptions.length
+          ? currentOptions[currentOptions.length - 1]
+          : currentOptions[currIndex + 10],
+      );
+      break;
+    case 'Home':
+      setNavigationOption(currentOptions[0]);
+      break;
+    case 'End':
+      setNavigationOption(currentOptions[currentOptions.length - 1]);
+      break;
+  }
+}
+
+// If the clicked element on page is not a child of the container
+function handleContainerBlur(
+  e: React.FocusEvent,
+  setOpen: Dispatch<SetStateAction<boolean>>,
+) {
+  const isClickOutsideContainer = !e.currentTarget.contains(e.relatedTarget);
+
+  if (isClickOutsideContainer) {
+    setOpen(false);
+  }
+}
+
+function handleInputBlur(
+  e: React.FocusEvent,
+  setOpen: Dispatch<SetStateAction<boolean>>,
+) {
+  const isClickOutsideContainer =
+    !e.currentTarget.parentNode?.parentNode?.contains(e.relatedTarget);
+
+  if (isClickOutsideContainer) {
+    setOpen(false);
+  }
+}

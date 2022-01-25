@@ -3,6 +3,11 @@ export type ComboboxOption = {
   label?: string;
 };
 
+export type OptionWithIdAndMatch = ComboboxOption & {
+  id: string;
+  currentInputValue: string;
+};
+
 export type ComboboxProps = {
   /**
    * Unique identifier for the input field
@@ -71,9 +76,9 @@ export type ComboboxProps = {
   onFocus?: () => void;
 
   /**
-   * Called when the input loses focus
+   * Called when the input loses focus with the current navigation value or input value
    */
-  onBlur?: () => void;
+  onBlur?: (alue: string) => void;
 
   /**  Renders the input field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
   invalid?: boolean;
