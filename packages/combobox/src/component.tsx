@@ -21,6 +21,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const id = useId(pid);
     const listboxId = `${id}-listbox`;
     const inputRef = useRef<HTMLInputElement | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     // Options list open boolean
     const [isOpen, setOpen] = useState(false);
@@ -187,7 +188,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         setOpen(true);
       },
       onBlur: function (e) {
-        handleInputBlur(e, setOpen);
+        handleInputBlur(containerRef, e, setOpen);
         onBlur && onBlur(navigationOption?.value || value);
       },
       ref: function (node: HTMLInputElement) {
@@ -207,6 +208,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       <div
         className={classNames(className, 'relative')}
         onBlur={(e) => handleContainerBlur(e, setOpen)}
+        ref={containerRef}
       >
         {children ? (
           // @ts-ignore
@@ -366,11 +368,15 @@ function handleContainerBlur(
 }
 
 function handleInputBlur(
+  containerRef: React.MutableRefObject<HTMLDivElement | null>,
   e: React.FocusEvent,
   setOpen: Dispatch<SetStateAction<boolean>>,
 ) {
-  const isClickOutsideContainer =
-    !e.currentTarget.parentNode?.parentNode?.contains(e.relatedTarget);
+  if (!containerRef.current) return;
+
+  const isClickOutsideContainer = !containerRef.current?.contains(
+    e.relatedTarget,
+  );
 
   if (isClickOutsideContainer) {
     setOpen(false);
