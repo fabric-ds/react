@@ -1,4 +1,3 @@
-import { Combobox } from './../../../dist/npm/index.d';
 import { generateId } from '../../utils/src/useId';
 import { ComboboxOption, OptionWithIdAndMatch } from './props';
 

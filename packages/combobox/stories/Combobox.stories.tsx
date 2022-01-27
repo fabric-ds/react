@@ -281,10 +281,13 @@ export const AsyncFetch = () => {
     const [characters, setCharacters] = React.useState([]);
 
     React.useEffect(() => {
+      if (!query.length) setCharacters([]);
+
       const handler = setTimeout(() => {
         fetch('https://swapi.dev/api/people/?search=' + query.trim())
           .then((res) => res.json())
           .then((res) => {
+            console.log('Results from API', query);
             setCharacters(res.results.map((c) => ({ value: c.name })));
           });
       }, delay);
@@ -310,7 +313,7 @@ export const AsyncFetch = () => {
         }}
         onSelect={(val) => {
           setValue(val);
-          alert(val);
+          action('select')(val);
         }}
         options={characters}
       >

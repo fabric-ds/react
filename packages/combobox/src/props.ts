@@ -1,3 +1,5 @@
+import { ChangeEvent, FocusEvent } from 'react';
+
 export type ComboboxOption = {
   value: string;
   label?: string;
@@ -41,6 +43,12 @@ export type ComboboxProps = {
   openOnFocus?: boolean;
 
   /**
+   * Select active option on blur
+   * @default true
+   */
+  selectOnBlur?: boolean;
+
+  /**
    * Whether the matching text segments in the options should be highlighted. Customise the styling by using CSS selectors to override `[data-combobox-text-match]`.
    * This uses the default matching algorithm. Use the `highlightValueMatch` to pass your own matching function.
    * @default false
@@ -78,7 +86,7 @@ export type ComboboxProps = {
   /**
    * Called when the input loses focus with the current navigation value or input value
    */
-  onBlur?: (alue: string) => void;
+  onBlur?: (value: string) => void;
 
   /**  Renders the input field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
   invalid?: boolean;

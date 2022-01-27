@@ -1,7 +1,11 @@
 import { classNames } from '@chbphone55/classnames';
 import React, {
+  ChangeEvent,
   Dispatch,
+  FocusEvent,
   forwardRef,
+  MutableRefObject,
+  ReactNode,
   SetStateAction,
   useEffect,
   useRef,
@@ -21,6 +25,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const id = useId(pid);
     const listboxId = `${id}-listbox`;
     const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputContainerRef = useRef<HTMLDivElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     // Options list open boolean
@@ -35,6 +40,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       OptionWithIdAndMatch[]
     >([]);
 
+    // Keep track of the last selected value so we don't open the menu for async callbacks
+    const [lastSelectedValue, setLastSelectedValue] = useState('');
+
     // Destructure props
     const {
       options,
@@ -44,6 +52,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       helpText,
       placeholder,
       openOnFocus,
+      selectOnBlur = true,
       className,
       listClassName,
       disableStaticFiltering = false,
@@ -57,6 +66,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       ...rest
     } = props;
 
+    const navigationValueOrInputValue = navigationOption?.value || value;
+
     // Set and filter available options based on user input
     useEffect(() => {
       setCurrentOptions(
@@ -66,7 +77,20 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             : true,
         ),
       );
-    }, [options, disableStaticFiltering, value]);
+
+      // eslint-disable-next-line
+    }, [options, disableStaticFiltering]);
+
+    useEffect(() => {
+      if (
+        disableStaticFiltering &&
+        currentOptions.length &&
+        currentOptions.length === 1 &&
+        !currentOptions.some((o) => o.value === value)
+      ) {
+        setOpen(true);
+      }
+    }, [currentOptions, value, disableStaticFiltering]);
 
     function handlekeyDown(e: KeyboardEvent) {
       const isNavigationKey = [
@@ -117,7 +141,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           setNavigationOption(null);
           break;
         case 'Backspace':
-          onChange(navigationOption?.value || value);
+          onChange(navigationValueOrInputValue);
           setNavigationOption(null);
           setOpen(true);
           break;
@@ -128,18 +152,18 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
           setOpen(true);
           if (navigationOption) {
-            onChange && onChange(navigationOption.value);
+            onChange(navigationOption.value);
             setNavigationOption(null);
           } else {
-            onChange && onChange(value);
+            onChange(value);
           }
           break;
       }
 
       // We can assume the user has a dynamic list
-      if (disableStaticFiltering) {
-        currentOptions.length && setOpen(true);
-      }
+      //   if (disableStaticFiltering) {
+      //     currentOptions.length && setOpen(true);
+      //   }
     }
 
     useEffect(() => {
@@ -153,21 +177,20 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     });
 
     function handleSelect(option: OptionWithIdAndMatch) {
+      setLastSelectedValue(option.value);
       onSelect && onSelect(option.value); // this may trigger an external api call
       setOpen(false);
       setNavigationOption(null);
 
       // Set empty states on select and clear when dynamic list
       if (disableStaticFiltering) {
-        setCurrentOptions(
-          currentOptions.filter((o) => o.id !== navigationOption?.id),
-        );
+        setCurrentOptions([]);
       }
     }
 
     const TextFieldProps = {
       id,
-      value: navigationOption?.value || value,
+      value: navigationValueOrInputValue,
       label,
       invalid,
       helpText,
@@ -179,17 +202,22 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       'aria-expanded': !!navigationOption?.id,
       'aria-activedescendant': isOpen ? navigationOption?.id : undefined,
       'aria-controls': listboxId,
-      onChange: function (e) {
-        onChange && onChange(e.target.value);
+      onChange: function (e: ChangeEvent<HTMLInputElement>) {
+        onChange(e.target.value);
       },
       onFocus: function () {
         if (!openOnFocus) return;
         onFocus && onFocus();
         setOpen(true);
       },
-      onBlur: function (e) {
-        handleInputBlur(containerRef, e, setOpen);
-        onBlur && onBlur(navigationOption?.value || value);
+      onBlur: function (e: FocusEvent) {
+        handleInputBlur(containerRef, inputContainerRef, e, setOpen);
+        selectOnBlur &&
+          navigationOption &&
+          onSelect &&
+          onSelect(navigationOption?.value);
+        setNavigationOption(null);
+        onBlur && onBlur(navigationValueOrInputValue);
       },
       ref: function (node: HTMLInputElement) {
         inputRef.current = node;
@@ -210,13 +238,15 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         onBlur={(e) => handleContainerBlur(e, setOpen)}
         ref={containerRef}
       >
-        {children ? (
-          // @ts-ignore
-          <TextField {...TextFieldProps}>{children}</TextField>
-        ) : (
-          // @ts-ignore
-          <TextField {...TextFieldProps} />
-        )}
+        <div ref={inputContainerRef}>
+          {children ? (
+            // @ts-ignore
+            <TextField {...TextFieldProps}>{children}</TextField>
+          ) : (
+            // @ts-ignore
+            <TextField {...TextFieldProps} />
+          )}
+        </div>
 
         <span className="sr-only" role="status">
           {getAriaText(currentOptions, value)}
@@ -241,16 +271,15 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           >
             {currentOptions.map((option) => {
               const display = option.label || option.value;
-              let match: React.ReactNode = [];
+              let match: ReactNode = [];
 
               if (matchTextSegments && !highlightValueMatch) {
-                console.log(option);
                 const startIdx = display
                   .toLowerCase()
-                  .indexOf(value.toLowerCase());
+                  .indexOf(option.currentInputValue.toLowerCase());
 
                 if (startIdx !== -1) {
-                  const endIdx = startIdx + value.length;
+                  const endIdx = startIdx + option.currentInputValue.length;
                   match = (
                     <>
                       {display.substring(0, startIdx)}
@@ -275,11 +304,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                   aria-selected={navigationOption?.id === option.id}
                   tabIndex={-1}
                   onClick={() => {
-                    setNavigationOption(option);
-                    setTimeout(() => {
-                      handleSelect(option);
-                      setOpen(false);
-                    }, 1);
+                    new Promise((res) => res(setNavigationOption(option))).then(
+                      () => {
+                        handleSelect(option);
+                      },
+                    );
                   }}
                   className={classNames({
                     [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
@@ -357,7 +386,7 @@ function findAndSetActiveOption(
 
 // If the clicked element on page is not a child of the container
 function handleContainerBlur(
-  e: React.FocusEvent,
+  e: FocusEvent,
   setOpen: Dispatch<SetStateAction<boolean>>,
 ) {
   const isClickOutsideContainer = !e.currentTarget.contains(e.relatedTarget);
@@ -368,15 +397,16 @@ function handleContainerBlur(
 }
 
 function handleInputBlur(
-  containerRef: React.MutableRefObject<HTMLDivElement | null>,
-  e: React.FocusEvent,
+  containerRef: MutableRefObject<HTMLDivElement | null>,
+  inputContainerRef: MutableRefObject<HTMLDivElement | null>,
+  e: FocusEvent,
   setOpen: Dispatch<SetStateAction<boolean>>,
 ) {
   if (!containerRef.current) return;
 
-  const isClickOutsideContainer = !containerRef.current?.contains(
-    e.relatedTarget,
-  );
+  const isClickOutsideContainer =
+    !containerRef.current?.contains(e.relatedTarget) ||
+    inputContainerRef.current?.contains(e.relatedTarget);
 
   if (isClickOutsideContainer) {
     setOpen(false);
