@@ -159,11 +159,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           }
           break;
       }
-
-      // We can assume the user has a dynamic list
-      //   if (disableStaticFiltering) {
-      //     currentOptions.length && setOpen(true);
-      //   }
     }
 
     useEffect(() => {
@@ -212,10 +207,14 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       },
       onBlur: function (e: FocusEvent) {
         handleInputBlur(containerRef, inputContainerRef, e, setOpen);
+
+        // If user has navigated to an option on blur || the input value equals one of the options' value -> select value
         selectOnBlur &&
-          navigationOption &&
+          (navigationOption ||
+            (!navigationOption &&
+              currentOptions.findIndex((o) => o.value === value) !== -1)) &&
           onSelect &&
-          onSelect(navigationOption?.value);
+          onSelect(navigationOption?.value || value);
         setNavigationOption(null);
         onBlur && onBlur(navigationValueOrInputValue);
       },
