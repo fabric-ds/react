@@ -32,6 +32,7 @@ export function Affix(props: AffixProps) {
     props.label ? 'div' : 'button',
     {
       'aria-label': !props.label ? props['aria-label'] : undefined,
+      type: props.search ? 'submit' : props.clear ? 'reset' : undefined,
       onClick: props.onClick,
       className: classNames({
         [classBase.wrapper]: true,

@@ -6,7 +6,6 @@ import { TextFieldProps } from './props';
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
     const {
-      className,
       disabled,
       id: providedId,
       children,
