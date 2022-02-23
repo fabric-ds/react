@@ -42,7 +42,6 @@
     "@fabric-ds/component-classes": "^0.0.35",
     "@fabric-ds/icons": "^0.3.12",
     "@fabric-ds/tailwind-config": "^0.5.20",
-    "@headlessui/react": "^1.4.2",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "1.6.22",
     "@storybook/addon-actions": "^6.3.6",
