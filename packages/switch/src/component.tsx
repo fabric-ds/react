@@ -18,6 +18,7 @@ export function Switch({
     <div className="tap-highlight-transparent">
       <button
         id={id}
+        type="button"
         role="switch"
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
