@@ -149,22 +149,46 @@ state you need, then render as many options as you want.
 
 ```jsx example
 function Example() {
-  const [value, setValue] = useState('');
-  const [selectedValue, setSelectedValue] = useState('');
+  const [value, setValue] = React.useState('');
   const characters = useDebouncedSearch(value, 300);
+
+  // Generic debouncer
+  function useDebouncedSearch(query, delay) {
+    const [characters, setCharacters] = React.useState([]);
+
+    React.useEffect(() => {
+      if (!query.length) setCharacters([]);
+
+      const handler = setTimeout(() => {
+        fetch('https://swapi.dev/api/people/?search=' + query.trim())
+          .then((res) => res.json())
+          .then((res) => {
+            console.log('Results from API', query);
+            setCharacters(res.results.map((c) => ({ value: c.name })));
+          });
+      }, delay);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [query]);
+
+    return characters;
+  }
 
   return (
     <Combobox
       label="Star Wars character"
       disableStaticFiltering
       matchTextSegments
+      openOnFocus
       value={value}
       onChange={(val) => {
         setValue(val);
       }}
       onSelect={(val) => {
-        setSelectedValue(val);
-        alert(val);
+        setValue(val);
+        action('select')(val);
       }}
       options={characters}
     >
@@ -178,27 +202,6 @@ function Example() {
       />
     </Combobox>
   );
-}
-
-// Generic debouncer
-function useDebouncedSearch(query, delay) {
-  const [characters, setCharacters] = React.useState([]);
-
-  React.useEffect(() => {
-    const handler = setTimeout(() => {
-      fetch('https://swapi.dev/api/people/?search=' + query.trim())
-        .then((res) => res.json())
-        .then((res) => {
-          setCharacters(res.results.map((c) => ({ value: c.name })));
-        });
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [query]);
-
-  return characters;
 }
 ```
 
