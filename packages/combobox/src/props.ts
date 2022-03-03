@@ -1,6 +1,13 @@
+import { ChangeEvent, FocusEvent } from 'react';
+
 export type ComboboxOption = {
   value: string;
   label?: string;
+};
+
+export type OptionWithIdAndMatch = ComboboxOption & {
+  id: string;
+  currentInputValue: string;
 };
 
 export type ComboboxProps = {
@@ -36,10 +43,30 @@ export type ComboboxProps = {
   openOnFocus?: boolean;
 
   /**
+   * Select active option on blur
+   * @default true
+   */
+  selectOnBlur?: boolean;
+
+  /**
    * Whether the matching text segments in the options should be highlighted. Customise the styling by using CSS selectors to override `[data-combobox-text-match]`.
+   * This uses the default matching algorithm. Use the `highlightValueMatch` to pass your own matching function.
    * @default false
    */
   matchTextSegments?: boolean;
+
+  /** Disable client-side static filtering
+   * @default false
+   */
+  disableStaticFiltering?: boolean;
+
+  /**
+   * Pass your own function for highlight matching
+   */
+  highlightValueMatch?: (
+    optionValue: string,
+    inputValue: string,
+  ) => React.ReactNode;
 
   /**
    * Called when the user selects an option
@@ -50,6 +77,16 @@ export type ComboboxProps = {
    * Called when the value of the input changes
    */
   onChange(value: string): void;
+
+  /**
+   * Called when the input is focus
+   */
+  onFocus?: () => void;
+
+  /**
+   * Called when the input loses focus with the current navigation value or input value
+   */
+  onBlur?: (value: string) => void;
 
   /**  Renders the input field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
   invalid?: boolean;
@@ -81,5 +118,5 @@ export type ComboboxProps = {
   children?: React.ReactNode;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
-  'onBlur' | 'onFocus' | 'onChange' | 'type' | 'value' | 'label'
+  'onChange' | 'type' | 'value' | 'label'
 >;

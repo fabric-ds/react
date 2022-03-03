@@ -1,193 +1,191 @@
 import { classNames } from '@chbphone55/classnames';
-import { useId } from '../../utils/src';
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  Dispatch,
+  FocusEvent,
+  forwardRef,
+  MutableRefObject,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { TextField } from '../../textfield/src';
-import { ComboboxOption, ComboboxProps } from './props';
+import { useId } from '../../utils/src';
+import { ComboboxProps, OptionWithIdAndMatch } from './props';
+import { createOptionsWithIdAndMatch, getAriaText } from './utils';
 
 const OPTION_HIGHLIGHT_COLOR = 'bluegray-100';
 const OPTION_CLASS_NAME = 'f-react-combobox-option';
 const MATCH_SEGMENTS_CLASS_NAME = 'f-react-combobox-match';
 
-type Option = ComboboxOption & { id: string };
-
 export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
-  (props, ref) => {
+  ({ id: pid, ...props }, forwardRef) => {
+    const id = useId(pid);
+    const listboxId = `${id}-listbox`;
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputContainerRef = useRef<HTMLDivElement | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
+
+    // Options list open boolean
+    const [isOpen, setOpen] = useState(false);
+
+    // The option the user has navigated to with their keyboard
+    const [navigationOption, setNavigationOption] =
+      useState<OptionWithIdAndMatch | null>(null);
+
+    // Available options based on user's input value
+    const [currentOptions, setCurrentOptions] = useState<
+      OptionWithIdAndMatch[]
+    >([]);
+
+    // Keep track of the last selected value so we don't open the menu for async callbacks
+    const [lastSelectedValue, setLastSelectedValue] = useState('');
+
+    // Destructure props
     const {
-      id: pid,
-      options: poptions,
+      options,
       value,
-      onSelect,
-      onChange,
       label,
       invalid,
       helpText,
       placeholder,
       openOnFocus,
+      selectOnBlur = true,
       className,
       listClassName,
+      disableStaticFiltering = false,
       matchTextSegments,
       children,
+      highlightValueMatch,
+      onSelect,
+      onChange,
+      onFocus,
+      onBlur,
       ...rest
     } = props;
 
-    const id = useId(pid);
-    const inputRef = useRef<HTMLInputElement>(null);
-    const listRef = useRef<HTMLDivElement>(null);
+    const navigationValueOrInputValue = navigationOption?.value || value;
 
-    const [isVisibleBelow, setIsVisibleBelow] = useState(true);
-    const [active, setActive] = useState<Option | null>(null);
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [options, setOptions] = useState<Option[]>(
-      poptions.map((option: ComboboxOption) => ({
-        ...option,
-        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
-      })),
-    );
+    // Set and filter available options based on user input
+    useEffect(() => {
+      setCurrentOptions(
+        createOptionsWithIdAndMatch(options, value).filter((option) =>
+          !disableStaticFiltering
+            ? option.value.toLocaleLowerCase().includes(value.toLowerCase())
+            : true,
+        ),
+      );
 
-    const validOptions =
-      options &&
-      options.filter((option) =>
-        option.value.toLocaleLowerCase().includes(value.toLowerCase()),
-      ).length
-        ? options.filter((option) =>
-            option.value.toLocaleLowerCase().includes(value.toLowerCase()),
-          )
-        : options;
+      // eslint-disable-next-line
+    }, [options, disableStaticFiltering]);
 
-    const handleSelect = (option: Option) => {
-      onSelect && onSelect(option.value);
-      setActive(null);
-    };
-
-    const handlekeyDown = (e) => {
-      // Ensure menu is open before we allow keyboard navigation
+    useEffect(() => {
       if (
-        !menuOpen &&
-        ['ArrowDown', 'ArrowUp', 'PageUp', 'PageDown'].includes(e.key)
+        disableStaticFiltering &&
+        currentOptions.length &&
+        currentOptions.length === 1 &&
+        !currentOptions.some((o) => o.value === value)
       ) {
-        return setMenuOpen(true);
+        setOpen(true);
+      }
+    }, [currentOptions, value, disableStaticFiltering]);
+
+    function handlekeyDown(e: KeyboardEvent) {
+      const isNavigationKey = [
+        'ArrowDown',
+        'ArrowUp',
+        'PageUp',
+        'PageDown',
+        'Home',
+        'End',
+      ].includes(e.key);
+
+      const ignoreList = ['ArrowDown', 'ArrowLeft', 'ArrowUp', 'ArrowRight'];
+
+      if (isNavigationKey && !isOpen) {
+        return setOpen(true);
+      } else if (isNavigationKey && isOpen) {
+        findAndSetActiveOption(e, {
+          setNavigationOption,
+          navigationOption,
+          currentOptions,
+        });
       }
 
-      if (!menuOpen) return;
-      if (!!!active?.id && ['Home', 'End'].includes(e.key)) return;
-
-      const currIndex = validOptions.findIndex(
-        (option) => option.id === active?.id,
-      );
-      const nextIndex = currIndex + 1;
-      const prevIndex = currIndex - 1;
-
+      // Other keys
       switch (e.key) {
-        case 'ArrowDown':
-          e.preventDefault();
-          setActive(
-            nextIndex > validOptions.length ? null : validOptions[nextIndex],
-          );
-          break;
-        case 'ArrowUp':
-          e.preventDefault();
-          setActive(
-            prevIndex === -2
-              ? validOptions[validOptions.length - 1]
-              : prevIndex < 0
-              ? null
-              : validOptions[prevIndex],
-          );
-          break;
-        case 'PageUp':
-          e.preventDefault();
-          setActive(
-            currIndex - 10 < 0 ? validOptions[0] : validOptions[currIndex - 10],
-          );
-          break;
-        case 'PageDown':
-          e.preventDefault();
-          setActive(
-            currIndex + 10 > validOptions.length
-              ? validOptions[validOptions.length - 1]
-              : validOptions[currIndex + 10],
-          );
-          break;
-        case 'Home':
-          e.preventDefault();
-          setActive(validOptions[0]);
-          break;
-        case 'End':
-          e.preventDefault();
-          setActive(validOptions[validOptions.length - 1]);
-          break;
-        case 'Escape':
-          menuOpen ? setMenuOpen(false) : onChange('');
-          setActive(null);
-          break;
         case 'Enter':
-          if (active) {
+          if (navigationOption) {
             // Handle Enter only when option is selected, otherwise let the event
             // bubble up to any enclosing form elements etc.
             e.preventDefault();
-            handleSelect(active);
+            handleSelect(navigationOption);
           }
-          setMenuOpen(false);
+          setOpen(false);
+          break;
+        case 'Tab':
+        case 'Delete':
+          // Dismiss the popover
+          setOpen(false);
+          break;
+        case 'Escape':
+          if (isOpen) {
+            // Dismiss the popover if visible
+            setOpen(false);
+          } else {
+            // Clear the combobox if popover is hidden
+            onChange('');
+          }
+          setNavigationOption(null);
           break;
         case 'Backspace':
-          onChange(active?.value || value);
-          setActive(null);
+          onChange(navigationValueOrInputValue);
+          setNavigationOption(null);
+          setOpen(true);
           break;
         default:
-          if (e.key.length === 1) {
-            onChange(active?.value || value);
-            setActive(null);
+          if (ignoreList.includes(e.key)) {
+            break;
+          }
+
+          setOpen(true);
+          if (navigationOption) {
+            onChange(navigationOption.value);
+            setNavigationOption(null);
+          } else {
+            onChange(value);
           }
           break;
       }
-    };
-
-    const handleListPlacement = () => {
-      if (!listRef.current || !inputRef.current) return;
-
-      setIsVisibleBelow(
-        !!(
-          inputRef.current.getBoundingClientRect().bottom +
-            listRef.current.clientHeight <=
-          (window.innerHeight || document.documentElement.clientHeight)
-        ),
-      );
-    };
+    }
 
     useEffect(() => {
       if (!inputRef.current) return;
       const input = inputRef.current;
 
       input.addEventListener('keydown', handlekeyDown);
-      window.addEventListener('scroll', handleListPlacement);
-
       return () => {
         input.removeEventListener('keydown', handlekeyDown);
-        window.removeEventListener('scroll', handleListPlacement);
       };
     });
 
-    useEffect(() => {
-      if (!value.trim().length) setMenuOpen(false);
-      if (value.length) setMenuOpen(true);
-    }, [value]);
+    function handleSelect(option: OptionWithIdAndMatch) {
+      setLastSelectedValue(option.value);
+      onSelect && onSelect(option.value); // this may trigger an external api call
+      setOpen(false);
+      setNavigationOption(null);
 
-    useEffect(() => {
-      setOptions(
-        poptions.map((o: ComboboxOption) => ({
-          ...o,
-          id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
-        })),
-      );
-    }, [poptions]);
+      // Set empty states on select and clear when dynamic list
+      if (disableStaticFiltering) {
+        setCurrentOptions([]);
+      }
+    }
 
     const TextFieldProps = {
       id,
-      ref: ref || inputRef,
-      value: active?.value || value,
-      onChange: (e) =>
-        onChange &&
-        onChange(!value.length ? e.target.value.trim() : e.target.value),
+      value: navigationValueOrInputValue,
       label,
       invalid,
       helpText,
@@ -196,137 +194,220 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       'aria-label': props['aria-label'],
       'aria-labelledby': props['aria-labelledby'],
       'aria-autocomplete': 'list',
-      'aria-expanded': !!active?.id || false,
-      'aria-activedescendant': menuOpen ? active?.id : undefined,
-      'aria-controls': `${id}-listbox`,
-      onFocus: () => {
+      'aria-expanded': !!navigationOption?.id,
+      'aria-activedescendant': isOpen ? navigationOption?.id : undefined,
+      'aria-controls': listboxId,
+      onChange: function (e: ChangeEvent<HTMLInputElement>) {
+        onChange(e.target.value);
+      },
+      onFocus: function () {
         if (!openOnFocus) return;
-        setMenuOpen(true);
+        onFocus && onFocus();
+        setOpen(true);
+      },
+      onBlur: function (e: FocusEvent) {
+        handleInputBlur(containerRef, inputContainerRef, e, setOpen);
+
+        // If user has navigated to an option on blur || the input value equals one of the options' value -> select value
+        selectOnBlur &&
+          (navigationOption ||
+            (!navigationOption &&
+              currentOptions.findIndex((o) => o.value === value) !== -1)) &&
+          onSelect &&
+          onSelect(navigationOption?.value || value);
+        setNavigationOption(null);
+        onBlur && onBlur(navigationValueOrInputValue);
+      },
+      ref: function (node: HTMLInputElement) {
+        inputRef.current = node;
+        if (forwardRef) {
+          if (typeof forwardRef === 'function') {
+            forwardRef(node);
+          } else {
+            forwardRef.current = node;
+          }
+        }
       },
       ...rest,
     };
 
     return (
       <div
-        className={classNames(className, {
-          relative: true,
-        })}
-        onBlur={(event) => {
-          // If the clicked element on page is not a child of the container
-          if (!event.currentTarget.contains(event.relatedTarget)) {
-            setMenuOpen(false);
-          }
-        }}
+        className={classNames(className, 'relative')}
+        onBlur={(e) => handleContainerBlur(e, setOpen)}
+        ref={containerRef}
       >
-        {children ? (
-          // @ts-ignore
-          <TextField {...TextFieldProps}>{children}</TextField>
-        ) : (
-          // @ts-ignore
-          <TextField {...TextFieldProps} />
-        )}
+        <div ref={inputContainerRef}>
+          {children ? (
+            // @ts-ignore
+            <TextField {...TextFieldProps}>{children}</TextField>
+          ) : (
+            // @ts-ignore
+            <TextField {...TextFieldProps} />
+          )}
+        </div>
 
-        {menuOpen ? (
-          <div
-            ref={listRef}
-            className={classNames(listClassName, {
-              'absolute left-0 right-0 pb-8 rounded-8 bg-white shadow': true,
-              'sr-only': !options.length,
+        <span className="sr-only" role="status">
+          {getAriaText(currentOptions, value)}
+        </span>
+
+        <div
+          hidden={!isOpen || !currentOptions.length}
+          className={classNames(
+            listClassName,
+            'absolute left-0 right-0 bg-primary pb-8 rounded-8 bg-white shadow',
+          )}
+          style={{
+            zIndex: 3, // Force popover above misc. page content (mobile safari issue)
+          }}
+        >
+          <ul
+            id={listboxId}
+            role="listbox"
+            className={classNames('m-0 p-0 select-none list-none', {
+              [MATCH_SEGMENTS_CLASS_NAME]: matchTextSegments,
             })}
-            style={{
-              zIndex: 2,
-              top: !isVisibleBelow
-                ? listRef.current
-                  ? -listRef.current?.clientHeight + (label ? 22 : 0)
-                  : 'unset'
-                : 'unset',
-            }}
           >
-            <span className="sr-only" role="status">
-              {options &&
-              options.filter((option) =>
-                option.value
-                  .toLocaleLowerCase()
-                  .toLocaleLowerCase()
-                  .includes(value.toLowerCase()),
-              ).length
-                ? `${validOptions.length} treff`
-                : `Ingen treff, viser ${
-                    validOptions.length > 1 || validOptions.length === 0
-                      ? 'alle'
-                      : ''
-                  } ${validOptions.length} alternativ${
-                    validOptions.length > 1 || validOptions.length === 0
-                      ? 'er'
-                      : ''
-                  }`}
-            </span>
-            <ul
-              id={`${id}-listbox`}
-              role="listbox"
-              className={classNames('m-0 p-0 select-none list-none', {
-                [MATCH_SEGMENTS_CLASS_NAME]: matchTextSegments,
-              })}
-            >
-              {validOptions.map((option) => {
-                const display = option.label || option.value;
-                let match: JSX.Element[] = [];
+            {currentOptions.map((option) => {
+              const display = option.label || option.value;
+              let match: ReactNode = [];
 
-                if (matchTextSegments) {
-                  match = [...display].map((letter, i) => {
-                    if (
-                      [...value.toLowerCase()].includes(letter.toLowerCase())
-                    ) {
-                      return (
-                        <span
-                          data-combobox-text-match
-                          key={`${option.id}-bold-letter-${letter}-${i}`}
-                          className="font-bold"
-                        >
-                          {letter}
-                        </span>
-                      );
-                    } else {
-                      return (
-                        <span key={`${option.id}-letter-${letter}-${i}`}>
-                          {letter}
-                        </span>
-                      );
-                    }
-                  });
+              if (matchTextSegments && !highlightValueMatch) {
+                const startIdx = display
+                  .toLowerCase()
+                  .indexOf(option.currentInputValue.toLowerCase());
+
+                if (startIdx !== -1) {
+                  const endIdx = startIdx + option.currentInputValue.length;
+                  match = (
+                    <>
+                      {display.substring(0, startIdx)}
+                      <span data-combobox-text-match className="font-bold">
+                        {display.substring(startIdx, endIdx)}
+                      </span>
+                      {display.substring(endIdx)}
+                    </>
+                  );
+                } else {
+                  match = <span>{display}</span>;
                 }
+              } else if (highlightValueMatch) {
+                match = highlightValueMatch(display, value);
+              }
 
-                return (
-                  <li
-                    key={option.id}
-                    id={option.id}
-                    aria-selected={active?.id === option.id || false}
-                    role="option"
-                    tabIndex={-1}
-                    onClick={() => {
-                      setActive(option);
-                      setTimeout(() => {
+              return (
+                <li
+                  key={option.id}
+                  id={option.id}
+                  role="option"
+                  aria-selected={navigationOption?.id === option.id}
+                  tabIndex={-1}
+                  onClick={() => {
+                    new Promise((res) => res(setNavigationOption(option))).then(
+                      () => {
                         handleSelect(option);
-                        setMenuOpen(false);
-                      }, 1);
-                    }}
-                    className={classNames({
-                      [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
-                        true,
-                      [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
-                        active?.id === option.id,
-                    })}
-                  >
-                    {matchTextSegments ? match : display}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ) : (
-          ''
-        )}
+                      },
+                    );
+                  }}
+                  className={classNames({
+                    [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
+                      true,
+                    [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
+                      navigationOption?.id === option.id,
+                  })}
+                >
+                  {matchTextSegments || highlightValueMatch ? match : display}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     );
   },
 );
+
+function findAndSetActiveOption(
+  e: KeyboardEvent,
+  {
+    setNavigationOption,
+    navigationOption,
+    currentOptions,
+  }: {
+    setNavigationOption: Dispatch<SetStateAction<OptionWithIdAndMatch | null>>;
+    navigationOption: OptionWithIdAndMatch | null;
+    currentOptions: OptionWithIdAndMatch[];
+  },
+): void {
+  e.preventDefault();
+
+  const currIndex = currentOptions.findIndex(
+    (option) => option.id === navigationOption?.id,
+  );
+  const nextIndex = currIndex + 1;
+  const prevIndex = currIndex - 1;
+
+  switch (e.key) {
+    case 'ArrowDown':
+      setNavigationOption(
+        nextIndex > currentOptions.length ? null : currentOptions[nextIndex],
+      );
+      break;
+    case 'ArrowUp':
+      setNavigationOption(
+        prevIndex === -2
+          ? currentOptions[currentOptions.length - 1]
+          : prevIndex < 0
+          ? null
+          : currentOptions[prevIndex],
+      );
+      break;
+    case 'PageUp':
+      setNavigationOption(
+        currIndex - 10 < 0 ? currentOptions[0] : currentOptions[currIndex - 10],
+      );
+      break;
+    case 'PageDown':
+      setNavigationOption(
+        currIndex + 10 > currentOptions.length
+          ? currentOptions[currentOptions.length - 1]
+          : currentOptions[currIndex + 10],
+      );
+      break;
+    case 'Home':
+      setNavigationOption(currentOptions[0]);
+      break;
+    case 'End':
+      setNavigationOption(currentOptions[currentOptions.length - 1]);
+      break;
+  }
+}
+
+// If the clicked element on page is not a child of the container
+function handleContainerBlur(
+  e: FocusEvent,
+  setOpen: Dispatch<SetStateAction<boolean>>,
+) {
+  const isClickOutsideContainer = !e.currentTarget.contains(e.relatedTarget);
+
+  if (isClickOutsideContainer) {
+    setOpen(false);
+  }
+}
+
+function handleInputBlur(
+  containerRef: MutableRefObject<HTMLDivElement | null>,
+  inputContainerRef: MutableRefObject<HTMLDivElement | null>,
+  e: FocusEvent,
+  setOpen: Dispatch<SetStateAction<boolean>>,
+) {
+  if (!containerRef.current) return;
+
+  const isClickOutsideContainer =
+    !containerRef.current?.contains(e.relatedTarget) ||
+    inputContainerRef.current?.contains(e.relatedTarget);
+
+  if (isClickOutsideContainer) {
+    setOpen(false);
+  }
+}

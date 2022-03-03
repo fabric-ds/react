@@ -31,6 +31,33 @@ export const Basic = () => {
   );
 };
 
+export const DisableStaticListFiltering = () => {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <>
+      <p>Start typing to see suggestions</p>
+      <Combobox
+        label="Stillingstittel"
+        disableStaticFiltering
+        matchTextSegments
+        value={value}
+        onChange={(val) => setValue(val)}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
+        options={[
+          { value: 'Product manager' },
+          { value: 'Produktledelse' },
+          { value: 'Prosessoperatør' },
+          { value: 'Prosjekteier' },
+        ]}
+      />
+    </>
+  );
+};
+
 export const BubbleEventOnEnter = () => {
   const [value, setValue] = React.useState('');
 
@@ -81,6 +108,52 @@ export const MatchTextSegments = () => {
           action('select')(val);
         }}
         matchTextSegments
+        label="Stillingstittel"
+        options={[
+          { value: 'Product manager' },
+          { value: 'Produktledelse' },
+          { value: 'Prosessoperatør' },
+          { value: 'Prosjekteier' },
+        ]}
+      />
+    </>
+  );
+};
+
+export const CustomMatchAlgorithm = () => {
+  const [value, setValue] = React.useState('');
+
+  function highlightValueMatch(optionValue: string) {
+    return [...optionValue].map((letter, i) => {
+      if ([...value.toLowerCase()].includes(letter.toLowerCase())) {
+        return (
+          <span
+            data-combobox-text-match
+            key={`${optionValue}-bold-letter-${letter}-${i}`}
+            className="font-bold bg-blue-100 text-blue-800"
+          >
+            {letter}
+          </span>
+        );
+      } else {
+        return (
+          <span key={`${optionValue}-letter-${letter}-${i}`}>{letter}</span>
+        );
+      }
+    });
+  }
+
+  return (
+    <>
+      <p>Highlight text matches</p>
+      <Combobox
+        value={value}
+        onChange={(val) => setValue(val)}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
+        highlightValueMatch={highlightValueMatch}
         label="Stillingstittel"
         options={[
           { value: 'Product manager' },
@@ -196,5 +269,64 @@ export const WithAffix = () => {
         <Affix suffix clear onClick={() => setValue('')} />
       </Combobox>
     </>
+  );
+};
+
+export const AsyncFetch = () => {
+  const [value, setValue] = React.useState('');
+  const characters = useDebouncedSearch(value, 300);
+
+  // Generic debouncer
+  function useDebouncedSearch(query, delay) {
+    const [characters, setCharacters] = React.useState([]);
+
+    React.useEffect(() => {
+      if (!query.length) setCharacters([]);
+
+      const handler = setTimeout(() => {
+        fetch('https://swapi.dev/api/people/?search=' + query.trim())
+          .then((res) => res.json())
+          .then((res) => {
+            console.log('Results from API', query);
+            setCharacters(res.results.map((c) => ({ value: c.name })));
+          });
+      }, delay);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [query]);
+
+    return characters;
+  }
+
+  return (
+    <div>
+      <Combobox
+        label="Star Wars character"
+        disableStaticFiltering
+        matchTextSegments
+        openOnFocus
+        value={value}
+        onChange={(val) => {
+          setValue(val);
+        }}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
+        options={characters}
+      >
+        <Affix
+          suffix
+          clear
+          aria-label="Clear text"
+          onClick={() => {
+            setValue('');
+          }}
+        />
+      </Combobox>
+      <button>other tabbable</button>
+    </div>
   );
 };

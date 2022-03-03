@@ -51,7 +51,7 @@ import { useLayoutEffect } from './useIsomorphicLayoutEffect';
 let serverHandoffComplete = false;
 // Generate a pseudorandom seed to prefix to each generated id instead of solely relying on the counter.
 // We don't want id collisions across React roots/podlets.
-const prefix = Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+const prefix = generateId();
 
 let id = 0;
 const genId = () => {
@@ -93,3 +93,11 @@ export const useId = (hasFallback?): string => {
   }, []);
   return id;
 };
+
+/**
+ * Generates a unique string ID
+ * @returns string
+ */
+export function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+}
