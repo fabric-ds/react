@@ -105,7 +105,7 @@ const RegularSlider = ({
     ({
       xy,
       first,
-      last,
+      active,
       memo = {
         rect: sliderRef.current?.getBoundingClientRect(),
       },
@@ -128,7 +128,16 @@ const RegularSlider = ({
 
       if (first) {
         setIsDragging(true);
-      } else if (last) {
+      } else if (!active) {
+        // When the user is dragging the slider, the useDrag callback is invoked multiple times,
+        // first with {first: true, active: true}, and finally with {last: true, active: false}.
+        //
+        // When the user is clicking (not dragging) the slider, the useDrag callback
+        // is invoked only once with {first: false, last: false, active: false}.
+        //
+        // We want to trigger onChange in both cases, and use {active: false} to detect when
+        // the user is done interacting with the filter (either clicking or dragging).
+
         setIsDragging(false);
         handleChange(dragValue);
         // focus the handle
