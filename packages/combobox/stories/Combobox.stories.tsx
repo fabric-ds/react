@@ -301,32 +301,29 @@ export const AsyncFetch = () => {
   }
 
   return (
-    <div>
-      <Combobox
-        label="Star Wars character"
-        disableStaticFiltering
-        matchTextSegments
-        openOnFocus
-        value={value}
-        onChange={(val) => {
-          setValue(val);
+    <Combobox
+      label="Star Wars character"
+      disableStaticFiltering
+      matchTextSegments
+      openOnFocus
+      value={value}
+      onChange={(val) => {
+        setValue(val);
+      }}
+      onSelect={(val) => {
+        setValue(val);
+        action('select')(val);
+      }}
+      options={characters}
+    >
+      <Affix
+        suffix
+        clear
+        aria-label="Clear text"
+        onClick={() => {
+          setValue('');
         }}
-        onSelect={(val) => {
-          setValue(val);
-          action('select')(val);
-        }}
-        options={characters}
-      >
-        <Affix
-          suffix
-          clear
-          aria-label="Clear text"
-          onClick={() => {
-            setValue('');
-          }}
-        />
-      </Combobox>
-      <button>other tabbable</button>
-    </div>
+      />
+    </Combobox>
   );
 };

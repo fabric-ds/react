@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface SwitchProps {
   /**
    * The unique identifier
@@ -12,7 +14,7 @@ export interface SwitchProps {
   /**
    * Handler for when the Switch is clicked
    */
-  onClick: () => void;
+  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 
   /**
    * Defines a string value that labels the current element. Must be set if `aria-labelledby` is not defined,

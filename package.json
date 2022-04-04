@@ -1,10 +1,14 @@
 {
   "name": "@fabric-ds/react",
-  "version": "1.0.4",
+  "version": "1.0.9",
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
   "type": "module",
-  "exports": "./dist/npm/index.js",
+  "exports": {
+    "import": "./dist/npm/index.js",
+    "require": "./dist/npm/index.cjs",
+    "default": "./dist/npm/index.js"
+  },
   "module": "dist/npm/index.js",
   "main": "dist/npm/index.js",
   "files": [
@@ -15,14 +19,15 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "17.0.3"
+    "react": "17.0.2"
   },
   "scripts": {
     "build:clean": "rm -rf dist",
     "build:eik": "node esbuild.mjs",
     "build:types": "tsc && sed 's+declare module \"index\"+declare module \"@fabric-ds/react\"+g' ./dist/npm/index.d.ts > ./dist/npm/updated.d.ts && mv ./dist/npm/updated.d.ts ./dist/npm/index.d.ts",
     "build:npm": "npx esbuild ./packages/index.ts --outdir=dist/npm --target=es2017 --bundle --sourcemap --format=esm --external:react --minify",
-    "build": "npm run build:clean && npm run build:npm && npm run build:eik && npm run build:types",
+    "build:node": "npx esbuild ./packages/index.ts --outdir=dist/npm --out-extension:.js=.cjs --target=es2017 --bundle --sourcemap --format=cjs --external:react --minify",
+    "build": "npm run build:clean && npm run build:npm && npm run build:node && npm run build:eik && npm run build:types",
     "docs:build": "vite build && cd site && cp index.html 404.html && cp ../CNAME .",
     "docs:dev": "vite",
     "dev": "start-storybook -p 9003 --ci",
@@ -43,7 +48,6 @@
     "@fabric-ds/component-classes": "^0.0.35",
     "@fabric-ds/icons": "^0.3.12",
     "@fabric-ds/tailwind-config": "^0.5.20",
-    "@headlessui/react": "^1.4.2",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "1.6.22",
     "@storybook/addon-actions": "^6.3.6",

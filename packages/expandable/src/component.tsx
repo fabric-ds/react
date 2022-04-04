@@ -1,58 +1,28 @@
-import React, { useRef } from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { expand, collapse } from 'element-collapse';
-import { buttonReset, box as boxClasses } from '@fabric-ds/component-classes';
+import { box as boxClasses, buttonReset } from '@fabric-ds/component-classes';
+import { collapse, expand } from 'element-collapse';
+import React, { useRef } from 'react';
 import type { ExpandableProps } from './props';
 
-const setup = ({
-  title = '',
-  info = false,
-  box = false,
-  bleed = false,
-  buttonClass = '',
-  contentClass = '',
-  expanded = false,
-  className,
-  ...attrs
-}: any) => ({
-  ...attrs,
-  wrapperClasses: classNames(className, {
-    'bg-aqua-50': info,
-    ['py-0 px-0 ' + boxClasses.box]: box,
-    [boxClasses.bleed]: bleed,
-  }),
-  buttonClasses: classNames({
-    [buttonClass || '']: true,
-    [buttonReset + ' hover:underline focus:underline']: true,
-    ['w-full text-left relative ' + boxClasses.box]: box,
-    'hover:text-aqua-700 active:text-aqua-800': info,
-  }),
-  chevronClasses: classNames({
-    'inline-block align-middle transform transition-transform': true,
-    '-rotate-180': expanded,
-    'relative left-8': !box,
-    'box-chevron absolute right-16': box,
-  }),
-  contentClasses: classNames({
-    [contentClass || '']: true,
-    [boxClasses.box + (title ? ' pt-0' : '')]: box,
-  }),
-  title,
-});
-
 export function Expandable(props: ExpandableProps) {
-  const boxRef = useRef(null);
-  const { children, expanded = false, onChange, ...rest } = props;
-  const [stateExpanded, setStateExpanded] = React.useState(expanded);
   const {
-    wrapperClasses,
-    buttonClasses,
-    contentClasses,
-    chevronClasses,
-    title,
+    children,
+    expanded = false,
+    title = '',
+    info = false,
+    box = false,
+    bleed = false,
+    buttonClass = '',
+    contentClass = '',
+    className,
+    onChange,
     chevron = true,
-    ...attrs
-  } = setup({ expanded: stateExpanded, ...rest });
+    animated,
+    ...rest
+  } = props;
+
+  const boxRef = useRef(null);
+  const [stateExpanded, setStateExpanded] = React.useState(expanded);
 
   const toggleExpandable = (state) => {
     setStateExpanded(!state);
@@ -67,15 +37,34 @@ export function Expandable(props: ExpandableProps) {
   };
 
   return (
-    <div {...attrs} className={wrapperClasses}>
+    <div
+      {...rest}
+      className={classNames(className, {
+        'bg-aqua-50': info,
+        ['py-0 px-0 ' + boxClasses.box]: box,
+        [boxClasses.bleed]: bleed,
+      })}
+    >
       <button
         aria-expanded={stateExpanded}
-        className={buttonClasses}
+        className={classNames({
+          [buttonClass || '']: true,
+          [buttonReset + ' hover:underline focus:underline']: true,
+          ['w-full text-left relative ' + boxClasses.box]: box,
+          'hover:text-aqua-700 active:text-aqua-800': info,
+        })}
         onClick={() => toggleExpandable(stateExpanded)}
       >
         {title && <span className="h4">{title}</span>}
         {chevron && (
-          <div className={chevronClasses}>
+          <div
+            className={classNames({
+              'inline-block align-middle transform transition-transform': true,
+              '-rotate-180': expanded,
+              'relative left-8': !box,
+              'box-chevron absolute right-16': box,
+            })}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -85,9 +74,9 @@ export function Expandable(props: ExpandableProps) {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
                 d="M2.5 5.5L8 11l5.5-5.5"
               />
             </svg>
@@ -102,7 +91,14 @@ export function Expandable(props: ExpandableProps) {
         })}
         aria-hidden={!stateExpanded}
       >
-        <div className={contentClasses}>{children}</div>
+        <div
+          className={classNames({
+            [contentClass || '']: true,
+            [boxClasses.box + (title ? ' pt-0' : '')]: box,
+          })}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

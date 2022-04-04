@@ -1,5 +1,3 @@
-import { ChangeEvent, FocusEvent } from 'react';
-
 export type ComboboxOption = {
   value: string;
   label?: string;

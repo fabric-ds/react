@@ -40,9 +40,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       OptionWithIdAndMatch[]
     >([]);
 
-    // Keep track of the last selected value so we don't open the menu for async callbacks
-    const [lastSelectedValue, setLastSelectedValue] = useState('');
-
     // Destructure props
     const {
       options,
@@ -172,7 +169,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     });
 
     function handleSelect(option: OptionWithIdAndMatch) {
-      setLastSelectedValue(option.value);
       onSelect && onSelect(option.value); // this may trigger an external api call
       setOpen(false);
       setNavigationOption(null);
