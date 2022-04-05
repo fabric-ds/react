@@ -39,7 +39,6 @@
     "eik:publish": "npx @eik/cli publish",
     "eik:alias": "npx @eik/cli pkg-alias",
     "preversion": "npx @eik/cli login && npm run build",
-    "postversion": "npm publish && npm run eik:publish && git push --follow-tags",
     "semantic-release": "semantic-release"
   },
   "devDependencies": {
