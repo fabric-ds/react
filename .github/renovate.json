@@ -1,0 +1,10 @@
+{
+  "baseBranches": ["next"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "autoMergeType": "branch"
+    }
+  ]
+}
