@@ -38,7 +38,6 @@
     "lint:format": "prettier --check . --ignore-path .gitignore",
     "eik:publish": "npx @eik/cli publish",
     "eik:alias": "npx @eik/cli pkg-alias",
-    "preversion": "npx @eik/cli login && npm run build",
     "semantic-release": "semantic-release"
   },
   "devDependencies": {
