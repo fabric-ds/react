@@ -17,7 +17,7 @@ export function Card(props: CardProps) {
         [props.selected ? c.cardFlatSelected : c.cardFlatUnselected]:
           props.flat,
       }),
-      tabIndex: 0,
+      tabIndex: props.onClick ? 0 : undefined,
       onKeyDown: props.onClick
         ? (e) => {
             if (
