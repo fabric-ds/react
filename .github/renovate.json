@@ -1,4 +1,6 @@
 {
+  "extends": ["github>finn-no/renovate-presets:js"],
+  "masterIssue": true,
   "baseBranches": ["next"],
   "packageRules": [
     {
@@ -6,5 +8,8 @@
       "automerge": true,
       "autoMergeType": "branch"
     }
-  ]
+  ],
+  "lockFileMaintenance": {
+    "automerge": true
+  }
 }
