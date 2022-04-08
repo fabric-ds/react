@@ -29,4 +29,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
       - name: Eik publish
+        env:
+          EIK_TOKEN: ${{ secrets.EIK_TOKEN }}
         run: yarn eik:publish
