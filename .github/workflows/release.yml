@@ -34,3 +34,5 @@ jobs:
           EIK_TOKEN: ${{ secrets.EIK_TOKEN }}
       - name: Eik publish
         run: yarn eik:publish
+        env:
+          EIK_TOKEN: ${{ secrets.EIK_TOKEN }}
