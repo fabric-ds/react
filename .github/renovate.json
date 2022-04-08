@@ -1,15 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>podium-lib/renovate-presets:top-level-module"],
-  "masterIssue": true,
   "baseBranches": ["next"],
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "autoMergeType": "branch"
-    }
-  ],
   "lockFileMaintenance": {
     "automerge": true
   }
