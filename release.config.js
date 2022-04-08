@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   branches: [{ name: 'main' }, { name: 'next', prerelease: true }],
   preset: 'angular',
   plugins: [
@@ -20,3 +20,5 @@ module.exports = {
     '@semantic-release/git',
   ],
 };
+
+export default config;
