@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - next
-      - semantic-release
+
 jobs:
   release:
     name: Release
