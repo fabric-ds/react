@@ -1,7 +1,22 @@
 module.exports = {
-  branches: ['main', 'next'],
+  branches: [{ name: 'main' }, { name: 'next', prerelease: true }],
+  preset: 'angular',
   plugins: [
-    '@eik/semantic-release',
-    ['@semantic-release/git', { assets: ['package.json'] }],
+    '@semantic-release/commit-analyzer',
+    '@semantic-release/release-notes-generator',
+    '@semantic-release/changelog',
+    [
+      '@semantic-release/npm',
+      {
+        tarballDir: 'release',
+      },
+    ],
+    [
+      '@semantic-release/github',
+      {
+        assets: 'release/*.tgz',
+      },
+    ],
+    '@semantic-release/git',
   ],
 };

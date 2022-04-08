@@ -1,5 +1,6 @@
 {
-  "extends": ["github>finn-no/renovate-presets:js"],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>podium-lib/renovate-presets:top-level-module"],
   "masterIssue": true,
   "baseBranches": ["next"],
   "packageRules": [
