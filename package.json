@@ -36,6 +36,7 @@
     "lint": "npm run lint:format && npm run lint:eslint",
     "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
     "lint:format": "prettier --check . --ignore-path .gitignore",
+    "eik:login": "npx @eik/cli login",
     "eik:publish": "npx @eik/cli publish",
     "eik:alias": "npx @eik/cli pkg-alias",
     "semantic-release": "semantic-release"
