@@ -17,6 +17,6 @@
   "dependencies": {
     "@fabric-ds/react": "*",
     "fastify": "^3.22.0",
-    "react-dom": "16.14.0"
+    "react-dom": "18.0.0"
   }
 }
