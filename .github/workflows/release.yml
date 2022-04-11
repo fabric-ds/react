@@ -27,6 +27,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK_PRIVATE: ${{ secrets.SLACK_WEBHOOK_PRIVATE }}
         run: npx semantic-release
       - name: Eik login and publish
         run: yarn eik:login -k $EIK_TOKEN && yarn eik:publish || true

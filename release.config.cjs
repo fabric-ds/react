@@ -26,6 +26,7 @@ module.exports = {
         branchesConfig: [
           {
             pattern: 'main',
+            slackWebhook: 'SLACK_WEBHOOK',
             notifyOnSuccess: true,
             onSuccessTemplate: {
               text: '$package_name $npm_package_version is now available - $repo_url',
@@ -33,6 +34,7 @@ module.exports = {
           },
           {
             pattern: 'next',
+            slackWebhook: 'SLACK_WEBHOOK_PRIVATE',
             notifyOnSuccess: true,
             onSuccessTemplate: {
               text: '$package_name $npm_package_version (pre-release) is now available - $repo_url',
