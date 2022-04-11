@@ -31,6 +31,8 @@ It is recommended to branch off and follow
 when making changes. When your changes are ready for pull request, this should
 be opened against the `next` branch.
 
+[Read more in-depth about Fabric Releases here](https://github.com/fabric-ds/issues/blob/779d59723993c13d62374516259602d967da56ca/rfcs/0004-releases.md).
+
 Please note that the version published will depend on your commit message
 structure. We use [commitizen](https://github.com/commitizen/cz-cli) to help
 follow this structure:
