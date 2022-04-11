@@ -88,7 +88,6 @@
     "remark-rehype": "^8.0.0",
     "remark-slug": "^6.0.0",
     "resize-observer-polyfill": "^1.5.1",
-    "scroll-doctor": "^0.9.1",
     "semantic-release": "^19.0.2",
     "semantic-release-slack-bot": "^3.5.2",
     "typescript": "4.2.2",
