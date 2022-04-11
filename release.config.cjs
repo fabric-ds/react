@@ -17,6 +17,32 @@ module.exports = {
         assets: 'release/*.tgz',
       },
     ],
+    [
+      'semantic-release-slack-bot',
+      {
+        notifyOnSuccess: false,
+        notifyOnFail: false,
+        packageName: '@fabric-ds/react',
+        branchesConfig: [
+          {
+            pattern: 'main',
+            slackWebhook: 'SLACK_WEBHOOK',
+            notifyOnSuccess: true,
+            onSuccessTemplate: {
+              text: '$package_name $npm_package_version is now available - $repo_url',
+            },
+          },
+          {
+            pattern: 'next',
+            slackWebhook: 'SLACK_WEBHOOK_PRIVATE',
+            notifyOnSuccess: true,
+            onSuccessTemplate: {
+              text: '$package_name $npm_package_version (pre-release) is now available - $repo_url',
+            },
+          },
+        ],
+      },
+    ],
     '@semantic-release/git',
   ],
 };
