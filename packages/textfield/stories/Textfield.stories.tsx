@@ -1,7 +1,8 @@
-import React from 'react';
+import Search from '@fabric-ds/icons/react/search-16';
 import { action } from '@storybook/addon-actions';
+import React from 'react';
+import { Affix, IconAffix } from '../../_helpers';
 import { TextField as TroikaTextField } from '../src';
-import { Affix } from '../../_helpers';
 
 const metadata = { title: 'Forms/TextField' };
 export default metadata;
@@ -50,6 +51,14 @@ export const labelPrefix = () => (
   </TextField>
 );
 
+export const iconPrefix = () => (
+  <TextField>
+    <IconAffix prefix>
+      <Search />
+    </IconAffix>
+  </TextField>
+);
+
 export const clearSuffix = () => (
   <TextField>
     <Affix suffix clear onClick={() => alert('clear')} />
@@ -71,6 +80,14 @@ export const suffixAndPrefix = () => (
   <TextField>
     <Affix prefix label="kr" />
     <Affix suffix clear onClick={() => alert('clear')} />
+  </TextField>
+);
+
+export const iconSuffix = () => (
+  <TextField>
+    <IconAffix suffix>
+      <Search />
+    </IconAffix>
   </TextField>
 );
 

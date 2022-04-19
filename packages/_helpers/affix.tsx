@@ -87,3 +87,25 @@ export function Affix(props: AffixProps) {
     </>,
   );
 }
+
+interface IconAffixProps {
+  /** The icon SVG element */
+  children: React.ReactNode;
+
+  /** Affix added at the beginning of input */
+  prefix?: boolean;
+
+  /** Affix added at the end of input */
+  suffix?: boolean;
+}
+
+export function IconAffix(props: IconAffixProps) {
+  const classBase = props.prefix ? prefix : suffix;
+  const affixClass = `${classBase.wrapper} ${classBase.wrapperWithIcon}`;
+
+  return (
+    <div className={affixClass}>
+      <span className={classBase.label}>{props.children}</span>
+    </div>
+  );
+}
