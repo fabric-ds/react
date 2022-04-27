@@ -104,7 +104,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@fabric-ds/core": "0.0.6",
+    "@fabric-ds/core": "0.0.7",
     "d3-scale": "^4.0.2",
     "react-focus-lock": "^2.5.2",
     "react-spring": "^8.0.27",
