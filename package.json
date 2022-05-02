@@ -88,7 +88,6 @@
     "react-focus-lock": "^2.5.2",
     "react-router-dom": "^5.2.0",
     "react-spring": "^8.0.27",
-    "react-use-gesture": "^9.1.3",
     "rehype-stringify": "^8.0.0",
     "remark-autolink-headings": "^6.0.1",
     "remark-parse": "^9.0.0",
@@ -109,7 +108,6 @@
     "d3-scale": "^4.0.2",
     "react-focus-lock": "^2.5.2",
     "react-spring": "^8.0.27",
-    "react-use-gesture": "^9.1.3",
     "resize-observer-polyfill": "^1.5.1",
     "scroll-doctor": "^1.0.0"
   },
