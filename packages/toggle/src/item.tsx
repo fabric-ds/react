@@ -40,7 +40,7 @@ export function Item({
         defaultChecked={defaultChecked}
         aria-invalid={invalid}
         aria-errormessage={invalid ? helpId : undefined}
-        value={label ? undefined : value}
+        value={label ? undefined : value ?? undefined}
         {...props}
         onChange={(e) =>
           props.onChange(

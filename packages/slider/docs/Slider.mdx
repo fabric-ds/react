@@ -1,5 +1,4 @@
-import { default as RegularSlider } from '../src/RegularSlider';
-import { default as RangeSlider } from '../src/RangeSlider';
+import { Slider } from '../src/component';
 
 # Slider
 
@@ -10,29 +9,24 @@ single or dual drag handles.
 ## Import
 
 ```js
-import { RegularSlider, RangeSlider } from '@fabric-ds/react';
+import { Slider } from '@fabric-ds/react';
 ```
 
 ## Example
 
 ```jsx example
 function Example() {
-  const [singleValue, setSingleValue] = React.useState(50);
-  const [rangeValue, setRangeValue] = React.useState([25, 75]);
+  const [value, setValue] = React.useState(2_500_000);
 
   return (
-    <div className="space-y-32">
-      <RegularSlider
-        aria-label="Slider example"
-        onChange={setSingleValue}
-        value={singleValue}
-        step={10}
-      />
-
-      <RangeSlider
-        aria-label={['Range example: lower', 'Range example: upper']}
-        onChange={setRangeValue}
-        value={rangeValue}
+    <div>
+      <output>{value}</output>
+      <Slider
+        onChange={(value) => setValue(value)}
+        value={value}
+        min={1000}
+        max={10_000_000}
+        step={1000}
       />
     </div>
   );
@@ -48,33 +42,7 @@ id of the labeling element instead.
 ## Events
 
 The slider accepts an `onChange` prop which is triggered whenever the value is
-changed by the user. Note that this is only called when the value has settled.
-In other words, when the user has stopped dragging the slider's handle.
-
-If you need the value while the slider is being interacted it, before the value
-has settled, you can use the `onInput` prop. This is always triggered before an
-`onChange`.
-
-```jsx example
-function Example() {
-  const [value, setValue] = React.useState(50);
-  const [inputValue, setInputValue] = React.useState(value);
-
-  return (
-    <>
-      <p>Drag the slider to see the difference between onChange and onInput</p>
-      <RegularSlider
-        aria-label="onInput example"
-        value={value}
-        onChange={setValue}
-        onInput={setInputValue}
-      />
-      <div>onChange: {value}</div>
-      <div>onInput: {inputValue}</div>
-    </>
-  );
-}
-```
+changed by the user. Note that this value updates as the user is dragging.
 
 ## Visual options
 
@@ -82,38 +50,12 @@ function Example() {
 
 ```jsx example
 <div className="space-y-32">
-  <RegularSlider aria-label="Disabled slider" disabled value={50} />
-  <RangeSlider
-    aria-label={['Disabled slider: lower', 'Disabled slider: upper']}
-    disabled
-    value={[25, 75]}
-  />
+  <Slider aria-label="Disabled slider" value={50} disabled />
 </div>
 ```
 
-## Additional props
+## Props
 
-### Max
-
-The maximum value of the slider.
-
-### Min
-
-The minimum value of the slider.
-
-### Step
-
-The `step` prop is a number that specifies the granularity that the value must
-adhere to as it changes. Step sets minimum intervals of change.
-
-## RegularSlider Props
-
-```props packages/slider/src/RegularSlider.tsx
-
-```
-
-## RangeSlider Props
-
-```props packages/slider/src/RangeSlider.tsx
+```props packages/slider/src/component.tsx
 
 ```
