@@ -57,12 +57,6 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
     get step() {
       return step;
     },
-    emitFocus(v) {
-      console.log('focus', v);
-    },
-    emitBlur(v) {
-      console.log('blur', v);
-    },
   };
 
   const {
@@ -142,11 +136,17 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
         aria-valuemax={max}
         aria-valuenow={value}
         aria-valuetext={rest['aria-valuetext']}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleMouseDown}
+        onMouseDown={(e) => {
+          handleMouseDown(e as unknown as KeyboardEvent);
+        }}
+        onTouchStart={(e) => {
+          handleMouseDown(e as unknown as KeyboardEvent);
+        }}
         onBlur={handleBlur}
         onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
+        onKeyDown={(e) => {
+          handleKeyDown(e as unknown as KeyboardEvent);
+        }}
       ></div>
     </div>
   );
