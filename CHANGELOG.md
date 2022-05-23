@@ -1,3 +1,15 @@
+# [1.1.0-next.1](https://github.com/fabric-ds/react/compare/v1.0.11...v1.1.0-next.1) (2022-05-03)
+
+
+### Bug Fixes
+
+* add types & fix interleave rendering ([9b2bfdd](https://github.com/fabric-ds/react/commit/9b2bfdd8721052f44da8a4c3c87078f58ff562de))
+
+
+### Features
+
+* implement new slider using core ([c555aa7](https://github.com/fabric-ds/react/commit/c555aa72bd168b7bdcfb7e834715351919793595))
+
 ## [1.0.11](https://github.com/fabric-ds/react/compare/v1.0.10...v1.0.11) (2022-04-11)
 
 

@@ -1,2 +1,2 @@
-export { default as RangeSlider } from './RangeSlider';
-export { default as RegularSlider } from './RegularSlider';
+export { Slider } from './component';
+export type { SliderProps } from './props';
