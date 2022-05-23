@@ -14,9 +14,7 @@ export function Callout() {
       </Box>
       <Attention callout placement="right" isShowing={true}>
         <p style={{ width: 200 }}>
-          I'm a callout because that box over there is new or something aioSJAio
-          sjio jaiosj aoiJSO aoisj aoiJS OIAsj aioJIS JOiajoijao sJaoj
-          soiaJOIAji
+          I'm a callout because that box over there is new or something
         </p>
       </Attention>
     </div>
