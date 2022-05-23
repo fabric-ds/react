@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/fabric-ds/react/compare/v1.1.0...v1.1.1) (2022-05-23)
+
+
+### Bug Fixes
+
+* actually export attention component ([b8ccd70](https://github.com/fabric-ds/react/commit/b8ccd7045f97913d611b139c1846bf78eb951d1c))
+
 # [1.1.0](https://github.com/fabric-ds/react/compare/v1.0.11...v1.1.0) (2022-05-23)
 
 
