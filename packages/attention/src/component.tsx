@@ -67,6 +67,7 @@ export function Attention(props: AttentionProps) {
         {
           'absolute z-50': !props.callout,
           invisible: !isShowing && !props.callout,
+          hidden: !isShowing && !props.tooltip,
         },
         className,
       )}
@@ -109,6 +110,7 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
       style={{
         // TW doesn't let us specify exactly one corner, only whole sides
         borderTopLeftRadius: '4px',
+        zIndex: 1,
         // border alignment is off by a fraction of a pixel, this fixes it
         [`margin${
           arrowDirection.charAt(0).toUpperCase() + arrowDirection.slice(1)
