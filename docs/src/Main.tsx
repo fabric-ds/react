@@ -22,6 +22,7 @@ import Tabs from '../../packages/tabs/docs/Tabs.mdx';
 import TextArea from '../../packages/textarea/docs/TextArea.mdx';
 import TextField from '../../packages/textfield/docs/TextField.mdx';
 import Toggle from '../../packages/toggle/docs/Toggle.mdx';
+import Attention from '../../packages/attention/docs/Attention.mdx';
 import Home from '../pages/index.jsx';
 import Code from './components/Code';
 import PropTable from './components/PropTable';
@@ -51,6 +52,10 @@ const App = () => {
 
           <Route path="/breadcrumbs">
             <Breadcrumbs />
+          </Route>
+
+          <Route path="/attention">
+            <Attention />
           </Route>
 
           <Route path="/textfield">
