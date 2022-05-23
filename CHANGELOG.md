@@ -1,3 +1,10 @@
+# [1.1.0-next.2](https://github.com/fabric-ds/react/compare/v1.1.0-next.1...v1.1.0-next.2) (2022-05-23)
+
+
+### Features
+
+* add attention component ([759ea6c](https://github.com/fabric-ds/react/commit/759ea6c76b070cc64197cb7963e461052c11035b))
+
 # [1.1.0-next.1](https://github.com/fabric-ds/react/compare/v1.0.11...v1.1.0-next.1) (2022-05-03)
 
 
