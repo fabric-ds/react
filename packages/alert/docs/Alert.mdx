@@ -1,0 +1,91 @@
+import { Alert } from '../src';
+import { Button } from '../../button/src';
+
+# Alert
+
+Alert is an inline component used for displaying different types of messages.
+
+## Import
+
+```js
+import { Alert } from '@fabric-ds/react';
+```
+
+## Visual Options
+
+### Negative
+
+```jsx example
+<Alert type="negative">
+  This is the message text that can be short or a little bit long
+</Alert>
+```
+
+### Positive
+
+```jsx example
+<Alert type="positive">
+  This is the message text that can be short or a little bit long
+</Alert>
+```
+
+### Warning
+
+```jsx example
+<Alert type="warning">
+  This is the message text that can be short or a little bit long
+</Alert>
+```
+
+### Info
+
+```jsx example
+<Alert type="info">
+  This is the message text that can be short or a little bit long
+</Alert>
+```
+
+### Neutral
+
+```jsx example
+<Alert type="neutral">
+  This is the message text that can be short or a little bit long
+</Alert>
+```
+
+### Other examples
+
+```jsx example
+<Alert type="info">
+  <p className="font-bold">Title Caption-Strong</p>
+  <p>This is the message text that can be short or a little bit long</p>
+</Alert>
+```
+
+```jsx example
+<Alert type="info">
+  <p className="font-bold">Title Caption-Strong</p>
+  <p>This is the message text that can be short or a little bit long</p>
+  <a>Link to more information</a>
+</Alert>
+```
+
+```jsx example
+<Alert type="info">
+  <p className="font-bold">Title Caption-Strong</p>
+  <p>This is the message text that can be short or a little bit long</p>
+  <a>Link to more information</a>
+  <div className="mt-8 space-x-8">
+    <Button small>Primary CTA</Button>
+    <Button small secondary quiet>
+      Secondary
+    </Button>
+  </div>
+</Alert>
+```
+
+## Props
+
+```props packages/alert/src/component.tsx
+
+```
