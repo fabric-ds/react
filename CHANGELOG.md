@@ -1,3 +1,10 @@
+# [1.2.0-next.1](https://github.com/fabric-ds/react/compare/v1.1.1...v1.2.0-next.1) (2022-05-31)
+
+
+### Features
+
+* **packages:** add inline Alert component ([#106](https://github.com/fabric-ds/react/issues/106)) ([ddfe084](https://github.com/fabric-ds/react/commit/ddfe0842c2af00e3dc531fbff25d18f395a5dfe7))
+
 ## [1.1.1](https://github.com/fabric-ds/react/compare/v1.1.0...v1.1.1) (2022-05-23)
 
 
