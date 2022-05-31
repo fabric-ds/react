@@ -1,13 +1,21 @@
+import { classNames } from '@chbphone55/classnames';
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { AlertProps } from '.';
 
-export function Alert({ type, children }: PropsWithChildren<AlertProps>) {
+export function Alert({
+  type,
+  children,
+  ...props
+}: PropsWithChildren<AlertProps>) {
   const { color, icon } = styleMap[type];
 
   return (
     <div
-      className={`flex p-16 border rounded-4 border-l-4 bg-${color}-50 border-${color}-300`}
-      style={{ borderLeftColor: `var(--f-${color}-600)` }}
+      className={classNames(
+        props.className,
+        `flex p-16 border rounded-4 border-l-4 bg-${color}-50 border-${color}-300`,
+      )}
+      style={{ borderLeftColor: `var(--f-${color}-600)`, ...props.style }}
     >
       <div className={`mr-8 text-${color}-600`}>{icon}</div>
       <div className="last-child:mb-0 text-14">{children}</div>
