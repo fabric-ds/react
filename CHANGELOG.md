@@ -1,3 +1,10 @@
+# [1.2.0-next.2](https://github.com/fabric-ds/react/compare/v1.2.0-next.1...v1.2.0-next.2) (2022-06-02)
+
+
+### Features
+
+* **alert:** add expand and collapse behaviour to inline alert ([#114](https://github.com/fabric-ds/react/issues/114)) ([075f314](https://github.com/fabric-ds/react/commit/075f314adfa468960a42f7c87af855d2f1ddce6d))
+
 # [1.2.0-next.1](https://github.com/fabric-ds/react/compare/v1.1.1...v1.2.0-next.1) (2022-05-31)
 
 
