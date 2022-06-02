@@ -1,7 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
 import { box as boxClasses, buttonReset } from '@fabric-ds/component-classes';
-import { collapse, expand } from 'element-collapse';
-import React, { useRef } from 'react';
+import React from 'react';
+import { AnimatedExpansion } from '../../_helpers';
 import type { ExpandableProps } from './props';
 
 export function Expandable(props: ExpandableProps) {
@@ -21,19 +21,11 @@ export function Expandable(props: ExpandableProps) {
     ...rest
   } = props;
 
-  const boxRef = useRef(null);
   const [stateExpanded, setStateExpanded] = React.useState(expanded);
 
   const toggleExpandable = (state) => {
     setStateExpanded(!state);
     if (onChange) onChange(!state);
-
-    if (!boxRef.current || !props.animated) return;
-    if (!state) {
-      expand(boxRef.current);
-    } else {
-      collapse(boxRef.current);
-    }
   };
 
   return (
@@ -83,14 +75,8 @@ export function Expandable(props: ExpandableProps) {
           </div>
         )}
       </button>
-      <div
-        ref={boxRef}
-        className={classNames({
-          'overflow-hidden': true,
-          'h-0 invisible': !stateExpanded,
-        })}
-        aria-hidden={!stateExpanded}
-      >
+
+      <ExpansionBehaviour animated={animated} stateExpanded={stateExpanded}>
         <div
           className={classNames({
             [contentClass || '']: true,
@@ -99,7 +85,23 @@ export function Expandable(props: ExpandableProps) {
         >
           {children}
         </div>
-      </div>
+      </ExpansionBehaviour>
+    </div>
+  );
+}
+
+function ExpansionBehaviour({ animated, stateExpanded, children }) {
+  return animated ? (
+    <AnimatedExpansion show={stateExpanded}>{children}</AnimatedExpansion>
+  ) : (
+    <div
+      className={classNames({
+        'overflow-hidden': true,
+        'h-0 invisible': !stateExpanded,
+      })}
+      aria-hidden={!stateExpanded}
+    >
+      {children}
     </div>
   );
 }
