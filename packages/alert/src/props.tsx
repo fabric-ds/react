@@ -6,7 +6,7 @@ export type AlertProps = {
   /**
    * Type of alert
    */
-  type: 'negative' | 'positive' | 'warning' | 'info' | 'neutral';
+  type: 'negative' | 'positive' | 'warning' | 'info';
   /**
    * Additional classes to include
    */

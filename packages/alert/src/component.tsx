@@ -120,23 +120,4 @@ const styleMap: {
       </svg>
     ),
   },
-  neutral: {
-    color: 'bluegray',
-    icon: (
-      <svg
-        width="16"
-        height="16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="8" cy="8" r="8" fill="currentColor" />
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M7.25 12a.75.75 0 0 0 1.5 0V8a.75.75 0 0 0-1.5 0v4ZM8 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
-          fill="#fff"
-        />
-      </svg>
-    ),
-  },
 };

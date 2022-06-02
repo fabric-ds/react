@@ -37,13 +37,6 @@ export const Default = () => {
           This is a message that enlightens you with some new cool information.
         </Alert>
       </div>
-      <div>
-        <h3>Neutral</h3>
-        <Alert type="neutral">
-          This is the most neutral of neutral messages. Could be used for
-          whatever really.
-        </Alert>
-      </div>
     </div>
   );
 };
@@ -91,12 +84,6 @@ export const WithInteractiveContent = () => {
       <div>
         <h3>Info</h3>
         <Alert type="info" show>
-          <InteractiveContent />
-        </Alert>
-      </div>
-      <div>
-        <h3>Neutral</h3>
-        <Alert type="neutral">
           <InteractiveContent />
         </Alert>
       </div>
