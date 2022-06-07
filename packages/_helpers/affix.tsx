@@ -43,6 +43,8 @@ export function Affix(props: AffixProps) {
     <>
       {props.clear && (
         <svg
+          role="img"
+          aria-label="X"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -60,6 +62,8 @@ export function Affix(props: AffixProps) {
 
       {props.search && (
         <svg
+          role="img"
+          aria-label="Forstørrelsesglass"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
