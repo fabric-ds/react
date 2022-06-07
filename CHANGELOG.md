@@ -1,3 +1,10 @@
+# [1.2.0-next.3](https://github.com/fabric-ds/react/compare/v1.2.0-next.2...v1.2.0-next.3) (2022-06-07)
+
+
+### Bug Fixes
+
+* **affix:** Add aria-label to Affix icons ([17fab00](https://github.com/fabric-ds/react/commit/17fab00e1f939531a613df6e2ba9e752e5e9d23e))
+
 # [1.2.0-next.2](https://github.com/fabric-ds/react/compare/v1.2.0-next.1...v1.2.0-next.2) (2022-06-02)
 
 
