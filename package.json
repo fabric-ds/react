@@ -48,7 +48,6 @@
     "@babel/core": "^7.12.10",
     "@chbphone55/classnames": "^2.0.0",
     "@eik/esbuild-plugin": "^1.1.0",
-    "@fabric-ds/css": "^1.1.4",
     "@fabric-ds/icons": "^0.3.12",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "1.6.22",
@@ -104,7 +103,7 @@
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
     "@fabric-ds/core": "0.0.13",
-    "@fabric-ds/css": "^1.1.2",
+    "@fabric-ds/css": "^1.1.4",
     "d3-scale": "^4.0.2",
     "react-focus-lock": "^2.5.2",
     "react-spring": "^8.0.27",
