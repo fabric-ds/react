@@ -1,5 +1,5 @@
 import { classNames } from '@chbphone55/classnames';
-import { box as boxClasses, buttonReset } from '@fabric-ds/component-classes';
+import { box as boxClasses, buttonReset } from '@fabric-ds/css/component-classes';
 import React from 'react';
 import { AnimatedExpansion } from '../../_helpers';
 import type { ExpandableProps } from './props';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { suffix, prefix } from '@fabric-ds/component-classes';
+import { suffix, prefix } from '@fabric-ds/css/component-classes';
 import { classNames } from '@chbphone55/classnames';
 
 interface AffixProps {
