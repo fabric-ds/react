@@ -6,7 +6,7 @@ import React, {
   Children,
 } from 'react';
 import { classNames as cn } from '@chbphone55/classnames';
-import { tabs as c } from '@fabric-ds/component-classes';
+import { tabs as c } from '@fabric-ds/css/component-classes';
 import { debounce } from './utils';
 import type { TabsProps } from './props';
 
