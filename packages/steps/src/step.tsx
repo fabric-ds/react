@@ -71,7 +71,7 @@ export function Step({ active, completed, children }: StepProps) {
           viewBox="0 0 16 16"
         >
           <path
-            fill="white"
+            fill="currentColor"
             fillRule="evenodd"
             d="M13.007 4.447a.75.75 0 01.046 1.06l-5.5 6a.75.75 0 01-1.083.023l-3-3a.75.75 0 011.06-1.06l2.446 2.446 4.971-5.423a.75.75 0 011.06-.046z"
             clipRule="evenodd"
