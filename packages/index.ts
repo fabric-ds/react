@@ -1,5 +1,4 @@
 export * from './_helpers';
-export * from './alert/src';
 export * from './box/src';
 export * from './breadcrumbs/src';
 export * from './attention/src';

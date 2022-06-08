@@ -1,5 +1,5 @@
 import React from 'react';
-import { suffix, prefix } from '@fabric-ds/css/component-classes';
+import { suffix, prefix } from '@fabric-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
 
 interface AffixProps {
@@ -43,8 +43,6 @@ export function Affix(props: AffixProps) {
     <>
       {props.clear && (
         <svg
-          role="img"
-          aria-label="X"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -62,8 +60,6 @@ export function Affix(props: AffixProps) {
 
       {props.search && (
         <svg
-          role="img"
-          aria-label="Forstørrelsesglass"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"

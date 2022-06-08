@@ -110,17 +110,9 @@ respond to `esc` keypresses and/or clicking outside the modal.
 ```jsx example
 function Example() {
   const [open, setOpen] = React.useState(false);
-  const [mustAgree, setMustAgree] = React.useState(false);
   const [hasAgreed, setHasAgreed] = React.useState(false);
 
-  const toggleModal = () => {
-    if (open && !hasAgreed) {
-      setMustAgree(true);
-      return;
-    }
-    setMustAgree(false);
-    setOpen(!open);
-  }
+  const toggleModal = () => setOpen(!open);
 
   return (
     <>
@@ -133,12 +125,9 @@ function Example() {
         onDismiss={hasAgreed ? toggleModal : undefined}
         title="Non dismissable"
         footer={
-          <>
-            {mustAgree && <p className="m-10">You must agree first!</p>}
-            <Button primary onClick={toggleModal}>
-              Save
-            </Button>
-          </>
+          <Button primary disabled={!hasAgreed} onClick={toggleModal}>
+            Save
+          </Button>
         }
       >
         <p>To go further, you need to agree to these bogus terms</p>

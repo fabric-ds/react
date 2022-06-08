@@ -1,7 +1,7 @@
 import React from 'react';
 import { SwitchProps } from './props';
 import { classNames } from '@chbphone55/classnames';
-import { switchToggle as c } from '@fabric-ds/css/component-classes';
+import { switchToggle as c } from '@fabric-ds/component-classes';
 
 export function Switch({
   id,
