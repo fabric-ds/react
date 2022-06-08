@@ -1,10 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
-import {
-  box as boxClasses,
-  buttonReset,
-} from '@fabric-ds/css/component-classes';
-import React from 'react';
-import { ExpandTransition } from '../../_helpers';
+import { box as boxClasses, buttonReset } from '@fabric-ds/component-classes';
+import { collapse, expand } from 'element-collapse';
+import React, { useRef } from 'react';
 import type { ExpandableProps } from './props';
 
 export function Expandable(props: ExpandableProps) {
@@ -24,11 +21,19 @@ export function Expandable(props: ExpandableProps) {
     ...rest
   } = props;
 
+  const boxRef = useRef(null);
   const [stateExpanded, setStateExpanded] = React.useState(expanded);
 
   const toggleExpandable = (state) => {
     setStateExpanded(!state);
     if (onChange) onChange(!state);
+
+    if (!boxRef.current || !props.animated) return;
+    if (!state) {
+      expand(boxRef.current);
+    } else {
+      collapse(boxRef.current);
+    }
   };
 
   return (
@@ -78,8 +83,14 @@ export function Expandable(props: ExpandableProps) {
           </div>
         )}
       </button>
-
-      <ExpansionBehaviour animated={animated} stateExpanded={stateExpanded}>
+      <div
+        ref={boxRef}
+        className={classNames({
+          'overflow-hidden': true,
+          'h-0 invisible': !stateExpanded,
+        })}
+        aria-hidden={!stateExpanded}
+      >
         <div
           className={classNames({
             [contentClass || '']: true,
@@ -88,23 +99,7 @@ export function Expandable(props: ExpandableProps) {
         >
           {children}
         </div>
-      </ExpansionBehaviour>
-    </div>
-  );
-}
-
-function ExpansionBehaviour({ animated, stateExpanded, children }) {
-  return animated ? (
-    <ExpandTransition show={stateExpanded}>{children}</ExpandTransition>
-  ) : (
-    <div
-      className={classNames({
-        'overflow-hidden': true,
-        'h-0 invisible': !stateExpanded,
-      })}
-      aria-hidden={!stateExpanded}
-    >
-      {children}
+      </div>
     </div>
   );
 }

@@ -6,7 +6,6 @@ import {
   Route,
   Switch as ReactSwitch,
 } from 'react-router-dom';
-import Alert from '../../packages/alert/docs/Alert.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
 import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
@@ -45,10 +44,6 @@ const App = () => {
         <ReactSwitch>
           <Route path="/" exact>
             <Home />
-          </Route>
-
-          <Route path="/alert">
-            <Alert />
           </Route>
 
           <Route path="/modal">

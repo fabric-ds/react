@@ -1,39 +1,3 @@
-# [1.2.0-next.5](https://github.com/fabric-ds/react/compare/v1.2.0-next.4...v1.2.0-next.5) (2022-06-08)
-
-
-### Bug Fixes
-
-* bump component-classes to get Step fix ([c17ce7e](https://github.com/fabric-ds/react/commit/c17ce7e83e1e78aca28e867dbf29331d69c549fe))
-
-# [1.2.0-next.4](https://github.com/fabric-ds/react/compare/v1.2.0-next.3...v1.2.0-next.4) (2022-06-08)
-
-
-### Bug Fixes
-
-* **animated-expansion:** rename to ExpandTransition and check if element ref exists ([#119](https://github.com/fabric-ds/react/issues/119)) ([b7a8026](https://github.com/fabric-ds/react/commit/b7a8026dd17e6c53c1fe3b1831964b104bfc5087))
-* bump component-classes to get Step fix ([5d99506](https://github.com/fabric-ds/react/commit/5d99506bcf45f531522670e6a910f11e671c1a54))
-
-# [1.2.0-next.3](https://github.com/fabric-ds/react/compare/v1.2.0-next.2...v1.2.0-next.3) (2022-06-07)
-
-
-### Bug Fixes
-
-* **affix:** Add aria-label to Affix icons ([17fab00](https://github.com/fabric-ds/react/commit/17fab00e1f939531a613df6e2ba9e752e5e9d23e))
-
-# [1.2.0-next.2](https://github.com/fabric-ds/react/compare/v1.2.0-next.1...v1.2.0-next.2) (2022-06-02)
-
-
-### Features
-
-* **alert:** add expand and collapse behaviour to inline alert ([#114](https://github.com/fabric-ds/react/issues/114)) ([075f314](https://github.com/fabric-ds/react/commit/075f314adfa468960a42f7c87af855d2f1ddce6d))
-
-# [1.2.0-next.1](https://github.com/fabric-ds/react/compare/v1.1.1...v1.2.0-next.1) (2022-05-31)
-
-
-### Features
-
-* **packages:** add inline Alert component ([#106](https://github.com/fabric-ds/react/issues/106)) ([ddfe084](https://github.com/fabric-ds/react/commit/ddfe0842c2af00e3dc531fbff25d18f395a5dfe7))
-
 ## [1.1.1](https://github.com/fabric-ds/react/compare/v1.1.0...v1.1.1) (2022-05-23)
 
 

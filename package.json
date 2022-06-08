@@ -1,6 +1,6 @@
 {
   "name": "@fabric-ds/react",
-  "version": "1.2.0-next.5",
+  "version": "1.1.1",
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
   "type": "module",
@@ -48,7 +48,9 @@
     "@babel/core": "^7.12.10",
     "@chbphone55/classnames": "^2.0.0",
     "@eik/esbuild-plugin": "^1.1.0",
+    "@fabric-ds/component-classes": "^0.0.38",
     "@fabric-ds/icons": "^0.3.12",
+    "@fabric-ds/tailwind-config": "^0.5.20",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "1.6.22",
     "@semantic-release/changelog": "^6.0.1",
@@ -103,7 +105,7 @@
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
     "@fabric-ds/core": "0.0.13",
-    "@fabric-ds/css": "^1.1.4",
+    "@fabric-ds/css": "^1.1.2",
     "d3-scale": "^4.0.2",
     "react-focus-lock": "^2.5.2",
     "react-spring": "^8.0.27",
