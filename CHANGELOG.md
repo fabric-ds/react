@@ -1,3 +1,10 @@
+# [1.2.0-next.5](https://github.com/fabric-ds/react/compare/v1.2.0-next.4...v1.2.0-next.5) (2022-06-08)
+
+
+### Bug Fixes
+
+* bump component-classes to get Step fix ([c17ce7e](https://github.com/fabric-ds/react/commit/c17ce7e83e1e78aca28e867dbf29331d69c549fe))
+
 # [1.2.0-next.4](https://github.com/fabric-ds/react/compare/v1.2.0-next.3...v1.2.0-next.4) (2022-06-08)
 
 
