@@ -1,7 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { AlertProps } from '.';
-import { AnimatedExpansion } from '../../_helpers';
+import { ExpandTransition } from '../../_helpers';
 
 export function Alert({
   show,
@@ -12,7 +12,7 @@ export function Alert({
   const { color, icon } = styleMap[type];
 
   return (
-    <AnimatedExpansion show={show}>
+    <ExpandTransition show={show}>
       <div
         className={classNames(
           props.className,
@@ -23,7 +23,7 @@ export function Alert({
         <div className={`mr-8 text-${color}-600`}>{icon}</div>
         <div className="last-child:mb-0 text-14">{children}</div>
       </div>
-    </AnimatedExpansion>
+    </ExpandTransition>
   );
 }
 

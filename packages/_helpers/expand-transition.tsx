@@ -2,23 +2,23 @@ import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { collapse, expand } from 'element-collapse';
 import { classNames } from '@chbphone55/classnames';
 
-export function AnimatedExpansion({
+export function ExpandTransition({
   show,
   children,
 }: PropsWithChildren<{ show?: Boolean }>) {
   const [isExpanded, setIsExpanded] = useState(show);
-  const expandableRef = useRef(null);
+  const expandableRef = useRef<HTMLDivElement>(null);
   const isMounted = useRef(false);
 
-  async function collapseElement() {
+  async function collapseElement(el: HTMLElement) {
     await new Promise((resolve) => {
-      collapse(expandableRef.current, resolve);
+      collapse(el, resolve);
     });
     setIsExpanded(false);
   }
 
-  function expandElement() {
-    expand(expandableRef.current);
+  function expandElement(el: HTMLElement) {
+    expand(el);
     setIsExpanded(true);
   }
 
@@ -29,10 +29,12 @@ export function AnimatedExpansion({
       return;
     }
 
+    if (!expandableRef.current) return;
+
     if (show) {
-      expandElement();
+      expandElement(expandableRef.current);
     } else {
-      collapseElement();
+      collapseElement(expandableRef.current);
     }
   }, [show]);
 

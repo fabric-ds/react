@@ -1,7 +1,10 @@
 import { classNames } from '@chbphone55/classnames';
-import { box as boxClasses, buttonReset } from '@fabric-ds/css/component-classes';
+import {
+  box as boxClasses,
+  buttonReset,
+} from '@fabric-ds/css/component-classes';
 import React from 'react';
-import { AnimatedExpansion } from '../../_helpers';
+import { ExpandTransition } from '../../_helpers';
 import type { ExpandableProps } from './props';
 
 export function Expandable(props: ExpandableProps) {
@@ -92,7 +95,7 @@ export function Expandable(props: ExpandableProps) {
 
 function ExpansionBehaviour({ animated, stateExpanded, children }) {
   return animated ? (
-    <AnimatedExpansion show={stateExpanded}>{children}</AnimatedExpansion>
+    <ExpandTransition show={stateExpanded}>{children}</ExpandTransition>
   ) : (
     <div
       className={classNames({
