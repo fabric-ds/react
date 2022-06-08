@@ -1,5 +1,5 @@
 import React from 'react';
-import { tab as c } from '@fabric-ds/component-classes';
+import { tab as c } from '@fabric-ds/css/component-classes';
 import type { TabPanelProps } from './props';
 
 export function TabPanel(props: TabPanelProps) {

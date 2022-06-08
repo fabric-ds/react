@@ -1,0 +1,80 @@
+import { Alert } from '../src';
+import { Button } from '../../button/src';
+
+# Alert
+
+Alert is an inline component used for displaying different types of messages.
+
+## Import
+
+```js
+import { Alert } from '@fabric-ds/react';
+```
+
+## Visual Options
+
+### Expandable behaviour
+
+```jsx example
+function ExpandableAlert() {
+  const [show, setShow] = React.useState(true);
+
+  return (
+    <>
+      <Alert type="info" show={show}>
+        <p className="font-bold">Title Caption-Strong</p>
+        <p>This is the message text that can be short or a little bit long</p>
+        <a>Link to more information</a>
+        <div className="mt-8 space-x-8">
+          <Button small>Primary CTA</Button>
+          <Button small secondary quiet>
+            Secondary
+          </Button>
+        </div>
+      </Alert>
+
+      <Button className="mt-16" small primary onClick={() => setShow(!show)}>
+        {show ? 'Hide alert' : 'Show alert'}
+      </Button>
+    </>
+  );
+}
+```
+
+### Negative
+
+```jsx example
+<Alert type="negative" show>
+  This is the message text that can be short or a little bit long
+</Alert>
+```
+
+### Positive
+
+```jsx example
+<Alert type="positive" show>
+  This is the message text that can be short or a little bit long
+</Alert>
+```
+
+### Warning
+
+```jsx example
+<Alert type="warning" show>
+  This is the message text that can be short or a little bit long
+</Alert>
+```
+
+### Info
+
+```jsx example
+<Alert type="info" show>
+  This is the message text that can be short or a little bit long
+</Alert>
+```
+
+## Props
+
+```props packages/alert/src/component.tsx
+
+```
