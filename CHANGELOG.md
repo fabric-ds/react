@@ -1,3 +1,11 @@
+# [1.2.0-next.4](https://github.com/fabric-ds/react/compare/v1.2.0-next.3...v1.2.0-next.4) (2022-06-08)
+
+
+### Bug Fixes
+
+* **animated-expansion:** rename to ExpandTransition and check if element ref exists ([#119](https://github.com/fabric-ds/react/issues/119)) ([b7a8026](https://github.com/fabric-ds/react/commit/b7a8026dd17e6c53c1fe3b1831964b104bfc5087))
+* bump component-classes to get Step fix ([5d99506](https://github.com/fabric-ds/react/commit/5d99506bcf45f531522670e6a910f11e671c1a54))
+
 # [1.2.0-next.3](https://github.com/fabric-ds/react/compare/v1.2.0-next.2...v1.2.0-next.3) (2022-06-07)
 
 
