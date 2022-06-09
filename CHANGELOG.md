@@ -1,3 +1,10 @@
+## [1.2.1-next.1](https://github.com/fabric-ds/react/compare/v1.2.0...v1.2.1-next.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* **card:** Change default wrapper from article to div ([f9995b1](https://github.com/fabric-ds/react/commit/f9995b10bd2279fa8d0eb5c91d6c4626e280ca75))
+
 # [1.2.0](https://github.com/fabric-ds/react/compare/v1.1.1...v1.2.0) (2022-06-08)
 
 
