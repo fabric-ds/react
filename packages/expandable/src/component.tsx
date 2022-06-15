@@ -21,6 +21,7 @@ export function Expandable(props: ExpandableProps) {
     onChange,
     chevron = true,
     animated,
+    headingLevel,
     ...rest
   } = props;
 
@@ -31,6 +32,8 @@ export function Expandable(props: ExpandableProps) {
     if (onChange) onChange(!state);
   };
 
+  const ButtonWrapper = headingLevel ? `h${headingLevel}` : React.Fragment;
+
   return (
     <div
       {...rest}
@@ -40,44 +43,46 @@ export function Expandable(props: ExpandableProps) {
         [boxClasses.bleed]: bleed,
       })}
     >
-      <button
-        aria-expanded={stateExpanded}
-        className={classNames({
-          [buttonClass || '']: true,
-          [buttonReset + ' hover:underline focus:underline']: true,
-          ['w-full text-left relative ' + boxClasses.box]: box,
-          'hover:text-aqua-700 active:text-aqua-800': info,
-        })}
-        onClick={() => toggleExpandable(stateExpanded)}
-      >
-        {title && <span className="h4">{title}</span>}
-        {chevron && (
-          <div
-            className={classNames({
-              'inline-block align-middle transform transition-transform': true,
-              '-rotate-180': expanded,
-              'relative left-8': !box,
-              'box-chevron absolute right-16': box,
-            })}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="none"
-              viewBox="0 0 16 16"
+      <ButtonWrapper>
+        <button
+          aria-expanded={stateExpanded}
+          className={classNames({
+            [buttonClass || '']: true,
+            [buttonReset + ' hover:underline focus:underline']: true,
+            ['w-full text-left relative ' + boxClasses.box]: box,
+            'hover:text-aqua-700 active:text-aqua-800': info,
+          })}
+          onClick={() => toggleExpandable(stateExpanded)}
+        >
+          {title && <span className="h4">{title}</span>}
+          {chevron && (
+            <div
+              className={classNames({
+                'inline-block align-middle transform transition-transform': true,
+                '-rotate-180': expanded,
+                'relative left-8': !box,
+                'box-chevron absolute right-16': box,
+              })}
             >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M2.5 5.5L8 11l5.5-5.5"
-              />
-            </svg>
-          </div>
-        )}
-      </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="none"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  d="M2.5 5.5L8 11l5.5-5.5"
+                />
+              </svg>
+            </div>
+          )}
+        </button>
+      </ButtonWrapper>
 
       <ExpansionBehaviour animated={animated} stateExpanded={stateExpanded}>
         <div
