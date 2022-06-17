@@ -1,3 +1,10 @@
+# [1.3.0-next.1](https://github.com/fabric-ds/react/compare/v1.2.1-next.1...v1.3.0-next.1) (2022-06-17)
+
+
+### Features
+
+* support multiple versions of react on Eik ([bc8f504](https://github.com/fabric-ds/react/commit/bc8f5041288270abf28496cc65640f37c75d348e))
+
 ## [1.2.1-next.1](https://github.com/fabric-ds/react/compare/v1.2.0...v1.2.1-next.1) (2022-06-09)
 
 
