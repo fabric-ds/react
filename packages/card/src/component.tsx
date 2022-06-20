@@ -4,7 +4,7 @@ import { classNames } from '@chbphone55/classnames';
 import { CardProps } from './props';
 
 export function Card(props: CardProps) {
-  const { as = 'article', children, flat, ...rest } = props;
+  const { as = 'div', children, flat, ...rest } = props;
   return React.createElement(
     as,
     {

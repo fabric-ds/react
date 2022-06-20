@@ -1,3 +1,17 @@
+# [1.3.0-next.1](https://github.com/fabric-ds/react/compare/v1.2.1-next.1...v1.3.0-next.1) (2022-06-17)
+
+
+### Features
+
+* support multiple versions of react on Eik ([bc8f504](https://github.com/fabric-ds/react/commit/bc8f5041288270abf28496cc65640f37c75d348e))
+
+## [1.2.1-next.1](https://github.com/fabric-ds/react/compare/v1.2.0...v1.2.1-next.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* **card:** Change default wrapper from article to div ([f9995b1](https://github.com/fabric-ds/react/commit/f9995b10bd2279fa8d0eb5c91d6c4626e280ca75))
+
 # [1.2.0](https://github.com/fabric-ds/react/compare/v1.1.1...v1.2.0) (2022-06-08)
 
 

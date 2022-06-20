@@ -5,6 +5,7 @@ import {
   rotation,
   useRecompute as recompute,
 } from '@fabric-ds/core/attention';
+import { attention as c } from '@fabric-ds/css/component-classes';
 import { ArrowProps, AttentionProps } from './props';
 
 export function Attention(props: AttentionProps) {
@@ -75,12 +76,10 @@ export function Attention(props: AttentionProps) {
     >
       <div
         className={classNames({
-          'border-2 relative': true,
-          'bg-gray-700 border-gray-700 text-white rounded-4 py-6 px-8':
-            props.tooltip,
-          'bg-green-100 border-green-400 py-8 px-16 rounded-8': props.callout,
-          'bg-white border-white rounded-8 p-16 filter drop-shadow-20':
-            props.popover,
+          [c.base]: true,
+          [c.tooltip]: props.tooltip,
+          [c.callout]: props.callout,
+          [c.popover]: props.popover,
         })}
       >
         {!props.noArrow && (
@@ -101,11 +100,11 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
     <div
       ref={ref}
       className={classNames({
-        'absolute h-14 w-14 border-2 border-b-0 border-r-0 transform': true,
+        [c.arrowBase]: true,
         [`-${arrowDirection}-8`]: true,
-        'bg-gray-700 border-gray-700': tooltip,
-        'bg-green-100 border-green-400': callout,
-        'bg-white border-white': popover,
+        [c.arrowTooltip]: tooltip,
+        [c.arrowCallout]: callout,
+        [c.arrowPopover]: popover,
       })}
       style={{
         // TW doesn't let us specify exactly one corner, only whole sides
