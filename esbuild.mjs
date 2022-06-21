@@ -5,7 +5,6 @@ import esbuild from 'esbuild';
 // maps React versions to import map file versions.
 // Add more mappings here when new versions of React become available.
 const versions = new Map([
-  ['16', 'v1'],
   ['17', 'v2'],
   ['18', 'v3'],
 ]);
@@ -17,6 +16,20 @@ ok(reactVersions.includes(version), `Version argument is required. Must be one o
 await eik.load({
   urls: [`https://assets.finn.no/map/react/${versions.get(version)}`],
 });
+
+// legacy support for older filenames
+if (version === '17') {
+  await esbuild.build({
+    plugins: [eik.plugin()],
+    entryPoints: ['packages/index.ts'],
+    bundle: true,
+    outfile: `dist/eik/index.js`,
+    format: 'esm',
+    sourcemap: true,
+    target: 'es2017',
+    minify: true,
+  });
+}
 
 await esbuild.build({
   plugins: [eik.plugin()],
