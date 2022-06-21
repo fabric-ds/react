@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/fabric-ds/react/compare/v1.3.0...v1.3.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* remove unused React v16 and add backwards compatible v17 bundle ([d23fa08](https://github.com/fabric-ds/react/commit/d23fa0814000de6dcbe8b9cfc0648fe771afe07c))
+
 ## [1.3.1-next.1](https://github.com/fabric-ds/react/compare/v1.3.0...v1.3.1-next.1) (2022-06-21)
 
 
