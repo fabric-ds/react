@@ -1,3 +1,10 @@
+# [1.4.0-next.1](https://github.com/fabric-ds/react/compare/v1.3.1...v1.4.0-next.1) (2022-06-22)
+
+
+### Features
+
+* **expandable:** make Expandable accept custom title ([24725f0](https://github.com/fabric-ds/react/commit/24725f0c9acbeeb60f40ac5eb0f52ad3c9eae88b))
+
 ## [1.3.1](https://github.com/fabric-ds/react/compare/v1.3.0...v1.3.1) (2022-06-21)
 
 
