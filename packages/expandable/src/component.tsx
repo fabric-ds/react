@@ -60,7 +60,7 @@ export function Expandable(props: ExpandableProps) {
             <div
               className={classNames({
                 'self-center transform transition-transform': true,
-                '-rotate-180': expanded,
+                '-rotate-180': stateExpanded,
                 'relative left-8': !box,
                 'box-chevron': box,
               })}
