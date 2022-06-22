@@ -1,3 +1,10 @@
+# [1.4.0-next.2](https://github.com/fabric-ds/react/compare/v1.4.0-next.1...v1.4.0-next.2) (2022-06-22)
+
+
+### Bug Fixes
+
+* **expandable:** use local expanded state to control chevron's rotation ([6fd2fb8](https://github.com/fabric-ds/react/commit/6fd2fb8d830817a6bd7f0517f2ec45030be65b72))
+
 # [1.4.0-next.1](https://github.com/fabric-ds/react/compare/v1.3.1...v1.4.0-next.1) (2022-06-22)
 
 
