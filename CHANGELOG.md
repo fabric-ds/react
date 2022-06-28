@@ -1,3 +1,10 @@
+# [1.4.0-next.3](https://github.com/fabric-ds/react/compare/v1.4.0-next.2...v1.4.0-next.3) (2022-06-28)
+
+
+### Bug Fixes
+
+* alert icon gets flexed when content has overflow ([#132](https://github.com/fabric-ds/react/issues/132)) ([b02b288](https://github.com/fabric-ds/react/commit/b02b28862f488c802eff9108ce3c47d4053168f8))
+
 # [1.4.0-next.2](https://github.com/fabric-ds/react/compare/v1.4.0-next.1...v1.4.0-next.2) (2022-06-22)
 
 
