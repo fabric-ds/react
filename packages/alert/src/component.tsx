@@ -20,7 +20,7 @@ export function Alert({
         )}
         style={{ borderLeftColor: `var(--f-${color}-600)`, ...props.style }}
       >
-        <div className={`mr-8 text-${color}-600`}>{icon}</div>
+        <div className={`w-16 mr-8 text-${color}-600`} style={{ minWidth: '16px' }}>{icon}</div>
         <div className="last-child:mb-0 text-14">{children}</div>
       </div>
     </ExpandTransition>
