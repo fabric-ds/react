@@ -59,7 +59,10 @@ export function Item({
 
       <label htmlFor={id} className={labelClassName}>
         {noVisibleLabel ? (
-          <span className="invisible w-0">{labelContent}</span>
+          <>
+            <span className="invisible w-0">{labelContent}</span>
+            <span className="sr-only">{labelContent}</span>
+          </>
         ) : (
           labelContent
         )}
