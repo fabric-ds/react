@@ -34,7 +34,9 @@ export function Item({
 }: ItemProps) {
   const id = useId();
 
-  const item = (
+  const labelContent = !children ? label || option?.label : children;
+
+  return (
     <>
       <input
         id={id}
@@ -57,19 +59,11 @@ export function Item({
 
       <label htmlFor={id} className={labelClassName}>
         {noVisibleLabel ? (
-          <span className="invisible w-0">{label}</span>
-        ) : !children ? (
-          label || option?.label
+          <span className="invisible w-0">{labelContent}</span>
         ) : (
-          children
+          labelContent
         )}
       </label>
     </>
-  );
-
-  return (
-    <React.Fragment>
-      {noVisibleLabel ? <div className="input-toggle">{item}</div> : item}
-    </React.Fragment>
   );
 }

@@ -80,6 +80,7 @@ export function Toggle(props: ToggleProps) {
             invalid={isInvalid}
             helpId={helpId}
             type={isRadioGroup ? 'radio' : 'checkbox'}
+            noVisibleLabel={props.noVisibleLabel}
           />
         ) : (
           props.options &&
@@ -98,6 +99,7 @@ export function Toggle(props: ToggleProps) {
               invalid={isInvalid}
               helpId={helpId}
               type={isRadioGroup ? 'radio' : 'checkbox'}
+              noVisibleLabel={props.noVisibleLabel}
             />
           ))
         )}
