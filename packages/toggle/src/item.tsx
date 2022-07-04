@@ -11,6 +11,7 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   defaultChecked?: boolean;
   invalid?: boolean;
   helpId?: string;
+  noVisibleLabel?: boolean;
   label?: string;
   className?: string;
   labelClassName?: string;
@@ -27,12 +28,13 @@ export function Item({
   helpId,
   checked,
   defaultChecked,
+  noVisibleLabel,
   labelClassName,
   ...props
 }: ItemProps) {
   const id = useId();
 
-  return (
+  const item = (
     <>
       <input
         id={id}
@@ -54,8 +56,20 @@ export function Item({
       />
 
       <label htmlFor={id} className={labelClassName}>
-        {!children ? label || option?.label : children}
+        {noVisibleLabel ? (
+          <span className="invisible w-0">{label}</span>
+        ) : !children ? (
+          label || option?.label
+        ) : (
+          children
+        )}
       </label>
     </>
+  );
+
+  return (
+    <React.Fragment>
+      {noVisibleLabel ? <div className="input-toggle">{item}</div> : item}
+    </React.Fragment>
   );
 }
