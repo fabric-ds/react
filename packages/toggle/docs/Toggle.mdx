@@ -100,6 +100,30 @@ use the `selected` property instead (controlled).
 **Note** the `title` property. This gives you the option to label the options,
 but is not required.
 
+## Checkbox with invisible label
+
+You can hide the label by passing a `noVisibleLabel` prop to `Toggle` component.
+
+```jsx example
+function Example() {
+  const [checked, setChecked] = React.useState('No');
+  const answer = checked ? 'Yes' : 'No';
+
+  return (
+    <>
+      <p className="h4">Is checkbox selected? {answer}</p>
+      <Toggle
+        type="checkbox"
+        label={answer}
+        defaultChecked={checked}
+        onChange={(checked) => setChecked(checked)}
+        noVisibleLabel
+      />
+    </>
+  );
+}
+```
+
 ## Toggle with multiple options
 
 We've already had a look at checkboxes, but Toggle can also render radio options
