@@ -1,3 +1,16 @@
+# [1.4.0-next.4](https://github.com/fabric-ds/react/compare/v1.4.0-next.3...v1.4.0-next.4) (2022-07-05)
+
+
+### Bug Fixes
+
+* export toggle item ([1ee6580](https://github.com/fabric-ds/react/commit/1ee6580cc30e7a09c8efa49ad6d8ab2ba2d0d63f))
+
+
+### Features
+
+* **toggle:** add noVisibleLabel prop to Toggle component ([ca192dc](https://github.com/fabric-ds/react/commit/ca192dccebd16f9e87720defd88b4cbf83f3d3e9))
+* **toggle:** make labelContent accessible to screen readers ([7b63e53](https://github.com/fabric-ds/react/commit/7b63e537ca8c78e7aedd878b9a57e27e2714def3))
+
 # [1.4.0-next.3](https://github.com/fabric-ds/react/compare/v1.4.0-next.2...v1.4.0-next.3) (2022-06-28)
 
 
