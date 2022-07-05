@@ -26,7 +26,7 @@ This project uses
 [Semantic Release](https://github.com/semantic-release/semantic-release) to
 automate package publishing when making changes to the `main` or `next` branch.
 
-It is recommended to branch off and follow
+It is recommended to branch off the `next` branch and follow
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)
 when making changes. When your changes are ready for pull request, this should
 be opened against the `next` branch.
