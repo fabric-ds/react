@@ -1,3 +1,10 @@
+# [1.4.0-next.5](https://github.com/fabric-ds/react/compare/v1.4.0-next.4...v1.4.0-next.5) (2022-07-07)
+
+
+### Bug Fixes
+
+* **card:** Add button type to sr-only button ([21e70a4](https://github.com/fabric-ds/react/commit/21e70a4b499f20425b2403d06d25572d13be6f84))
+
 # [1.4.0-next.4](https://github.com/fabric-ds/react/compare/v1.4.0-next.3...v1.4.0-next.4) (2022-07-05)
 
 
