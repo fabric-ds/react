@@ -79,4 +79,9 @@ export interface ToggleProps {
    * Custom classes applied to the wrapping container
    */
   className?: string;
+
+  /**
+   * Whether label should be invisible
+   */
+  noVisibleLabel?: boolean;
 }

@@ -33,7 +33,7 @@ export function Card(props: CardProps) {
     },
     <>
       {props.onClick && (
-        <button className="sr-only" aria-pressed={props.selected} tabIndex={-1}>
+        <button className="sr-only" aria-pressed={props.selected} tabIndex={-1} type="button">
           Velg
         </button>
       )}

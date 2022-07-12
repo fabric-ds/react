@@ -1,3 +1,77 @@
+# [1.4.0-next.5](https://github.com/fabric-ds/react/compare/v1.4.0-next.4...v1.4.0-next.5) (2022-07-07)
+
+
+### Bug Fixes
+
+* **card:** Add button type to sr-only button ([21e70a4](https://github.com/fabric-ds/react/commit/21e70a4b499f20425b2403d06d25572d13be6f84))
+
+# [1.4.0-next.4](https://github.com/fabric-ds/react/compare/v1.4.0-next.3...v1.4.0-next.4) (2022-07-05)
+
+
+### Bug Fixes
+
+* export toggle item ([1ee6580](https://github.com/fabric-ds/react/commit/1ee6580cc30e7a09c8efa49ad6d8ab2ba2d0d63f))
+
+
+### Features
+
+* **toggle:** add noVisibleLabel prop to Toggle component ([ca192dc](https://github.com/fabric-ds/react/commit/ca192dccebd16f9e87720defd88b4cbf83f3d3e9))
+* **toggle:** make labelContent accessible to screen readers ([7b63e53](https://github.com/fabric-ds/react/commit/7b63e537ca8c78e7aedd878b9a57e27e2714def3))
+
+# [1.4.0-next.3](https://github.com/fabric-ds/react/compare/v1.4.0-next.2...v1.4.0-next.3) (2022-06-28)
+
+
+### Bug Fixes
+
+* alert icon gets flexed when content has overflow ([#132](https://github.com/fabric-ds/react/issues/132)) ([b02b288](https://github.com/fabric-ds/react/commit/b02b28862f488c802eff9108ce3c47d4053168f8))
+
+# [1.4.0-next.2](https://github.com/fabric-ds/react/compare/v1.4.0-next.1...v1.4.0-next.2) (2022-06-22)
+
+
+### Bug Fixes
+
+* **expandable:** use local expanded state to control chevron's rotation ([6fd2fb8](https://github.com/fabric-ds/react/commit/6fd2fb8d830817a6bd7f0517f2ec45030be65b72))
+
+# [1.4.0-next.1](https://github.com/fabric-ds/react/compare/v1.3.1...v1.4.0-next.1) (2022-06-22)
+
+
+### Features
+
+* **expandable:** make Expandable accept custom title ([24725f0](https://github.com/fabric-ds/react/commit/24725f0c9acbeeb60f40ac5eb0f52ad3c9eae88b))
+
+## [1.3.1](https://github.com/fabric-ds/react/compare/v1.3.0...v1.3.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* remove unused React v16 and add backwards compatible v17 bundle ([d23fa08](https://github.com/fabric-ds/react/commit/d23fa0814000de6dcbe8b9cfc0648fe771afe07c))
+
+## [1.3.1-next.1](https://github.com/fabric-ds/react/compare/v1.3.0...v1.3.1-next.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* remove unused React v16 and add backwards compatible v17 bundle ([d23fa08](https://github.com/fabric-ds/react/commit/d23fa0814000de6dcbe8b9cfc0648fe771afe07c))
+
+# [1.3.0](https://github.com/fabric-ds/react/compare/v1.2.0...v1.3.0) (2022-06-20)
+
+
+### Bug Fixes
+
+* **card:** Change default wrapper from article to div ([f9995b1](https://github.com/fabric-ds/react/commit/f9995b10bd2279fa8d0eb5c91d6c4626e280ca75))
+
+
+### Features
+
+* support multiple versions of react on Eik ([bc8f504](https://github.com/fabric-ds/react/commit/bc8f5041288270abf28496cc65640f37c75d348e))
+
+# [1.3.0-next.1](https://github.com/fabric-ds/react/compare/v1.2.1-next.1...v1.3.0-next.1) (2022-06-17)
+
+
+### Features
+
+* support multiple versions of react on Eik ([bc8f504](https://github.com/fabric-ds/react/commit/bc8f5041288270abf28496cc65640f37c75d348e))
+
 ## [1.2.1-next.1](https://github.com/fabric-ds/react/compare/v1.2.0...v1.2.1-next.1) (2022-06-09)
 
 

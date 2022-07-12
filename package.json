@@ -1,6 +1,6 @@
 {
   "name": "@fabric-ds/react",
-  "version": "1.2.1-next.1",
+  "version": "1.4.0-next.5",
   "repository": "git@github.com:fabric-ds/react.git",
   "license": "ISC",
   "type": "module",
@@ -27,7 +27,7 @@
   "scripts": {
     "commit": "cz",
     "build:clean": "rm -rf dist",
-    "build:eik": "node esbuild.mjs",
+    "build:eik": "node esbuild.mjs 17 && node esbuild.mjs 18",
     "build:types": "tsc && sed 's+declare module \"index\"+declare module \"@fabric-ds/react\"+g' ./dist/npm/index.d.ts > ./dist/npm/updated.d.ts && mv ./dist/npm/updated.d.ts ./dist/npm/index.d.ts",
     "build:npm": "npx esbuild ./packages/index.ts --outdir=dist/npm --target=es2017 --bundle --sourcemap --format=esm --external:react --minify",
     "build:node": "npx esbuild ./packages/index.ts --outdir=dist/npm --out-extension:.js=.cjs --target=es2017 --bundle --sourcemap --format=cjs --external:react --minify",
@@ -113,10 +113,7 @@
   "eik": {
     "server": "https://assets.finn.no",
     "type": "package",
-    "files": "./dist/eik",
-    "import-map": [
-      "https://assets.finn.no/map/react/v2"
-    ]
+    "files": "./dist/eik"
   },
   "config": {
     "commitizen": {

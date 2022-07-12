@@ -11,6 +11,7 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   defaultChecked?: boolean;
   invalid?: boolean;
   helpId?: string;
+  noVisibleLabel?: boolean;
   label?: string;
   className?: string;
   labelClassName?: string;
@@ -27,10 +28,13 @@ export function Item({
   helpId,
   checked,
   defaultChecked,
+  noVisibleLabel,
   labelClassName,
   ...props
 }: ItemProps) {
   const id = useId();
+
+  const labelContent = !children ? label || option?.label : children;
 
   return (
     <>
@@ -54,7 +58,14 @@ export function Item({
       />
 
       <label htmlFor={id} className={labelClassName}>
-        {!children ? label || option?.label : children}
+        {noVisibleLabel ? (
+          <>
+            <span className="invisible w-0">{labelContent}</span>
+            <span className="sr-only">{labelContent}</span>
+          </>
+        ) : (
+          labelContent
+        )}
       </label>
     </>
   );
