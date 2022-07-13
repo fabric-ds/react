@@ -25,21 +25,24 @@ function ExpandableAlert() {
         className="mb-16"
         small
         primary
-        onClick={() => setShow(!show)}
+        onClick={() => {
+          setShow(false);
+          setTimeout(() => setShow(true), 500);
+        }}
         aria-controls="example-alert"
         aria-expanded={show}
       >
-        {show ? 'Hide alert' : 'Show alert'}
+        Hide and show "info" variant of the alert
       </Button>
 
       <Alert id="example-alert" type="info" show={show}>
-        <p className="font-bold">Title Caption-Strong</p>
-        <p>This is the message text that can be short or a little bit long</p>
-        <a>Link to more information</a>
+        <p className="font-bold">This is "info" variant of the alert element</p>
+        <p>With an additional description</p>
+        <a>And a link to more information</a>
         <div className="mt-8 space-x-8">
-          <Button small>Primary CTA</Button>
+          <Button small>Primary button</Button>
           <Button small secondary quiet>
-            Secondary
+            Secondary button
           </Button>
         </div>
       </Alert>
@@ -52,7 +55,7 @@ function ExpandableAlert() {
 
 ```jsx example
 <Alert type="negative" show>
-  This is the message text that can be short or a little bit long
+  This is "negative" variant of the alert element
 </Alert>
 ```
 
@@ -60,7 +63,7 @@ function ExpandableAlert() {
 
 ```jsx example
 <Alert type="positive" show>
-  This is the message text that can be short or a little bit long
+  This is "positive" variant of the alert element
 </Alert>
 ```
 
@@ -68,7 +71,7 @@ function ExpandableAlert() {
 
 ```jsx example
 <Alert type="warning" show>
-  This is the message text that can be short or a little bit long
+  This is "warning" variant of the alert element
 </Alert>
 ```
 
@@ -76,7 +79,7 @@ function ExpandableAlert() {
 
 ```jsx example
 <Alert type="info" show>
-  This is the message text that can be short or a little bit long
+  This is "info" variant of the alert element
 </Alert>
 ```
 
@@ -102,22 +105,25 @@ function ExpandableAlertWithOverridenRole() {
         className="mb-16"
         small
         primary
-        onClick={() => setShow(!show)}
-        aria-controls="example-alert"
+        onClick={() => {
+          setShow(false);
+          setTimeout(() => setShow(true), 500);
+        }}
+        aria-controls="example2-alert"
         aria-expanded={show}
       >
-        {show ? 'Hide alert' : 'Show alert'}
+        Hide and show alert
       </Button>
-      <Alert id="example-alert" type="info" show={show} role="">
+      <Alert id="example2-alert" type="info" show={show} role="">
         <p role="alert" className="font-bold">
-          This title should be read
+          This is "info" variant of the alert element
         </p>
-        <p>This is the message text that can be short or a little bit long</p>
-        <a>Link to more information</a>
+        <p>With an additional description</p>
+        <a>And a link to more information</a>
         <div className="mt-8 space-x-8">
-          <Button small>Primary CTA</Button>
+          <Button small>Primary button</Button>
           <Button small secondary quiet>
-            Secondary
+            Secondary button
           </Button>
         </div>
       </Alert>
