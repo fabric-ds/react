@@ -4,8 +4,8 @@ import {
   buttonReset,
 } from '@fabric-ds/css/component-classes';
 import React from 'react';
-import { ExpandTransition } from '../../_helpers';
-import type { ExpandableProps } from './props';
+import { ExpandTransition, UnstyledHeading } from '../../_helpers';
+import { ExpandableProps } from './props';
 
 export function Expandable(props: ExpandableProps) {
   const {
@@ -32,8 +32,6 @@ export function Expandable(props: ExpandableProps) {
     if (onChange) onChange(!state);
   };
 
-  const ButtonWrapper = headingLevel ? `h${headingLevel}` : React.Fragment;
-
   return (
     <div
       {...rest}
@@ -43,7 +41,7 @@ export function Expandable(props: ExpandableProps) {
         [boxClasses.bleed]: bleed,
       })}
     >
-      <ButtonWrapper>
+      <UnstyledHeading headingLevel={headingLevel}>
         <button
           aria-expanded={stateExpanded}
           className={classNames({
@@ -88,7 +86,7 @@ export function Expandable(props: ExpandableProps) {
             )}
           </div>
         </button>
-      </ButtonWrapper>
+      </UnstyledHeading>
       <ExpansionBehaviour animated={animated} stateExpanded={stateExpanded}>
         <div
           className={classNames({
