@@ -41,7 +41,7 @@ export function Expandable(props: ExpandableProps) {
         [boxClasses.bleed]: bleed,
       })}
     >
-      <UnstyledHeading headingLevel={headingLevel}>
+      <UnstyledHeading level={headingLevel}>
         <button
           aria-expanded={stateExpanded}
           className={classNames({

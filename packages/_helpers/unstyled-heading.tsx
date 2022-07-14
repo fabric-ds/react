@@ -2,18 +2,18 @@ import React, { PropsWithChildren } from 'react';
 import { HeadingLevel } from './props';
 
 export const UnstyledHeading = ({
-  headingLevel,
+  level,
   children,
   ...attrs
 }: PropsWithChildren<{
-  headingLevel?: HeadingLevel;
+  level?: HeadingLevel;
 }>) => {
-  if (!headingLevel) {
+  if (!level) {
     return <React.Fragment>{children}</React.Fragment>;
   }
 
   // We must tell TypeScript that Heading is a valid HTML tag name
-  const Heading = `h${headingLevel}` as keyof JSX.IntrinsicElements;
+  const Heading = `h${level}` as keyof JSX.IntrinsicElements;
 
   return (
     <Heading
