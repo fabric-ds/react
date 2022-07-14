@@ -1,3 +1,12 @@
+# [1.4.0-next.6](https://github.com/fabric-ds/react/compare/v1.4.0-next.5...v1.4.0-next.6) (2022-07-14)
+
+
+### Features
+
+* **_helpers:** add UnstyledHeading component to wrap elements in a heading tag ([d9492a4](https://github.com/fabric-ds/react/commit/d9492a44bf4bdd472af9ffcc16aea4ef313b8681))
+* **expandable:** Add headingLevel prop ([084e1b5](https://github.com/fabric-ds/react/commit/084e1b5ead974034102a2191a9ce1aa763fefb4c))
+* **unstyled-heading:** rename prop from headlingLevel to level ([0526fd8](https://github.com/fabric-ds/react/commit/0526fd8c9e7efef40da3ec99d2619113f46b1e2a))
+
 # [1.4.0-next.5](https://github.com/fabric-ds/react/compare/v1.4.0-next.4...v1.4.0-next.5) (2022-07-07)
 
 
