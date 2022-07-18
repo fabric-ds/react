@@ -110,7 +110,7 @@ function ExpansionBehaviour({ animated, stateExpanded, children }) {
         'overflow-hidden': true,
         'h-0 invisible': !stateExpanded,
       })}
-      aria-hidden={!stateExpanded}
+      aria-hidden={!stateExpanded ? true : undefined}
     >
       {children}
     </div>
