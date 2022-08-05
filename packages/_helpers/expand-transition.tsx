@@ -39,7 +39,7 @@ export function ExpandTransition({
 
   return (
     <div ref={expandableRef} aria-hidden={!show ? true : undefined}>
-      {removeElement ? <React.Fragment /> : children}
+      {removeElement ? null : children}
     </div>
   );
 }
