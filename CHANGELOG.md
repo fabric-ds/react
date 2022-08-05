@@ -1,3 +1,16 @@
+# [1.4.0-next.7](https://github.com/fabric-ds/react/compare/v1.4.0-next.6...v1.4.0-next.7) (2022-08-05)
+
+
+### Bug Fixes
+
+* **alert:** make screen readers recognize nested "alert" role attributes ([fd69c9a](https://github.com/fabric-ds/react/commit/fd69c9a80c2a453f86841044f95eb673e599a497))
+* don't set aria-hidden if value is false ([1b901ca](https://github.com/fabric-ds/react/commit/1b901ca96f0fe08f30851fe224c8d5f628ccd12e))
+
+
+### Features
+
+* **alert:** add role prop with "alert" value as default ([2a4a8b3](https://github.com/fabric-ds/react/commit/2a4a8b33c81e1960773a895fdb96f01fc0d07e0e))
+
 # [1.4.0-next.6](https://github.com/fabric-ds/react/compare/v1.4.0-next.5...v1.4.0-next.6) (2022-07-14)
 
 
