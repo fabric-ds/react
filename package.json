@@ -102,7 +102,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@fabric-ds/core": "0.0.13",
+    "@fabric-ds/core": "0.0.15",
     "@fabric-ds/css": "^1.1.4",
     "d3-scale": "^4.0.2",
     "react-focus-lock": "^2.5.2",
