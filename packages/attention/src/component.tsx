@@ -4,6 +4,7 @@ import {
   opposites,
   rotation,
   useRecompute as recompute,
+  arrowLabels,
 } from '@fabric-ds/core/attention';
 import { attention as c } from '@fabric-ds/css/component-classes';
 import { ArrowProps, AttentionProps } from './props';
@@ -114,6 +115,7 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
 
   return (
     <div
+      aria-label={arrowLabels[arrowDirection]}
       ref={ref}
       className={classNames({
         [c.arrowBase]: true,
