@@ -4,6 +4,7 @@ import {
   opposites,
   rotation,
   useRecompute as recompute,
+  arrowLabels,
 } from '@fabric-ds/core/attention';
 import { attention as c } from '@fabric-ds/css/component-classes';
 import { ArrowProps, AttentionProps } from './props';
@@ -20,7 +21,10 @@ export function Attention(props: AttentionProps) {
   } = props;
 
   const [actualDirection, setActualDirection] = useState(placement);
+  // Don't show attention element before its position is computed on first render
+  const [isVisible, setIsVisible] = useState<Boolean | undefined>(false);
 
+  const isMounted = useRef(true);
   const attentionRef = useRef<HTMLDivElement | null>(null);
   const arrowRef = useRef<HTMLDivElement | null>(null);
 
@@ -62,13 +66,26 @@ export function Attention(props: AttentionProps) {
     recompute(attentionState);
   });
 
+  useEffect(() => {
+    if (isMounted.current) {
+      isMounted.current = false;
+
+      // update attention's visibility after first render if showing by default or it's of type callout
+      if (isShowing === true || props.callout) {
+        setIsVisible(isShowing);
+      }
+    } else {
+      setIsVisible(isShowing);
+    }
+  }, [isShowing, props.callout]);
+
   return (
     <div
       className={classNames(
         {
           'absolute z-50': !props.callout,
-          invisible: !isShowing && !props.callout,
-          hidden: !isShowing && !props.tooltip,
+          invisible: !isVisible && !props.callout,
+          hidden: !isVisible && !props.tooltip,
         },
         className,
       )}
@@ -98,6 +115,7 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
 
   return (
     <div
+      aria-label={arrowLabels[arrowDirection]}
       ref={ref}
       className={classNames({
         [c.arrowBase]: true,
