@@ -27,6 +27,10 @@ export function Expandable(props: ExpandableProps) {
 
   const [stateExpanded, setStateExpanded] = React.useState(expanded);
 
+  React.useEffect(() => {
+    setStateExpanded(expanded);
+  }, [expanded]);
+
   const toggleExpandable = (state) => {
     setStateExpanded(!state);
     if (onChange) onChange(!state);
