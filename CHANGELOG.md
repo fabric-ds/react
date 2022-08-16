@@ -1,3 +1,15 @@
+# [1.4.0-next.8](https://github.com/fabric-ds/react/compare/v1.4.0-next.7...v1.4.0-next.8) (2022-08-16)
+
+
+### Bug Fixes
+
+* **attention:** make attention visible only after first computing of its position ([c606ec6](https://github.com/fabric-ds/react/commit/c606ec6570ada9e028035d12ff64e7f31d9dd2ed))
+
+
+### Features
+
+* **attention:** add aria-label to arrow component ([fbd6847](https://github.com/fabric-ds/react/commit/fbd684729daa5ed317c2b572c3183d76f62c3110))
+
 # [1.4.0-next.7](https://github.com/fabric-ds/react/compare/v1.4.0-next.6...v1.4.0-next.7) (2022-08-05)
 
 
