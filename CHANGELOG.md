@@ -1,3 +1,10 @@
+# [1.4.0-next.9](https://github.com/fabric-ds/react/compare/v1.4.0-next.8...v1.4.0-next.9) (2022-08-16)
+
+
+### Bug Fixes
+
+* **expandable:** listen for expanded prop change if it's updated outside of the component ([a9464f7](https://github.com/fabric-ds/react/commit/a9464f78e56e522e69f4f13fd6e4e06ecfa9ee80))
+
 # [1.4.0-next.8](https://github.com/fabric-ds/react/compare/v1.4.0-next.7...v1.4.0-next.8) (2022-08-16)
 
 
