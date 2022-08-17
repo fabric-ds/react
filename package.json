@@ -68,7 +68,7 @@
     "d3-scale": "^4.0.2",
     "dotenv-webpack": "^7.1.0",
     "element-collapse": "^1.0.1",
-    "esbuild": "^0.13.3",
+    "esbuild": "0.15.5",
     "eslint": "^7.18.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
