@@ -1,3 +1,30 @@
+# [1.4.0](https://github.com/fabric-ds/react/compare/v1.3.1...v1.4.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* alert icon gets flexed when content has overflow ([#132](https://github.com/fabric-ds/react/issues/132)) ([b02b288](https://github.com/fabric-ds/react/commit/b02b28862f488c802eff9108ce3c47d4053168f8))
+* **alert:** make screen readers recognize nested "alert" role attributes ([fd69c9a](https://github.com/fabric-ds/react/commit/fd69c9a80c2a453f86841044f95eb673e599a497))
+* **attention:** make attention visible only after first computing of its position ([c606ec6](https://github.com/fabric-ds/react/commit/c606ec6570ada9e028035d12ff64e7f31d9dd2ed))
+* **card:** Add button type to sr-only button ([21e70a4](https://github.com/fabric-ds/react/commit/21e70a4b499f20425b2403d06d25572d13be6f84))
+* **deps:** update dependency react-spring to v9 ([e8094f6](https://github.com/fabric-ds/react/commit/e8094f6e6dbbece3a4324e8415389f0c23f276b3))
+* don't set aria-hidden if value is false ([1b901ca](https://github.com/fabric-ds/react/commit/1b901ca96f0fe08f30851fe224c8d5f628ccd12e))
+* **expandable:** listen for expanded prop change if it's updated outside of the component ([a9464f7](https://github.com/fabric-ds/react/commit/a9464f78e56e522e69f4f13fd6e4e06ecfa9ee80))
+* **expandable:** use local expanded state to control chevron's rotation ([6fd2fb8](https://github.com/fabric-ds/react/commit/6fd2fb8d830817a6bd7f0517f2ec45030be65b72))
+* export toggle item ([1ee6580](https://github.com/fabric-ds/react/commit/1ee6580cc30e7a09c8efa49ad6d8ab2ba2d0d63f))
+
+
+### Features
+
+* **_helpers:** add UnstyledHeading component to wrap elements in a heading tag ([d9492a4](https://github.com/fabric-ds/react/commit/d9492a44bf4bdd472af9ffcc16aea4ef313b8681))
+* **alert:** add role prop with "alert" value as default ([2a4a8b3](https://github.com/fabric-ds/react/commit/2a4a8b33c81e1960773a895fdb96f01fc0d07e0e))
+* **attention:** add aria-label to arrow component ([fbd6847](https://github.com/fabric-ds/react/commit/fbd684729daa5ed317c2b572c3183d76f62c3110))
+* **expandable:** Add headingLevel prop ([084e1b5](https://github.com/fabric-ds/react/commit/084e1b5ead974034102a2191a9ce1aa763fefb4c))
+* **expandable:** make Expandable accept custom title ([24725f0](https://github.com/fabric-ds/react/commit/24725f0c9acbeeb60f40ac5eb0f52ad3c9eae88b))
+* **toggle:** add noVisibleLabel prop to Toggle component ([ca192dc](https://github.com/fabric-ds/react/commit/ca192dccebd16f9e87720defd88b4cbf83f3d3e9))
+* **toggle:** make labelContent accessible to screen readers ([7b63e53](https://github.com/fabric-ds/react/commit/7b63e537ca8c78e7aedd878b9a57e27e2714def3))
+* **unstyled-heading:** rename prop from headlingLevel to level ([0526fd8](https://github.com/fabric-ds/react/commit/0526fd8c9e7efef40da3ec99d2619113f46b1e2a))
+
 # [1.4.0-next.10](https://github.com/fabric-ds/react/compare/v1.4.0-next.9...v1.4.0-next.10) (2022-08-22)
 
 
