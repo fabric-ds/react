@@ -1,3 +1,10 @@
+# [1.4.0-next.10](https://github.com/fabric-ds/react/compare/v1.4.0-next.9...v1.4.0-next.10) (2022-08-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-spring to v9 ([e8094f6](https://github.com/fabric-ds/react/commit/e8094f6e6dbbece3a4324e8415389f0c23f276b3))
+
 # [1.4.0-next.9](https://github.com/fabric-ds/react/compare/v1.4.0-next.8...v1.4.0-next.9) (2022-08-16)
 
 
