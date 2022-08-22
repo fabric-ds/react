@@ -6,6 +6,7 @@ import { ExpandTransition } from '../../_helpers';
 export function Alert({
   show,
   type,
+  role = 'alert',
   children,
   ...props
 }: PropsWithChildren<AlertProps>) {
@@ -14,13 +15,19 @@ export function Alert({
   return (
     <ExpandTransition show={show}>
       <div
+        role={role}
         className={classNames(
           props.className,
           `flex p-16 border rounded-4 border-l-4 bg-${color}-50 border-${color}-300`,
         )}
         style={{ borderLeftColor: `var(--f-${color}-600)`, ...props.style }}
       >
-        <div className={`mr-8 text-${color}-600`}>{icon}</div>
+        <div
+          className={`w-16 mr-8 text-${color}-600`}
+          style={{ minWidth: '16px' }}
+        >
+          {icon}
+        </div>
         <div className="last-child:mb-0 text-14">{children}</div>
       </div>
     </ExpandTransition>

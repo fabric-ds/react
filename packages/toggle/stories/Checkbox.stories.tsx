@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Toggle } from '../src';
 
 const metadata = { title: 'Forms/Toggle/Checkbox' };
@@ -9,6 +9,20 @@ const options = [
   { label: 'Microsoft', value: 'microsoft' },
   { label: 'Amazon', value: 'amazon' },
 ];
+
+export const SingleOptionWithInvisibleLabel = () => {
+  const [value, setValue] = useState(false);
+
+  return (
+    <Toggle
+      onChange={() => setValue(!value)}
+      checked={value}
+      type="checkbox"
+      label="Toggle X"
+      noVisibleLabel
+    />
+  );
+};
 
 export const SingleOption = () => {
   return (

@@ -21,21 +21,31 @@ function ExpandableAlert() {
 
   return (
     <>
-      <Alert type="info" show={show}>
-        <p className="font-bold">Title Caption-Strong</p>
-        <p>This is the message text that can be short or a little bit long</p>
-        <a>Link to more information</a>
+      <Button
+        className="mb-16"
+        small
+        primary
+        onClick={() => {
+          setShow(false);
+          setTimeout(() => setShow(true), 500);
+        }}
+        aria-controls="example-alert"
+        aria-expanded={show}
+      >
+        Hide and show "info" variant of the alert
+      </Button>
+
+      <Alert id="example-alert" type="info" show={show}>
+        <p className="font-bold">This is "info" variant of the alert element</p>
+        <p>With an additional description</p>
+        <a>And a link to more information</a>
         <div className="mt-8 space-x-8">
-          <Button small>Primary CTA</Button>
+          <Button small>Primary button</Button>
           <Button small secondary quiet>
-            Secondary
+            Secondary button
           </Button>
         </div>
       </Alert>
-
-      <Button className="mt-16" small primary onClick={() => setShow(!show)}>
-        {show ? 'Hide alert' : 'Show alert'}
-      </Button>
     </>
   );
 }
@@ -45,7 +55,7 @@ function ExpandableAlert() {
 
 ```jsx example
 <Alert type="negative" show>
-  This is the message text that can be short or a little bit long
+  This is "negative" variant of the alert element
 </Alert>
 ```
 
@@ -53,7 +63,7 @@ function ExpandableAlert() {
 
 ```jsx example
 <Alert type="positive" show>
-  This is the message text that can be short or a little bit long
+  This is "positive" variant of the alert element
 </Alert>
 ```
 
@@ -61,7 +71,7 @@ function ExpandableAlert() {
 
 ```jsx example
 <Alert type="warning" show>
-  This is the message text that can be short or a little bit long
+  This is "warning" variant of the alert element
 </Alert>
 ```
 
@@ -69,8 +79,57 @@ function ExpandableAlert() {
 
 ```jsx example
 <Alert type="info" show>
-  This is the message text that can be short or a little bit long
+  This is "info" variant of the alert element
 </Alert>
+```
+
+## Accessibility
+
+Use the ARIA live region `role` attribute to provide meaning to the alert
+element (defaults to "alert"). If you want to remove the role from the alert and
+assign it to its particular child (e.g. title), you can do so by setting `role`
+property of the `Alert` component to an empty string and assigning a respective
+`role` attribute on the child element. Read more about live region `role`
+attribute on
+[MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#roles_with_implicit_live_region_attributes).
+
+### Alert with "alert" role on a descendand element
+
+```jsx example
+function ExpandableAlertWithOverridenRole() {
+  const [show, setShow] = React.useState(true);
+
+  return (
+    <>
+      <Button
+        className="mb-16"
+        small
+        primary
+        onClick={() => {
+          setShow(false);
+          setTimeout(() => setShow(true), 500);
+        }}
+        aria-controls="example2-alert"
+        aria-expanded={show}
+      >
+        Hide and show alert
+      </Button>
+      <Alert id="example2-alert" type="info" show={show} role="">
+        <p role="alert" className="font-bold">
+          This is "info" variant of the alert element
+        </p>
+        <p>With an additional description</p>
+        <a>And a link to more information</a>
+        <div className="mt-8 space-x-8">
+          <Button small>Primary button</Button>
+          <Button small secondary quiet>
+            Secondary button
+          </Button>
+        </div>
+      </Alert>
+    </>
+  );
+}
 ```
 
 ## Props

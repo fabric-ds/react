@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { HeadingLevel } from '../../_helpers/props';
 
 export type ExpandableProps = {
   children: React.ReactNode;
@@ -68,4 +69,10 @@ export type ExpandableProps = {
    * @default false
    */
   animated?: boolean;
+
+  /**
+   * Wrap the toggle button in a heading element with the specified level.
+   * If headingLevel is not specified, the button will not be wrapped by a heading element.
+   */
+  headingLevel?: HeadingLevel;
 };

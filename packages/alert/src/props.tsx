@@ -8,6 +8,10 @@ export type AlertProps = {
    */
   type: 'negative' | 'positive' | 'warning' | 'info';
   /**
+   * ARIA live region "role" attribute value
+   */
+  role: string;
+  /**
    * Additional classes to include
    */
   className?: string;

@@ -4,8 +4,8 @@ import {
   buttonReset,
 } from '@fabric-ds/css/component-classes';
 import React from 'react';
-import { ExpandTransition } from '../../_helpers';
-import type { ExpandableProps } from './props';
+import { ExpandTransition, UnstyledHeading } from '../../_helpers';
+import { ExpandableProps } from './props';
 
 export function Expandable(props: ExpandableProps) {
   const {
@@ -21,10 +21,15 @@ export function Expandable(props: ExpandableProps) {
     onChange,
     chevron = true,
     animated,
+    headingLevel,
     ...rest
   } = props;
 
   const [stateExpanded, setStateExpanded] = React.useState(expanded);
+
+  React.useEffect(() => {
+    setStateExpanded(expanded);
+  }, [expanded]);
 
   const toggleExpandable = (state) => {
     setStateExpanded(!state);
@@ -40,45 +45,52 @@ export function Expandable(props: ExpandableProps) {
         [boxClasses.bleed]: bleed,
       })}
     >
-      <button
-        aria-expanded={stateExpanded}
-        className={classNames({
-          [buttonClass || '']: true,
-          [buttonReset + ' hover:underline focus:underline']: true,
-          ['w-full text-left relative ' + boxClasses.box]: box,
-          'hover:text-aqua-700 active:text-aqua-800': info,
-        })}
-        onClick={() => toggleExpandable(stateExpanded)}
-      >
-        {title && <span className="h4">{title}</span>}
-        {chevron && (
-          <div
-            className={classNames({
-              'inline-block align-middle transform transition-transform': true,
-              '-rotate-180': expanded,
-              'relative left-8': !box,
-              'box-chevron absolute right-16': box,
-            })}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="none"
-              viewBox="0 0 16 16"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M2.5 5.5L8 11l5.5-5.5"
-              />
-            </svg>
+      <UnstyledHeading level={headingLevel}>
+        <button
+          aria-expanded={stateExpanded}
+          className={classNames({
+            [buttonClass || '']: true,
+            [buttonReset + ' hover:underline focus:underline']: true,
+            ['w-full text-left relative ' + boxClasses.box]: box,
+            'hover:text-aqua-700 active:text-aqua-800': info,
+          })}
+          onClick={() => toggleExpandable(stateExpanded)}
+        >
+          <div className="flex justify-between align-center">
+            {typeof title === 'string' ? (
+              <span className="h4">{title}</span>
+            ) : (
+              title
+            )}
+            {chevron && (
+              <div
+                className={classNames({
+                  'self-center transform transition-transform': true,
+                  '-rotate-180': stateExpanded,
+                  'relative left-8': !box,
+                  'box-chevron': box,
+                })}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M2.5 5.5L8 11l5.5-5.5"
+                  />
+                </svg>
+              </div>
+            )}
           </div>
-        )}
-      </button>
-
+        </button>
+      </UnstyledHeading>
       <ExpansionBehaviour animated={animated} stateExpanded={stateExpanded}>
         <div
           className={classNames({
@@ -102,7 +114,7 @@ function ExpansionBehaviour({ animated, stateExpanded, children }) {
         'overflow-hidden': true,
         'h-0 invisible': !stateExpanded,
       })}
-      aria-hidden={!stateExpanded}
+      aria-hidden={!stateExpanded ? true : undefined}
     >
       {children}
     </div>

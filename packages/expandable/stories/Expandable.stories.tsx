@@ -1,3 +1,4 @@
+import { IconBag16 } from '@fabric-ds/icons/react';
 import * as React from 'react';
 import { Expandable } from '../src';
 
@@ -12,6 +13,21 @@ export const Default = () => (
 
 export const Box = () => (
   <Expandable title="This is a title" box>
+    <h1>I am expandable</h1>
+  </Expandable>
+);
+
+export const BoxWithCustomTitle = () => (
+  <Expandable
+    title={
+      <div className="flex flex-row items-center">
+        <IconBag16 />
+        <p className="ml-8 mb-0">This is a title with an icon</p>
+      </div>
+    }
+    box
+    info
+  >
     <h1>I am expandable</h1>
   </Expandable>
 );
@@ -66,6 +82,14 @@ export const NoChevron = () => {
 export const Animated = () => {
   return (
     <Expandable title="Animated box" box info animated>
+      <h1>I am expandable</h1>
+    </Expandable>
+  );
+};
+
+export const Heading = () => {
+  return (
+    <Expandable title="I'm also a heading" headingLevel={1}>
       <h1>I am expandable</h1>
     </Expandable>
   );
