@@ -1,3 +1,10 @@
+# [1.4.0-next.11](https://github.com/fabric-ds/react/compare/v1.4.0-next.10...v1.4.0-next.11) (2022-09-12)
+
+
+### Bug Fixes
+
+* **expandable:** set button type to 'button' to prevent default submit behaviour ([#147](https://github.com/fabric-ds/react/issues/147)) ([cadeafe](https://github.com/fabric-ds/react/commit/cadeafe7ad6b9c39da3ab358c818e171aa51140b))
+
 # [1.4.0-next.10](https://github.com/fabric-ds/react/compare/v1.4.0-next.9...v1.4.0-next.10) (2022-08-22)
 
 
