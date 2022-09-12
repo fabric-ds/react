@@ -47,6 +47,7 @@ export function Expandable(props: ExpandableProps) {
     >
       <UnstyledHeading level={headingLevel}>
         <button
+          type='button'
           aria-expanded={stateExpanded}
           className={classNames({
             [buttonClass || '']: true,
