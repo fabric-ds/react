@@ -1,3 +1,10 @@
+# [1.4.0-next.12](https://github.com/fabric-ds/react/compare/v1.4.0-next.11...v1.4.0-next.12) (2022-09-14)
+
+
+### Bug Fixes
+
+* **alert:** type 'role' prop as optional ([#148](https://github.com/fabric-ds/react/issues/148)) ([895e69c](https://github.com/fabric-ds/react/commit/895e69c5c58ef4a9c5377a43ef117579bcb8fc14))
+
 # [1.4.0-next.11](https://github.com/fabric-ds/react/compare/v1.4.0-next.10...v1.4.0-next.11) (2022-09-12)
 
 
