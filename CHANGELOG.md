@@ -1,3 +1,10 @@
+# [1.4.0-next.13](https://github.com/fabric-ds/react/compare/v1.4.0-next.12...v1.4.0-next.13) (2022-09-20)
+
+
+### Bug Fixes
+
+* remove additional hidden label ([545e7f8](https://github.com/fabric-ds/react/commit/545e7f83116ec8be201a20f1173bf4ea4c40a9dc))
+
 # [1.4.0-next.12](https://github.com/fabric-ds/react/compare/v1.4.0-next.11...v1.4.0-next.12) (2022-09-14)
 
 
