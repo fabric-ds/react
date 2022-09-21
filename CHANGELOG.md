@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/fabric-ds/react/compare/v1.4.0...v1.4.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **alert:** type 'role' prop as optional ([#148](https://github.com/fabric-ds/react/issues/148)) ([895e69c](https://github.com/fabric-ds/react/commit/895e69c5c58ef4a9c5377a43ef117579bcb8fc14))
+* **expandable:** set button type to 'button' to prevent default submit behaviour ([#147](https://github.com/fabric-ds/react/issues/147)) ([cadeafe](https://github.com/fabric-ds/react/commit/cadeafe7ad6b9c39da3ab358c818e171aa51140b))
+* remove additional hidden label ([545e7f8](https://github.com/fabric-ds/react/commit/545e7f83116ec8be201a20f1173bf4ea4c40a9dc))
+
 ## [1.4.1-next.1](https://github.com/fabric-ds/react/compare/v1.4.0...v1.4.1-next.1) (2022-09-20)
 
 
