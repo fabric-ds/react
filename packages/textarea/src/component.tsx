@@ -49,7 +49,17 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         })}
         style={style}
       >
-        {label && <label htmlFor={id}>{label}{optional && <span className="pl-8 font-normal text-14 text-gray-500"> (valgfritt)</span>}</label>}
+        {label && (
+          <label htmlFor={id}>
+            {label}
+            {optional && (
+              <span className="pl-8 font-normal text-14 text-gray-500">
+                {' '}
+                (valgfritt)
+              </span>
+            )}
+          </label>
+        )}
         <textarea
           {...rest}
           aria-describedby={helpId}

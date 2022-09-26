@@ -47,7 +47,17 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             'input--is-read-only': readOnly,
           })}
         >
-          {label && <label htmlFor={id}>{label}{optional && <span className="pl-8 font-normal text-14 text-gray-500"> (valgfritt)</span>}</label>}
+          {label && (
+            <label htmlFor={id}>
+              {label}
+              {optional && (
+                <span className="pl-8 font-normal text-14 text-gray-500">
+                  {' '}
+                  (valgfritt)
+                </span>
+              )}
+            </label>
+          )}
           <div className="relative">
             <input
               {...rest}

@@ -4,7 +4,17 @@ import { classNames } from '@chbphone55/classnames';
 import type { SelectProps } from './props';
 
 const setup = (props) => {
-  const { className, invalid, id, hint, always, label, style, optional, ...rest } = props;
+  const {
+    className,
+    invalid,
+    id,
+    hint,
+    always,
+    label,
+    style,
+    optional,
+    ...rest
+  } = props;
 
   const helpId = hint ? `${id}__hint` : undefined;
 
@@ -50,7 +60,17 @@ function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
 
   return (
     <div className={classes} {...div}>
-      {label.children && <label htmlFor={label.htmlFor}>{label.children}{optional && <span className="pl-8 font-normal text-14 text-gray-500"> (valgfritt)</span>}</label>}
+      {label.children && (
+        <label htmlFor={label.htmlFor}>
+          {label.children}
+          {optional && (
+            <span className="pl-8 font-normal text-14 text-gray-500">
+              {' '}
+              (valgfritt)
+            </span>
+          )}
+        </label>
+      )}
       <div className="input--select__wrap">
         <select ref={ref} {...select} />
       </div>

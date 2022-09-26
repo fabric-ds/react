@@ -295,7 +295,7 @@ export const AsyncFetch = () => {
       return () => {
         clearTimeout(handler);
       };
-    }, [query]);
+    }, [delay, query]);
 
     return characters;
   }
