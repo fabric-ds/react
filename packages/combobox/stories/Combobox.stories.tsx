@@ -327,3 +327,32 @@ export const AsyncFetch = () => {
     </Combobox>
   );
 };
+
+export const Optional = () => {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <>
+      <p>
+        When the user clicks inside the text box the current value will be
+        selected (like the URL bar in browsers).
+      </p>
+      <Combobox
+        value={value}
+        onChange={(val) => setValue(val)}
+        onSelect={(val) => {
+          setValue(val);
+          action('select')(val);
+        }}
+        label="Stillingstittel"
+        optional
+        options={[
+          { value: 'Product manager' },
+          { value: 'Produktledelse' },
+          { value: 'Prosessoperatør' },
+          { value: 'Prosjekteier' },
+        ]}
+      />
+    </>
+  );
+};

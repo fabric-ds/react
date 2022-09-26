@@ -61,3 +61,7 @@ export const minimumRows3 = () => (
 export const maximumRows3 = () => (
   <TextArea label="Description" maximumRows={3} />
 );
+
+export const optional = () => (
+  <TextArea label="Description" optional />
+);

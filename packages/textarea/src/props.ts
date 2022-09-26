@@ -62,6 +62,9 @@ export type TextAreaProps = {
 
   /** The current value (controlled). */
   value?: string;
+
+  /** Whether to show optional text */
+  optional?: boolean;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['textarea']>,
   // omit these, otherwise they seem to form a union type (in the prop table docs)

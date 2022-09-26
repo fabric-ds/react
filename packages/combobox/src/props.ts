@@ -114,6 +114,9 @@ export type ComboboxProps = {
 
   /** For affix use */
   children?: React.ReactNode;
+
+  /** Whether to show optional text */
+  optional?: boolean;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
   'onChange' | 'type' | 'value' | 'label'
