@@ -52,7 +52,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               {label}
               {optional && (
                 <span className="pl-8 font-normal text-14 text-gray-500">
-                  {' '}
                   (valgfritt)
                 </span>
               )}
