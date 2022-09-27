@@ -38,6 +38,7 @@ export function ExpandTransition({
     }
   }, [show]);
 
+  // Set initial style to prevent glitching bug
   const initialStyle = !initialShow.current ? 'overflow-hidden h-0' : undefined;
 
   return (
