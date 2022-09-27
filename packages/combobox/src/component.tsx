@@ -61,6 +61,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       onFocus,
       onBlur,
       optional,
+      feedback,
       ...rest
     } = props;
 
@@ -249,6 +250,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           {getAriaText(currentOptions, value)}
         </span>
 
+        {feedback && <div className="absolute pb-8 left-0 right-0 bg-primary rounded-8 bg-white shadow"><div id="static-text" className="block p-8">{feedback}</div></div>}
+        {!feedback &&
         <div
           hidden={!isOpen || !currentOptions.length}
           className={classNames(
@@ -320,6 +323,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             })}
           </ul>
         </div>
+        }
       </div>
     );
   },

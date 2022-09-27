@@ -356,3 +356,96 @@ export const Optional = () => {
     </>
   );
 };
+
+export const Feedback = () => {
+  return (
+    <Combobox
+      label="Star Wars character"
+      disableStaticFiltering
+      matchTextSegments
+      openOnFocus
+      value="asd"
+      feedback="Søker..."
+      onChange={(val) => console.log('change')}
+      options={[
+        { value: 'Product manager' },
+        { value: 'Produktledelse' },
+        { value: 'Prosessoperatør' },
+        { value: 'Prosjekteier' },
+      ]}
+    />
+  );
+};
+
+export const AsyncFetchWithFeedback = () => {
+  const [query, setQuery] = React.useState('');
+  const [value, setValue] = React.useState('');
+  const [feedback, setFeedback] = React.useState('');
+  const characters = useDebouncedSearch(query, 300);
+
+  // Generic debouncer
+  function useDebouncedSearch(query, delay) {
+    const [characters, setCharacters] = React.useState([]);
+
+    React.useEffect(() => {
+      if (!query.length) { 
+        setCharacters([]);
+        return;
+      }
+
+      const handler = setTimeout(async () => {
+        setFeedback('Søker...');
+        try {
+          const res = await fetch('https://swapi.dev/api/people/?search=' + query.trim())
+          const { results } = await res.json();
+          console.log('Results from API', query);
+          setCharacters(results.map((c) => ({ value: c.name })));
+          if (results.length) {
+            setFeedback('');
+          } else {
+            setFeedback('Ingen treff');
+          }
+        } catch(err) {
+          setFeedback('API Fail');
+        }
+      }, delay);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [delay, query]);
+
+    return characters;
+  }
+
+  return (
+    <Combobox
+      label="Star Wars character"
+      disableStaticFiltering
+      matchTextSegments
+      openOnFocus
+      value={value}
+      onChange={(val) => {
+        setValue(val);
+        setQuery(val);
+      }}
+      onSelect={(val) => {
+        setValue(val);
+        action('select')(val);
+      }}
+      onBlur={() => setFeedback('')}
+      options={characters}
+      feedback={feedback}
+    >
+      <Affix
+        suffix
+        clear
+        aria-label="Clear text"
+        onClick={() => {
+          setValue('');
+          setQuery('');
+        }}
+      />
+    </Combobox>
+  );
+};

@@ -117,6 +117,9 @@ export type ComboboxProps = {
 
   /** Whether to show optional text */
   optional?: boolean;
+
+  /** Feedback string to show users as they interact with the combobox */
+  feedback?: string;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
   'onChange' | 'type' | 'value' | 'label'
