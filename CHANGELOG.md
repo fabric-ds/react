@@ -1,3 +1,10 @@
+## [1.4.2-next.1](https://github.com/fabric-ds/react/compare/v1.4.1...v1.4.2-next.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* add missing optional props to forms ([b6415d2](https://github.com/fabric-ds/react/commit/b6415d22bffcb98dd58ba9445749fccab674cc4f))
+
 ## [1.4.1](https://github.com/fabric-ds/react/compare/v1.4.0...v1.4.1) (2022-09-21)
 
 ### Bug Fixes
