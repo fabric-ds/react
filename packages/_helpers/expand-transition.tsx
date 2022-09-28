@@ -8,7 +8,6 @@ export function ExpandTransition({
   const [removeElement, setRemoveElement] = useState(!show);
   const expandableRef = useRef<HTMLDivElement>(null);
   const isMounted = useRef(false);
-  const initialShow = useRef<boolean>(show === true);
 
   function collapseElement(el: HTMLElement) {
     collapse(el, () => setRemoveElement(true));
@@ -38,15 +37,8 @@ export function ExpandTransition({
     }
   }, [show]);
 
-  // Set initial style to prevent glitching bug
-  const initialStyle = !initialShow.current ? 'overflow-hidden h-0' : undefined;
-
   return (
-    <div
-      className={initialStyle}
-      ref={expandableRef}
-      aria-hidden={!show ? true : undefined}
-    >
+    <div ref={expandableRef} aria-hidden={!show ? true : undefined}>
       {removeElement ? null : children}
     </div>
   );

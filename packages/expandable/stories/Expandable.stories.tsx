@@ -87,14 +87,6 @@ export const Animated = () => {
   );
 };
 
-export const AnimatedExpanded = () => {
-  return (
-    <Expandable title="Animated box" expanded box info animated>
-      <h1>I am expandable</h1>
-    </Expandable>
-  );
-};
-
 export const Heading = () => {
   return (
     <Expandable title="I'm also a heading" headingLevel={1}>
