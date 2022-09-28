@@ -84,3 +84,9 @@ export const invalid = () => (
     <TextField helpText="Error text" invalid />
   </div>
 );
+
+export const optional = () => (
+  <div className="flex flex-col space-y-48">
+    <TextField label="Address" optional />
+  </div>
+);

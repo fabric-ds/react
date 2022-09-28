@@ -279,6 +279,35 @@ function Example() {
 }
 ```
 
+### Optional prop
+
+Add the optional prop to indicate that the combobox field is not required.
+
+```jsx example
+function Example() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Combobox
+      label="Choose a fruit"
+      optional
+      value={value}
+      onChange={(val) => setValue(val)}
+      onSelect={(val) => {
+        alert(val);
+        setValue('');
+      }}
+      options={[
+        { value: 'Apple' },
+        { value: 'Banana' },
+        { value: 'Orange' },
+        { value: 'Pineapple' },
+      ]}
+    />
+  );
+}
+```
+
 ## Combobox Props
 
 ```props packages/combobox/src/component.tsx

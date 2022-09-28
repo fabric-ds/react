@@ -60,6 +60,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       onChange,
       onFocus,
       onBlur,
+      optional,
       ...rest
     } = props;
 
@@ -183,6 +184,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       id,
       value: navigationValueOrInputValue,
       label,
+      optional,
       invalid,
       helpText,
       placeholder,

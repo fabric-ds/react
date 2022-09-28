@@ -1,45 +1,32 @@
 {
-    "include": [
-        "packages",
-        "@types/index.d.ts"
-    ],
-    "compilerOptions": {
-        "emitDeclarationOnly": true,
-        "module": "ES2020",
-        "lib": [
-            "DOM",
-            "ES2020"
-        ],
-        "outFile": "./dist/npm/index.d.ts",
-        "target": "ES2020",
-        "declaration": true,
-        "sourceMap": true,
-        "rootDir": "packages",
-        "outDir": "dist/npm",
-        "strict": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "moduleResolution": "node",
-        "jsx": "react",
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "noEmit": false,
-        "resolveJsonModule": true,
-        "noImplicitAny": false,
-        "allowSyntheticDefaultImports": true,
-        "noEmitOnError": true,
-        "strictNullChecks": true
-    },
-    "typeRoots": [
-        "node_modules/@types",
-        "@types"
-    ],
-    "exclude": [
-        "**/__tests__",
-        "**/*.stories.tsx",
-        "docs"
-    ]
+  "include": ["packages", "@types/index.d.ts"],
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "module": "ES2020",
+    "lib": ["DOM", "ES2020"],
+    "outFile": "./dist/npm/index.d.ts",
+    "target": "ES2020",
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "packages",
+    "outDir": "dist/npm",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "noEmitOnError": true,
+    "strictNullChecks": true
+  },
+  "typeRoots": ["node_modules/@types", "@types"],
+  "exclude": ["**/__tests__", "**/*.stories.tsx", "docs"]
 }

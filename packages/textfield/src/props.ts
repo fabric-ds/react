@@ -77,6 +77,9 @@ export type TextFieldProps = {
 
   /** The current value (controlled). */
   value?: string;
+
+  /** Mark label to indicate that filling in this field is optional */
+  optional?: boolean;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
   // omit these, otherwise they seem to form a union type (in the prop table docs)
