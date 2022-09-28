@@ -1,3 +1,10 @@
+## [1.4.2-next.3](https://github.com/fabric-ds/react/compare/v1.4.2-next.2...v1.4.2-next.3) (2022-09-28)
+
+
+### Reverts
+
+* Revert "Revert "Fix(expandable): glitching animated expansion (#151)" (#154)" ([2ac7b0e](https://github.com/fabric-ds/react/commit/2ac7b0e1a11993ea63c4a1e4bdfe9c69bbc60747)), closes [#151](https://github.com/fabric-ds/react/issues/151) [#154](https://github.com/fabric-ds/react/issues/154)
+
 ## [1.4.2-next.2](https://github.com/fabric-ds/react/compare/v1.4.2-next.1...v1.4.2-next.2) (2022-09-28)
 
 
