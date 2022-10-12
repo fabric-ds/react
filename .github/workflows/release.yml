@@ -30,6 +30,6 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: npx semantic-release
       - name: Eik login and publish
-        run: npm run eik:login -k $EIK_TOKEN && npm run eik:publish || true
+        run: npm run eik:login -- -k $EIK_TOKEN && npm run eik:publish || true
         env:
           EIK_TOKEN: ${{ secrets.EIK_TOKEN }}
