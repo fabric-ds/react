@@ -61,3 +61,5 @@ export const noLabel = () => (
     </FabricSelect>
   </div>
 );
+
+export const optional = () => <Select optional />;

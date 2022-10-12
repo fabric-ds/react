@@ -14,8 +14,7 @@ function Title({ id, isInvalid, title, optional }) {
     >
       {title}
       {optional && (
-        <span className="pl-2 font-normal text-14 text-gray-500">
-          {' '}
+        <span className="pl-8 font-normal text-14 text-gray-500">
           (valgfritt)
         </span>
       )}

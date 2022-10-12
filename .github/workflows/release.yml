@@ -20,9 +20,9 @@ jobs:
         with:
           node-version: '16.x'
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install
       - name: Build
-        run: yarn build
+        run: npm run build
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,6 +30,6 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: npx semantic-release
       - name: Eik login and publish
-        run: yarn eik:login -k $EIK_TOKEN && yarn eik:publish || true
+        run: npm run eik:login -- -k $EIK_TOKEN && npm run eik:publish || true
         env:
           EIK_TOKEN: ${{ secrets.EIK_TOKEN }}

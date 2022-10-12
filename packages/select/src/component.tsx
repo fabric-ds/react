@@ -4,7 +4,17 @@ import { classNames } from '@chbphone55/classnames';
 import type { SelectProps } from './props';
 
 const setup = (props) => {
-  const { className, invalid, id, hint, always, label, style, ...rest } = props;
+  const {
+    className,
+    invalid,
+    id,
+    hint,
+    always,
+    label,
+    style,
+    optional,
+    ...rest
+  } = props;
 
   const helpId = hint ? `${id}__hint` : undefined;
 
@@ -24,6 +34,7 @@ const setup = (props) => {
         'aria-invalid': invalid,
         id,
       },
+      optional,
       help:
         always || invalid
           ? {
@@ -45,11 +56,20 @@ const setup = (props) => {
 function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
   const id = useId(props.id);
   const { attrs, classes } = setup({ ...props, id });
-  const { div, label, select, help } = attrs;
+  const { div, label, select, help, optional } = attrs;
 
   return (
     <div className={classes} {...div}>
-      {label.children && <label {...label} />}
+      {label.children && (
+        <label htmlFor={label.htmlFor}>
+          {label.children}
+          {optional && (
+            <span className="pl-8 font-normal text-14 text-gray-500">
+              (valgfritt)
+            </span>
+          )}
+        </label>
+      )}
       <div className="input--select__wrap">
         <select ref={ref} {...select} />
       </div>

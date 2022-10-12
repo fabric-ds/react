@@ -62,6 +62,18 @@ Select for accessibility. If the field is labeled by a separate element, an
 `aria-labelledby` prop should be provided using the id of the labeling element
 instead.
 
+### Optional
+
+Add the optional prop to indicate that the select is not required.
+
+```jsx example
+<Select label="Berries" optional>
+  <option value="s">Strawberries</option>
+  <option value="r">Raspberries</option>
+  <option value="c">Cloudberries</option>
+</Select>
+```
+
 ## Hint text
 
 Selects can provide additional context with `hint` if the label and placeholder

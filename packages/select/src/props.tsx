@@ -48,6 +48,9 @@ export type SelectProps = {
 
   /** The current value (controlled). */
   value?: string;
+
+  /** Whether to show optional text */
+  optional?: boolean;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['select']>,
   'onBlur' | 'onChange' | 'onFocus' | 'value' | 'defaultValue'
