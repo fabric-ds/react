@@ -1,3 +1,11 @@
+## [1.4.2-next.4](https://github.com/fabric-ds/react/compare/v1.4.2-next.3...v1.4.2-next.4) (2022-10-12)
+
+
+### Bug Fixes
+
+* remove unused d3-scale dependency ([#159](https://github.com/fabric-ds/react/issues/159)) ([23d59ff](https://github.com/fabric-ds/react/commit/23d59ffef078ca9d292c4bec942a4d9ce5b2e3a4))
+* remove unused react-spring dependency ([ba44d90](https://github.com/fabric-ds/react/commit/ba44d909d78e29fa660c8d4b08c67c1b4224abdc))
+
 ## [1.4.2-next.3](https://github.com/fabric-ds/react/compare/v1.4.2-next.2...v1.4.2-next.3) (2022-09-28)
 
 
