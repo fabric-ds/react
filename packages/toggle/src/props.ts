@@ -84,4 +84,9 @@ export interface ToggleProps {
    * Whether label should be invisible
    */
   noVisibleLabel?: boolean;
+  /**
+   * Whether a single option is indeterminate, or "partially checked."
+   * The checkbox will appear with a small dash instead of a tick to indicate that the option is not exactly checked or unchecked.
+   */
+  indeterminate?: boolean;
 }

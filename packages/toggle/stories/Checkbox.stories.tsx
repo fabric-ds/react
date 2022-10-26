@@ -1,10 +1,12 @@
+import React from 'react';
 import { useState } from 'react';
 import { Toggle } from '../src';
 
 const metadata = { title: 'Forms/Toggle/Checkbox' };
 export default metadata;
 
-const options = [
+type Option = { label: string; value: string };
+const options: Option[] = [
   { label: 'Apple', value: 'apple' },
   { label: 'Microsoft', value: 'microsoft' },
   { label: 'Amazon', value: 'amazon' },
@@ -53,6 +55,62 @@ export const SingleOptionCheckedUncontrolledDefault = () => {
       defaultChecked
       onChange={(checked) => console.log(checked)}
     />
+  );
+};
+
+export const IndeterminateState = () => {
+  const [selectAllChecked, setSelectAllChecked] = useState<boolean>(false);
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+
+  return (
+    <>
+      <Toggle
+        onChange={() => {
+          if (selectAllChecked) {
+            setSelectAllChecked(false);
+            setSelectedOptions([]);
+          } else {
+            setSelectAllChecked(true);
+            setSelectedOptions(options);
+          }
+        }}
+        checked={selectAllChecked}
+        title="Companies"
+        type="checkbox"
+        label="Select all"
+        indeterminate={
+          selectedOptions.length > 0 &&
+          selectedOptions.length !== options.length
+        }
+      />
+      <Toggle
+        type="checkbox"
+        options={options}
+        selected={selectedOptions}
+        onChange={(selected) => {
+          let updatedSelected = selectedOptions;
+
+          if (
+            selectedOptions.find(
+              (option: Option) => option.value === selected.value,
+            )
+          ) {
+            updatedSelected = selectedOptions.filter(
+              (option: Option) => option.value !== selected.value,
+            );
+          } else {
+            updatedSelected = [...selectedOptions, selected];
+          }
+
+          if (selectedOptions.length === options.length)
+            setSelectAllChecked(false);
+          if (updatedSelected.length === options.length)
+            setSelectAllChecked(true);
+
+          setSelectedOptions(updatedSelected);
+        }}
+      />
+    </>
   );
 };
 
