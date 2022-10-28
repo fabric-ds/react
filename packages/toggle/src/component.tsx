@@ -40,7 +40,8 @@ export function Toggle(props: ToggleProps) {
   const isInvalid = props.invalid;
   const isRadioGroup = props.type === 'radio' || props.type === 'radio-button';
 
-  const isControlled = !!props.selected || !!props.checked;
+  const isControlled =
+    props.selected !== undefined || props.checked !== undefined;
 
   return (
     <fieldset
