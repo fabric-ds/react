@@ -62,18 +62,36 @@ export const IndeterminateState = () => {
   const [selectAllChecked, setSelectAllChecked] = useState<boolean>(false);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
+  const handleSelectAll = (checked: boolean) => {
+    if (checked === false) {
+      setSelectedOptions([]);
+    } else {
+      setSelectedOptions(options);
+    }
+    setSelectAllChecked(checked);
+  };
+
+  const handleSelect = (selected: Option) => {
+    let updatedSelected = selectedOptions;
+
+    if (selectedOptions.some((option) => option.value === selected.value)) {
+      updatedSelected = selectedOptions.filter(
+        (option) => option.value !== selected.value,
+      );
+    } else {
+      updatedSelected = [...selectedOptions, selected];
+    }
+
+    if (selectedOptions.length === options.length) setSelectAllChecked(false);
+    if (updatedSelected.length === options.length) setSelectAllChecked(true);
+
+    setSelectedOptions(updatedSelected);
+  };
+
   return (
     <>
       <Toggle
-        onChange={() => {
-          if (selectAllChecked) {
-            setSelectAllChecked(false);
-            setSelectedOptions([]);
-          } else {
-            setSelectAllChecked(true);
-            setSelectedOptions(options);
-          }
-        }}
+        onChange={handleSelectAll}
         checked={selectAllChecked}
         title="Companies"
         type="checkbox"
@@ -87,28 +105,7 @@ export const IndeterminateState = () => {
         type="checkbox"
         options={options}
         selected={selectedOptions}
-        onChange={(selected) => {
-          let updatedSelected = selectedOptions;
-
-          if (
-            selectedOptions.find(
-              (option: Option) => option.value === selected.value,
-            )
-          ) {
-            updatedSelected = selectedOptions.filter(
-              (option: Option) => option.value !== selected.value,
-            );
-          } else {
-            updatedSelected = [...selectedOptions, selected];
-          }
-
-          if (selectedOptions.length === options.length)
-            setSelectAllChecked(false);
-          if (updatedSelected.length === options.length)
-            setSelectAllChecked(true);
-
-          setSelectedOptions(updatedSelected);
-        }}
+        onChange={handleSelect}
       />
     </>
   );
