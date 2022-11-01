@@ -7,6 +7,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
     const {
       disabled,
+      className,
       id: providedId,
       children,
       invalid,
@@ -40,12 +41,15 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         })}
       >
         <div
-          className={classNames({
-            'input mb-0': true,
-            'input--is-invalid': isInvalid,
-            'input--is-disabled': disabled,
-            'input--is-read-only': readOnly,
-          })}
+          className={classNames(
+            {
+              'input mb-0': true,
+              'input--is-invalid': isInvalid,
+              'input--is-disabled': disabled,
+              'input--is-read-only': readOnly,
+            },
+            className,
+          )}
         >
           {label && (
             <label htmlFor={id}>
