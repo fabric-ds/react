@@ -59,7 +59,7 @@ export const SingleOptionCheckedUncontrolledDefault = () => {
 };
 
 export const IndeterminateState = () => {
-  const [selectAllChecked, setSelectAllChecked] = useState<boolean>(false);
+  const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
   const handleSelectAll = (checked: boolean) => {
