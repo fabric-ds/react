@@ -27,7 +27,7 @@ export function Item({
   invalid,
   value,
   helpId,
-  indeterminate,
+  indeterminate = false,
   checked,
   defaultChecked,
   noVisibleLabel,
@@ -43,13 +43,8 @@ export function Item({
     if (!checkboxRef.current) {
       return;
     }
-
     // 'indeterminate' state of checkbox cannot be assigned via HTML: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
-    if (indeterminate) {
-      checkboxRef.current.indeterminate = true;
-    } else {
-      checkboxRef.current.indeterminate = false;
-    }
+    checkboxRef.current.indeterminate = indeterminate;
   }, [indeterminate]);
 
   return (
