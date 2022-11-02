@@ -176,15 +176,15 @@ function Example() {
       <Toggle
         onChange={handleSelectAll}
         checked={selectAllChecked}
-        title="Favourite desserts"
         type="checkbox"
-        label="Mark all"
+        label="Select all desserts"
         indeterminate={
           selectedOptions.length > 0 &&
           selectedOptions.length !== options.length
         }
       />
       <Toggle
+        title="Favourite desserts"
         type="checkbox"
         selected={selectedOptions}
         options={options}

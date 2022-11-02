@@ -93,9 +93,8 @@ export const IndeterminateState = () => {
       <Toggle
         onChange={handleSelectAll}
         checked={selectAllChecked}
-        title="Companies"
         type="checkbox"
-        label="Select all"
+        label="Select all companies"
         indeterminate={
           selectedOptions.length > 0 &&
           selectedOptions.length !== options.length
@@ -103,6 +102,7 @@ export const IndeterminateState = () => {
       />
       <Toggle
         type="checkbox"
+        title="Companies"
         options={options}
         selected={selectedOptions}
         onChange={handleSelect}
