@@ -124,6 +124,77 @@ function Example() {
 }
 ```
 
+## Checkbox with indeterminate state
+
+Sometimes we need to indicate that the state of a single checkbox is
+indeterminate, or "partially checked". The checkbox will appear with a small
+dash instead of a tick to indicate that the option is not exactly checked or
+unchecked.
+
+```jsx example
+function Example() {
+  const [selectAllChecked, setSelectAllChecked] = React.useState(false);
+  const [selectedOptions, setSelectedOptions] = React.useState([
+    { label: 'Apple pie', value: 'apple pie' },
+    { label: 'Pavlova', value: 'pavlova' },
+  ]);
+
+  const options = [
+    { label: 'Apple pie', value: 'apple pie' },
+    { label: 'Carrot cake', value: 'carrot cake' },
+    { label: 'Pavlova', value: 'pavlova' },
+  ];
+
+  const handleSelectAll = (checked) => {
+    if (checked === false) {
+      setSelectedOptions([]);
+    } else {
+      setSelectedOptions(options);
+    }
+    setSelectAllChecked(checked);
+  };
+
+  const handleSelect = (selected) => {
+    let updatedSelected = selectedOptions;
+
+    if (selectedOptions.some((option) => option.value === selected.value)) {
+      updatedSelected = selectedOptions.filter(
+        (option) => option.value !== selected.value,
+      );
+    } else {
+      updatedSelected = [...selectedOptions, selected];
+    }
+
+    if (selectedOptions.length === options.length) setSelectAllChecked(false);
+    if (updatedSelected.length === options.length) setSelectAllChecked(true);
+
+    setSelectedOptions(updatedSelected);
+  };
+
+  return (
+    <>
+      <Toggle
+        onChange={handleSelectAll}
+        checked={selectAllChecked}
+        type="checkbox"
+        label="Select all desserts"
+        indeterminate={
+          selectedOptions.length > 0 &&
+          selectedOptions.length !== options.length
+        }
+      />
+      <Toggle
+        title="Favourite desserts"
+        type="checkbox"
+        selected={selectedOptions}
+        options={options}
+        onChange={handleSelect}
+      />
+    </>
+  );
+}
+```
+
 ## Toggle with multiple options
 
 We've already had a look at checkboxes, but Toggle can also render radio options
