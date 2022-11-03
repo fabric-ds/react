@@ -1,3 +1,10 @@
+# [1.5.0-next.1](https://github.com/fabric-ds/react/compare/v1.4.3-next.1...v1.5.0-next.1) (2022-11-03)
+
+
+### Features
+
+* **toggle:** handle indeterminate state in a select-all checkbox ([#161](https://github.com/fabric-ds/react/issues/161)) ([af1970b](https://github.com/fabric-ds/react/commit/af1970b5dfe1ab87d061292065ddd18c942e2855))
+
 ## [1.4.3-next.1](https://github.com/fabric-ds/react/compare/v1.4.2...v1.4.3-next.1) (2022-11-03)
 
 
