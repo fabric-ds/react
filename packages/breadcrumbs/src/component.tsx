@@ -7,6 +7,9 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;
   const ariaLabel = props['aria-label'] || 'Her er du';
 
+  // Handles arrays of nodes passed as children
+  const flattenedChildren = children.flat(Infinity);
+
   return (
     <nav
       className={classNames('flex space-x-8 space-x-reverse', className)}
@@ -15,7 +18,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
     >
       <h2 className="sr-only">{ariaLabel}</h2>
       {interleave(
-        children,
+        flattenedChildren,
         <span aria-hidden className="select-none">
           /
         </span>,
