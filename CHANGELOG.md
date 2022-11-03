@@ -1,3 +1,10 @@
+## [1.4.3-next.1](https://github.com/fabric-ds/react/compare/v1.4.2...v1.4.3-next.1) (2022-11-03)
+
+
+### Bug Fixes
+
+* **breadcrumbs:** handle array of nodes passed as children ([04728d9](https://github.com/fabric-ds/react/commit/04728d9782f73664552d3e4d1121a7a479b10253))
+
 ## [1.4.2](https://github.com/fabric-ds/react/compare/v1.4.1...v1.4.2) (2022-10-12)
 
 
