@@ -45,7 +45,7 @@ export function Item({
     }
     // 'indeterminate' state of checkbox cannot be assigned via HTML: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
     checkboxRef.current.indeterminate = indeterminate;
-  }, [indeterminate]);
+  }, [indeterminate, checkboxRef]);
 
   return (
     <>
