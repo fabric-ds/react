@@ -47,13 +47,15 @@ export function Card(props: CardProps) {
         <span role="checkbox" aria-checked="true" aria-disabled="true" />
       )}
 
-      <div
-        className={classNames({
-          [c.cardOutline]: !props.flat,
-          [props.selected ? c.cardOutlineSelected : c.cardOutlineUnselected]:
-            !props.flat,
-        })}
-      />
+      {!props.flat && (
+        <div
+          className={classNames({
+            [c.cardOutline]: true,
+            [props.selected ? c.cardOutlineSelected : c.cardOutlineUnselected]:
+              true,
+          })}
+        />
+      )}
 
       {children}
     </>,
