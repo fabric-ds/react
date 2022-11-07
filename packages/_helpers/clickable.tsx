@@ -37,7 +37,6 @@ export type ClickableProps = {
 
   /**
    * Click handler
-   * If passed, clickable renders as a button with a click event
    */
   onClick?: () => void;
 } & Partial<Omit<HTMLAnchorElement, 'children'>> &
@@ -59,9 +58,9 @@ export function Clickable({
       className="absolute inset-0 h-full w-full appearance-none cursor-pointer focus-ring"
       type={type}
       controlled={false}
-      onChange={() => undefined}
+      onChange={props.onClick ? props.onClick : () => undefined}
       value={value}
-      name={`${id}:toggle`}
+      name={`${props.name || id}:toggle`}
     >
       {children}
     </ToggleItem>
