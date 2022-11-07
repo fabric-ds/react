@@ -357,7 +357,7 @@ export const Optional = () => {
   );
 };
 
-export const Feedback = () => {
+export const Searching = () => {
   return (
     <Combobox
       label="Star Wars character"
@@ -365,7 +365,7 @@ export const Feedback = () => {
       matchTextSegments
       openOnFocus
       value="asd"
-      feedback="Søker..."
+      feedbackInfo='Søker...'
       onChange={(val) => console.log('change')}
       options={[
         { value: 'Product manager' },
@@ -380,7 +380,9 @@ export const Feedback = () => {
 export const AsyncFetchWithFeedback = () => {
   const [query, setQuery] = React.useState('');
   const [value, setValue] = React.useState('');
-  const [feedback, setFeedback] = React.useState('');
+  const [infoFeedback, setInfoFeedback] = React.useState('');
+  const [warningFeedback, setWarningFeedback] = React.useState('');
+  const [errorFeedback, setErrorFeedback] = React.useState('');
   const characters = useDebouncedSearch(query, 300);
 
   // Generic debouncer
@@ -394,19 +396,21 @@ export const AsyncFetchWithFeedback = () => {
       }
 
       const handler = setTimeout(async () => {
-        setFeedback('Søker...');
+        setInfoFeedback('Søker...');
+        setWarningFeedback('');
+        setErrorFeedback('');
         try {
           const res = await fetch('https://swapi.dev/api/people/?search=' + query.trim())
           const { results } = await res.json();
           console.log('Results from API', query);
+          if (!results.length) {
+            setWarningFeedback('Ingen treff');
+          } 
           setCharacters(results.map((c) => ({ value: c.name })));
-          if (results.length) {
-            setFeedback('');
-          } else {
-            setFeedback('Ingen treff');
-          }
         } catch(err) {
-          setFeedback('API Fail');
+          setErrorFeedback('API Fail');
+        } finally {
+          setInfoFeedback('');
         }
       }, delay);
 
@@ -433,9 +437,15 @@ export const AsyncFetchWithFeedback = () => {
         setValue(val);
         action('select')(val);
       }}
-      onBlur={() => setFeedback('')}
+      onBlur={() => {
+        setInfoFeedback('');
+        setWarningFeedback('');
+        setErrorFeedback('');
+      }}
       options={characters}
-      feedback={feedback}
+      feedbackInfo={infoFeedback}
+      feedbackWarn={warningFeedback}
+      feedbackError={errorFeedback}
     >
       <Affix
         suffix

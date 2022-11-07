@@ -61,7 +61,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       onFocus,
       onBlur,
       optional,
-      feedback,
+      feedbackInfo,
+      feedbackWarn,
+      feedbackError,
       ...rest
     } = props;
 
@@ -250,80 +252,100 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           {getAriaText(currentOptions, value)}
         </span>
 
-        {feedback && <div className="absolute pb-8 left-0 right-0 bg-primary rounded-8 bg-white shadow"><div id="static-text" className="block p-8">{feedback}</div></div>}
-        {!feedback &&
-        <div
-          hidden={!isOpen || !currentOptions.length}
-          className={classNames(
-            listClassName,
-            'absolute left-0 right-0 bg-primary pb-8 rounded-8 bg-white shadow',
-          )}
-          style={{
-            zIndex: 3, // Force popover above misc. page content (mobile safari issue)
-          }}
-        >
-          <ul
-            id={listboxId}
-            role="listbox"
-            className={classNames('m-0 p-0 select-none list-none', {
-              [MATCH_SEGMENTS_CLASS_NAME]: matchTextSegments,
-            })}
+        {feedbackInfo && (
+          <div className="absolute pb-8 left-0 right-0 bg-primary rounded-8 bg-white shadow">
+            <div id="static-text" className="block p-8 text-gray-500">
+              {feedbackInfo}
+            </div>
+          </div>
+        )}
+        {feedbackWarn && (
+          <div className="absolute pb-8 left-0 right-0 bg-primary rounded-8 bg-white shadow">
+            <div id="static-text" className="block p-8 font-bold">
+              {feedbackWarn}
+            </div>
+          </div>
+        )}
+        {feedbackError && (
+          <div className="absolute pb-8 left-0 right-0 bg-primary rounded-8 bg-white shadow">
+            <div id="static-text" className="block p-8 font-bold">
+              {feedbackError}
+            </div>
+          </div>
+        )}
+        {!feedbackInfo && !feedbackWarn && !feedbackError && (
+          <div
+            hidden={!isOpen || !currentOptions.length}
+            className={classNames(
+              listClassName,
+              'absolute left-0 right-0 bg-primary pb-8 rounded-8 bg-white shadow',
+            )}
+            style={{
+              zIndex: 3, // Force popover above misc. page content (mobile safari issue)
+            }}
           >
-            {currentOptions.map((option) => {
-              const display = option.label || option.value;
-              let match: ReactNode = [];
+            <ul
+              id={listboxId}
+              role="listbox"
+              className={classNames('m-0 p-0 select-none list-none', {
+                [MATCH_SEGMENTS_CLASS_NAME]: matchTextSegments,
+              })}
+            >
+              {currentOptions.map((option) => {
+                const display = option.label || option.value;
+                let match: ReactNode = [];
 
-              if (matchTextSegments && !highlightValueMatch) {
-                const startIdx = display
-                  .toLowerCase()
-                  .indexOf(option.currentInputValue.toLowerCase());
+                if (matchTextSegments && !highlightValueMatch) {
+                  const startIdx = display
+                    .toLowerCase()
+                    .indexOf(option.currentInputValue.toLowerCase());
 
-                if (startIdx !== -1) {
-                  const endIdx = startIdx + option.currentInputValue.length;
-                  match = (
-                    <>
-                      {display.substring(0, startIdx)}
-                      <span data-combobox-text-match className="font-bold">
-                        {display.substring(startIdx, endIdx)}
-                      </span>
-                      {display.substring(endIdx)}
-                    </>
-                  );
-                } else {
-                  match = <span>{display}</span>;
-                }
-              } else if (highlightValueMatch) {
-                match = highlightValueMatch(display, value);
-              }
-
-              return (
-                <li
-                  key={option.id}
-                  id={option.id}
-                  role="option"
-                  aria-selected={navigationOption?.id === option.id}
-                  tabIndex={-1}
-                  onClick={() => {
-                    new Promise((res) => res(setNavigationOption(option))).then(
-                      () => {
-                        handleSelect(option);
-                      },
+                  if (startIdx !== -1) {
+                    const endIdx = startIdx + option.currentInputValue.length;
+                    match = (
+                      <>
+                        {display.substring(0, startIdx)}
+                        <span data-combobox-text-match className="font-bold">
+                          {display.substring(startIdx, endIdx)}
+                        </span>
+                        {display.substring(endIdx)}
+                      </>
                     );
-                  }}
-                  className={classNames({
-                    [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
-                      true,
-                    [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
-                      navigationOption?.id === option.id,
-                  })}
-                >
-                  {matchTextSegments || highlightValueMatch ? match : display}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        }
+                  } else {
+                    match = <span>{display}</span>;
+                  }
+                } else if (highlightValueMatch) {
+                  match = highlightValueMatch(display, value);
+                }
+
+                return (
+                  <li
+                    key={option.id}
+                    id={option.id}
+                    role="option"
+                    aria-selected={navigationOption?.id === option.id}
+                    tabIndex={-1}
+                    onClick={() => {
+                      new Promise((res) =>
+                        res(setNavigationOption(option)),
+                      ).then(() => {
+                        handleSelect(option);
+                      });
+                    }}
+                    className={classNames({
+                      [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
+                        true,
+                      [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
+                        navigationOption?.id === option.id,
+                    })}
+                  >
+                    {matchTextSegments || highlightValueMatch ? match : display}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
       </div>
     );
   },

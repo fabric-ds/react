@@ -118,8 +118,14 @@ export type ComboboxProps = {
   /** Whether to show optional text */
   optional?: boolean;
 
-  /** Feedback string to show users as they interact with the combobox */
-  feedback?: string;
+  /** Feedback string to use to inform users about something. Eg. Show "Søker..." feedback to users as they type. */
+  feedbackInfo?: string;
+
+  /** Feedback string to use to warn users about something. Eg. if there are no results when searching. */
+  feedbackWarn?: string;
+
+  /** Feedback string to show users if there is an error as they interact with the combobox. */
+  feedbackError?: string;
 } & Omit<
   React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
   'onChange' | 'type' | 'value' | 'label'
