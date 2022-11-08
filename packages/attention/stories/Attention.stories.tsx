@@ -75,7 +75,12 @@ export function Popover() {
       >
         Open menu
       </Button>
-      <Attention popver placement="bottom" targetEl={targetEl} isShowing={show}>
+      <Attention
+        popover
+        placement="bottom"
+        targetEl={targetEl}
+        isShowing={show}
+      >
         <ul className="bg-white w-full text-center">
           <li
             tabIndex={0}
