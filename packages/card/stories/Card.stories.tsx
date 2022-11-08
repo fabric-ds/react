@@ -52,7 +52,7 @@ export const SelectableCard = () => {
 
   return (
     <div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32 my-20">
-      <Card selected={selected} onClick={() => setSelected(!selected)}>
+      <Card selected={selected}>
         <img
           className="h-128 w-full object-cover"
           src="https://source.unsplash.com/random/400x400"
@@ -64,8 +64,10 @@ export const SelectableCard = () => {
         <div className="p-16">
           <p className="text-12 text-gray-300">DNB Eiendom</p>
           <p>
-            Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl.
-            bl.a. vv/fyring.
+            <Clickable checkbox onClick={() => setSelected(!selected)}>
+              Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl.
+              bl.a. vv/fyring.
+            </Clickable>
           </p>
           <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
           <p className="font-bold my-8">
