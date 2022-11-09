@@ -2,9 +2,17 @@ import React from 'react';
 import { card as c } from '@fabric-ds/css/component-classes';
 import { classNames } from '@chbphone55/classnames';
 import { CardProps } from './props';
+import { useLogDeprecationWarning } from '../../utils/src';
 
 export function Card(props: CardProps) {
   const { as = 'div', children, flat, ...rest } = props;
+
+  useLogDeprecationWarning({
+    condition: !!props.onClick,
+    message:
+      "'onClick' prop in Card is deprecated. Use Clickable component to handle click events in Cards.",
+  });
+
   return React.createElement(
     as,
     {
@@ -17,6 +25,7 @@ export function Card(props: CardProps) {
         [props.selected ? c.cardFlatSelected : c.cardFlatUnselected]:
           props.flat,
       }),
+      // @balbinak(08.11.22): onClick support in Card is deprecated. Remove when Fabric React users are ready for this major change
       tabIndex: props.onClick ? 0 : undefined,
       onKeyDown: props.onClick
         ? (e) => {
@@ -43,17 +52,15 @@ export function Card(props: CardProps) {
         </button>
       )}
 
-      {!props.onClick && props.selected && (
-        <span role="checkbox" aria-checked="true" aria-disabled="true" />
+      {!props.flat && (
+        <div
+          className={classNames({
+            [c.cardOutline]: true,
+            [props.selected ? c.cardOutlineSelected : c.cardOutlineUnselected]:
+              true,
+          })}
+        />
       )}
-
-      <div
-        className={classNames({
-          [c.cardOutline]: !props.flat,
-          [props.selected ? c.cardOutlineSelected : c.cardOutlineUnselected]:
-            !props.flat,
-        })}
-      />
 
       {children}
     </>,

@@ -26,7 +26,7 @@ export interface CardProps {
   className?: string;
 
   /**
-   * When the card is clicked
+   * When the card is clicked (deprecated)
    */
   onClick?: () => void;
 }
