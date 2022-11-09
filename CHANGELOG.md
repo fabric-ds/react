@@ -1,3 +1,10 @@
+# [1.5.0-next.2](https://github.com/fabric-ds/react/compare/v1.5.0-next.1...v1.5.0-next.2) (2022-11-09)
+
+
+### Bug Fixes
+
+* **Card:** fix toggle-in-card navigation ([#165](https://github.com/fabric-ds/react/issues/165)) ([fd03fc6](https://github.com/fabric-ds/react/commit/fd03fc6956142923103cc2a5e2c771fd42637335))
+
 # [1.5.0-next.1](https://github.com/fabric-ds/react/compare/v1.4.3-next.1...v1.5.0-next.1) (2022-11-03)
 
 
