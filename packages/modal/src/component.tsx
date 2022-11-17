@@ -31,7 +31,7 @@ export const Modal = ({
   if (!props.open) return <></>;
 
   return (
-    <FocusLock>
+    <FocusLock autoFocus={!!props.initialFocusRef}>
       <div
         onClick={props.onDismiss}
         className={classNames(props.className, c.backdrop)}
