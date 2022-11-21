@@ -1,10 +1,12 @@
+import React from 'react';
 import { useState } from 'react';
 import { Toggle } from '../src';
 
 const metadata = { title: 'Forms/Toggle/Checkbox' };
 export default metadata;
 
-const options = [
+type Option = { label: string; value: string };
+const options: Option[] = [
   { label: 'Apple', value: 'apple' },
   { label: 'Microsoft', value: 'microsoft' },
   { label: 'Amazon', value: 'amazon' },
@@ -53,6 +55,59 @@ export const SingleOptionCheckedUncontrolledDefault = () => {
       defaultChecked
       onChange={(checked) => console.log(checked)}
     />
+  );
+};
+
+export const IndeterminateState = () => {
+  const [selectAllChecked, setSelectAllChecked] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+
+  const handleSelectAll = (checked: boolean) => {
+    if (checked === false) {
+      setSelectedOptions([]);
+    } else {
+      setSelectedOptions(options);
+    }
+    setSelectAllChecked(checked);
+  };
+
+  const handleSelect = (selected: Option) => {
+    let updatedSelected = selectedOptions;
+
+    if (selectedOptions.some((option) => option.value === selected.value)) {
+      updatedSelected = selectedOptions.filter(
+        (option) => option.value !== selected.value,
+      );
+    } else {
+      updatedSelected = [...selectedOptions, selected];
+    }
+
+    if (selectedOptions.length === options.length) setSelectAllChecked(false);
+    if (updatedSelected.length === options.length) setSelectAllChecked(true);
+
+    setSelectedOptions(updatedSelected);
+  };
+
+  return (
+    <>
+      <Toggle
+        onChange={handleSelectAll}
+        checked={selectAllChecked}
+        type="checkbox"
+        label="Select all companies"
+        indeterminate={
+          selectedOptions.length > 0 &&
+          selectedOptions.length !== options.length
+        }
+      />
+      <Toggle
+        type="checkbox"
+        title="Companies"
+        options={options}
+        selected={selectedOptions}
+        onChange={handleSelect}
+      />
+    </>
   );
 };
 

@@ -48,7 +48,7 @@ export function DeadToggle(props: DeadToggleProps) {
         type={type}
         className="hidden"
         labelClassName={props.labelClassName}
-        name="test"
+        name="dead-toggle"
         controlled={true}
         onChange={() => undefined}
         value={props.value}

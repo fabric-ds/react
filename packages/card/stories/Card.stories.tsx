@@ -52,7 +52,7 @@ export const SelectableCard = () => {
 
   return (
     <div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32 my-20">
-      <Card selected={selected} onClick={() => setSelected(!selected)}>
+      <Card selected={selected}>
         <img
           className="h-128 w-full object-cover"
           src="https://source.unsplash.com/random/400x400"
@@ -64,8 +64,10 @@ export const SelectableCard = () => {
         <div className="p-16">
           <p className="text-12 text-gray-300">DNB Eiendom</p>
           <p>
-            Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl.
-            bl.a. vv/fyring.
+            <Clickable checkbox onClick={() => setSelected(!selected)}>
+              Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl.
+              bl.a. vv/fyring.
+            </Clickable>
           </p>
           <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
           <p className="font-bold my-8">
@@ -251,35 +253,39 @@ export const TogglesInCard = () => {
 
   return (
     <div>
-      <Card
-        selected={checked}
-        onClick={() => setChecked(!checked)}
-        className="mt-32 w-max"
-      >
-        <div className="p-24 flex items-center">
-          <DeadToggle checkbox checked={checked} className="-mt-8" />
-          <Clickable checkbox labelClassName="ml-12">
-            Checkbox in a card
-          </Clickable>
-        </div>
+      <Card selected={checked} className="mt-32 w-max p-24 flex items-center">
+        <DeadToggle checkbox checked={checked} className="-mt-8" />
+        <Clickable
+          checkbox
+          labelClassName="ml-12"
+          onClick={() => setChecked(!checked)}
+        >
+          Checkbox in a card
+        </Clickable>
       </Card>
 
       <div className="flex gap-32 mt-32">
-        <Card selected={selected === 'a'} onClick={() => setSelected('a')}>
-          <div className="p-24 flex items-center">
-            <DeadToggle radio checked={selected === 'a'} className="-mt-8" />
-            <Clickable radio labelClassName="ml-12">
-              Radio in a card - A
-            </Clickable>
-          </div>
+        <Card selected={selected === 'a'} className="p-24 flex items-center">
+          <DeadToggle radio checked={selected === 'a'} className="-mt-8" />
+          <Clickable
+            radio
+            name="gfhjdkh4"
+            labelClassName="ml-12"
+            onClick={() => setSelected('a')}
+          >
+            Radio in a card - A
+          </Clickable>
         </Card>
-        <Card selected={selected === 'b'} onClick={() => setSelected('b')}>
-          <div className="p-24 flex items-center">
-            <DeadToggle radio checked={selected === 'b'} className="-mt-8" />
-            <Clickable radio labelClassName="ml-12">
-              Radio in a card - B
-            </Clickable>
-          </div>
+        <Card selected={selected === 'b'} className="p-24 flex items-center">
+          <DeadToggle radio checked={selected === 'b'} className="-mt-8" />
+          <Clickable
+            radio
+            name="gfhjdkh4"
+            labelClassName="ml-12"
+            onClick={() => setSelected('b')}
+          >
+            Radio in a card - B
+          </Clickable>
         </Card>
       </div>
     </div>
@@ -293,34 +299,32 @@ export const DeadToggleInCard = () => {
     <div className="flex">
       <Card
         flat
-        className="py-12 px-16 w-max"
+        className="py-12 px-16 w-max flex items-center"
         selected={selected === 'a'}
-        onClick={() => setSelected('a')}
       >
-        <div className="flex items-center">
-          <DeadToggle radio checked={selected === 'a'} className="-mt-6" />
-          <div className="ml-16">
-            <h4 className="mb-0">
-              <Clickable radio>Purchase foo</Clickable>
-            </h4>
-            <p className="mb-0 text-14">520 kr/mnd</p>
-          </div>
+        <DeadToggle radio checked={selected === 'a'} className="-mt-6" />
+        <div className="ml-16">
+          <h4 className="mb-0">
+            <Clickable radio name="purchase" onClick={() => setSelected('a')}>
+              Purchase foo
+            </Clickable>
+          </h4>
+          <p className="mb-0 text-14">520 kr/mnd</p>
         </div>
       </Card>
       <Card
         flat
-        className="py-12 px-16 w-max ml-20"
+        className="py-12 px-16 w-max ml-20 flex items-center"
         selected={selected === 'b'}
-        onClick={() => setSelected('b')}
       >
-        <div className="flex items-center">
-          <DeadToggle radio checked={selected === 'b'} className="-mt-6" />
-          <div className="ml-16">
-            <h4 className="mb-0">
-              <Clickable radio>Purchase bar</Clickable>
-            </h4>
-            <p className="mb-0 text-14">124 kr/mnd</p>
-          </div>
+        <DeadToggle radio checked={selected === 'b'} className="-mt-6" />
+        <div className="ml-16">
+          <h4 className="mb-0">
+            <Clickable radio name="purchase" onClick={() => setSelected('b')}>
+              Purchase bar
+            </Clickable>
+          </h4>
+          <p className="mb-0 text-14">124 kr/mnd</p>
         </div>
       </Card>
     </div>
