@@ -1,3 +1,10 @@
+## [1.5.1-next.1](https://github.com/fabric-ds/react/compare/v1.5.0...v1.5.1-next.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* **modal:** cleanup scroll-doctor lock on unmount ([74a5c89](https://github.com/fabric-ds/react/commit/74a5c896d4cf8c7b111526e68500f66b0a9de5f7))
+
 # [1.5.0](https://github.com/fabric-ds/react/compare/v1.4.2...v1.5.0) (2022-11-21)
 
 
