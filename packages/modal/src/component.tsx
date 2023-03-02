@@ -21,6 +21,10 @@ export const Modal = ({
     teardown();
     if (!contentRef.current) return;
     props.open && setup(contentRef.current);
+
+    return () => {
+      teardown();
+    };
   }, [props.open, contentRef]);
 
   useEffect(() => {
