@@ -2,10 +2,12 @@ import * as React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import type { BreadcrumbsProps } from './props';
 import { interleave } from '@fabric-ds/core/breadcrumbs';
+import { intl, breadcrumbMessages } from './i18n';
 
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;
-  const ariaLabel = props['aria-label'] || 'Her er du';
+  const ariaLabel =
+    props['aria-label'] || intl.formatMessage(breadcrumbMessages.ariaLabel);
 
   // Handles arrays of nodes passed as children
   const flattenedChildren = children.flat(Infinity);

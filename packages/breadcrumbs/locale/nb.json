@@ -1,0 +1,6 @@
+{
+  "breadcrumbs.ariaLabel": {
+    "defaultMessage": "Her er du",
+    "description": "The default aria-label for the breadcrumbs component"
+  }
+}

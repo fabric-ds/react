@@ -14,6 +14,12 @@ export default function config({ mode }) {
         remarkPlugins: [slug, autoLinkHeadings, jsxExample, propTable],
       }),
     ],
+    resolve: {
+      alias: {
+        '@formatjs/icu-messageformat-parser':
+          '@formatjs/icu-messageformat-parser/no-parser',
+      },
+    },
     build: {
       outDir: 'site',
     },
