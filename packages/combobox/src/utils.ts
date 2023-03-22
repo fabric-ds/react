@@ -1,3 +1,4 @@
+import { i18n } from '@lingui/core';
 import { generateId } from '../../utils/src/useId';
 import { ComboboxOption, OptionWithIdAndMatch } from './props';
 
@@ -13,10 +14,6 @@ export function createOptionsWithIdAndMatch(
   }));
 }
 
-function isPlural(array) {
-  return array.length > 1 || array.length === 0;
-}
-
 export function getAriaText(options: OptionWithIdAndMatch[], value: string) {
   if (!options) return;
 
@@ -24,9 +21,24 @@ export function getAriaText(options: OptionWithIdAndMatch[], value: string) {
     option.value.toLowerCase().includes(value.toLowerCase()),
   );
 
-  return filteredOptionsByInputValue.length
-    ? `${filteredOptionsByInputValue.length} resultat${
-        isPlural(filteredOptionsByInputValue) ? 'er' : ''
-      }`
-    : `Ingen resultater`;
+  const pluralResults = i18n._(
+    /*i18n*/ {
+      id: 'combobox.aria.pluralResults',
+      message: '{numResults, plural, one {# result} other {# results}}',
+      comment: 'Aria text for combobox when one or more results',
+    },
+    {
+      numResults: filteredOptionsByInputValue.length,
+    },
+  );
+
+  const noResults = i18n._(
+    /*i18n*/ {
+      id: 'combobox.aria.noResults',
+      message: 'No results',
+      comment: 'Aria text for combobox when no results',
+    },
+  );
+
+  return filteredOptionsByInputValue.length ? pluralResults : noResults;
 }

@@ -1,0 +1,1 @@
+/*eslint-disable*/export const messages=JSON.parse("{\"modal.back.aria\":\"Back\",\"modal.close.aria\":\"Close\"}");

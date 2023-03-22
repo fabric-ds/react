@@ -2,10 +2,23 @@ import * as React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import type { BreadcrumbsProps } from './props';
 import { interleave } from '@fabric-ds/core/breadcrumbs';
+import { i18n } from '@lingui/core';
+import { useI18n } from '../../utils/src';
 
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;
-  const ariaLabel = props['aria-label'] || 'Her er du';
+
+  useI18n('breadcrumbs');
+
+  const ariaLabel =
+    props['aria-label'] ||
+    i18n._(
+      /*i18n*/ {
+        id: 'breadcrumbs.ariaLabel',
+        message: 'Here you are',
+        comment: 'Default screenreader message for the breadcrumb component',
+      },
+    );
 
   // Handles arrays of nodes passed as children
   const flattenedChildren = children.flat(Infinity);

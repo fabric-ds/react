@@ -1,6 +1,8 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { PillProps } from '.';
+import { useI18n } from '../../utils/src';
+import { i18n } from '@lingui/core';
 
 const c = {
   pill: 'inline-flex items-center py-8 focus-ring text-12 transition-all',
@@ -16,6 +18,8 @@ const c = {
 };
 
 export function Pill(props: PillProps) {
+  useI18n('pill');
+
   return (
     <div className="flex items-center">
       <button
@@ -42,7 +46,15 @@ export function Pill(props: PillProps) {
           onClick={props.onClose}
         >
           <span className="sr-only">
-            {props.closeSRLabel || `Fjern filter ${props.label}`}
+            {props.closeSRLabel ||
+              `${i18n._(
+                /*i18n*/ {
+                  id: 'pill.filter.remove',
+                  message: 'Remove filter',
+                  comment:
+                    'Fallback screenreader message for removal of the filter',
+                },
+              )} ${props.label}`}
           </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
