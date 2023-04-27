@@ -308,6 +308,27 @@ function Example() {
 }
 ```
 
+### Providing feedback
+
+You can provide feedback to the user via the feedback props. This is especially
+useful when performing asynchronous operations such as fetching options from an
+API as it enables you to tell the user that they need to wait for search results
+or that no results were found and so on. Feedback can be provided using any of
+the info, warning or error feedback props.
+
+```ts
+<Combobox
+  ...
+  feedbackInfo="Søker..."
+  feedbackWarning="Ingen treff"
+  feedbackError="Vi fant desverre ikke adressen din akkurat nå. Prov på nytt"
+  ...
+/>
+```
+
+When any of these props are set to a non empty string, options will not show.
+Omit feedback props entirely or set them to empty strings when not in use.
+
 ## Combobox Props
 
 ```props packages/combobox/src/component.tsx

@@ -356,3 +356,106 @@ export const Optional = () => {
     </>
   );
 };
+
+export const Searching = () => {
+  return (
+    <Combobox
+      label="Star Wars character"
+      disableStaticFiltering
+      matchTextSegments
+      openOnFocus
+      value="asd"
+      feedbackInfo='Søker...'
+      onChange={(val) => console.log('change')}
+      options={[
+        { value: 'Product manager' },
+        { value: 'Produktledelse' },
+        { value: 'Prosessoperatør' },
+        { value: 'Prosjekteier' },
+      ]}
+    />
+  );
+};
+
+export const AsyncFetchWithFeedback = () => {
+  const [query, setQuery] = React.useState('');
+  const [value, setValue] = React.useState('');
+  const [infoFeedback, setInfoFeedback] = React.useState('');
+  const [warningFeedback, setWarningFeedback] = React.useState('');
+  const [errorFeedback, setErrorFeedback] = React.useState('');
+  const characters = useDebouncedSearch(query, 300);
+
+  // Generic debouncer
+  function useDebouncedSearch(query, delay) {
+    const [characters, setCharacters] = React.useState([]);
+
+    React.useEffect(() => {
+      if (!query.length) { 
+        setCharacters([]);
+        return;
+      }
+
+      const handler = setTimeout(async () => {
+        setInfoFeedback('Søker...');
+        setWarningFeedback('');
+        setErrorFeedback('');
+        try {
+          const res = await fetch('https://swapi.dev/api/people/?search=' + query.trim())
+          const { results } = await res.json();
+          console.log('Results from API', query);
+          if (!results.length) {
+            setWarningFeedback('Ingen treff');
+          } 
+          setCharacters(results.map((c) => ({ value: c.name })));
+        } catch(err) {
+          setErrorFeedback('API Fail');
+        } finally {
+          setInfoFeedback('');
+        }
+      }, delay);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [delay, query]);
+
+    return characters;
+  }
+
+  return (
+    <Combobox
+      label="Star Wars character"
+      disableStaticFiltering
+      matchTextSegments
+      openOnFocus
+      value={value}
+      onChange={(val) => {
+        setValue(val);
+        setQuery(val);
+      }}
+      onSelect={(val) => {
+        setValue(val);
+        action('select')(val);
+      }}
+      onBlur={() => {
+        setInfoFeedback('');
+        setWarningFeedback('');
+        setErrorFeedback('');
+      }}
+      options={characters}
+      feedbackInfo={infoFeedback}
+      feedbackWarn={warningFeedback}
+      feedbackError={errorFeedback}
+    >
+      <Affix
+        suffix
+        clear
+        aria-label="Clear text"
+        onClick={() => {
+          setValue('');
+          setQuery('');
+        }}
+      />
+    </Combobox>
+  );
+};
