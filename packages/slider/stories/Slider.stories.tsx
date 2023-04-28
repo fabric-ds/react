@@ -11,12 +11,13 @@ export const Regular = () => {
     <div>
       <output>{value}</output>
       <Slider
-        onChange={(value) => setValue(value)}
+        onChange={(val) => setValue(val)}
         value={value}
         min={1000}
         max={10_000_000}
         step={1000}
       />
+      <button onClick={() => setValue(2_500_000)}>Reset</button>
     </div>
   );
 };
