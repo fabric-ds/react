@@ -1,3 +1,10 @@
+## [1.5.1-next.2](https://github.com/fabric-ds/react/compare/v1.5.1-next.1...v1.5.1-next.2) (2023-05-05)
+
+
+### Bug Fixes
+
+* reactive slider ([ee33cea](https://github.com/fabric-ds/react/commit/ee33cea471177e09817fab3bf6d331833d9b6dad))
+
 ## [1.5.1-next.1](https://github.com/fabric-ds/react/compare/v1.5.0...v1.5.1-next.1) (2023-03-01)
 
 
