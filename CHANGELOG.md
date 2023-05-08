@@ -1,3 +1,11 @@
+## [1.5.2](https://github.com/fabric-ds/react/compare/v1.5.1...v1.5.2) (2023-05-08)
+
+
+### Bug Fixes
+
+* reactive slider ([ee33cea](https://github.com/fabric-ds/react/commit/ee33cea471177e09817fab3bf6d331833d9b6dad))
+* **workflows:** rebase next branch on top of main after a new release ([c3f4d7b](https://github.com/fabric-ds/react/commit/c3f4d7b8d473c4e825472f337fb86d0c3d8a4b63))
+
 ## [1.5.2-next.1](https://github.com/fabric-ds/react/compare/v1.5.1...v1.5.2-next.1) (2023-05-08)
 
 
