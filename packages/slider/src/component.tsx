@@ -19,7 +19,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   }, [sliderLine]);
 
   const [value, setValue] = useState(rest.value);
-  const [position, setPosition] = useState(0);
+  const [position, setPosition] = useState(rest.value);
   const [dimensions, setDimensions] = useState({ left: 0, width: 0 });
   const [sliderPressed, setSliderPressed] = useState(false);
 
@@ -97,10 +97,10 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   }, [position, rest.value, rest.step]);
 
   useEffect(() => {
-    if (sliderPressed || position === rest.value) return;
+    if (sliderPressed || position === rest.value || value === rest.value) return;
     setPosition(rest.value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sliderPressed]);
+  }, [sliderPressed, rest.value]);
 
   return (
     <div className={c.wrapper}>
