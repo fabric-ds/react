@@ -1,6 +1,8 @@
 import React, { forwardRef, Ref } from 'react';
 import { classNames } from '@chbphone55/classnames';
 import type { ButtonProps } from './props';
+import { useI18n } from '../../utils/src';
+import { i18n } from '@lingui/core';
 
 export const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
@@ -18,6 +20,8 @@ export const Button = forwardRef<
     loading,
     ...rest
   } = props;
+
+  useI18n('button');
 
   const classes = classNames(props.className, {
     button: true,
@@ -63,7 +67,13 @@ export const Button = forwardRef<
           className="sr-only"
           role="progressbar"
           aria-valuenow={0}
-          aria-valuetext="Laster..."
+          aria-valuetext={i18n._(
+            /*i18n*/ {
+              id: 'button.loading',
+              message: 'Loading...',
+              comment: 'Screenreader text for the loading state of the button',
+            },
+          )}
         />
       ) : null}
     </>

@@ -1,6 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
+import { i18n } from '@lingui/core';
 import React, { forwardRef, useRef } from 'react';
-import { useId } from '../../utils/src';
+import { useI18n, useId } from '../../utils/src';
 import { TextAreaProps } from './props';
 import useTextAreaHeight from './useTextAreaHeight';
 
@@ -25,6 +26,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       optional,
       ...rest
     } = props;
+
+    useI18n('textarea');
 
     const id = useId(providedId);
     const ref = useRef<HTMLTextAreaElement | null>(null);
@@ -54,7 +57,13 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             {label}
             {optional && (
               <span className="pl-8 font-normal text-14 text-gray-500">
-                (valgfritt)
+                {i18n._(
+                  /*i18n*/ {
+                    id: 'textarea.label.optional',
+                    message: '(optional)',
+                    comment: 'Shown behind label when marked as optional',
+                  },
+                )}
               </span>
             )}
           </label>

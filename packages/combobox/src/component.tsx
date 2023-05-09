@@ -12,7 +12,7 @@ import React, {
   useState,
 } from 'react';
 import { TextField } from '../../textfield/src';
-import { useId } from '../../utils/src';
+import { useI18n, useId } from '../../utils/src';
 import { ComboboxProps, OptionWithIdAndMatch } from './props';
 import { createOptionsWithIdAndMatch, getAriaText } from './utils';
 
@@ -27,6 +27,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const inputRef = useRef<HTMLInputElement | null>(null);
     const inputContainerRef = useRef<HTMLDivElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
+
+    useI18n('combobox');
 
     // Options list open boolean
     const [isOpen, setOpen] = useState(false);
