@@ -22,7 +22,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "17.0.2"
+    "react": "18.2.0"
   },
   "scripts": {
     "commit": "cz",
@@ -58,8 +58,8 @@
     "@storybook/builder-webpack5": "^6.5.0-beta.0",
     "@storybook/manager-webpack5": "^6.5.0-beta.0",
     "@storybook/react": "^6.5.3",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
     "@vitejs/plugin-react-refresh": "^1.1.3",
@@ -80,9 +80,9 @@
     "microbundle": "^0.13.3",
     "prettier": "^2.2.1",
     "prism-react-renderer": "^1.1.1",
-    "react": "16.14.0",
+    "react": "18.2.0",
     "react-docgen-typescript": "^1.20.5",
-    "react-dom": "16.14.0",
+    "react-dom": "18.2.0",
     "react-focus-lock": "^2.5.2",
     "react-router-dom": "^5.2.0",
     "rehype-stringify": "^8.0.0",
